@@ -42,11 +42,11 @@ export default function Pricing() {
             {/* Pro Plan */}
             <Card className="border-2 border-primary shadow-xl scale-105 relative z-10">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 text-sm font-medium rounded-full">
-                Most Popular
+                Best for Guides
               </div>
               <CardHeader>
-                <CardTitle className="text-2xl font-bold">Pro</CardTitle>
-                <CardDescription>For growing tour operators</CardDescription>
+                <CardTitle className="text-2xl font-bold">Pro Guide</CardTitle>
+                <CardDescription>For independent tour operators</CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold text-slate-900">$19</span>
                   <span className="text-muted-foreground">/month</span>
@@ -54,12 +54,12 @@ export default function Pricing() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  <PricingItem text="Unlimited Booking Widgets" />
-                  <PricingItem text="Advanced AI Content Tools" />
-                  <PricingItem text="Social Media Auto-Poster" />
+                  <PricingItem text="Full AI Content Suite" />
+                  <PricingItem text="WhatsApp & CRM Sync" />
+                  <PricingItem text="Social Auto-Poster" />
                   <PricingItem text="Review Reply Assistant" />
                   <PricingItem text="Google Map Booster" />
-                  <PricingItem text="Priority Email Support" />
+                  <PricingItem text="Priority Local Support" />
                 </ul>
               </CardContent>
               <CardFooter>
@@ -71,7 +71,7 @@ export default function Pricing() {
             <Card className="border-2 shadow-sm hover:shadow-lg transition-shadow">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">Agency</CardTitle>
-                <CardDescription>For marketing agencies</CardDescription>
+                <CardDescription>For large tourism agencies</CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold text-slate-900">$49</span>
                   <span className="text-muted-foreground">/month</span>
@@ -80,10 +80,10 @@ export default function Pricing() {
               <CardContent>
                 <ul className="space-y-3">
                   <PricingItem text="Everything in Pro" />
-                  <PricingItem text="White-label Dashboard" />
-                  <PricingItem text="Multi-client Management" />
-                  <PricingItem text="Full API Access" />
-                  <PricingItem text="Custom Domain" />
+                  <PricingItem text="White-label Branding" />
+                  <PricingItem text="Multi-account Management" />
+                  <PricingItem text="Full API & SDK Access" />
+                  <PricingItem text="Custom Tourism Templates" />
                   <PricingItem text="Dedicated Account Manager" />
                 </ul>
               </CardContent>

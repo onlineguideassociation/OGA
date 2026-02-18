@@ -88,16 +88,16 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 space-y-8">
-              <Badge variant="secondary" className="text-blue-600 bg-blue-50 hover:bg-blue-100">Developer First</Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-                Integrate in minutes, <br /> not months.
-              </h2>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                Our lightweight Javascript SDK allows you to drop booking engines, lead forms, and chat widgets into any website with just a few lines of code. Fully white-label ready for agencies.
-              </p>
-              
-              <ul className="space-y-4">
-                {['Universal compatibility (React, Vue, WordPress)', 'Real-time availability syncing', 'Customizable UI components', 'Secure payment processing'].map((item, i) => (
+            <Badge variant="secondary" className="text-blue-600 bg-blue-50 hover:bg-blue-100">WhatsApp-First Platform</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+              The Digital Infrastructure for <br /> Cambodia's Tour Guides.
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Built for real guides in Siem Reap and Phnom Penh. Not marketers. Not developers. Our SDK allows you to drop booking engines and WhatsApp buttons into any site in seconds.
+            </p>
+            
+            <ul className="space-y-4">
+              {['Optimized for Angkor Wat tour operators', 'WhatsApp & Telegram direct sync', 'Mobile-first CRM for drivers', 'White-label ready for local agencies'].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-slate-700">
                     <div className="h-6 w-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
                       <Check className="h-3.5 w-3.5" />
