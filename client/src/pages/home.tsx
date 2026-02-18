@@ -22,11 +22,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-5xl mx-auto leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-            The All-in-One <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Digital Marketing SDK</span> <br className="hidden md:block" /> for Tourism & Local Businesses
+            The Digital Foundation for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Local Tourism</span> <br className="hidden md:block" /> Built for Guides, by Guides.
           </h1>
           
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            Empower your tourism business with our API-first platform. From embeddable booking widgets to AI-driven content generation and automated social marketing.
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
+            A simple, WhatsApp-first operating system for tour guides and drivers in Cambodia. Manage bookings, generate marketing content, and grow your business with tools designed for the real world.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">

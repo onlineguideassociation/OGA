@@ -19,20 +19,23 @@ export default function AIToolsDashboard() {
     // Simulate AI generation
     setTimeout(() => {
       if (activeTab === "tour") {
-        setGeneratedContent(`Discover the hidden gems of the city on this exclusive 3-hour walking tour. 
+        setGeneratedContent(`Discover the soul of Siem Reap on this exclusive 4-hour Angkor Wat sunrise tour. 
         
-✨ Highlights:
-• Explore secret alleyways and historic landmarks
-• Taste authentic local delicacies at the oldest market
-• Learn fascinating stories from an expert local guide
+✨ What You'll Experience:
+• Perfect sunrise spots away from the massive crowds
+• Hidden jungle paths connecting the main temples
+• Authentic Khmer breakfast with a local family
+• Deep historical insights from a certified Angkor guide
 
-Perfect for history buffs and foodies alike! Join us for an unforgettable afternoon.`);
+Trusted by travelers from around the world. Book your spot for an unforgettable morning.`);
       } else if (activeTab === "ad") {
-        setGeneratedContent(`🌴 Need a break? Escape to paradise! 🌊
+        setGeneratedContent(`🇰🇭 Experience the Magic of Angkor Wat! 🌅
 
-Book your dream vacation today and get 20% OFF our sunset cruise package. Limited spots available!
+Don't just see the temples, live the history. Our private tours offer a personalized journey through Cambodia's ancient heart. 
 
-👉 Link in bio to book now! #TravelGoals #SummerVibes #Discount`);
+Book now for November and get a FREE traditional lunch! 🍜
+
+👉 Message us on WhatsApp to check availability! #SiemReap #AngkorWat #CambodiaTravel`);
       } else {
         setGeneratedContent(`Thank you so much for your kind words! We're thrilled to hear you enjoyed the boat tour and that Captain Mike made your experience special. We hope to welcome you back again soon! 🛥️💙`);
       }

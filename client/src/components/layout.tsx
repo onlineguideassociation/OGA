@@ -106,7 +106,7 @@ export function Footer() {
               OnlineGuide.io
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The All-in-One Digital Marketing SDK for Tourism & Local Businesses. Powering the next generation of travel tech.
+              The Digital Operating System for Tourism. Built first for Siem Reap & Phnom Penh, empowering local guides to go global.
             </p>
           </div>
           
