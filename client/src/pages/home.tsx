@@ -22,11 +22,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-5xl mx-auto leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-            The Digital Foundation for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Local Tourism</span> <br className="hidden md:block" /> Built for Guides, by Guides.
+            A WhatsApp-First <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">AI + Booking Tool</span> <br className="hidden md:block" /> for Tour Guides in Cambodia
           </h1>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            A simple, WhatsApp-first operating system for tour guides and drivers in Cambodia. Manage bookings, generate marketing content, and grow your business with tools designed for the real world.
+            Built by a real Cambodian tour guide, for real tour guides. Stop losing leads in WhatsApp. Generate tour descriptions and Facebook ads in seconds. 
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
@@ -61,23 +61,23 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard 
               icon={<Code className="h-6 w-6 text-blue-600" />}
-              title="Booking & Lead SDK"
-              description="Embeddable booking widgets and lead capture forms that sync directly to your CRM."
+              title="Booking & Lead Widget"
+              description="A simple script for your site that captures leads directly into your WhatsApp or Telegram."
             />
             <FeatureCard 
               icon={<MessageSquare className="h-6 w-6 text-purple-600" />}
-              title="AI Content Generator"
-              description="Generate SEO-optimized tour descriptions, social posts, and ad copy in seconds."
+              title="AI Tourism Assistant"
+              description="Generate SEO tour descriptions, Facebook ads, and review replies in Khmer or English."
             />
             <FeatureCard 
               icon={<Globe className="h-6 w-6 text-indigo-600" />}
-              title="Social Auto-Poster"
-              description="Schedule and auto-publish content to Facebook, Instagram, and TikTok."
+              title="Simple CRM"
+              description="Track your leads from first contact to completed tour. No more lost messages."
             />
             <FeatureCard 
               icon={<Map className="h-6 w-6 text-emerald-600" />}
-              title="Map Ranking Booster"
-              description="Tools to optimize your Google Maps presence and manage local citations."
+              title="WhatsApp Templates"
+              description="Quick-reply templates designed specifically for Angkor Wat and city tour operators."
             />
           </div>
         </div>

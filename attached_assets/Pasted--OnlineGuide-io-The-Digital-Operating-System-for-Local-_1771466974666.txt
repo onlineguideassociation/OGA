@@ -1,0 +1,296 @@
+🚀 OnlineGuide.io
+The Digital Operating System for Local Tour Guides
+
+Starting in:
+
+Siem Reap
+
+Phnom Penh
+
+Built by a real Cambodian tour guide.
+For real tour guides.
+
+🎯 1️⃣ REAL FINAL POSITIONING (Simplified)
+
+OnlineGuide.io is:
+
+A WhatsApp-First AI + Booking Tool for Tour Guides in Cambodia
+
+Not a giant SaaS.
+Not Shopify.
+Not HubSpot.
+
+It solves 4 real problems:
+
+Guides don’t know how to write good tour descriptions.
+
+They don’t know how to create Facebook ads.
+
+They lose leads in WhatsApp.
+
+They don’t have a simple booking system.
+
+That’s it.
+
+If you solve those 4 problems well → You win.
+
+🧱 2️⃣ REALISTIC SYSTEM ARCHITECTURE (MVP VERSION)
+
+Forget 5 engines.
+
+Start with 3 Core Modules Only.
+
+🔹 MODULE 1 – AI Tourism Assistant
+
+This is your strongest weapon.
+
+Features for MVP:
+
+✅ AI Tour Description Generator
+✅ AI Facebook Ad Generator
+✅ AI Review Reply Generator
+✅ AI WhatsApp Auto-Reply Builder
+
+Example:
+
+Guide types:
+
+“Sunrise Angkor Wat tour with AC car”
+
+AI generates:
+
+SEO tour description
+
+Facebook ad text
+
+Short caption
+
+WhatsApp quick reply
+
+That alone is massive value in Cambodia.
+
+🔹 MODULE 2 – Booking + WhatsApp Widget
+
+Simple embeddable script:
+
+<script src="https://onlineguide.io/widget.js"></script>
+
+
+What it activates:
+
+Booking request form
+
+WhatsApp button
+
+Telegram link
+
+Email capture
+
+Basic CRM tracking
+
+No complex payment system at first.
+Just lead capture + tracking.
+
+Most Cambodian guides close via WhatsApp anyway.
+
+🔹 MODULE 3 – Simple CRM Dashboard
+
+Inside user panel:
+
+New Leads
+
+Contacted
+
+Confirmed
+
+Completed
+
+Plus:
+
+WhatsApp link quick reply
+
+Notes
+
+Tour type
+
+Date
+
+Very simple.
+
+Mobile-first.
+
+🎨 3️⃣ WHAT YOU DO NOT BUILD (Important)
+
+❌ No full social API automation
+❌ No WordPress auto-multisite
+❌ No complex white-label
+❌ No growth scanner
+❌ No RAG knowledge system (yet)
+
+Those are Phase 3+ ideas.
+
+Right now: focus on revenue.
+
+💰 4️⃣ REALISTIC PRICING FOR CAMBODIA
+
+You must respect local market.
+
+Free Plan
+
+Booking widget
+
+5 AI generations/month
+
+Pro Guide – $15/month
+
+Unlimited AI
+
+CRM
+
+Review assistant
+
+Ad generator
+
+Website + Hosting – $25/month
+
+Simple tourism website
+
+Booking widget included
+
+If you get:
+
+100 guides × $15
+= $1,500/month recurring
+
+That is realistic for Siem Reap ecosystem.
+
+🌍 5️⃣ MARKET ENTRY STRATEGY (Smart & Local)
+Phase 1 – Siem Reap Only
+
+Target:
+
+Independent tour guides
+
+Private drivers
+
+Small agencies near Angkor
+
+You personally demo it.
+
+Offer:
+
+“I help you get more bookings using AI.”
+
+You already have credibility.
+
+Phase 2 – Phnom Penh Expansion
+
+Target:
+
+City tour operators
+
+Tuk tuk drivers
+
+Food tour guides
+
+Phase 3 – Southeast Asia
+
+Thailand
+Vietnam
+Indonesia
+
+But only after Cambodia is stable.
+
+🧠 6️⃣ DIFFERENTIATION (Your Real Advantage)
+
+Big SaaS companies don’t understand:
+
+Telegram culture in Cambodia
+
+WhatsApp closing behavior
+
+How Angkor tours are sold
+
+How drivers communicate
+
+You do.
+
+Your product should reflect:
+
+✅ Telegram integration
+✅ WhatsApp quick reply templates
+✅ English + Khmer toggle
+✅ Tourism-specific prompts
+
+Example prompt:
+
+“Generate 5-star review reply for Angkor Wat sunrise tour.”
+
+That’s hyper-specific.
+
+🏗 7️⃣ 60-DAY REAL EXECUTION PLAN
+Days 1–14
+
+Build AI Tour Generator
+
+Build Facebook Ad Generator
+
+Simple dashboard UI
+
+Days 15–30
+
+Build booking widget
+
+Build basic CRM
+
+Days 30–45
+
+Beta test with 10 real guides
+
+Collect feedback
+
+Improve UX
+
+Days 45–60
+
+Launch officially in Siem Reap
+
+Do 1 workshop:
+
+“How AI Can Increase Your Tour Bookings”
+
+Convert attendees.
+
+🏆 8️⃣ WHAT OnlineGuide.io BECOMES
+
+Not a startup dream.
+
+But this:
+
+The Digital Toolkit for Angkor Wat Tour Guides
+
+Starting from:
+
+Angkor Wat ecosystem
+Expanding across Cambodia
+Then Southeast Asia
+
+🔥 9️⃣ The Clean Final Identity
+
+OnlineGuide.io is:
+
+Built by a tour guide
+
+Designed for tour guides
+
+Focused on WhatsApp sales
+
+Powered by AI
+
+Affordable for Cambodia
+
+It is not trying to be everything.
+
+It is trying to win:
+
+Siem Reap first.

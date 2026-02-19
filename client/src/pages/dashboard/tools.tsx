@@ -36,6 +36,12 @@ Don't just see the temples, live the history. Our private tours offer a personal
 Book now for November and get a FREE traditional lunch! 🍜
 
 👉 Message us on WhatsApp to check availability! #SiemReap #AngkorWat #CambodiaTravel`);
+      } else if (activeTab === "whatsapp") {
+        setGeneratedContent(`Hello! Thank you for your inquiry about the Angkor Wat sunrise tour. 🙏
+
+The price for a private tour for 4 people is $60 total (includes AC car and cold water). This does not include the temple pass.
+
+We pick you up at 4:30 AM from your hotel. Would you like to reserve this date? 🌅`);
       } else {
         setGeneratedContent(`Thank you so much for your kind words! We're thrilled to hear you enjoyed the boat tour and that Captain Mike made your experience special. We hope to welcome you back again soon! 🛥️💙`);
       }
@@ -51,13 +57,16 @@ Book now for November and get a FREE traditional lunch! 🍜
           <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">AI Tools</h2>
           <nav className="space-y-2">
             <Button variant={activeTab === "tour" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActiveTab("tour")}>
-              <Map className="mr-2 h-4 w-4" /> Tour Description
+              <Map className="mr-2 h-4 w-4" /> Tour Generator
             </Button>
             <Button variant={activeTab === "ad" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActiveTab("ad")}>
-              <Facebook className="mr-2 h-4 w-4" /> Ad Generator
+              <Facebook className="mr-2 h-4 w-4" /> Facebook Ad
             </Button>
             <Button variant={activeTab === "review" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActiveTab("review")}>
               <MessageSquare className="mr-2 h-4 w-4" /> Review Reply
+            </Button>
+            <Button variant={activeTab === "whatsapp" ? "secondary" : "ghost"} className="w-full justify-start" onClick={() => setActiveTab("whatsapp")}>
+              <Zap className="mr-2 h-4 w-4" /> WhatsApp Auto-Reply
             </Button>
           </nav>
         </div>
@@ -140,6 +149,27 @@ Book now for November and get a FREE traditional lunch! 🍜
                             <SelectItem value="professional">Professional & Polite</SelectItem>
                             <SelectItem value="friendly">Friendly & Casual</SelectItem>
                             <SelectItem value="apologetic">Apologetic (for bad reviews)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </>
+                  )}
+
+                  {activeTab === "whatsapp" && (
+                    <>
+                      <div className="space-y-2">
+                        <Label>Context (e.g. Booking inquiry, Price request)</Label>
+                        <Textarea placeholder="e.g. Guest asking about Angkor Wat sunrise tour price for 4 people" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label>Style</Label>
+                        <Select defaultValue="helpful">
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select style" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="helpful">Helpful & Detailed</SelectItem>
+                            <SelectItem value="quick">Quick & Direct</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

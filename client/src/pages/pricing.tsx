@@ -18,7 +18,7 @@ export default function Pricing() {
             <Card className="border-2 shadow-sm hover:shadow-lg transition-shadow">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">Free</CardTitle>
-                <CardDescription>Perfect for testing the waters</CardDescription>
+                <CardDescription>Perfect for getting started</CardDescription>
                 <div className="mt-4">
                   <span className="text-4xl font-bold text-slate-900">$0</span>
                   <span className="text-muted-foreground">/month</span>
@@ -26,12 +26,10 @@ export default function Pricing() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  <PricingItem text="1 Active Booking Widget" />
-                  <PricingItem text="Basic AI Tour Descriptions" />
-                  <PricingItem text="Manual Social Posting" />
+                  <PricingItem text="Booking & WhatsApp Widget" />
+                  <PricingItem text="5 AI Generations / month" />
+                  <PricingItem text="Basic Lead Tracking" />
                   <PricingItem text="Community Support" />
-                  <PricingItem text="White-labeling" included={false} />
-                  <PricingItem text="API Access" included={false} />
                 </ul>
               </CardContent>
               <CardFooter>
@@ -42,23 +40,23 @@ export default function Pricing() {
             {/* Pro Plan */}
             <Card className="border-2 border-primary shadow-xl scale-105 relative z-10">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white px-3 py-1 text-sm font-medium rounded-full">
-                Best for Guides
+                Most Popular
               </div>
               <CardHeader>
                 <CardTitle className="text-2xl font-bold">Pro Guide</CardTitle>
-                <CardDescription>For independent tour operators</CardDescription>
+                <CardDescription>For serious tour operators</CardDescription>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold text-slate-900">$19</span>
+                  <span className="text-4xl font-bold text-slate-900">$15</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
-                  <PricingItem text="Full AI Content Suite" />
-                  <PricingItem text="WhatsApp & CRM Sync" />
-                  <PricingItem text="Social Auto-Poster" />
+                  <PricingItem text="Unlimited AI Generations" />
+                  <PricingItem text="Full CRM Access" />
                   <PricingItem text="Review Reply Assistant" />
-                  <PricingItem text="Google Map Booster" />
+                  <PricingItem text="Facebook Ad Generator" />
+                  <PricingItem text="WhatsApp Quick Replies" />
                   <PricingItem text="Priority Local Support" />
                 </ul>
               </CardContent>
@@ -67,28 +65,28 @@ export default function Pricing() {
               </CardFooter>
             </Card>
 
-            {/* Agency Plan */}
+            {/* Website Plan */}
             <Card className="border-2 shadow-sm hover:shadow-lg transition-shadow">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold">Agency</CardTitle>
-                <CardDescription>For large tourism agencies</CardDescription>
+                <CardTitle className="text-2xl font-bold">Website Pro</CardTitle>
+                <CardDescription>Your own tour website</CardDescription>
                 <div className="mt-4">
-                  <span className="text-4xl font-bold text-slate-900">$49</span>
+                  <span className="text-4xl font-bold text-slate-900">$25</span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
+                  <PricingItem text="Simple Tourism Website" />
+                  <PricingItem text="Custom Domain Mapping" />
+                  <PricingItem text="Booking Widget Included" />
+                  <PricingItem text="Hosting Included" />
+                  <PricingItem text="SEO Optimization" />
                   <PricingItem text="Everything in Pro" />
-                  <PricingItem text="White-label Branding" />
-                  <PricingItem text="Multi-account Management" />
-                  <PricingItem text="Full API & SDK Access" />
-                  <PricingItem text="Custom Tourism Templates" />
-                  <PricingItem text="Dedicated Account Manager" />
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button variant="outline" className="w-full h-12">Contact Sales</Button>
+                <Button variant="outline" className="w-full h-12">Get Your Site</Button>
               </CardFooter>
             </Card>
           </div>
