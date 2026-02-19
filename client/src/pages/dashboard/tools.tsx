@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Wand2, Facebook, MessageSquare, Map, Copy, CheckCircle2 } from "lucide-react";
+import { Wand2, Facebook, MessageSquare, Map, Copy, CheckCircle2, Zap } from "lucide-react";
 import { useState } from "react";
 
 export default function AIToolsDashboard() {
