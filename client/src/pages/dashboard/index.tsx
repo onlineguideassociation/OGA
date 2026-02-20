@@ -2,78 +2,114 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { Users, TrendingUp, CalendarCheck, MousePointerClick, ArrowUpRight } from "lucide-react";
+import { Users, TrendingUp, CalendarCheck, MousePointerClick, ArrowUpRight, Wand2, Package, ShoppingBag, MessageSquare, Calendar } from "lucide-react";
+import { Link } from "wouter";
 
 const data = [
-  { name: 'Mon', leads: 40 },
-  { name: 'Tue', leads: 30 },
-  { name: 'Wed', leads: 20 },
-  { name: 'Thu', leads: 27 },
-  { name: 'Fri', leads: 18 },
-  { name: 'Sat', leads: 23 },
-  { name: 'Sun', leads: 34 },
+  { name: "Mon", bookings: 4, revenue: 240 },
+  { name: "Tue", bookings: 3, revenue: 190 },
+  { name: "Wed", bookings: 7, revenue: 450 },
+  { name: "Thu", bookings: 5, revenue: 310 },
+  { name: "Fri", bookings: 8, revenue: 520 },
+  { name: "Sat", bookings: 12, revenue: 890 },
+  { name: "Sun", bookings: 10, revenue: 750 },
 ];
 
 export default function DashboardOverview() {
   return (
     <Layout>
-      <div className="bg-slate-50 min-h-screen p-8">
-        <div className="max-w-7xl mx-auto space-y-8">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-slate-900">Dashboard Overview</h1>
-            <div className="flex gap-2">
-              <Button variant="outline">Last 7 Days</Button>
-              <Button>Export Report</Button>
+      <div className="flex min-h-[calc(100vh-64px)] bg-slate-50">
+        {/* Sidebar */}
+        <div className="w-64 bg-white border-r hidden md:block p-6">
+          <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Management</h2>
+          <nav className="space-y-2">
+            <Link href="/dashboard">
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10 text-primary cursor-pointer">
+                <TrendingUp className="h-4 w-4" />
+                <span className="font-medium">Overview</span>
+              </div>
+            </Link>
+            <Link href="/dashboard/tools">
+              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+                <Wand2 className="h-4 w-4" />
+                <span>AI Tools</span>
+              </div>
+            </Link>
+            <Link href="/dashboard/products">
+              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+                <Package className="h-4 w-4" />
+                <span>Digital Products</span>
+              </div>
+            </Link>
+          </nav>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-2xl font-bold text-slate-900">Guide Dashboard</h1>
+              <div className="text-sm text-slate-500">Welcome back, Guide Mike</div>
             </div>
-          </div>
 
-          {/* Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <StatsCard title="Total Leads" value="1,240" change="+12%" icon={<Users className="h-4 w-4 text-blue-600" />} />
-            <StatsCard title="Booking Rate" value="4.3%" change="+0.8%" icon={<TrendingUp className="h-4 w-4 text-green-600" />} />
-            <StatsCard title="Scheduled Posts" value="12" change="Pending" icon={<CalendarCheck className="h-4 w-4 text-purple-600" />} />
-            <StatsCard title="Widget Clicks" value="8,543" change="+24%" icon={<MousePointerClick className="h-4 w-4 text-orange-600" />} />
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <StatsCard title="Total Leads" value="124" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
+              <StatsCard title="Confirmed Bookings" value="42" icon={<Calendar className="h-5 w-5 text-emerald-600" />} change="+18%" />
+              <StatsCard title="Product Sales" value="$1,240" icon={<ShoppingBag className="h-5 w-5 text-purple-600" />} change="+24%" />
+              <StatsCard title="WhatsApp Conversations" value="89" icon={<MessageSquare className="h-5 w-5 text-amber-600" />} change="+5%" />
+            </div>
 
-          {/* Charts Area */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="lg:col-span-2">
-              <CardHeader>
-                <CardTitle>Lead Generation Traffic</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-[300px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data}>
-                      <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                      <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}`} />
-                      <Tooltip 
-                        cursor={{fill: 'transparent'}}
-                        contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                      />
-                      <Bar dataKey="leads" fill="hsl(221 83% 53%)" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold">Booking & Revenue Trends</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <BarChart data={data}>
+                        <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} dy={10} />
+                        <YAxis axisLine={false} tickLine={false} tick={{fill: '#94a3b8', fontSize: 12}} />
+                        <Tooltip 
+                          contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
+                          cursor={{fill: '#f1f5f9'}}
+                        />
+                        <Bar dataKey="revenue" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Recent Activity */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-6">
-                  <ActivityItem title="New Booking Request" subtitle="Walking Tour • 2 mins ago" />
-                  <ActivityItem title="Review Reply Generated" subtitle="TripAdvisor • 1 hour ago" />
-                  <ActivityItem title="Social Post Published" subtitle="Facebook • 3 hours ago" />
-                  <ActivityItem title="New Lead Captured" subtitle="Homepage Widget • 5 hours ago" />
-                  <ActivityItem title="Weekly Report Ready" subtitle="System • Yesterday" />
-                </div>
-                <Button variant="ghost" className="w-full mt-4 text-primary">View All Activity <ArrowUpRight className="ml-1 h-4 w-4" /></Button>
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg font-semibold">Recent Activity</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-6">
+                    <ActivityItem 
+                      title="New Booking Request" 
+                      subtitle="Angkor Wat Sunrise Tour - John Doe" 
+                      time="2 hours ago" 
+                      status="New"
+                    />
+                    <ActivityItem 
+                      title="Digital Product Sold" 
+                      subtitle="'Hidden Meanings' Ebook - Sarah J." 
+                      time="5 hours ago" 
+                      status="Success"
+                    />
+                    <ActivityItem 
+                      title="WhatsApp Inquiry" 
+                      subtitle="Price for Phnom Penh City Tour" 
+                      time="8 hours ago" 
+                      status="Pending"
+                    />
+                  </div>
+                  <Button variant="ghost" className="w-full mt-4 text-primary">View All Activity <ArrowUpRight className="ml-1 h-4 w-4" /></Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
@@ -83,31 +119,40 @@ export default function DashboardOverview() {
 
 function StatsCard({ title, value, change, icon }: { title: string, value: string, change: string, icon: React.ReactNode }) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
-        <div className="h-8 w-8 rounded-full bg-slate-50 flex items-center justify-center border">
-          {icon}
+    <Card className="shadow-sm border-slate-200">
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="h-10 w-10 rounded-lg bg-slate-50 border flex items-center justify-center">
+            {icon}
+          </div>
+          <span className="text-xs font-medium text-emerald-600 flex items-center gap-1">
+            {change} <ArrowUpRight className="h-3 w-3" />
+          </span>
         </div>
-      </CardHeader>
-      <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
-        <p className="text-xs text-muted-foreground mt-1">
-          <span className="text-green-600 font-medium">{change}</span> from last month
-        </p>
+        <div className="text-2xl font-bold text-slate-900">{value}</div>
+        <div className="text-sm text-slate-500">{title}</div>
       </CardContent>
     </Card>
   );
 }
 
-function ActivityItem({ title, subtitle }: { title: string, subtitle: string }) {
+function ActivityItem({ title, subtitle, time, status }: { title: string, subtitle: string, time: string, status?: string }) {
   return (
-    <div className="flex items-start gap-4">
-      <div className="h-2 w-2 mt-2 rounded-full bg-primary" />
-      <div>
-        <p className="text-sm font-medium leading-none">{title}</p>
-        <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>
+    <div className="flex items-start justify-between">
+      <div className="space-y-1">
+        <div className="text-sm font-semibold text-slate-900">{title}</div>
+        <div className="text-xs text-slate-500">{subtitle}</div>
+        {time && <div className="text-[10px] text-slate-400 font-medium uppercase tracking-wider">{time}</div>}
       </div>
+      {status && (
+        <div className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${
+          status === 'New' ? 'bg-blue-100 text-blue-700' : 
+          status === 'Success' ? 'bg-emerald-100 text-emerald-700' : 
+          'bg-amber-100 text-amber-700'
+        }`}>
+          {status}
+        </div>
+      )}
     </div>
   );
 }
