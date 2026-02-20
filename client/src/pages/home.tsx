@@ -79,6 +79,11 @@ export default function Home() {
               title="WhatsApp Templates"
               description="Quick-reply templates designed specifically for Angkor Wat and city tour operators."
             />
+            <FeatureCard 
+              icon={<Star className="h-6 w-6 text-amber-500" />}
+              title="Digital Products"
+              description="Sell premium Angkor photos, history ebooks, and digital tour materials with ease."
+            />
           </div>
         </div>
       </section>

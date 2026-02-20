@@ -8,6 +8,7 @@ import Home from "@/pages/home";
 import Pricing from "@/pages/pricing";
 import DashboardOverview from "@/pages/dashboard/index";
 import AIToolsDashboard from "@/pages/dashboard/tools";
+import DigitalProducts from "@/pages/dashboard/products/index";
 import Login from "@/pages/login";
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/dashboard" component={DashboardOverview} />
       <Route path="/dashboard/tools" component={AIToolsDashboard} />
+      <Route path="/dashboard/products" component={DigitalProducts} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
