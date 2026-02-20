@@ -2,8 +2,19 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { Users, TrendingUp, CalendarCheck, MousePointerClick, ArrowUpRight, Wand2, Package, ShoppingBag, MessageSquare, Calendar } from "lucide-react";
+import { 
+  Users, 
+  MessageSquare, 
+  TrendingUp, 
+  ArrowUpRight, 
+  ShoppingBag,
+  Wand2,
+  Package,
+  Bot,
+  Calendar
+} from "lucide-react";
 import { Link } from "wouter";
+import { Badge } from "@/components/ui/badge";
 
 const data = [
   { name: "Mon", bookings: 4, revenue: 240 },
@@ -41,6 +52,12 @@ export default function DashboardOverview() {
                 <span>Digital Products</span>
               </div>
             </Link>
+            <Link href="/dashboard/agents">
+              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+                <Bot className="h-4 w-4" />
+                <span>AI Agents</span>
+              </div>
+            </Link>
           </nav>
         </div>
 
@@ -49,12 +66,15 @@ export default function DashboardOverview() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-2xl font-bold text-slate-900">Guide Dashboard</h1>
-              <div className="text-sm text-slate-500">Welcome back, Guide Mike</div>
+              <div className="text-sm text-slate-500 flex items-center gap-2">
+                <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50">AI Agents Active</Badge>
+                Welcome back, Guide Mike
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <StatsCard title="Total Leads" value="124" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
-              <StatsCard title="Confirmed Bookings" value="42" icon={<Calendar className="h-5 w-5 text-emerald-600" />} change="+18%" />
+              <StatsCard title="Agent Tasks" value="842" icon={<Bot className="h-5 w-5 text-purple-600" />} change="+45%" />
               <StatsCard title="Product Sales" value="$1,240" icon={<ShoppingBag className="h-5 w-5 text-purple-600" />} change="+24%" />
               <StatsCard title="WhatsApp Conversations" value="89" icon={<MessageSquare className="h-5 w-5 text-amber-600" />} change="+5%" />
             </div>
