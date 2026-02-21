@@ -48,6 +48,11 @@ export function Navbar() {
               GuideFund
             </span>
           </Link>
+          <Link href="/association">
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/association") ? "text-primary" : "text-muted-foreground"}`}>
+              Association
+            </span>
+          </Link>
         </nav>
 
         {/* Actions */}
@@ -84,6 +89,9 @@ export function Navbar() {
                 <Link href="/fundraising">
                   <span className="text-lg font-medium cursor-pointer">GuideFund</span>
                 </Link>
+                <Link href="/association">
+                  <span className="text-lg font-medium cursor-pointer">Association (OGA)</span>
+                </Link>
                 <div className="mt-4 pt-4 border-t">
                   <Link href="/login">
                     <Button variant="outline" className="w-full mb-2">Log in</Button>
@@ -114,7 +122,7 @@ export function Footer() {
               OnlineGuide.io
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              The Digital Operating System for Tourism. Built first for Siem Reap & Phnom Penh, empowering local guides to go global.
+              Official platform of the <strong>Online Guide Association (OGA)</strong>. Empowering local guides in Siem Reap & Phnom Penh through digital infrastructure and community support.
             </p>
           </div>
           
