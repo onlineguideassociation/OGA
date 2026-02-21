@@ -13,47 +13,52 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary hover:opacity-90 transition-opacity">
+          <span className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary hover:opacity-90 transition-opacity cursor-pointer">
             <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
               <Zap className="h-5 w-5" />
             </div>
             OnlineGuide.io
-          </a>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/">
-            <a className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/") ? "text-primary" : "text-muted-foreground"}`}>
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/") ? "text-primary" : "text-muted-foreground"}`}>
               Product
-            </a>
+            </span>
           </Link>
           <Link href="/pricing">
-            <a className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/pricing") ? "text-primary" : "text-muted-foreground"}`}>
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/pricing") ? "text-primary" : "text-muted-foreground"}`}>
               Pricing
-            </a>
+            </span>
           </Link>
           <Link href="/dashboard">
-            <a className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/dashboard") ? "text-primary" : "text-muted-foreground"}`}>
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/dashboard") ? "text-primary" : "text-muted-foreground"}`}>
               Dashboard
-            </a>
+            </span>
           </Link>
           <Link href="/dashboard/tools">
-            <a className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/dashboard/tools") ? "text-primary" : "text-muted-foreground"}`}>
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/dashboard/tools") ? "text-primary" : "text-muted-foreground"}`}>
               AI Tools
-            </a>
+            </span>
+          </Link>
+          <Link href="/fundraising">
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/fundraising") ? "text-primary" : "text-muted-foreground"}`}>
+              GuideFund
+            </span>
           </Link>
         </nav>
 
         {/* Actions */}
         <div className="flex items-center gap-4">
           <Link href="/login">
-            <a className="hidden md:inline-block text-sm font-medium text-muted-foreground hover:text-primary">
+            <span className="hidden md:inline-block text-sm font-medium text-muted-foreground hover:text-primary cursor-pointer">
               Log in
-            </a>
+            </span>
           </Link>
           <Link href="/dashboard">
-             <Button variant="default" size="sm" className="hidden md:inline-flex">
+            <Button variant="default" size="sm" className="hidden md:inline-flex">
               Get Started
             </Button>
           </Link>
@@ -68,13 +73,16 @@ export function Navbar() {
             <SheetContent side="right">
               <div className="flex flex-col gap-6 mt-6">
                 <Link href="/">
-                  <a className="text-lg font-medium">Product</a>
+                  <span className="text-lg font-medium cursor-pointer">Product</span>
                 </Link>
                 <Link href="/pricing">
-                  <a className="text-lg font-medium">Pricing</a>
+                  <span className="text-lg font-medium cursor-pointer">Pricing</span>
                 </Link>
                 <Link href="/dashboard">
-                  <a className="text-lg font-medium">Dashboard</a>
+                  <span className="text-lg font-medium cursor-pointer">Dashboard</span>
+                </Link>
+                <Link href="/fundraising">
+                  <span className="text-lg font-medium cursor-pointer">GuideFund</span>
                 </Link>
                 <div className="mt-4 pt-4 border-t">
                   <Link href="/login">
