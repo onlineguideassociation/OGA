@@ -1,0 +1,187 @@
+Add Fundraising System for Tour Guides (OnlineGuide.io Model)
+
+Since you are building OnlineGuide.io for guides in Siem Reap, Phnom Penh, and Angkor Wat, adding a Fundraising Feature is powerful.
+
+It supports:
+
+Young tour guides
+
+Guides with no capital
+
+Community tourism
+
+Training & certification
+
+Emergency support
+
+Below is a clean, realistic structure you can implement.
+
+🚀 1️⃣ What Is “GuideFund” Inside OnlineGuide.io?
+
+GuideFund = A crowdfunding + sponsorship system built for tourism professionals.
+
+Purpose:
+
+Help guides raise money for:
+
+🎓 English training
+
+🪪 License certification
+
+🚐 Motorbike or van upgrade
+
+📷 Camera & content equipment
+
+🌱 Community tourism projects
+
+🚨 Emergency support
+
+🏛 2️⃣ Example: Fundraising for Angkor Tour Guides
+📍 Angkor Wat
+4
+Campaign Example:
+
+Campaign Name:
+“Support Young Khmer Guide to Become Licensed Angkor Expert”
+
+Goal: $1,500
+Use of Funds:
+
+Official training course
+
+Tourism Ministry license
+
+English improvement
+
+Website profile on OnlineGuide.io
+
+💰 3️⃣ Fundraising Models You Can Offer
+1️⃣ Global Tourist Support
+
+Past tourists donate after good experience.
+
+Example:
+
+“If you enjoyed your Angkor tour, support local guide development.”
+
+2️⃣ Sponsor a Guide Program
+
+International supporters sponsor:
+
+$50/month
+
+$100/month
+
+$500 one-time
+
+In exchange:
+
+Name listed on profile
+
+Free virtual cultural session
+
+Photo updates
+
+3️⃣ Community Project Fund
+
+Raise money for:
+
+Clean village initiative
+
+Temple preservation education
+
+Rural school tourism program
+
+🛠 4️⃣ How To Integrate Into OnlineGuide.io
+Add New Menu:
+
+📌 Fundraising / Support a Guide
+
+Each Guide Profile Includes:
+
+🧑 Guide Story
+
+🎯 Funding Goal
+
+📊 Progress Bar
+
+💬 Message from Guide
+
+🌍 Impact Plan
+
+💳 Donate Button
+
+🔐 5️⃣ Payment System Options
+
+Since you are in Cambodia:
+
+You can connect:
+
+Stripe (international cards)
+
+PayPal
+
+ABA Bank QR
+
+Wing Money
+
+Shopify Payments (if connected)
+
+🎥 6️⃣ Marketing Strategy
+Add to:
+
+Telegram Channel
+
+Google Business Profile
+
+TripAdvisor message follow-up
+
+Canva social posts
+
+Email after tour
+
+Example message:
+
+“Your support helps local Khmer guides improve education and preserve cultural heritage at Angkor.”
+
+🌍 7️⃣ Long-Term Vision
+
+GuideFund can expand to:
+
+Southeast Asia Tourism Support
+
+Women Guide Empowerment
+
+Rural Tourism Development
+
+This positions OnlineGuide.io as:
+
+Not just booking platform —
+But Tourism Impact Infrastructure 🌏
+
+📈 8️⃣ Revenue Model For You
+
+Platform takes:
+
+5% service fee
+OR
+
+Fixed $10 campaign setup fee
+
+This creates sustainable SaaS income for OnlineGuide.io.
+
+🏆 Strategic Advantage
+
+No other tourism SaaS in Cambodia offers:
+
+Booking
+
+CRM
+
+AI assistant
+
+Website
+
+AND Fundraising system
+
+This makes OnlineGuide.io unique.

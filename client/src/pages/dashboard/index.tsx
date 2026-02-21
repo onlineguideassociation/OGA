@@ -11,7 +11,8 @@ import {
   Wand2,
   Package,
   Bot,
-  Calendar
+  Calendar,
+  Heart
 } from "lucide-react";
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
@@ -58,6 +59,12 @@ export default function DashboardOverview() {
                 <span>AI Agents</span>
               </div>
             </Link>
+            <Link href="/dashboard/fundraising">
+              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+                <Heart className="h-4 w-4" />
+                <span>GuideFund</span>
+              </div>
+            </Link>
           </nav>
         </div>
 
@@ -76,7 +83,7 @@ export default function DashboardOverview() {
               <StatsCard title="Total Leads" value="124" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
               <StatsCard title="Agent Tasks" value="842" icon={<Bot className="h-5 w-5 text-purple-600" />} change="+45%" />
               <StatsCard title="Product Sales" value="$1,240" icon={<ShoppingBag className="h-5 w-5 text-purple-600" />} change="+24%" />
-              <StatsCard title="WhatsApp Conversations" value="89" icon={<MessageSquare className="h-5 w-5 text-amber-600" />} change="+5%" />
+              <StatsCard title="Fundraising" value="$520" icon={<Heart className="h-5 w-5 text-rose-600" />} change="+15%" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -120,10 +127,10 @@ export default function DashboardOverview() {
                       status="Success"
                     />
                     <ActivityItem 
-                      title="WhatsApp Inquiry" 
-                      subtitle="Price for Phnom Penh City Tour" 
-                      time="8 hours ago" 
-                      status="Pending"
+                      title="Donation Received" 
+                      subtitle="$50 from Global Support Program" 
+                      time="1 day ago" 
+                      status="Success"
                     />
                   </div>
                   <Button variant="ghost" className="w-full mt-4 text-primary">View All Activity <ArrowUpRight className="ml-1 h-4 w-4" /></Button>

@@ -10,6 +10,8 @@ import DashboardOverview from "@/pages/dashboard/index";
 import AIToolsDashboard from "@/pages/dashboard/tools";
 import DigitalProducts from "@/pages/dashboard/products/index";
 import AIAgentsDashboard from "@/pages/dashboard/agents";
+import FundraisingDashboard from "@/pages/dashboard/fundraising";
+import PublicFundraising from "@/pages/fundraising/index";
 import Login from "@/pages/login";
 
 function Router() {
@@ -17,10 +19,12 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/fundraising" component={PublicFundraising} />
       <Route path="/dashboard" component={DashboardOverview} />
       <Route path="/dashboard/tools" component={AIToolsDashboard} />
       <Route path="/dashboard/products" component={DigitalProducts} />
       <Route path="/dashboard/agents" component={AIAgentsDashboard} />
+      <Route path="/dashboard/fundraising" component={FundraisingDashboard} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
