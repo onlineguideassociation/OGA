@@ -53,6 +53,11 @@ export function Navbar() {
               Association
             </span>
           </Link>
+          <Link href="/global/vision">
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/global/vision") ? "text-primary" : "text-muted-foreground"}`}>
+              Global Vision
+            </span>
+          </Link>
         </nav>
 
         {/* Actions */}

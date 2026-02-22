@@ -13,6 +13,9 @@ import AIAgentsDashboard from "@/pages/dashboard/agents";
 import FundraisingDashboard from "@/pages/dashboard/fundraising";
 import PublicFundraising from "@/pages/fundraising/index";
 import Association from "@/pages/association";
+import GlobalVision from "@/pages/global/vision";
+import AIGuideBook from "@/pages/global/ai-guide";
+import DigitalPostcards from "@/pages/global/postcards";
 import Login from "@/pages/login";
 
 function Router() {
@@ -22,6 +25,9 @@ function Router() {
       <Route path="/pricing" component={Pricing} />
       <Route path="/fundraising" component={PublicFundraising} />
       <Route path="/association" component={Association} />
+      <Route path="/global/vision" component={GlobalVision} />
+      <Route path="/global/ai-guide" component={AIGuideBook} />
+      <Route path="/global/postcards" component={DigitalPostcards} />
       <Route path="/dashboard" component={DashboardOverview} />
       <Route path="/dashboard/tools" component={AIToolsDashboard} />
       <Route path="/dashboard/products" component={DigitalProducts} />
