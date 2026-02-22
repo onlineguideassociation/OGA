@@ -22,7 +22,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-6">
           <Link href="/">
             <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/") ? "text-primary" : "text-muted-foreground"}`}>
               Product
