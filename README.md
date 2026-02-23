@@ -1,4 +1,4 @@
-# OGA
+# OnlineGuide.io
 
 Empowering guides, marketers, and sponsors in sustainable tourism.
 
