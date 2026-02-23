@@ -23,8 +23,8 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/") ? "text-primary" : "text-muted-foreground"}`}>
+          <Link href="/product">
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/product") ? "text-primary" : "text-muted-foreground"}`}>
               Product
             </span>
           </Link>
@@ -82,7 +82,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-6 mt-6">
-                <Link href="/">
+                <Link href="/product">
                   <span className="text-lg font-medium cursor-pointer">Product</span>
                 </Link>
                 <Link href="/pricing">
