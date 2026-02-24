@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText } from "lucide-react";
-import { useState } from "react";
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { 
@@ -32,8 +32,10 @@ export function Navbar() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer outline-none">
-              Platform <ChevronDown className="h-4 w-4" />
+            <DropdownMenuTrigger asChild>
+              <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer outline-none">
+                Platform <ChevronDown className="h-4 w-4" />
+              </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[300px] p-4">
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Features</DropdownMenuLabel>
