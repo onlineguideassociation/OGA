@@ -6,6 +6,7 @@ Empowering guides, marketers, and sponsors in sustainable tourism.
 
 - Product blueprint: `docs/onlineguide-sdk-strategy.md`
 - System architecture: `docs/system-8-ai-operation-bot-architecture.md`
+- TIIL architecture (investor-ready): `docs/tiil-investor-ready-architecture.md`
 
 ## Backend Scaffold
 
