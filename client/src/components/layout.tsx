@@ -1,8 +1,16 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuLabel, 
+  DropdownMenuSeparator, 
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -23,11 +31,55 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link href="/product">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/product") ? "text-primary" : "text-muted-foreground"}`}>
-              Product
-            </span>
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer outline-none">
+              Platform <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="w-[300px] p-4">
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Features</DropdownMenuLabel>
+              <Link href="/dashboard/tools">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Bot className="h-5 w-5 text-purple-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">AI Tools</div>
+                    <div className="text-xs text-muted-foreground">Review Assistant & Tour Gen</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Growth Tools</DropdownMenuLabel>
+              <Link href="/fundraising">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Heart className="h-5 w-5 text-rose-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">GuideFund</div>
+                    <div className="text-xs text-muted-foreground">Creator funding platform</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Network</DropdownMenuLabel>
+              <Link href="/association">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Network className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Association</div>
+                    <div className="text-xs text-muted-foreground">Official OGA Network</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/global/vision">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Globe className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Global Vision</div>
+                    <div className="text-xs text-muted-foreground">3B travel lovers mission</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Link href="/pricing">
             <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/pricing") ? "text-primary" : "text-muted-foreground"}`}>
               Pricing
@@ -38,24 +90,9 @@ export function Navbar() {
               Dashboard
             </span>
           </Link>
-          <Link href="/dashboard/tools">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/dashboard/tools") ? "text-primary" : "text-muted-foreground"}`}>
-              AI Tools
-            </span>
-          </Link>
-          <Link href="/fundraising">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/fundraising") ? "text-primary" : "text-muted-foreground"}`}>
-              GuideFund
-            </span>
-          </Link>
-          <Link href="/association">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/association") ? "text-primary" : "text-muted-foreground"}`}>
-              Association
-            </span>
-          </Link>
-          <Link href="/global/vision">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/global/vision") ? "text-primary" : "text-muted-foreground"}`}>
-              Global Vision
+          <Link href="/product">
+            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/product") ? "text-primary" : "text-muted-foreground"}`}>
+              Resources
             </span>
           </Link>
         </nav>
@@ -82,20 +119,21 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <div className="flex flex-col gap-6 mt-6">
-                <Link href="/product">
-                  <span className="text-lg font-medium cursor-pointer">Product</span>
-                </Link>
+                <div className="space-y-4">
+                  <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Platform</h4>
+                  <Link href="/dashboard/tools"><span className="block text-lg font-medium">AI Tools</span></Link>
+                  <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
+                  <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>
+                  <Link href="/global/vision"><span className="block text-lg font-medium">Global Vision</span></Link>
+                </div>
                 <Link href="/pricing">
                   <span className="text-lg font-medium cursor-pointer">Pricing</span>
                 </Link>
                 <Link href="/dashboard">
                   <span className="text-lg font-medium cursor-pointer">Dashboard</span>
                 </Link>
-                <Link href="/fundraising">
-                  <span className="text-lg font-medium cursor-pointer">GuideFund</span>
-                </Link>
-                <Link href="/association">
-                  <span className="text-lg font-medium cursor-pointer">Association (OGA)</span>
+                <Link href="/product">
+                  <span className="text-lg font-medium cursor-pointer">Resources</span>
                 </Link>
                 <div className="mt-4 pt-4 border-t">
                   <Link href="/login">
@@ -132,12 +170,12 @@ export function Footer() {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 text-slate-900">Product</h4>
+            <h4 className="font-semibold mb-4 text-slate-900">Platform</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Booking SDK</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">AI Content Generator</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Review Assistant</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Map Booster</a></li>
+              <li><Link href="/dashboard/tools" className="hover:text-primary transition-colors">AI Tools</Link></li>
+              <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
+              <li><Link href="/association" className="hover:text-primary transition-colors">OGA Network</Link></li>
+              <li><Link href="/global/vision" className="hover:text-primary transition-colors">Global Vision</Link></li>
             </ul>
           </div>
 
