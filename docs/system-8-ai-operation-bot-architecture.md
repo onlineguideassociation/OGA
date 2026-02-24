@@ -1,100 +1,121 @@
-# SYSTEM 8 — AI Operation Bot Architecture (OnlineGuide.io)
+# SYSTEM 8 — Tourism Intelligence Infrastructure Layer (TIIL)
 
 ## Strategic Position
-OnlineGuide.io is positioned as national tourism infrastructure technology for Cambodia, with initial operational focus on:
-- Siem Reap
-- Phnom Penh
-- Angkor Wat
+OnlineGuide.io is positioned as a **Tourism Infrastructure AI Platform** for Cambodia operators, licensed guides, and ecosystem investors.
 
-## Core Infrastructure Stack
+## Core Architecture Model
 
-### Backend
-- Node.js + Express (current scaffold)
-- Replit for MVP deployment
-- Cloud/VPS migration path for scale
-
-### Database
-- PostgreSQL as source-of-truth database
-- Supabase-compatible schema and SQL
-- Optional Firebase for real-time messaging analytics
-
-### Authentication
-- JWT for API auth/session exchange
-- OAuth pathways (Google/Facebook) for user onboarding
-
-### Integrations
-- OpenAI API
-- Google Gemini API
+### Layer 1 — Data Collection Layer
+API-native ingestion only (no scraping-heavy dependency in early phases):
+- Google Reviews API
 - Google Search Console API
-- Google Ads API
-- Meta Marketing API
 - YouTube Data API
+- Meta Graph API
 - WhatsApp Business API
 - Telegram Bot API
-- TripAdvisor data provider (white-hat compliant)
+- Weather API
+- Currency API
 
-## Monorepo Module Layout
+All inbound data is normalized and stored in PostgreSQL.
+
+### Layer 2 — Intelligence Processing Layer
+Modular AI core with provider routing and prompt packs:
 
 ```text
 /onlineguide-os
-  /api
-  /ai-engine
-  /publishing
-  /ads-intelligence
-  /review-monitor
-  /visibility-score
-  /messaging-tracker
-  /investor-crm
-  server.js
-  database.js
+  /ai-core
+    router.js
+    /providers
+      openai.js
+      gemini.js
+    /prompts
+      reviewReply.js
+      seoArticle.js
+      investorEmail.js
 ```
 
-## AI Router Pattern
-- `seo_blog` tasks route to OpenAI for long-form and structured output.
-- `social_caption` tasks route to Gemini for concise social formats.
-- `review_sentiment` tasks route to OpenAI with JSON output normalization.
+Routing is task-based (`seo_longform`, `review_reply`, `social_short`, `sentiment`, `financial_analysis`, `investor_email`) to keep model selection and cost governance explicit.
 
-## Tourism Intelligence Data Model
-Implemented in `onlineguide-os/database/schema.sql`:
+### Layer 3 — Action & Automation Layer
+Action engine responsibilities:
+- Publish content via verified platform APIs
+- Update CRM timelines and operator records
+- Send replies and alerts
+- Trigger ad budget recommendations
+- Notify human operators for escalations
+
+### Layer 4 — Visibility & Capital Layer
+Dual dashboard strategy:
+- **Tourism Operator Dashboard**: visibility score, review health, booking response speed, revenue estimate, seasonal demand prediction
+- **Investor Dashboard**: city tourism growth, operator performance index, guide network growth, revenue per temple circuit, capital efficiency score
+
+## Database Strategy
+Grouped schema design for operational clarity.
+
+### Core Tables
 - `users`
+- `business_profiles`
 - `reviews`
+- `seo_metrics`
+- `engagement_metrics`
+- `messages`
 - `visibility_scores`
-- `messaging_tracking`
+- `tour_packages`
+- `cities`
+
+### Investor Layer
 - `investors`
+- `startup_profiles`
+- `funding_rounds`
+- `outreach_logs`
+- `capital_scores`
 
-Visibility scoring (Phase 1):
+## Defensible Visibility Models
+Three region-specific scoring models:
+- Siem Reap Tourism Index
+- Phnom Penh Urban Travel Index
+- Angkor Temple Circuit Index
 
-```text
-final_score =
-  (google_rank * 0.25)
-+ (tripadvisor_rating * 0.25)
-+ (engagement_score * 0.15)
-+ (ad_efficiency * 0.15)
-+ (response_time * 0.20)
-```
+Each index uses dynamic weighting by city and season, creating proprietary tourism-performance IP.
 
-## Execution Phases
+## Security Architecture Baseline
+- Role-based access control (RBAC)
+- Encrypted environment variable management
+- API rate limiting
+- Webhook signature validation
+- Immutable audit logs
+- Model usage tracking
+- Prompt logging for abuse detection
+- **No direct system command execution from model outputs**
 
-### Phase 1 (MVP — 60 days)
-- Keyword tracking foundation
-- Review AI reply assistant
+## Execution Plan
+
+### Phase 1 — Tourism Visibility Engine (60–90 days)
+- Google Review AI Reply
+- Telegram bot tracking
 - Basic visibility score
-- Telegram message tracking
+- Operator dashboard
 
-### Phase 2
-- YouTube transcript-to-SEO workflow
-- Social analytics dashboard
-- WhatsApp tracking depth
-- Ad waste detection
+**Goal:** prove measurable visibility uplift for Siem Reap operators.
 
-### Phase 3
-- Cross-platform auto-publishing
-- Competitor tracking
-- White-label agency dashboard
-- Investor CRM automation
+### Phase 2 — Multi-Platform Intelligence
+- YouTube to SEO pipeline
+- Social publishing orchestration
+- Ad efficiency tracking
+- Demand forecasting
 
-## Compliance Framework
-- No fake reviews
-- No spam automation
-- API-native integrations only
-- White-hat growth and platform-compliant behavior
+### Phase 3 — National Tourism Data Layer
+- City tourism analytics
+- Temple circuit heatmaps
+- Guide performance benchmarking
+- Investor CRM
+- White-label association deployments
+
+## Investor Narrative
+OnlineGuide.io is positioned as:
+- Vertical SaaS for tourism operators
+- Data intelligence network for Cambodia tourism
+- Tourism performance index engine
+- Visibility and capital bridge
+
+Commercial readiness starts with recurring plans (guide, operator, multi-branch) and expands into infrastructure-grade analytics.
