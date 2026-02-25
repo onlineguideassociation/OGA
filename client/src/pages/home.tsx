@@ -30,14 +30,16 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-            <Link href="/dashboard">
+            <Link href="/roles">
               <Button size="lg" className="h-12 px-8 text-base">
-                Start Building for Free <ArrowRight className="ml-2 h-4 w-4" />
+                Explore Dashboards <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="h-12 px-8 text-base">
-              View Documentation
-            </Button>
+            <Link href="/product">
+              <Button variant="outline" size="lg" className="h-12 px-8 text-base">
+                View Infrastructure
+              </Button>
+            </Link>
           </div>
 
           <div className="relative max-w-5xl mx-auto rounded-xl border bg-slate-50/50 p-2 shadow-2xl animate-in fade-in zoom-in duration-1000 delay-300">
