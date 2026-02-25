@@ -15,6 +15,18 @@ This is a **sovereign, multi-layer national coordination engine** designed to co
 
 ---
 
+## Cambodia Focus
+Primary intelligence deployment zones:
+- Siem Reap
+- Phnom Penh
+- Angkor Wat
+
+Mission framing:
+- **Tourism Intelligence Infrastructure Layer (TIIL)**
+- **The AI backbone of Cambodia's tourism economy**
+
+---
+
 ## The 9-Layer Sovereign Architecture
 
 ### 1) AI Intelligence Layer — National Forecasting & Modeling Engine
@@ -63,6 +75,7 @@ Integrated across:
 - YouTube
 - TikTok
 - WeChat
+- Reddit
 
 Core functions:
 - AI auto-publishing
@@ -76,8 +89,11 @@ Core functions:
 Optimized for:
 - Apple Inc.
 - Dell Technologies
-- iPhone 16
-- Samsung Galaxy S25 Ultra
+- iOS
+- Android
+- Windows
+- macOS
+- Linux
 
 Core functions:
 - Mobile AI tourism assistant
@@ -191,6 +207,57 @@ AI Intelligence
 OnlineGuide.io converts:
 
 **Tourism Traffic → Data Capture → AI Modeling → Revenue → Capital → Infrastructure → National Economic Growth**
+
+---
+
+## Capital Extension Strategy
+### GoFundMe — External Capital Activation Layer
+GoFundMe supports targeted capital formation for:
+- Tourism development
+- Heritage preservation (including Angkor conservation)
+- Community tourism programs
+- Guide training and workforce upskilling
+- Sustainable infrastructure
+- Crisis recovery
+
+Strategic relationship:
+- **OnlineGuide.io = Intelligence Infrastructure**
+- **GoFundMe = Capital Extension Layer**
+
+---
+
+## Reddit Integration — Public Conversation Layer
+Reddit is treated as a national sentiment and signal surface.
+
+Monitoring domains:
+- Cambodia safety sentiment
+- Angkor crowd perception
+- Visa discussions
+- Nomad life in Phnom Penh
+
+Conversion pipeline:
+
+**Conversation → Data → Modeling → Insight → Revenue → Capital → Infrastructure → National Growth**
+
+---
+
+## Strategic Framing
+Reference benchmark:
+- **Google.com** (operated by Google LLC, subsidiary of Alphabet Inc.) as a global information gateway.
+
+OnlineGuide.io objective:
+- A **sovereign tourism intelligence gateway** for Cambodia.
+
+---
+
+## Executive Summary
+OnlineGuide.io connects:
+- Tourism
+- Data
+- Capital
+- Government
+- Entrepreneurs
+- Global travelers
 
 ## Sovereign Vision
 Tourism + Digital Trade + Remote Workforce Attraction
