@@ -1,174 +1,161 @@
-# TIIL — Tourism Intelligence Infrastructure Layer (Investor-Ready)
+# TIIL — Tourism Intelligence Infrastructure Layer (Global AI Farm Architecture)
 
-## Positioning Statement
-**OnlineGuide.io** is positioned as **Cambodia Tourism Intelligence Infrastructure**: secure, API-native, and performance-driven.
+## Strategic Positioning
+**OnlineGuide.io** is building **Cambodia's AI Tourism Operating System** for Siem Reap, Phnom Penh, and the Angkor region.
 
-This is infrastructure—not a generic SaaS utility.
+This is:
+- Not a booking site
+- Not an SEO utility bundle
+- Not a marketing dashboard only
 
-## 4-Layer System Model
+This is **national-scale tourism intelligence infrastructure** designed for operators, institutions, and investors.
 
-### Layer 1 — Verified Data Intake (Foundation)
+## Complete TIIL Stack (Strategic + Investor Version)
 
-**Principle:** API-first, no scraping dependency.
+### 1) AI Farming Layer — Intelligence Core
+Core intelligence partners in an integrated AI grid:
+- OpenAI (LLM orchestration)
+- Databricks (data lake analytics)
+- Anthropic (AI safety layer)
+- xAI (real-time reasoning)
+- NVIDIA (AI acceleration)
+- Google DeepMind (advanced modeling)
+- Microsoft Azure AI (cloud infrastructure)
+- Mistral AI (open-weight model flexibility)
+- Cohere (enterprise NLP)
+- Perplexity AI (AI search intelligence)
 
-Primary connectors:
-- Google Business Profile API
-- Google Search Console API
-- YouTube Data API
-- Meta Graph API
-- WhatsApp Business API
-- Telegram Bot API
-- Weather API
-- Currency API
+**Platform role:**
+- Tourism demand prediction
+- AI itinerary engine
+- Climate + finance forecasting
+- Government decision dashboards
 
-Storage and runtime:
-- PostgreSQL as source of truth
-- Redis for caching and rate control
-- Asynchronous queued ingestion (BullMQ/RabbitMQ pattern)
+### 2) AI Banking Farm — Capital Layer
+Tourism finance intelligence network with global financial integration:
+- Industrial and Commercial Bank of China
+- Agricultural Bank of China
+- China Construction Bank
+- Bank of China
+- JPMorgan Chase & Co.
+- Bank of America
+- HSBC Holdings
+- BNP Paribas
+- Crédit Agricole Group
+- Mitsubishi UFJ Financial Group
 
-Why it matters:
-- Scales from day one
-- Isolates spikes in connector traffic
-- Improves reliability and retry control
+**Platform role:**
+- Cross-border tourism payments intelligence
+- Guide and SME micro-financing enablement
+- Investor risk and opportunity scoring
+- Tourism ESG and capital efficiency analytics
 
-### Layer 2 — Intelligence Engine (IP Core)
+### 3) AI Social Media Farm — Visibility Layer
+Global distribution and influence channels:
+- Facebook
+- WhatsApp
+- YouTube
+- Instagram
+- TikTok
+- WeChat
+- Facebook Messenger
+- Telegram
+- Snapchat
+- Douyin
 
-This is not only LLM prompt execution. It combines:
-- Structured scoring models
-- Predictive tourism patterning
-- AI-generated strategic recommendations
+**Platform role:**
+- AI-assisted multi-platform publishing
+- Sentiment and reputation intelligence
+- Public narrative monitoring
+- Cross-platform ad automation and optimization
 
-Engine split:
-1. Reputation Engine
-2. Visibility Engine
-3. Capital Readiness Engine
+### 4) AI Device Farms — Access Layer
+#### PC Farm
+- Lenovo
+- HP Inc.
+- Dell Technologies
+- Apple
+- ASUS
+- Acer
 
-#### Visibility Index (Defensible Model)
+#### Phone Farm
+- iPhone 16
+- iPhone 16 Pro Max
+- Samsung Galaxy S25 Ultra
+- Redmi 14C
+- Samsung Galaxy A55 5G
 
-Use adaptive city-level coefficients instead of static global weights.
+**Platform role:**
+- Mobile AI concierge and assistant access
+- Real-time guide and traveler chat experiences
+- AR-enabled temple exploration pathways
+- High-performance dashboard rendering on any endpoint
 
+### 5) AI Global Travel Search Farm — Traffic Layer
+Traffic acquisition and market-intelligence network:
+- Google Flights
+- Skyscanner
+- Kayak
+- Booking.com
+- Expedia
+- Trip.com
+- Airbnb
+- GetYourGuide
+- Trivago
+
+**Platform role:**
+- Price intelligence and anomaly monitoring
+- Demand trend and route monitoring
+- Search-discovery dominance strategy
+- Multi-marketplace signal synchronization
+
+### 6) AI Tourist Farm — Experience Layer (Cambodia)
+Core Cambodia experience categories:
+- Temples (Angkor ecosystem)
+- Culture and Heritage
+- Eco Tourism
+- Religion and Community
+- Business Tourism
+
+**Platform role:**
+- AI itinerary builder
+- Climate-optimized scheduling
+- Smart guide and experience matching
+- Investor-facing tourism heatmaps
+
+## Final TIIL Flow Structure
 ```text
-VisibilityScore =
-f(ReviewVelocity, RatingQuality, ResponseSpeed, ContentFrequency, EngagementTrend)
+AI Farming Layer (Intelligence Core)
+        ↓
+AI Banking Farm (Capital Layer)
+        ↓
+AI Social Media Farm (Visibility Layer)
+        ↓
+AI Device Farms (Access Layer)
+        ↓
+AI Global Travel Search Farm (Traffic Layer)
+        ↓
+AI Tourist Farm (Experience Layer)
+        ↓
+ONLINEGUIDE.IO — AI TOURISM OPERATING SYSTEM
 ```
 
-Dynamic weighting examples:
-- Siem Reap: review + SEO heavy
-- Phnom Penh: social + urban demand heavy
-- Angkor Circuit: seasonal sensitivity heavy
+## Investor Narrative Summary
+OnlineGuide.io compounds value through a repeatable infrastructure flow:
 
-This model architecture is intended to be proprietary and difficult to replicate.
+**Data → AI Processing → Visibility → Revenue → Capital.**
 
-#### Capital Readiness Engine (Differentiator)
+This architecture is designed to create:
+- A proprietary tourism intelligence moat
+- Faster operator performance loops
+- Better capital allocation confidence
+- Institution-ready tourism planning capability
 
-Computes:
-- Revenue stability
-- Seasonal volatility
-- Booking conversion efficiency
-- Reputation consistency
-- Market demand growth
+## Cambodia Deployment Focus
+Primary deployment geography:
+- Siem Reap
+- Phnom Penh
+- Angkor Region
 
-Outputs:
-- **Tourism Investment Readiness Score (TIRS)** for investor-facing decision support.
-
-### Layer 3 — Action Engine (Controlled Automation)
-
-Security and control boundary:
-- No OS-level automation
-- No arbitrary system command execution
-- No unsafe plugin marketplace
-
-Allowed action patterns:
-- API-based publishing
-- Structured review reply suggestions
-- CRM updates
-- Budget efficiency alerts
-- Seasonal campaign recommendations
-
-This keeps automation enterprise-acceptable and auditable.
-
-### Layer 4 — Dual Dashboard Model
-
-#### Operator Dashboard
-Tracks:
-- Visibility Score
-- Review Health
-- Booking Intent Signals
-- Response Speed Ranking
-- Demand Forecast (30–60 days)
-- AI Suggestions
-
-Primary objective: recurring revenue retention.
-
-#### Investor Dashboard
-Tracks:
-- City-level tourism performance
-- Top 20 performing operators
-- Growth stability index
-- Capital efficiency ratio
-- Guide network expansion rate
-
-Primary objective: capital confidence and allocation decisions.
-
-## Security Architecture (Non-Negotiable)
-
-To remain investable:
-- Role-based access control (RBAC)
-- Encrypted API keys (KMS or Vault)
-- Webhook signature verification
-- Audit trail logging
-- Model call monitoring
-- Rate limiting
-- Data partitioning per business tenant
-- Strict prevention of cross-client data leakage
-
-## Execution Roadmap
-
-### Phase 1 — Revenue Proof (90 days)
-Build only:
-- Google Review AI Reply
-- Telegram Message Tracking
-- Basic Visibility Score
-- Operator Dashboard
-
-Target:
-- 20 Siem Reap guides paying $29–$49/month.
-
-### Phase 2 — Performance Infrastructure
-Add:
-- YouTube to SEO automation
-- Social publishing engine
-- Demand forecasting
-- Ad efficiency tracking
-
-Upsell band:
-- $99–$199 tier.
-
-### Phase 3 — Capital Layer
-Add:
-- Tourism Investment Readiness Score (TIRS)
-- Investor Dashboard
-- Tourism-focused investor database
-- Capital matching logic
-
-Outcome:
-- Seed-round narrative backed by operating metrics.
-
-## Monetization Strategy
-
-- Tier 1 — Guide Plan: $39/month
-- Tier 2 — Operator Plan: $129/month
-- Tier 3 — Multi-Branch: $399/month
-- Capital success fee: 1–3% on facilitated funding
-- Enterprise/Ministry/Association: custom pricing
-
-Revenue mix:
-- Recurring subscription
-- Performance-linked revenue
-- Institutional contracts
-
-## Strategic Insight
-
-The long-term moat is not content generation. It is ownership of the tourism performance data layer across Siem Reap, Phnom Penh, and Angkor.
-
-If OnlineGuide.io owns the data layer, it can compound advantages in visibility optimization and, ultimately, capital allocation intelligence.
+Strategic objective:
+Build the operating layer that powers how tourism is measured, optimized, financed, and scaled across Cambodia.
