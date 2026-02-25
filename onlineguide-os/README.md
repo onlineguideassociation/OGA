@@ -1,11 +1,11 @@
 # OnlineGuide OS
 
-Operational backend scaffold for:
-- AI routing (OpenAI + Gemini)
-- Review monitoring
-- Visibility scoring
-- Messaging tracking
-- Investor CRM foundations
+Operational backend scaffold for the Tourism Intelligence Infrastructure Layer (TIIL):
+- API-native tourism data ingestion
+- Modular AI core routing (OpenAI + Gemini)
+- Action-ready review and messaging workflows
+- Visibility and investor intelligence foundations
+- Security telemetry tables (audit/model/prompt logs)
 
 ## Run locally
 
@@ -20,4 +20,16 @@ npm start
 - `GET /` product metadata
 - `GET /api/health` API health
 - `GET /health/database` PostgreSQL health
-- `POST /api/ai/run` run AI task (`seo_blog`, `social_caption`, `review_sentiment`)
+- `POST /api/ai/run` run AI task using payload:
+
+```json
+{
+  "task": {
+    "type": "review_reply",
+    "priority": "normal",
+    "payload": {
+      "reviewText": "Amazing Angkor Wat sunrise tour!"
+    }
+  }
+}
+```

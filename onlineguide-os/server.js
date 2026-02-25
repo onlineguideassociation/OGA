@@ -12,7 +12,7 @@ app.use("/api", apiRouter);
 app.get("/", (req, res) => {
   res.json({
     product: "OnlineGuide.io",
-    system: "AI Tourism Operating System",
+    system: "Tourism Intelligence Infrastructure Layer (TIIL)",
     region: "Cambodia (Siem Reap, Phnom Penh, Angkor Wat)"
   });
 });

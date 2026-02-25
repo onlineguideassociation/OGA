@@ -1,6 +1,6 @@
 # OnlineGuide.io
 
-Empowering guides, marketers, and sponsors in sustainable tourism.
+Tourism Intelligence Infrastructure Layer (TIIL) for Cambodia.
 
 ## Strategic Documents
 
@@ -10,12 +10,12 @@ Empowering guides, marketers, and sponsors in sustainable tourism.
 
 ## Backend Scaffold
 
-A modular backend scaffold is now available in `onlineguide-os/` for the AI Tourism Operating System + Investor Intelligence Platform.
+A modular backend scaffold is available in `onlineguide-os/` for the Tourism Infrastructure AI Platform.
 
 Key files:
 - `onlineguide-os/server.js`
 - `onlineguide-os/database.js`
-- `onlineguide-os/ai-engine/router.js`
+- `onlineguide-os/ai-core/router.js`
 - `onlineguide-os/database/schema.sql`
 
 Run locally:
