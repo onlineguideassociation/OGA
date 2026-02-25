@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -45,6 +45,17 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">AI Tools</div>
                     <div className="text-xs text-muted-foreground">Review Assistant & Tour Gen</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Institutional</DropdownMenuLabel>
+              <Link href="/dashboard/investor">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Investor Intelligence</div>
+                    <div className="text-xs text-muted-foreground">Tourism Data Layer & TIRS</div>
                   </div>
                 </DropdownMenuItem>
               </Link>

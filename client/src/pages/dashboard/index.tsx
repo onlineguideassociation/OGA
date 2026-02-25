@@ -80,10 +80,10 @@ export default function DashboardOverview() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <StatsCard title="Total Leads" value="124" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
-              <StatsCard title="Agent Tasks" value="842" icon={<Bot className="h-5 w-5 text-purple-600" />} change="+45%" />
-              <StatsCard title="Product Sales" value="$1,240" icon={<ShoppingBag className="h-5 w-5 text-purple-600" />} change="+24%" />
-              <StatsCard title="Fundraising" value="$520" icon={<Heart className="h-5 w-5 text-rose-600" />} change="+15%" />
+              <StatsCard title="Visibility Index" value="84/100" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
+              <StatsCard title="TIRS Score" value="A-" icon={<TrendingUp className="h-5 w-5 text-emerald-600" />} change="Investable" />
+              <StatsCard title="Review Velocity" value="4.2/day" icon={<MessageSquare className="h-5 w-5 text-purple-600" />} change="+24%" />
+              <StatsCard title="Booking Conversion" value="18.5%" icon={<ArrowUpRight className="h-5 w-5 text-rose-600" />} change="+5%" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

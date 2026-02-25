@@ -26,12 +26,12 @@ export default function Product() {
         <div className="container mx-auto px-4">
           {/* Hero Section */}
           <div className="text-center max-w-4xl mx-auto mb-20">
-            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">The Master Product</Badge>
+            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">Tourism Intelligence Infrastructure Layer (TIIL)</Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
-              AI-Powered Global <br /> <span className="text-primary">Tourism Ecosystem</span>
+              Cambodia's Tourism <br /> <span className="text-primary">Data Infrastructure</span>
             </h1>
             <p className="text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto">
-              Connecting 3 Billion Travel Lovers with Cambodian guides and global partners through a decentralized digital infrastructure.
+              Not just a SaaS tool. We own the performance data layer of Siem Reap, Phnom Penh, and Angkor to influence the global capital layer.
             </p>
           </div>
 

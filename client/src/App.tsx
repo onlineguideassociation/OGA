@@ -12,6 +12,7 @@ import AIToolsDashboard from "@/pages/dashboard/tools";
 import DigitalProducts from "@/pages/dashboard/products/index";
 import AIAgentsDashboard from "@/pages/dashboard/agents";
 import FundraisingDashboard from "@/pages/dashboard/fundraising";
+import InvestorDashboard from "@/pages/dashboard/investor";
 import PublicFundraising from "@/pages/fundraising/index";
 import Association from "@/pages/association";
 import GlobalVision from "@/pages/global/vision";
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/dashboard/products" component={DigitalProducts} />
       <Route path="/dashboard/agents" component={AIAgentsDashboard} />
       <Route path="/dashboard/fundraising" component={FundraisingDashboard} />
+      <Route path="/dashboard/investor" component={InvestorDashboard} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
