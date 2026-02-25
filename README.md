@@ -24,6 +24,7 @@ The platform strategy is a sovereign **9-layer coordination architecture** spann
 - Product blueprint: `docs/onlineguide-sdk-strategy.md`
 - System architecture: `docs/system-8-ai-operation-bot-architecture.md`
 - TIIL architecture (investor-ready): `docs/tiil-investor-ready-architecture.md`
+- Private sector targeting strategy: `docs/private-sector-target-strategy.md`
 
 ## Backend Scaffold
 
