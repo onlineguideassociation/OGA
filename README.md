@@ -6,6 +6,12 @@
 
 OnlineGuide.io evolves into a **5-Layer National Tourism Intelligence Grid**, integrating real-time AI modeling, financial activation, and sovereign private-sector coordination.
 
+## 📘 Sovereign AI + Web3 Blueprint
+
+For the unified and expanded national architecture (Global Travel Forum Intelligence, AI Vibe Code Agent, Web3 automation, and reputation defense), see:
+
+- [`docs/sovereign-ai-web3-tourism-blueprint.md`](docs/sovereign-ai-web3-tourism-blueprint.md)
+
 ## 🧠 Master AI Agent Grid Expansion
 
 OnlineGuide.io now extends into a full **AI Agent Ecosystem** with five operational agent clusters connected to the AutoBot, RDTB, and Capital Engine.
