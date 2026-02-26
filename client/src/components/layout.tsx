@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -45,6 +45,15 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">AI Tools</div>
                     <div className="text-xs text-muted-foreground">Review Assistant & Tour Gen</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/rdtb">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Microscope className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">RDTB & AutoBot</div>
+                    <div className="text-xs text-muted-foreground">Research & Sensing Layer</div>
                   </div>
                 </DropdownMenuItem>
               </Link>

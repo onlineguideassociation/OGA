@@ -10,13 +10,13 @@ export default function InvestorDashboard() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="max-w-2xl">
-              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">Institutional Access</Badge>
-              <h1 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">Investor Intelligence Dashboard</h1>
-              <p className="text-lg text-slate-600">Real-time tourism performance metrics across the TIIL network in Cambodia.</p>
+              <Badge className="mb-4 bg-primary/10 text-primary border-primary/20">RDTB Intelligence Layer</Badge>
+              <h1 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">National Forecasting Engine</h1>
+              <p className="text-lg text-slate-600">Real-time tourism signal modeling powered by AI AutoBot Learning.</p>
             </div>
             <div className="bg-white p-4 rounded-xl border shadow-sm">
-              <div className="text-sm font-medium text-slate-500 mb-1">Total Network Capital Efficiency</div>
-              <div className="text-3xl font-bold text-primary">12.4x <span className="text-sm text-emerald-500 font-normal">+1.2%</span></div>
+              <div className="text-sm font-medium text-slate-500 mb-1">RDTB Validation Score</div>
+              <div className="text-3xl font-bold text-primary">98.4% <span className="text-sm text-emerald-500 font-normal">Highly Accurate</span></div>
             </div>
           </div>
 
