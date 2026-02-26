@@ -6,6 +6,133 @@
 
 OnlineGuide.io evolves into a **5-Layer National Tourism Intelligence Grid**, integrating real-time AI modeling, financial activation, and sovereign private-sector coordination.
 
+## 🧠 Master AI Agent Grid Expansion
+
+OnlineGuide.io now extends into a full **AI Agent Ecosystem** with five operational agent clusters connected to the AutoBot, RDTB, and Capital Engine.
+
+### 1️⃣ 🎯 AI Agent for SEM (Paid Ads Automation)
+Channels:
+- Google Ads
+- Meta Ads
+- TikTok Ads
+- X Ads
+
+Core automations:
+- Demand spike detection
+- Ad copy generation
+- Bid strategy adjustments
+- Audience targeting optimization
+- Real-time ROI tracking
+
+Activation example (Siem Reap):
+- Detects Angkor sunrise + flight surge momentum
+- Launches hotel promotion campaigns
+- Pushes guide availability ads
+- Adjusts CPC bids
+- Localizes language targeting
+
+Revenue options:
+- % of ad spend managed
+- SME subscription tiers
+- Performance-based bonus model
+
+### 2️⃣ 🔎 AI Agent for SEO (Search Intelligence)
+Core capabilities:
+- Tourism keyword clustering
+- AI blog and content generation
+- Schema markup automation
+- Internal linking optimization
+- Competitor content-gap analysis
+
+Primary tourism topics:
+- Angkor travel guides
+- Siem Reap events
+- Phnom Penh digital nomad content
+- Visa and entry updates
+- Temple routing advice
+
+Suggested technical stack:
+- AI core: OpenAI
+- Hosting: Vercel
+- Search monitoring: Google Search Console
+
+### 3️⃣ 🎓 AI Agent for Tourism Training
+Builds Cambodia’s AI Tourism Academy layer with:
+- Guide certification preparation
+- Language improvement tracks
+- Digital marketing for SMEs
+- ESG and sustainability modules
+- Tourism data literacy pathways
+
+AI-powered features:
+- Personalized learning paths
+- Skill-gap detection
+- Certification testing support
+- Income-improvement simulation
+
+Monetization:
+- Monthly training subscriptions
+- Corporate training packages
+- Tourism association partnerships
+
+### 4️⃣ 🌐 AI Agent for Languages
+Target language focus:
+- English
+- Chinese
+- Japanese
+- Korean
+- French
+- Spanish
+
+Core capabilities:
+- Real-time guide translation support
+- Voice practice simulations
+- Tourist conversation training
+- Accent improvement flows
+- Emergency phrase libraries
+
+AI core:
+- OpenAI
+- Future expansion: speech recognition + voice AI stack
+
+### 5️⃣ 🎨 AI Agent for Design & Creative Automation
+Supports tourism SMEs with:
+- Ad creatives
+- Social media posts
+- Brochures
+- Event graphics
+- Campaign visual packs
+
+Automation integration:
+- Canva-based design workflows
+- AI-generated social ads
+- Landing page creative drafts
+- Hotel promotional posters
+- Guide personal-brand kits
+
+## 🔗 Full System Integration
+Each AI agent connects to:
+- 🤖 **AI AutoBot Machine** (signal detection + triggering)
+- 🔬 **RDTB Research Layer** (model validation + bias checks)
+- 💳 **Capital & Revenue Engine** (billing, subscriptions, monetization)
+
+### 💰 Expanded Revenue Model
+1. AI SEM management fees
+2. SEO subscription plans
+3. Training academy memberships
+4. Language AI subscriptions
+5. Creative automation packages
+6. Enterprise tourism intelligence contracts
+
+### 🚀 Strategic Result
+OnlineGuide.io becomes a:
+- 🧠 AI Tourism Operating System
+- 📡 Real-Time Demand Engine
+- 🎯 AI Marketing Automation Platform
+- 🎓 Tourism Education Infrastructure
+- 🌐 Multilingual Tourism AI
+- 🎨 SME Creative Accelerator
+
 ## 🧠 Complete 5-Layer System Architecture
 
 ### 1️⃣ Data Collection Layer
