@@ -4,11 +4,16 @@
 
 **Geographic Core:** Siem Reap • Phnom Penh • Angkor Wat
 
-OnlineGuide.io evolves into a **5-Layer National Tourism Intelligence Grid**, integrating real-time AI modeling, financial activation, and sovereign private-sector coordination.
+OnlineGuide.io evolves into a **Digital Sovereign Tourism Infrastructure Layer** built from two synchronized systems:
+
+1. **Sovereign AI Tourism Operating System** (core intelligence + orchestration)
+2. **Private AI Tourism Farm Growth Engine** (private-sector innovation + monetization)
+
+Together they deliver real-time AI modeling, financial activation, and sovereign private-sector coordination.
 
 ## 📘 Sovereign AI + Web3 Blueprint
 
-For the unified and expanded national architecture (Global Travel Forum Intelligence, AI Vibe Code Agent, Web3 automation, and reputation defense), see:
+For the unified and expanded architecture (Global Travel Forum Intelligence, AI Vibe Code Agent, Web3 automation, private AI Tourism Farm, and reputation defense), see:
 
 - [`docs/sovereign-ai-web3-tourism-blueprint.md`](docs/sovereign-ai-web3-tourism-blueprint.md)
 
