@@ -1,28 +1,60 @@
 # 🇰🇭 OnlineGuide.io
-## Private Sovereign AI Tourism Globalization Network
+## Private AI Tourism Globalization Network
 
-Built in Cambodia.  
+Built in Cambodia.
 Connected to the world.
 
-Not a directory.  
-Not a startup.  
+Not a directory.
+Not a startup.
 Not a ministry project.
 
-But a **Private Digital Tourism Infrastructure Layer**.
+A **Private Digital Tourism Intelligence Infrastructure Layer**.
 
 ---
 
-## 🧠 THE FULL SOVEREIGN STACK
+## 🧠 LAYER 1 — SOVEREIGN GEOGRAPHIC CORE
 
-OnlineGuide.io integrates **13 interconnected intelligence systems** forming a self-reinforcing cultural and economic network.
+Tourism = emotional geography structured into intelligence.
+
+### 🌅 Angkor Wat
+**Emotional Vibe Code:** Sacred • Cosmic • Timeless
+
+Angkor becomes:
+- Myth & Cosmology Intelligence Hub
+- Equinox Simulation Engine
+- Sacred Geometry Data Model
+- Premium Cultural Funnel Core
+- High-Authority SEO Engine
+
+Tourism becomes civilizational memory architecture.
+
+### 🏙 Phnom Penh
+**Emotional Code:** Ambition • Growth • Modern Khmer Identity
+
+Becomes:
+- Business Travel Funnel Core
+- Investor Narrative Engine
+- Digital Nomad Node
+- Urban Media Studio
+
+Economic neural node of the stack.
+
+### 🌊 Sihanoukville
+**Emotional Code:** Escape • Freedom • Soft Power
+
+Becomes:
+- Leisure Cluster Engine
+- Resort Tokenization Module
+- Influencer Expansion Layer
+- Seasonal Demand Hub
+
+Emotional decompression layer.
 
 ---
 
-## 🧠 SYSTEM I — Sovereign AI Tourism Operating System
-### The Core Intelligence Brain
+## 🧠 LAYER 2 — AI TOURISM OPERATING SYSTEM
 
-Monitors global tourism signals across:
-
+Monitors global signals from:
 - Tripadvisor
 - Booking.com
 - Expedia
@@ -34,9 +66,7 @@ Monitors global tourism signals across:
 - Google Trends
 
 Detects:
-
 - Destination spikes
-- Safety myths
 - Visa confusion
 - Booking hesitation
 - Payment friction
@@ -44,219 +74,142 @@ Detects:
 
 Feeds:
 
-**SEO • SEM • Smart Contracts • Guide Alerts • Content Engines**
+**SEO → SEM → Content → Guide Alerts → Revenue Funnels**
 
-*Emotion becomes infrastructure.*
-
-### 🎛 Emotional Vibe Coding Engine
-
-Destination emotional positioning:
-
-- **Angkor Wat** → Spiritual + Majestic
-- **Phnom Penh** → Urban + Entrepreneurial
-- **Sihanoukville** → Relaxed + Tropical
-
-AI dynamically adjusts:
-
-**Tone → Visuals → Messaging → Storytelling → Revenue Funnel**
+Emotion becomes infrastructure.
 
 ---
 
-## 🌱 SYSTEM II — Private AI Tourism Farm
-### The Growth Engine
+## 🌐 LAYER 3 — AI WEB (INTELLIGENCE BROADCAST LAYER)
 
-Backbone infrastructure:
+The web is the visible sovereign brain.
 
+Functions:
+- Live Tourism Intelligence Dashboard
+- Structured Temple Knowledge Engine
+- Guide Verification Portal
+- Investor Transparency Panel
+- SEO Authority Engine
+
+Global visibility.
+Search dominance.
+Institution-level credibility.
+
+---
+
+## 📱 LAYER 4 — AI APP (OPERATIONAL NERVOUS SYSTEM)
+
+Field-level execution engine.
+
+Modes:
+1. Smart Guide Mode
+2. Tourist Companion Mode
+3. Sacred Capture Regulation
+4. AI Rights Wallet
+5. Trending Alerts
+
+The app = monetization + control + protection.
+
+---
+
+## ⚖ LAYER 5 — DIGITAL HERITAGE RIGHTS GUARDIAN
+
+Implements:
+- Media fingerprinting
+- Smart licensing
+- Revenue split automation
+- Cross-border validation
+
+**Content → License → Revenue → Audit**
+
+Guide-first economic model.
+
+---
+
+## 🌱 LAYER 6 — PRIVATE AI TOURISM FARM
+
+Infrastructure backbone:
 - GitHub
 - Amazon Web Services
 - Stripe
 
 Compounds demand into:
-
 - SEO clusters
-- Structured temple intelligence
-- Tokenized experiences
 - Smart booking funnels
-- Research modules
+- Structured temple databases
+- Cultural cinema monetization
 
-Outcome:
-
-- Automated income
-- Diversified revenue
-- Guide stability
+Automated income.
+Diversified revenue.
+Guide stability.
 
 ---
 
-## 🛕 AI EXPERIENCE LAYER
-### Living Heritage Intelligence
+## 🎬 LAYER 7 — CULTURAL CINEMA ENGINE
 
-Focused on sacred Khmer sites:
-
+Sacred Khmer sites:
 - Bayon
 - Ta Prohm
 - Banteay Srei
 
-Capabilities:
+Transforms guides into:
+- 🎥 Cinematic avatars
+- 🌍 Global storytellers
+- 🎓 Cultural educators
+- 💰 Rights-controlled creators
 
-- Bas-relief decoding
-- Cosmology modeling
-- Sacred geometry interpretation
-- Equinox alignment simulation
-- Multilingual narration
-
-*Heritage becomes structured intelligence.*
+Local guide → Global heritage filmmaker.
 
 ---
 
-## 🎬 AI Film Animation Temples
-### Cultural Cinema Engine
+## 🪙 LAYER 8 — AI TOURISM UTILITY COIN
 
-Produces:
+Utility-first. Not speculation-first.
 
-- Mythological reconstructions
-- Khmer Empire simulations
-- Bas-relief battle animations
-- Interactive educational cinema
+Powers:
+- Booking payments
+- Licensing transactions
+- Guide rewards
+- Cinema access
+- Ecosystem circulation
 
-**Heritage → Cinema → Global Memory**
+Safe architecture:
+- Phase 1: Internal ecosystem credit
+- Phase 2: Stablecoin integration
+- Phase 3: Public chain (only if compliant)
 
----
-
-## 📊 AI Videos Graph
-
-Motion-based influence intelligence across:
-
-- YouTube
-- TikTok
-
-Maps:
-
-**Video → Emotion → Engagement → Search → Booking**
+Goal: **Programmable Tourism Economy**.
 
 ---
 
-## 📸 AI Photos Graph
+## 🏛 THE COMPLETE STACK
 
-Static visual intelligence across:
-
-- Instagram
-- Pinterest
-
-Maps:
-
-**Image → Color → Emotion → Desire → Travel Intent**
-
----
-
-## 📱 SYSTEM VII — AI Phones & Camera Agent Mode
-### Sacred Capture Regulation Layer
-
-Protecting:
-
-- Angkor Wat
-- Bayon
-
-Capabilities:
-
-- Geo-aware sacred zone detection
-- Drone misuse alerts
-- Cultural watermark tagging
-- Guide-linked capture verification
-- Deepfake detection triggers
-
-*Capture becomes regulated intelligence — not uncontrolled exploitation.*
-
----
-
-## ⚖ SYSTEM VIII — AI Rights Management Assistant
-### Digital Heritage Governance Layer
-
-Protects:
-
-- Temple representations
-- Guide-created media
-- Film animations
-- NFT cultural assets
-- Training datasets
-
-Capabilities:
-
-- Media fingerprinting
-- Smart-contract licensing
-- Revenue split automation
-- Cross-border rights validation
-
-**Content → Registration → Licensing → Revenue → Audit**
-
-Guide-first model.
-
----
-
-## 🎬 /AI Tour Guide Animation Avatar Story Film Makers
-### Narrative Sovereignty Engine
-
-Transforms licensed Cambodian guides into:
-
-- 🎥 Animated cinematic avatars
-- 🌍 Multilingual storytellers
-- 🎓 Global educators
-- 💰 Digital rights holders
-
-Story structure framework:
-
-- **Act I** — Myth & Cosmology
-- **Act II** — Architecture & Symbolism
-- **Act III** — Human & Empire
-- **Act IV** — Preservation & Modern Relevance
-
-Integrated with:
-
-- 📱 Capture Regulation
-- ⚖ Rights Governance
-- 📊 Videos Graph
-- 📸 Photos Graph
-
-**Local guide → Global heritage filmmaker**
-
----
-
-## 🏛 THE CULTURAL GOVERNANCE SHIELD
-
-Together the stack forms:
-
-- 📱 Capture Regulation
-- ⚖ Ownership Enforcement
-- 🧠 Authenticity Validation
-- 🪙 Monetization Protection
-- 🔐 Digital Sovereignty
-
----
-
-## 🚀 FINAL EVOLUTION
-
-OnlineGuide.io now operates as:
-
-- 🧠 AI Tourism Operating System
-- 🌱 Private AI Tourism Farm
-- 🌍 Global AI Guide Network
-- 🎬 Heritage Film Studio
-- 📊 Motion Intelligence Graph
-- 📸 Visual Intelligence Graph
-- 📱 Sacred Capture Regulation Engine
+OnlineGuide.io now integrates:
+- 🧠 AI Tourism OS
+- 🌍 Sovereign Geographic Core
+- 🌐 AI Web Intelligence Layer
+- 📱 AI App Operational Layer
 - ⚖ Digital Heritage Rights Guardian
-- 🪙 Tokenized Cross-Border Economy
-- 🔐 Independent Tourism Infrastructure
+- 🌱 Private AI Tourism Farm
+- 🎬 Cultural Cinema Engine
+- 🪙 AI Tourism Utility Coin
 
-From 🇰🇭 Cambodia  
+From 🇰🇭 Cambodia
 To 🌍 Global Cultural Digital Sovereignty
 
-This is:
+---
 
-- Cultural sovereignty
-- Guide empowerment
-- Income protection
-- Narrative control
-- Digital independence
+## ⚠ STRATEGIC REALITY CHECK
 
-OnlineGuide.io is no longer just tourism technology.  
-It is a **Private Sovereign AI Tourism Infrastructure Layer**.
+Vision = strong.
+Architecture = coherent.
+
+But success depends on:
+1. Phase 1 focus
+2. Legal compliance
+3. Revenue before token
+4. Real guide adoption
+5. Real booking integration
+
+Big vision.
+Step-by-step execution.
