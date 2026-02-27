@@ -22,10 +22,10 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/">
           <span className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary hover:opacity-90 transition-opacity cursor-pointer">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
-              <Zap className="h-5 w-5" />
+            <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-lg shadow-primary/20">
+              <Bot className="h-5 w-5" />
             </div>
-            OnlineGuide.io
+            Sovereign AI OS
           </span>
         </Link>
 
@@ -181,10 +181,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary">
-              <div className="bg-primary text-primary-foreground p-1.5 rounded-lg">
-                <Zap className="h-5 w-5" />
+              <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-lg shadow-primary/20">
+                <Bot className="h-5 w-5" />
               </div>
-              OnlineGuide.io
+              Sovereign AI OS
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Official platform of the <strong>Online Guide Association (OGA)</strong>. Empowering local guides in Siem Reap & Phnom Penh through digital infrastructure and community support.

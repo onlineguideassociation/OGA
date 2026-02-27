@@ -12,7 +12,8 @@ import {
   Package,
   Bot,
   Calendar,
-  Heart
+  Heart,
+  Network
 } from "lucide-react";
 import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
@@ -72,18 +73,18 @@ export default function DashboardOverview() {
         <div className="flex-1 p-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-8">
-              <h1 className="text-2xl font-bold text-slate-900">Guide Dashboard</h1>
+              <h1 className="text-2xl font-bold text-slate-900">Sovereign OS Dashboard</h1>
               <div className="text-sm text-slate-500 flex items-center gap-2">
-                <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50">AI Agents Active</Badge>
-                Welcome back, Guide Mike
+                <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50">Sovereign Nodes Active</Badge>
+                Intelligence Grid: <span className="font-mono text-primary">ONLINE</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <StatsCard title="Visibility Index" value="84/100" icon={<Users className="h-5 w-5 text-blue-600" />} change="+12%" />
+              <StatsCard title="Vibe Signal" value="Strong" icon={<Wand2 className="h-5 w-5 text-purple-600" />} change="Cultural Mood: Festive" />
+              <StatsCard title="AutoBot Detection" value="1.2k events" icon={<Bot className="h-5 w-5 text-blue-600" />} change="+12% demand spike" />
+              <StatsCard title="Sovereign Ledger" value="Settled" icon={<Network className="h-5 w-5 text-indigo-600" />} change="Instant Payouts" />
               <StatsCard title="TIRS Score" value="A-" icon={<TrendingUp className="h-5 w-5 text-emerald-600" />} change="Investable" />
-              <StatsCard title="Review Velocity" value="4.2/day" icon={<MessageSquare className="h-5 w-5 text-purple-600" />} change="+24%" />
-              <StatsCard title="Booking Conversion" value="18.5%" icon={<ArrowUpRight className="h-5 w-5 text-rose-600" />} change="+5%" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
