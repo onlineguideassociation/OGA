@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Code, Globe, MessageSquare, Map, BarChart3, ArrowRight, Star } from "lucide-react";
+import { Check, Code, Globe, MessageSquare, Map, BarChart3, ArrowRight, Star, Bot, Wand2, Network, Microscope } from "lucide-react";
 import { Link } from "wouter";
 import saasHero from "../assets/saas-hero.png";
 import sdkFeature from "../assets/sdk-feature.png";
@@ -22,11 +22,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-5xl mx-auto leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Cambodia Tourism <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Intelligence Grid</span>
+            Cambodia Tourism <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-600 to-indigo-600">Sovereign AI OS</span>
           </h1>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            Powered by RDTB & AI AutoBot Real-Time Learning. The official sovereign tourism intelligence engine for Siem Reap, Phnom Penh, and the Angkor Region.
+            The national AI + Web3 tourism infrastructure layer. Powered by <span className="font-semibold text-primary">AutoBot Intelligence</span> & <span className="font-semibold text-blue-600">Vibe Code Agents</span> for a data-driven, sovereign digital nation.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
@@ -53,38 +53,45 @@ export default function Home() {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-slate-50 border-y">
+      <section className="py-24 bg-slate-50 border-y relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Complete Toolkit for Growth</h2>
-            <p className="text-lg text-slate-600">Everything you need to market, manage, and scale your tourism business in one unified platform.</p>
+            <Badge variant="outline" className="mb-4 border-primary/20 text-primary uppercase tracking-widest text-[10px] font-bold">Infrastructure Layer</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Sovereign AI Tourism OS</h2>
+            <p className="text-lg text-slate-600">Unified Web3 + AI architecture designed for national-level tourism optimization and cultural preservation.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard 
-              icon={<Code className="h-6 w-6 text-blue-600" />}
-              title="Booking & Lead Widget"
-              description="A simple script for your site that captures leads directly into your WhatsApp or Telegram."
+              icon={<Bot className="h-6 w-6 text-blue-600" />}
+              title="AI AutoBot Intelligence"
+              description="Real-time global travel forum mining across TripAdvisor, Reddit, and TikTok to detect emerging demand signals."
             />
             <FeatureCard 
-              icon={<MessageSquare className="h-6 w-6 text-purple-600" />}
-              title="AI Tourism Assistant"
-              description="Generate SEO tour descriptions, Facebook ads, and review replies in Khmer or English."
+              icon={<Wand2 className="h-6 w-6 text-purple-600" />}
+              title="AI Vibe Code Agent"
+              description="Emotional & cultural signal engine that automatically adjusts creative assets based on destination mood."
             />
             <FeatureCard 
-              icon={<Globe className="h-6 w-6 text-indigo-600" />}
-              title="Simple CRM"
-              description="Track your leads from first contact to completed tour. No more lost messages."
+              icon={<Network className="h-6 w-6 text-indigo-600" />}
+              title="Web3 Automation"
+              description="Smart contract escrow and automatic revenue splits on Polygon for transparent, instant settlement."
             />
             <FeatureCard 
-              icon={<Map className="h-6 w-6 text-emerald-600" />}
-              title="WhatsApp Templates"
-              description="Quick-reply templates designed specifically for Angkor Wat and city tour operators."
+              icon={<Microscope className="h-6 w-6 text-emerald-600" />}
+              title="Reputation Defense"
+              description="RDTB monitoring grid to validate sentiment and flag misinformation across the national tourism layer."
             />
             <FeatureCard 
-              icon={<Star className="h-6 w-6 text-amber-500" />}
-              title="Digital Products"
-              description="Sell premium Angkor photos, history ebooks, and digital tour materials with ease."
+              icon={<Globe className="h-6 w-6 text-amber-500" />}
+              title="Sovereign Data Layer"
+              description="API-first, open-core infrastructure providing high-fidelity tourism intelligence for government and SMEs."
+            />
+            <FeatureCard 
+              icon={<BarChart3 className="h-6 w-6 text-rose-600" />}
+              title="Monetization Engine"
+              description="Self-optimizing AI SEM agents scaling ROI across Google, Meta, and TikTok automatically."
             />
           </div>
         </div>
