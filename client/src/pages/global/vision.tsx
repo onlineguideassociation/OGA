@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Globe, Languages, Zap, MessageSquare, BookOpen, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { Globe, Languages, Zap, MessageSquare, BookOpen, Image as ImageIcon, ArrowRight, Bot, Network } from "lucide-react";
 import { Link } from "wouter";
 
 export default function GlobalVision() {
@@ -20,30 +20,30 @@ export default function GlobalVision() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
             <FeatureCard 
-              icon={<Languages className="h-6 w-6 text-blue-600" />}
-              title="Multilingual Framework"
-              desc="Access in Khmer, English, Chinese, Japanese, Korean, French, German, and Spanish."
+              icon={<Globe className="h-6 w-6 text-blue-600" />}
+              title="Sovereign Geographic Core"
+              desc="Transforming emotional geography into civilizational memory architecture across Angkor, Phnom Penh, and the coast."
             />
             <FeatureCard 
-              icon={<MessageSquare className="h-6 w-6 text-emerald-600" />}
-              title="WhatsApp Integration"
-              desc="Seamless travel engagement through chat apps for 3+ billion global users."
+              icon={<Bot className="h-6 w-6 text-emerald-600" />}
+              title="AI Tourism OS"
+              desc="Real-time global signal monitoring from TripAdvisor to TikTok, converting emotion into national infrastructure."
             />
             <FeatureCard 
-              icon={<Zap className="h-6 w-6 text-amber-600" />}
-              title="AI Guide Book"
-              desc="Living cultural intelligence adapted to every traveler's unique needs."
+              icon={<Network className="h-6 w-6 text-amber-600" />}
+              title="Digital Heritage Rights"
+              desc="Guide-first economic model using media fingerprinting and smart licensing to protect cultural assets."
             />
           </div>
 
           <div className="max-w-5xl mx-auto space-y-24">
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-slate-900">Cultural Promotion Pillars</h2>
+                <h2 className="text-3xl font-bold text-slate-900">National Strategic Layers</h2>
                 <div className="space-y-4">
-                  <PillarItem title="Traditional Khmer Arts" desc="Apsara dance, classical music, and temple bas-relief storytelling." />
-                  <PillarItem title="Spiritual Identity" desc="Angkor civilization worldview and architectural symbolism." />
-                  <PillarItem title="Living Culture" desc="Silk weaving, Tonlé Sap communities, and culinary heritage." />
+                  <PillarItem title="Layer 1-3: Intelligence Core" desc="Sovereign Geography (Angkor, Phnom Penh, Coast), AI OS, and Intelligence Broadcast." />
+                  <PillarItem title="Layer 4-6: Operational Backbone" desc="AI App Nervous System, Heritage Rights Guardian (Smart Licensing), and Private AI Farm." />
+                  <PillarItem title="Layer 7-8: Economy & Cinema" desc="Cultural Cinema Engine (Guides as Storytellers) and the AI Tourism Utility Coin." />
                 </div>
               </div>
               <div className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">

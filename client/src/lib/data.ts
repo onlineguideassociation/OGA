@@ -27,6 +27,45 @@ export interface Category {
   count: number;
 }
 
+export const features = [
+  {
+    id: "autobot",
+    title: "AI AutoBot Intelligence",
+    description: "Real-time global travel forum mining across TripAdvisor, Reddit, and TikTok to detect emerging demand signals.",
+    icon: "Bot"
+  },
+  {
+    id: "vibe",
+    title: "AI Vibe Code Agent",
+    description: "Emotional & cultural signal engine that automatically adjusts creative assets based on destination mood.",
+    icon: "Wand2"
+  },
+  {
+    id: "web3",
+    title: "Web3 Automation",
+    description: "Smart contract escrow and automatic revenue splits on Polygon for transparent, instant settlement.",
+    icon: "Network"
+  },
+  {
+    id: "rdtb",
+    title: "Reputation Defense",
+    description: "RDTB monitoring grid to validate sentiment and flag misinformation across the national tourism layer.",
+    icon: "Microscope"
+  },
+  {
+    id: "sovereign",
+    title: "Sovereign Data Layer",
+    description: "API-first, open-core infrastructure providing high-fidelity tourism intelligence for government and SMEs.",
+    icon: "Globe"
+  },
+  {
+    id: "monetization",
+    title: "Monetization Engine",
+    description: "Self-optimizing AI SEM agents scaling ROI across Google, Meta, and TikTok automatically.",
+    icon: "BarChart3"
+  }
+];
+
 export const categories: Category[] = [
   {
     id: "technology",
