@@ -21,11 +21,10 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <span className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary hover:opacity-90 transition-opacity cursor-pointer">
-            <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-lg shadow-primary/20">
-              <Bot className="h-5 w-5" />
-            </div>
-            Sovereign AI OS
+          <span className="flex items-center gap-2 font-bold text-xl tracking-tight hover:opacity-90 transition-opacity cursor-pointer">
+            <img src="/logo.png" alt="OnlineGuide.io" className="h-8 w-auto" />
+            <span className="text-[#C1121F]">Online</span>
+            <span className="text-[#0081C9]">Guide.io</span>
           </span>
         </Link>
 
@@ -180,11 +179,10 @@ export function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 font-bold text-xl tracking-tight text-primary">
-              <div className="bg-primary text-primary-foreground p-1.5 rounded-lg shadow-lg shadow-primary/20">
-                <Bot className="h-5 w-5" />
-              </div>
-              Sovereign AI OS
+            <div className="flex items-center gap-2 font-bold text-xl tracking-tight">
+              <img src="/logo.png" alt="OnlineGuide.io" className="h-8 w-auto" />
+              <span className="text-[#C1121F]">Online</span>
+              <span className="text-[#0081C9]">Guide.io</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Official platform of the <strong>Online Guide Association (OGA)</strong>. Empowering local guides in Siem Reap & Phnom Penh through digital infrastructure and community support.
