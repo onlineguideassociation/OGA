@@ -2,44 +2,44 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bot, Zap, MessageSquare, Star, Share2, Play, Settings, ArrowRight } from "lucide-react";
+import { Bot, Zap, MessageSquare, Star, Share2, Play, Settings, ArrowRight, Microscope, Wand2, TrendingUp } from "lucide-react";
 
 export default function AIAgentsDashboard() {
   const agents = [
     {
       id: 1,
-      name: "Sales AI Agent",
-      description: "Automatically follows up on Shopify digital product purchases.",
+      name: "AI AutoBot",
+      description: "Real-time global travel forum mining (TripAdvisor, Reddit, TikTok) for demand signal extraction.",
       status: "Active",
       tasks: 124,
-      icon: <Zap className="h-5 w-5 text-amber-500" />,
-      color: "bg-amber-50 text-amber-600 border-amber-200"
+      icon: <Bot className="h-5 w-5 text-red-600" />,
+      color: "bg-red-50 text-red-600 border-red-200"
     },
     {
       id: 2,
-      name: "Tour Booking Agent",
-      description: "Qualifies leads from your contact form and suggests itineraries.",
+      name: "AI Vibe Code Agent",
+      description: "Emotional & cultural signal engine. Adjusts creative assets and UI themes based on destination mood.",
       status: "Active",
       tasks: 45,
-      icon: <MessageSquare className="h-5 w-5 text-blue-500" />,
+      icon: <Wand2 className="h-5 w-5 text-blue-600" />,
       color: "bg-blue-50 text-blue-600 border-blue-200"
     },
     {
       id: 3,
-      name: "Review Growth Agent",
-      description: "Sends Google and TripAdvisor review requests after completed tours.",
-      status: "Paused",
+      name: "Reputation Defense (RDTB)",
+      description: "Research, validation, and bias monitoring grid for national tourism intelligence.",
+      status: "Active",
       tasks: 289,
-      icon: <Star className="h-5 w-5 text-emerald-500" />,
+      icon: <Microscope className="h-5 w-5 text-emerald-600" />,
       color: "bg-emerald-50 text-emerald-600 border-emerald-200"
     },
     {
       id: 4,
-      name: "Social Media Agent",
-      description: "Generates and schedules posts for Facebook and Instagram.",
+      name: "Sovereign AI SEM Agent",
+      description: "Demand monetization engine. Automated campaign scaling across Google, Meta, and TikTok.",
       status: "Active",
       tasks: 384,
-      icon: <Share2 className="h-5 w-5 text-purple-500" />,
+      icon: <TrendingUp className="h-5 w-5 text-purple-600" />,
       color: "bg-purple-50 text-purple-600 border-purple-200"
     }
   ];

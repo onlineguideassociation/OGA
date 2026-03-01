@@ -20,30 +20,31 @@ export default function GlobalVision() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
             <FeatureCard 
-              icon={<Globe className="h-6 w-6 text-blue-600" />}
+              icon={<Globe className="h-6 w-6 text-[#C1121F]" />}
               title="Sovereign Geographic Core"
-              desc="Transforming emotional geography into civilizational memory architecture across Angkor, Phnom Penh, and the coast."
+              desc="Tourism as civilizational memory architecture. Structured intelligence for Angkor Wat, Phnom Penh, and Sihanoukville."
             />
             <FeatureCard 
-              icon={<Bot className="h-6 w-6 text-emerald-600" />}
+              icon={<Bot className="h-6 w-6 text-[#0081C9]" />}
               title="AI Tourism OS"
-              desc="Real-time global signal monitoring from TripAdvisor to TikTok, converting emotion into national infrastructure."
+              desc="Global signal monitoring (TripAdvisor, TikTok, Reddit) converting emotional geography into national infrastructure."
             />
             <FeatureCard 
-              icon={<Network className="h-6 w-6 text-amber-600" />}
-              title="Digital Heritage Rights"
-              desc="Guide-first economic model using media fingerprinting and smart licensing to protect cultural assets."
+              icon={<Network className="h-6 w-6 text-[#2D9B51]" />}
+              title="Web3 Economy"
+              desc="Programmable tourism economy via OGT utility coin and smart contract revenue splits for guide stability."
             />
           </div>
 
           <div className="max-w-5xl mx-auto space-y-24">
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-slate-900">National Strategic Layers</h2>
+                <h2 className="text-3xl font-bold text-slate-900">The Sovereign Layers</h2>
                 <div className="space-y-4">
-                  <PillarItem title="Layer 1-3: Intelligence Core" desc="Sovereign Geography (Angkor, Phnom Penh, Coast), AI OS, and Intelligence Broadcast." />
-                  <PillarItem title="Layer 4-6: Operational Backbone" desc="AI App Nervous System, Heritage Rights Guardian (Smart Licensing), and Private AI Farm." />
-                  <PillarItem title="Layer 7-8: Economy & Cinema" desc="Cultural Cinema Engine (Guides as Storytellers) and the AI Tourism Utility Coin." />
+                  <PillarItem title="Layer 1 — Geographic Core" desc="Geographic intelligence structured for Angkor, Phnom Penh, and Sihanoukville." />
+                  <PillarItem title="Layer 2 — AI Tourism OS" desc="Global signal monitoring from TripAdvisor, Booking.com, Reddit, and TikTok." />
+                  <PillarItem title="Layer 3 — Intelligence Broadcast" desc="Live dashboards, temple knowledge engines, and verification portals." />
+                  <PillarItem title="Layer 5 — Heritage Rights Guardian" desc="Digital heritage protection through media fingerprinting and smart licensing." />
                 </div>
               </div>
               <div className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">

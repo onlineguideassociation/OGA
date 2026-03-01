@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Sparkles, MapPin, Zap, MessageSquare } from "lucide-react";
+import { BookOpen, Sparkles, MapPin, Zap, MessageSquare, Bot, User, ShieldCheck, Wallet } from "lucide-react";
 
 export default function AIGuideBook() {
   return (
@@ -10,11 +10,34 @@ export default function AIGuideBook() {
       <div className="bg-slate-50 pt-20 pb-32">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">Living Intelligence</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">AI Guide Book of Cambodia</h1>
+            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">Layer 4 — Operational Nervous System</Badge>
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">AI Guide Book: Smart Companion</h1>
             <p className="text-xl text-slate-600 leading-relaxed">
-              "Smart Knowledge. Sacred Heritage." An interactive, dynamic AI system that adapts to traveler needs.
+              "Smart Knowledge. Sacred Heritage." An interactive system featuring Smart Guide Mode and Tourist Companion Mode.
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 max-w-6xl mx-auto">
+            <FeatureCard 
+              icon={<Bot className="h-6 w-6 text-red-600" />}
+              title="Smart Guide Mode"
+              desc="Real-time cultural intelligence for professional guides."
+            />
+            <FeatureCard 
+              icon={<User className="h-6 w-6 text-blue-600" />}
+              title="Tourist Companion"
+              desc="Personalized AI travel assistant for heritage exploration."
+            />
+            <FeatureCard 
+              icon={<ShieldCheck className="h-6 w-6 text-emerald-600" />}
+              title="Sacred Capture"
+              desc="AI-regulated heritage photography and media rights."
+            />
+            <FeatureCard 
+              icon={<Wallet className="h-6 w-6 text-purple-600" />}
+              title="AI Rights Wallet"
+              desc="Manage digital assets and OGT token rewards."
+            />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto mb-24">
@@ -66,23 +89,15 @@ export default function AIGuideBook() {
   );
 }
 
-function TempleModule({ title, theme, features }: { title: string, theme: string, features: string[] }) {
+function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) {
   return (
-    <Card className="hover:border-primary transition-all">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-primary" /> {title}
-        </CardTitle>
-        <p className="text-sm font-medium text-slate-500 uppercase tracking-wider">{theme}</p>
+    <Card className="border shadow-sm hover:shadow-md transition-shadow">
+      <CardHeader className="flex flex-col items-center text-center">
+        <div className="h-12 w-12 rounded-xl bg-slate-50 flex items-center justify-center mb-4 border">{icon}</div>
+        <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-slate-600">
-          {features.map((f, i) => (
-            <li key={i} className="flex items-center gap-2">
-              <div className="h-1 w-1 rounded-full bg-primary" /> {f}
-            </li>
-          ))}
-        </ul>
+      <CardContent className="text-center">
+        <p className="text-slate-600">{desc}</p>
       </CardContent>
     </Card>
   );
