@@ -37,6 +37,17 @@ export function Navbar() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[300px] p-4">
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Platform Resources</DropdownMenuLabel>
+              <Link href="/dashboard">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <LayoutDashboard className="h-5 w-5 text-slate-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Dashboard Overview</div>
+                    <div className="text-xs text-muted-foreground">Main management console</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuSeparator className="my-2" />
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Features</DropdownMenuLabel>
               <Link href="/dashboard/tools">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
@@ -106,11 +117,6 @@ export function Navbar() {
               Pricing
             </span>
           </Link>
-          <Link href="/dashboard">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/dashboard") ? "text-primary" : "text-muted-foreground"}`}>
-              Dashboard
-            </span>
-          </Link>
           <Link href="/product">
             <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/product") ? "text-primary" : "text-muted-foreground"}`}>
               Resources
@@ -141,7 +147,8 @@ export function Navbar() {
             <SheetContent side="right">
               <div className="flex flex-col gap-6 mt-6">
                 <div className="space-y-4">
-                  <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Platform</h4>
+                  <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Resources</h4>
+                  <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
                   <Link href="/dashboard/tools"><span className="block text-lg font-medium">AI Tools</span></Link>
                   <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
                   <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>
@@ -149,9 +156,6 @@ export function Navbar() {
                 </div>
                 <Link href="/pricing">
                   <span className="text-lg font-medium cursor-pointer">Pricing</span>
-                </Link>
-                <Link href="/dashboard">
-                  <span className="text-lg font-medium cursor-pointer">Dashboard</span>
                 </Link>
                 <Link href="/product">
                   <span className="text-lg font-medium cursor-pointer">Resources</span>
