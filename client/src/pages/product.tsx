@@ -42,19 +42,19 @@ export default function Product() {
             <Card className="border-none shadow-sm hover:shadow-md transition-shadow group">
               <CardHeader>
                 <div className="h-12 w-12 rounded-xl bg-red-50 flex items-center justify-center mb-4 border border-red-100">
-                  <Globe className="h-6 w-6 text-red-600" />
+                  <Network className="h-6 w-6 text-red-600" />
                 </div>
-                <CardTitle className="text-2xl">Geographic Core</CardTitle>
+                <CardTitle className="text-2xl">Layer 0 Core</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-slate-600">Emotional Geography structured into intelligence for Angkor, Phnom Penh, and Sihanoukville.</p>
+                <p className="text-slate-600">The Knowledge Graph Engine mapping entity relationships for structured civilizational authority.</p>
                 <ul className="space-y-2 text-sm text-slate-500">
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Myth & Cosmology Hub</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Investor Narrative Engine</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Leisure Cluster Engine</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Temple Relationship Models</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Global Signal Indexing</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-red-400" /> Entity-based SEO Authority</li>
                 </ul>
                 <Link href="/global/vision">
-                  <Button variant="ghost" className="p-0 text-red-600 hover:text-red-700">Explore Core <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button variant="ghost" className="p-0 text-red-600 hover:text-red-700">Explore Graph <ArrowRight className="ml-2 h-4 w-4" /></Button>
                 </Link>
               </CardContent>
             </Card>
@@ -64,17 +64,17 @@ export default function Product() {
                 <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-4 border border-blue-100">
                   <Bot className="h-6 w-6 text-blue-600" />
                 </div>
-                <CardTitle className="text-2xl">AI Tourism OS</CardTitle>
+                <CardTitle className="text-2xl">Guiding AI</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-slate-600">Global signal monitoring across TripAdvisor, Booking, and TikTok to detect demand spikes.</p>
+                <p className="text-slate-600">AI-native reasoning and RAG over structured tourism nodes to convert emotion into decisions.</p>
                 <ul className="space-y-2 text-sm text-slate-500">
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> AI AutoBot Sensing</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> Emotional Vibe Agents</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> Revenue Split Automation</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> Behavioral Detection</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> Cultural Sensitivity Modeling</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-blue-400" /> Revenue Opportunity Mapping</li>
                 </ul>
                 <Link href="/dashboard/tools">
-                  <Button variant="ghost" className="p-0 text-blue-600 hover:text-blue-700">View AI OS <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button variant="ghost" className="p-0 text-blue-600 hover:text-blue-700">Explore AI <ArrowRight className="ml-2 h-4 w-4" /></Button>
                 </Link>
               </CardContent>
             </Card>
@@ -82,19 +82,19 @@ export default function Product() {
             <Card className="border-none shadow-sm hover:shadow-md transition-shadow group">
               <CardHeader>
                 <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-4 border border-emerald-100">
-                  <Network className="h-6 w-6 text-emerald-600" />
+                  <Globe className="h-6 w-6 text-emerald-600" />
                 </div>
-                <CardTitle className="text-2xl">Web3 Economy</CardTitle>
+                <CardTitle className="text-2xl">Tourism OS</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="text-slate-600">Programmable tourism economy via OGT utility coin and smart contract revenue splits.</p>
+                <p className="text-slate-600">The operational layer connecting temples, guides, and hotels with global demand signals.</p>
                 <ul className="space-y-2 text-sm text-slate-500">
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> OGT Utility Coin</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> Heritage Rights Licensing</li>
-                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> Instant Wallet Settlement</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> Destination Spike Detection</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> competitor Trend Tracking</li>
+                  <li className="flex items-center gap-2"><div className="h-1 w-1 rounded-full bg-emerald-400" /> Revenue Funnel Activation</li>
                 </ul>
                 <Link href="/global/vision">
-                  <Button variant="ghost" className="p-0 text-emerald-600 hover:text-emerald-700">Explore Web3 <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button variant="ghost" className="p-0 text-emerald-600 hover:text-emerald-700">Explore OS <ArrowRight className="ml-2 h-4 w-4" /></Button>
                 </Link>
               </CardContent>
             </Card>

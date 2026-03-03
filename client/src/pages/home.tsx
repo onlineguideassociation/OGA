@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Check, Code, Globe, MessageSquare, Map, BarChart3, ArrowRight, Star, Bot, Wand2, Network, Microscope } from "lucide-react";
+import { Check, Code, Globe, MessageSquare, Map, BarChart3, ArrowRight, Star, Bot, Wand2, Network, Microscope, ShieldCheck, Zap, BookOpen } from "lucide-react";
 import { Link } from "wouter";
 import saasHero from "../assets/saas-hero.png";
 import sdkFeature from "../assets/sdk-feature.png";
@@ -22,11 +22,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-5xl mx-auto leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Cambodia Tourism <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#0081C9] to-[#2D9B51]">Sovereign AI OS</span>
+            Cambodia Tourism <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#0081C9] to-[#2D9B51]">Guiding Intelligence</span>
           </h1>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            The national AI + Web3 tourism infrastructure layer. Powered by <span className="font-semibold text-primary">AutoBot Intelligence</span> & <span className="font-semibold text-blue-600">Vibe Code Agents</span> for a data-driven, sovereign digital nation.
+            Powered by <span className="font-semibold text-[#C1121F]">Layer 0 Knowledge Graph</span> & <span className="font-semibold text-[#0081C9]">Tourism OS</span>. We convert emotion into structured civilizational intelligence for the world.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
@@ -64,34 +64,34 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <FeatureCard 
+              icon={<Network className="h-6 w-6 text-red-600" />}
+              title="Knowledge Graph Core"
+              description="Layer 0 engine mapping entity relationships between temples, guides, and global signals for structured authority."
+            />
+            <FeatureCard 
               icon={<Bot className="h-6 w-6 text-blue-600" />}
-              title="AI AutoBot Intelligence"
-              description="Real-time global travel forum mining across TripAdvisor, Reddit, and TikTok to detect emerging demand signals."
+              title="Tourism Intelligence"
+              description="AI-native reasoning and behavioral hesitation detection to convert traveler emotion into structured decisions."
             />
             <FeatureCard 
-              icon={<Wand2 className="h-6 w-6 text-purple-600" />}
-              title="AI Vibe Code Agent"
-              description="Emotional & cultural signal engine that automatically adjusts creative assets based on destination mood."
+              icon={<Globe className="h-6 w-6 text-emerald-600" />}
+              title="Tourism OS"
+              description="Operating system connecting guides, hotels, and airlines while monitoring global signals from TripAdvisor to TikTok."
             />
             <FeatureCard 
-              icon={<Network className="h-6 w-6 text-indigo-600" />}
-              title="Web3 Automation"
-              description="Smart contract escrow and automatic revenue splits on Polygon for transparent, instant settlement."
+              icon={<BookOpen className="h-6 w-6 text-amber-600" />}
+              title="Digital Book Infra"
+              description="Transforming cultural knowledge into structured assets that generate revenue and preserve civilizational memory."
             />
             <FeatureCard 
-              icon={<Microscope className="h-6 w-6 text-emerald-600" />}
-              title="Reputation Defense"
-              description="RDTB monitoring grid to validate sentiment and flag misinformation across the national tourism layer."
+              icon={<Zap className="h-6 w-6 text-purple-600" />}
+              title="Global Connection"
+              description="Bridging Cambodia to ASEAN and global markets through a strategic alliance of guides and AI builders."
             />
             <FeatureCard 
-              icon={<Globe className="h-6 w-6 text-amber-500" />}
-              title="Sovereign Data Layer"
-              description="API-first, open-core infrastructure providing high-fidelity tourism intelligence for government and SMEs."
-            />
-            <FeatureCard 
-              icon={<BarChart3 className="h-6 w-6 text-rose-600" />}
-              title="Monetization Engine"
-              description="Self-optimizing AI SEM agents scaling ROI across Google, Meta, and TikTok automatically."
+              icon={<ShieldCheck className="h-6 w-6 text-slate-600" />}
+              title="Independence Model"
+              description="A private, independent tech infrastructure built for growth, digital sovereignty, and personal empowerment."
             />
           </div>
         </div>

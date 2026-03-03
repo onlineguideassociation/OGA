@@ -39,12 +39,12 @@ export default function GlobalVision() {
           <div className="max-w-5xl mx-auto space-y-24">
             <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-slate-900">The Sovereign Layers</h2>
+                <h2 className="text-3xl font-bold text-slate-900">Platform Structural Core</h2>
                 <div className="space-y-4">
-                  <PillarItem title="Layer 1 — Geographic Core" desc="Geographic intelligence structured for Angkor, Phnom Penh, and Sihanoukville." />
-                  <PillarItem title="Layer 2 — AI Tourism OS" desc="Global signal monitoring from TripAdvisor, Booking.com, Reddit, and TikTok." />
-                  <PillarItem title="Layer 3 — Intelligence Broadcast" desc="Live dashboards, temple knowledge engines, and verification portals." />
-                  <PillarItem title="Layer 5 — Heritage Rights Guardian" desc="Digital heritage protection through media fingerprinting and smart licensing." />
+                  <PillarItem title="Layer 0: Knowledge Graph" desc="The civilizational intelligence core mapping relationships between temples, guides, and signals." />
+                  <PillarItem title="Layer 1: Geographic Core" desc="Structuring Angkor (Myth), Phnom Penh (Business), and Sihanoukville (Leisure) into data models." />
+                  <PillarItem title="AI Tourism OS" desc="Connecting the ecosystem while detecting destination spikes and competitor trends globally." />
+                  <PillarItem title="Digital Book Infra" desc="Treating books as structured assets that generate revenue through temple intelligence." />
                 </div>
               </div>
               <div className="bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden">
