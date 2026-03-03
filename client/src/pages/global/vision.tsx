@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Globe, Languages, Zap, MessageSquare, BookOpen, Image as ImageIcon, ArrowRight, Bot, Network } from "lucide-react";
+import { Globe, Languages, Zap, MessageSquare, BookOpen, Image as ImageIcon, ArrowRight, Bot, Network, ShieldCheck, Microscope } from "lucide-react";
 import { Link } from "wouter";
 
 export default function GlobalVision() {
