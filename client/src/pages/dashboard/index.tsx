@@ -73,18 +73,18 @@ export default function DashboardOverview() {
         <div className="flex-1 p-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-8">
-              <h1 className="text-2xl font-bold text-slate-900">Sovereign OS Dashboard</h1>
+              <h1 className="text-2xl font-bold text-slate-900">Guiding Intelligence Dashboard</h1>
               <div className="text-sm text-slate-500 flex items-center gap-2">
-                <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50">Sovereign Nodes Active</Badge>
-                Intelligence Grid: <span className="font-mono text-primary">ONLINE</span>
+                <Badge variant="outline" className="text-emerald-600 border-emerald-200 bg-emerald-50">Layer 0 Nodes Active</Badge>
+                Knowledge Graph: <span className="font-mono text-primary">SYNCED</span>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <StatsCard title="Vibe Signal" value="Strong" icon={<Wand2 className="h-5 w-5 text-purple-600" />} change="Cultural Mood: Festive" />
-              <StatsCard title="AutoBot Detection" value="1.2k events" icon={<Bot className="h-5 w-5 text-blue-600" />} change="+12% demand spike" />
-              <StatsCard title="Sovereign Ledger" value="Settled" icon={<Network className="h-5 w-5 text-indigo-600" />} change="Instant Payouts" />
-              <StatsCard title="TIRS Score" value="A-" icon={<TrendingUp className="h-5 w-5 text-emerald-600" />} change="Investable" />
+              <StatsCard title="Graph Entities" value="12,482" icon={<Network className="h-5 w-5 text-[#C1121F]" />} change="Authority: High" />
+              <StatsCard title="Sensing Events" value="8.2k" icon={<Bot className="h-5 w-5 text-[#0081C9]" />} change="+18% demand spike" />
+              <StatsCard title="Tourism OS" value="Connected" icon={<Globe className="h-5 w-5 text-[#2D9B51]" />} change="Global Signal: Active" />
+              <StatsCard title="Asset Revenue" value="$4.2k" icon={<TrendingUp className="h-5 w-5 text-emerald-600" />} change="Books & Licenses" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

@@ -2,14 +2,14 @@ import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Bot, Zap, MessageSquare, Star, Share2, Play, Settings, ArrowRight, Microscope, Wand2, TrendingUp } from "lucide-react";
+import { Bot, Zap, MessageSquare, Star, Share2, Play, Settings, ArrowRight, Microscope, Wand2, TrendingUp, Globe, Network, BookOpen } from "lucide-react";
 
 export default function AIAgentsDashboard() {
   const agents = [
     {
       id: 1,
-      name: "AI AutoBot",
-      description: "Real-time global travel forum mining (TripAdvisor, Reddit, TikTok) for demand signal extraction.",
+      name: "Guiding Intelligence Bot",
+      description: "Knowledge Graph + LLM reasoning for behavioral hesitation detection and cultural sensitivity modeling.",
       status: "Active",
       tasks: 124,
       icon: <Bot className="h-5 w-5 text-red-600" />,
@@ -17,29 +17,29 @@ export default function AIAgentsDashboard() {
     },
     {
       id: 2,
-      name: "AI Vibe Code Agent",
-      description: "Emotional & cultural signal engine. Adjusts creative assets and UI themes based on destination mood.",
+      name: "Tourism OS Agent",
+      description: "Monitors destination spikes and competitor trends from TripAdvisor, Booking.com, and TikTok.",
       status: "Active",
       tasks: 45,
-      icon: <Wand2 className="h-5 w-5 text-blue-600" />,
+      icon: <Globe className="h-5 w-5 text-blue-600" />,
       color: "bg-blue-50 text-blue-600 border-blue-200"
     },
     {
       id: 3,
-      name: "Reputation Defense (RDTB)",
-      description: "Research, validation, and bias monitoring grid for national tourism intelligence.",
+      name: "Knowledge Graph Mapper",
+      description: "Entity relationship management for temples, guides, and hotels to build structured authority.",
       status: "Active",
       tasks: 289,
-      icon: <Microscope className="h-5 w-5 text-emerald-600" />,
+      icon: <Network className="h-5 w-5 text-emerald-600" />,
       color: "bg-emerald-50 text-emerald-600 border-emerald-200"
     },
     {
       id: 4,
-      name: "Sovereign AI SEM Agent",
-      description: "Demand monetization engine. Automated campaign scaling across Google, Meta, and TikTok.",
+      name: "Digital Asset Manager",
+      description: "Automated licensing and revenue mapping for cultural books and temple intelligence materials.",
       status: "Active",
       tasks: 384,
-      icon: <TrendingUp className="h-5 w-5 text-purple-600" />,
+      icon: <BookOpen className="h-5 w-5 text-purple-600" />,
       color: "bg-purple-50 text-purple-600 border-purple-200"
     }
   ];
