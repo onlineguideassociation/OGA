@@ -16,7 +16,7 @@ import {
   Network,
   Globe
 } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Badge } from "@/components/ui/badge";
 
 const data = [
@@ -30,6 +30,8 @@ const data = [
 ];
 
 export default function DashboardOverview() {
+  const [location] = useLocation();
+
   return (
     <Layout>
       <div className="flex min-h-[calc(100vh-64px)] bg-slate-50">
@@ -38,37 +40,37 @@ export default function DashboardOverview() {
           <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Management</h2>
           <nav className="space-y-2">
             <Link href="/dashboard">
-              <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/10 text-primary cursor-pointer">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <TrendingUp className="h-4 w-4" />
                 <span className="font-medium">Overview</span>
               </div>
             </Link>
+            <Link href="/dashboard/graph">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard/graph' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
+                <Network className="h-4 w-4" />
+                <span>Graph Explorer</span>
+              </div>
+            </Link>
             <Link href="/dashboard/tools">
-              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard/tools' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <Wand2 className="h-4 w-4" />
                 <span>AI Tools</span>
               </div>
             </Link>
             <Link href="/dashboard/products">
-              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard/products' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <Package className="h-4 w-4" />
                 <span>Digital Products</span>
               </div>
             </Link>
             <Link href="/dashboard/agents">
-              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard/agents' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <Bot className="h-4 w-4" />
                 <span>AI Agents</span>
               </div>
             </Link>
-            <Link href="/dashboard/graph">
-              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
-                <Network className="h-4 w-4" />
-                <span>Graph Explorer</span>
-              </div>
-            </Link>
             <Link href="/dashboard/fundraising">
-              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+              <div className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-colors ${location === '/dashboard/fundraising' ? 'bg-primary/10 text-primary' : 'text-slate-600 hover:bg-slate-100'}`}>
                 <Heart className="h-4 w-4" />
                 <span>GuideFund</span>
               </div>
