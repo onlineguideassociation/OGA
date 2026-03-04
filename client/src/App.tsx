@@ -13,6 +13,7 @@ import DigitalProducts from "@/pages/dashboard/products/index";
 import AIAgentsDashboard from "@/pages/dashboard/agents";
 import FundraisingDashboard from "@/pages/dashboard/fundraising";
 import InvestorDashboard from "@/pages/dashboard/investor";
+import GraphExplorer from "@/pages/dashboard/graph/index";
 import RDTBPage from "@/pages/rdtb";
 import RoleSelection from "@/pages/roles";
 import PublicFundraising from "@/pages/fundraising/index";
@@ -41,6 +42,7 @@ function Router() {
       <Route path="/dashboard/agents" component={AIAgentsDashboard} />
       <Route path="/dashboard/fundraising" component={FundraisingDashboard} />
       <Route path="/dashboard/investor" component={InvestorDashboard} />
+      <Route path="/dashboard/graph" component={GraphExplorer} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

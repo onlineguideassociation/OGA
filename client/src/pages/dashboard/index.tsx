@@ -61,6 +61,12 @@ export default function DashboardOverview() {
                 <span>AI Agents</span>
               </div>
             </Link>
+            <Link href="/dashboard/graph">
+              <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
+                <Network className="h-4 w-4" />
+                <span>Graph Explorer</span>
+              </div>
+            </Link>
             <Link href="/dashboard/fundraising">
               <div className="flex items-center gap-2 p-2 rounded-lg text-slate-600 hover:bg-slate-100 cursor-pointer transition-colors">
                 <Heart className="h-4 w-4" />

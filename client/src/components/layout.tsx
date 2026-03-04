@@ -47,6 +47,15 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
+              <Link href="/dashboard/graph">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Network className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Graph Explorer</div>
+                    <div className="text-xs text-muted-foreground">Visualize Knowledge Graph nodes</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuSeparator className="my-2" />
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Features</DropdownMenuLabel>
               <Link href="/dashboard/tools">

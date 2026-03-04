@@ -1,0 +1,142 @@
+🧭 OnlineGuide.io — Fusional Global Guiding Platform
+1️⃣ Core Stack
+
+Frontend: React.js + TailwindCSS (responsive, modern UI)
+
+Backend: Node.js + Express (APIs for guides, temples, travelers, businesses)
+
+Database: MongoDB / Firebase (store Knowledge Graph nodes & relationships)
+
+AI Layer: OpenAI GPT / Gemini 3 (connection hub logic, revenue mapping, cultural intelligence)
+
+Deployment: Replit (full-stack hosting with DB integration)
+
+2️⃣ Knowledge Graph
+
+Nodes & Properties:
+
+Node	Key Properties	Connections
+Temple	Name, Location, Culture, Digital Book	Local Guides, Nearby Hotels, Cultural Stories
+Guide	Name, Language, Expertise, Verified	Temples, Travelers, Revenue Dashboard
+Traveler	Name, Preferences, Past Visits	Temples, Reviews, Bookings
+Business	Name, Type, Location, Services	Travelers, Guides, Trend Insights
+
+Relationships / Intelligence Flow:
+🌅 Temples → Guides → Travelers → Business → Global Impact
+
+Guide → Temple → Expertise link
+
+Traveler → Temple → Visit history
+
+Traveler → Business → Booking/Engagement
+
+Temple → Business → Revenue channels (Booking.com, Tripadvisor)
+
+3️⃣ Interactive Components
+
+Frontend Features:
+
+Knowledge Graph Explorer (React Flow / D3.js) — visualize nodes & relationships
+
+Traveler Dashboard — AI recommendations, booking links, cultural briefings
+
+Guide Dashboard — verified profile, temple expertise, revenue tracking, digital book contributions
+
+Business Intelligence Panel — analytics, traveler behavior, cultural storytelling
+
+Visuals:
+
+Node icons: Temple, Guide, Traveler, Business
+
+Color-coded layers
+
+Hover/click for AI insights & revenue potential
+
+4️⃣ AI-Powered Features
+
+Personalized recommendations for travelers
+
+Auto-generated mini digital temple books
+
+Revenue optimization suggestions for guides/businesses
+
+Summarized reviews, cultural stories, and travel tips
+
+5️⃣ Revenue Model
+
+Private guided intelligence tours (booking integration)
+
+Digital temple books (PDF / interactive)
+
+Guide membership subscriptions (dashboard & perks)
+
+Hotel data subscriptions (analytics API)
+
+Cultural reports for investors (auto-generated graphs)
+
+6️⃣ Growth & Expansion
+
+Phase 1: Cambodia core — 10 temples, 20 guides, 15 hotels, 3 digital books
+
+Phase 2: ASIA expansion — Japan, Indonesia, India, Korea, China
+
+Phase 3: Global expansion — structured digital assets + AI insights worldwide
+
+7️⃣ Replit Implementation Steps
+
+Step 1: Initialize Project
+
+npx create-react-app onlineguide-platform
+npm install tailwindcss react-router-dom d3 react-flow
+npm install express mongoose cors dotenv openai
+
+Step 2: Knowledge Graph API (Node.js + MongoDB)
+
+const mongoose = require('mongoose');
+
+const nodeSchema = new mongoose.Schema({
+  type: String, // Temple, Guide, Traveler, Business
+  name: String,
+  properties: Object,
+  connections: [{ nodeId: mongoose.Schema.Types.ObjectId, type: String }]
+});
+
+module.exports = mongoose.model('Node', nodeSchema);
+
+Step 3: Connect Frontend Graph Explorer
+
+Render nodes dynamically from API
+
+Color-code by type
+
+Click → AI insights & revenue potential
+
+Step 4: AI Layer Integration
+
+OpenAI GPT / Gemini 3 API → generate insights, cultural briefings, recommendations
+
+Step 5: Deploy on Replit
+
+Connect MongoDB Atlas / Replit DB
+
+Full-stack live deployment
+
+8️⃣ Optional Enhancements
+
+Mobile-first responsive dashboards
+
+Export digital books to PDF / ePub
+
+Multi-language support (Khmer + English)
+
+Revenue visualization per guide / temple / hotel
+
+Map view of temples, guides, and businesses
+
+✅ Outcome
+
+A fully functional, interactive, AI-powered Global Guiding Intelligence Platform, visualizing:
+
+🌅 Temples → Guides → Travelers → Business → Global Impact
+
+Ready for investors, guides, travelers, and local businesses.
