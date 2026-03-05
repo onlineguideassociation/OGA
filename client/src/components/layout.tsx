@@ -85,15 +85,6 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/tools">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <MapPin className="h-5 w-5 text-rose-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Tour Builder</div>
-                    <div className="text-xs text-muted-foreground">Craft loyal connections</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
               <DropdownMenuSeparator className="my-2" />
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Network</DropdownMenuLabel>
               <Link href="/association">
@@ -102,15 +93,6 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">Guide Association</div>
                     <div className="text-xs text-muted-foreground">Official OGA Network</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/association">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Building2 className="h-5 w-5 text-slate-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Temple Partners</div>
-                    <div className="text-xs text-muted-foreground">Verified heritage guardians</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
