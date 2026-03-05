@@ -11,10 +11,10 @@ export default function GlobalVision() {
       <div className="bg-slate-50 pt-20 pb-32">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto mb-20">
-            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">Global Invitation</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">Connecting 3 Billion Travel Lovers to Cambodia</h1>
+            <Badge variant="secondary" className="mb-4 text-primary bg-primary/5">Global Trust Network</Badge>
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6">Connecting Cultures with Loyalty and Truth</h1>
             <p className="text-xl text-slate-600 leading-relaxed">
-              OnlineGuide.io is building the Digital Tourism Infrastructure for the Future, bridging ancient civilization and global digital intelligence.
+              OnlineGuide.io is building the World Loyalty Alliance—a digital foundation built on cultural respect, long-term partnership, and ancient truth.
             </p>
           </div>
 

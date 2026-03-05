@@ -22,11 +22,11 @@ export default function Home() {
           </div>
           
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 max-w-5xl mx-auto leading-tight animate-in fade-in slide-in-from-bottom-4 duration-700">
-            Cambodia Tourism <br className="hidden md:block" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#0081C9] to-[#2D9B51]">Guiding Intelligence</span>
+            Strengthen the World <br className="hidden md:block" /> Through <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C1121F] via-[#0081C9] to-[#2D9B51]">Cultural Truth</span>
           </h1>
           
           <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            Powered by <span className="font-semibold text-[#C1121F]">Layer 0 Knowledge Graph</span> & <span className="font-semibold text-[#0081C9]">Tourism OS</span>. We convert emotion into structured civilizational intelligence for the world.
+            A Global Trust Network built on <span className="font-semibold text-[#C1121F]">Loyalty</span>, <span className="font-semibold text-[#0081C9]">Truth</span>, and <span className="font-semibold text-[#2D9B51]">Real Connection</span>. Stand forever with ancient intelligence.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">

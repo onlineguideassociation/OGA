@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2 } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -37,12 +37,12 @@ export function Navbar() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[300px] p-4">
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Platform Resources</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Foundation</DropdownMenuLabel>
               <Link href="/dashboard">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <LayoutDashboard className="h-5 w-5 text-slate-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Dashboard Overview</div>
+                    <div className="font-bold">Overview</div>
                     <div className="text-xs text-muted-foreground">Main management console</div>
                   </div>
                 </DropdownMenuItem>
@@ -51,19 +51,28 @@ export function Navbar() {
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Network className="h-5 w-5 text-indigo-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Graph Explorer</div>
-                    <div className="text-xs text-muted-foreground">Visualize Knowledge Graph nodes</div>
+                    <div className="font-bold">Knowledge Graph</div>
+                    <div className="text-xs text-muted-foreground">Visualize ecosystem relationships</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/dashboard/products">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <BookOpen className="h-5 w-5 text-amber-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Cultural Archive</div>
+                    <div className="text-xs text-muted-foreground">Digital heritage preservation</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Features</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Intelligence</DropdownMenuLabel>
               <Link href="/dashboard/tools">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Bot className="h-5 w-5 text-purple-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">AI Tools</div>
-                    <div className="text-xs text-muted-foreground">Review Assistant & Tour Gen</div>
+                    <div className="font-bold">AI Guide Assistant</div>
+                    <div className="text-xs text-muted-foreground">Smart heritage education</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -71,30 +80,17 @@ export function Navbar() {
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Microscope className="h-5 w-5 text-indigo-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">RDTB & AutoBot</div>
-                    <div className="text-xs text-muted-foreground">Research & Sensing Layer</div>
+                    <div className="font-bold">Research & Insights</div>
+                    <div className="text-xs text-muted-foreground">Cultural truth & sensing layer</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Institutional</DropdownMenuLabel>
-              <Link href="/dashboard/investor">
+              <Link href="/dashboard/tools">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <MapPin className="h-5 w-5 text-rose-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Investor Intelligence</div>
-                    <div className="text-xs text-muted-foreground">Tourism Data Layer & TIRS</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Growth Tools</DropdownMenuLabel>
-              <Link href="/fundraising">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Heart className="h-5 w-5 text-rose-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">GuideFund</div>
-                    <div className="text-xs text-muted-foreground">Creator funding platform</div>
+                    <div className="font-bold">Tour Builder</div>
+                    <div className="text-xs text-muted-foreground">Craft loyal connections</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -104,8 +100,17 @@ export function Navbar() {
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Network className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Association</div>
+                    <div className="font-bold">Guide Association</div>
                     <div className="text-xs text-muted-foreground">Official OGA Network</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/association">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Building2 className="h-5 w-5 text-slate-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Temple Partners</div>
+                    <div className="text-xs text-muted-foreground">Verified heritage guardians</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -113,8 +118,28 @@ export function Navbar() {
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Globe className="h-5 w-5 text-emerald-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Global Vision</div>
-                    <div className="text-xs text-muted-foreground">3B travel lovers mission</div>
+                    <div className="font-bold">Global Community</div>
+                    <div className="text-xs text-muted-foreground">World Loyalty Alliance</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Trust & Growth</DropdownMenuLabel>
+              <Link href="/dashboard/investor">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Stewardship Intelligence</div>
+                    <div className="text-xs text-muted-foreground">Transparency & Impact reports</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/fundraising">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Heart className="h-5 w-5 text-rose-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">GuideFund</div>
+                    <div className="text-xs text-muted-foreground">Supporting cultural truth</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
