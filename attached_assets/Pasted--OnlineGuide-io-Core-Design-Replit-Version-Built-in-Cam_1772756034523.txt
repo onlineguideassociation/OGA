@@ -1,0 +1,208 @@
+🧭 OnlineGuide.io — Core & Design (Replit Version)
+
+Built in 🇰🇭 Cambodia | Connected to 🌍 the World
+
+1️⃣ Core App Architecture
+Frontend (Web + Mobile)
+
+Web App:
+
+React.js + TailwindCSS + React Router
+
+Key Features:
+
+Knowledge Graph visualization (React Flow / D3.js)
+
+Travel & cultural insights
+
+Guide dashboards & media contributions
+
+Marketplace access (commerce, media, souvenirs)
+
+Personal traveler dashboards & eco-sustainability maps
+
+Mobile App:
+
+React Native (iOS/Android)
+
+Shared components for cross-platform consistency
+
+Backend
+
+Node.js + Express APIs
+Endpoints:
+/api/temples | /api/guides | /api/travelers | /api/business | /api/farms | /api/properties | /api/media | /api/products
+
+Database:
+
+MongoDB / Firebase (cloud-hosted)
+
+Stores: nodes & relationships, user profiles, transactions, media assets, contributions
+
+AI Layer:
+
+OpenAI GPT / Gemini 3 integration
+
+Personalized travel recommendations, cultural storytelling, AI media tagging, commerce insights, revenue optimization
+
+Deployment:
+
+Initial: Replit (full-stack hosting)
+
+Optional: AWS / Google Cloud / Vercel for scaling
+
+2️⃣ Knowledge Graph Integration
+Node	Properties	Connections
+Temple	Name, location, history	Guides, Travelers, Media, Businesses
+Guide	Languages, expertise	Temples, Travelers, Media, Products
+Traveler	Interests, history	Temples, Businesses, Media
+Business	Services, type	Travelers, Guides, Media, Products
+Farm	Crops, eco-tourism	Restaurants, Travelers, Media
+Property	Land info, resort potential	Investors, Tourism
+Expert	Skills, profession	Projects, Communities
+Product	Category, price	Stores, Travelers
+Store	Owner, type	Products, Payments
+Supplier	Location, inventory	Stores, Products
+Media	Title, location, type	Temple, Guide, Traveler, Business
+Photographer	Portfolio, rates	Media, Guides, Businesses
+
+Knowledge Flow:
+Tourism → Media & Photography → Commerce → Real Estate → Agriculture → Skills & Experts → Sustainable Economy
+
+3️⃣ App Features by Layer
+
+Tourism:
+
+Temple & guide exploration
+
+AI-powered travel planning
+
+Trip history & personalized recommendations
+
+Media & Photography:
+
+Capture, upload, manage media
+
+AI tagging & auto-categorization
+
+Stock & traveler media marketplace
+
+Commerce & Business:
+
+Shopify/WooCommerce integration
+
+ABA Bank payments (Cambodia)
+
+Global dropshipping & marketplace
+
+Real Estate:
+
+Property listings & investment dashboards
+
+Resort development insights
+
+Agriculture:
+
+Farm networks & agro-tourism routes
+
+Sustainable supply chain tracking
+
+Skills & Experts:
+
+Professional mentoring & training
+
+Knowledge exchange & collaboration
+
+Sustainability Communities:
+
+Local empowerment projects
+
+Eco-tourism & impact tracking
+
+4️⃣ Revenue Streams
+
+Tourism bookings & guided tours
+
+Digital media & eBooks (photos/videos)
+
+Product sales & dropshipping
+
+Guide & media affiliate commissions
+
+AI intelligence & subscription services
+
+Stock media licensing, prints & NFTs
+
+5️⃣ KPI Examples
+Area	KPI	Target
+Revenue	Monthly growth	10–15% MoM
+Engagement	Active guides & travelers	70% retention
+Marketing	Conversion rate	5–7%
+Debt Recovery	% overdue debt recovered	90% in 90 days
+Community	New guides & members	50–100/month
+AI/Skill	Courses completed / rating	80% completion, 4.5+
+6️⃣ OnlineGuide.io Dashboard Concept
+
+Revenue Streams & Projections:
+
+Stacked bar chart, line graph, pie chart
+
+Hover for top-performing guides/products/media
+
+Debt Recovery Tracking:
+
+Gauge/progress bar (% recovered)
+
+Table with AI predictions: Amount Due, Days Overdue, Recovery Probability
+
+Interactive drill-down for payment history
+
+Knowledge Graph Visualization:
+
+Dynamic graph of ecosystem nodes
+
+Color-coded sectors: Tourism (blue), Media (purple), Commerce (green), Real Estate (orange), Agriculture (brown), Skills (gold)
+
+Click node → AI insights, revenue potential, media links, connected partners
+
+KPI Progress:
+
+KPI cards, heatmaps, progress bars
+
+Track revenue, engagement, community, AI/skill adoption
+
+Sustainability & AI Skill Impact:
+
+Map overlays for eco-tourism & farms
+
+Bar charts for guides/SMEs completing AI courses
+
+Impact score combining community & environmental metrics
+
+Interactive Features:
+
+Filter by time frame, region, sector, project
+
+Drill-downs from high-level KPIs to project details
+
+AI recommendations panel for revenue, debt, marketing
+
+💡 Investor-Ready Highlights
+
+Clear visualization of scalable revenue streams
+
+AI-driven predictive analytics for financial and operational efficiency
+
+Measurable community & sustainability impact
+
+Consolidates financials, KPIs, knowledge graph, and ecosystem intelligence
+
+✅ Key Benefits of this Replit-Ready Version:
+
+Full-stack and AI-powered
+
+Knowledge graph-driven
+
+Revenue-diverse & investor-ready
+
+Community & sustainability-focused
