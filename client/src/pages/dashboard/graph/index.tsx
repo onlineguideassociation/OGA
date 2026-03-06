@@ -31,53 +31,51 @@ const initialNodes: Node[] = [
     type: 'default',
     data: { label: '🌅 Angkor Wat', type: 'Temple', revenue: '$2.4k' },
     position: { x: 250, y: 0 },
-    style: { background: '#fef2f2', border: '1px solid #fee2e2', borderRadius: '12px', padding: '10px', width: 150 },
+    style: { background: '#eff6ff', border: '1px solid #3b82f6', borderRadius: '12px', padding: '10px', width: 150 }, // Tourism - Blue
   },
   {
-    id: 'guide-1',
+    id: 'media-1',
     type: 'default',
-    data: { label: '🧑‍🏫 Sokha Guide', type: 'Guide', revenue: '$850' },
-    position: { x: 100, y: 150 },
-    style: { background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: '12px', padding: '10px', width: 150 },
+    data: { label: '📸 Heritage Photo', type: 'Media', revenue: '$450' },
+    position: { x: 500, y: 50 },
+    style: { background: '#faf5ff', border: '1px solid #a855f7', borderRadius: '12px', padding: '10px', width: 150 }, // Media - Purple
   },
   {
-    id: 'guide-2',
+    id: 'commerce-1',
     type: 'default',
-    data: { label: '🧑‍🏫 Vannak Guide', type: 'Guide', revenue: '$920' },
-    position: { x: 400, y: 150 },
-    style: { background: '#eff6ff', border: '1px solid #dbeafe', borderRadius: '12px', padding: '10px', width: 150 },
-  },
-  {
-    id: 'traveler-1',
-    type: 'default',
-    data: { label: '🌍 Global Traveler', type: 'Traveler', revenue: '$1.2k' },
-    position: { x: 250, y: 300 },
-    style: { background: '#f0fdf4', border: '1px solid #dcfce7', borderRadius: '12px', padding: '10px', width: 150 },
-  },
-  {
-    id: 'business-1',
-    type: 'default',
-    data: { label: '🏨 Heritage Hotel', type: 'Business', revenue: '$5.6k' },
-    position: { x: 100, y: 450 },
-    style: { background: '#fafaf9', border: '1px solid #f5f5f4', borderRadius: '12px', padding: '10px', width: 150 },
-  },
-  {
-    id: 'business-2',
-    type: 'default',
-    data: { label: '🛍 Artisan Shop', type: 'Business', revenue: '$1.1k' },
+    data: { label: '🛍 Artisan Shop', type: 'Commerce', revenue: '$1.1k' },
     position: { x: 400, y: 450 },
-    style: { background: '#fafaf9', border: '1px solid #f5f5f4', borderRadius: '12px', padding: '10px', width: 150 },
+    style: { background: '#f0fdf4', border: '1px solid #22c55e', borderRadius: '12px', padding: '10px', width: 150 }, // Commerce - Green
+  },
+  {
+    id: 'realestate-1',
+    type: 'default',
+    data: { label: '🏢 Resort Land', type: 'Real Estate', revenue: '$50k' },
+    position: { x: 0, y: 300 },
+    style: { background: '#fff7ed', border: '1px solid #f97316', borderRadius: '12px', padding: '10px', width: 150 }, // Real Estate - Orange
+  },
+  {
+    id: 'agriculture-1',
+    type: 'default',
+    data: { label: '🌾 Eco Farm', type: 'Agriculture', revenue: '$3.2k' },
+    position: { x: 100, y: 550 },
+    style: { background: '#fefce8', border: '1px solid #854d0e', borderRadius: '12px', padding: '10px', width: 150 }, // Agriculture - Brown
+  },
+  {
+    id: 'skills-1',
+    type: 'default',
+    data: { label: '🎓 AI Mentor', type: 'Skills', revenue: '$5k' },
+    position: { x: 600, y: 300 },
+    style: { background: '#fffbeb', border: '1px solid #eab308', borderRadius: '12px', padding: '10px', width: 150 }, // Skills - Gold
   },
 ];
 
 const initialEdges: Edge[] = [
-  { id: 'e1-2', source: 'temple-1', target: 'guide-1', label: 'EXPERTISE', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e1-3', source: 'temple-1', target: 'guide-2', label: 'EXPERTISE', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e2-4', source: 'guide-1', target: 'traveler-1', label: 'GUIDING', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e3-4', source: 'guide-2', target: 'traveler-1', label: 'GUIDING', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e4-5', source: 'traveler-1', target: 'business-1', label: 'BOOKING', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e4-6', source: 'traveler-1', target: 'business-2', label: 'PURCHASE', markerEnd: { type: MarkerType.ArrowClosed } },
-  { id: 'e1-5', source: 'temple-1', target: 'business-1', label: 'PROXIMITY', style: { strokeDasharray: '5,5' } },
+  { id: 'e-t-m', source: 'temple-1', target: 'media-1', label: 'CONTENT', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e-m-c', source: 'media-1', target: 'commerce-1', label: 'MARKETING', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e-t-r', source: 'temple-1', target: 'realestate-1', label: 'INVESTMENT', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e-r-a', source: 'realestate-1', target: 'agriculture-1', label: 'ECO-ZONE', markerEnd: { type: MarkerType.ArrowClosed } },
+  { id: 'e-s-all', source: 'skills-1', target: 'temple-1', label: 'KNOWLEDGE', markerEnd: { type: MarkerType.ArrowClosed } },
 ];
 
 export default function GraphExplorer() {

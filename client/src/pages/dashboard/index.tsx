@@ -14,7 +14,9 @@ import {
   Calendar,
   Heart,
   Network,
-  Globe
+  Globe,
+  DollarSign,
+  ShieldCheck
 } from "lucide-react";
 import { Link, useLocation } from "wouter";
 import { Badge } from "@/components/ui/badge";
@@ -91,15 +93,17 @@ export default function DashboardOverview() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               <StatsCard title="Graph Entities" value="12,482" icon={<Network className="h-5 w-5 text-[#C1121F]" />} change="Authority: High" />
-              <StatsCard title="Sensing Events" value="8.2k" icon={<Bot className="h-5 w-5 text-[#0081C9]" />} change="+18% demand spike" />
+              <StatsCard title="Debt Recovery" value="92%" icon={<DollarSign className="h-5 w-5 text-amber-600" />} change="Recovery Mode: ACTIVE" />
               <StatsCard title="Tourism OS" value="Connected" icon={<Globe className="h-5 w-5 text-[#2D9B51]" />} change="Global Signal: Active" />
-              <StatsCard title="Asset Revenue" value="$4.2k" icon={<TrendingUp className="h-5 w-5 text-emerald-600" />} change="Books & Licenses" />
+              <StatsCard title="Community Impact" value="84/100" icon={<Users className="h-5 w-5 text-purple-600" />} change="Sustainable Growth" />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold">Booking & Revenue Trends</CardTitle>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5 text-emerald-500" /> Revenue Streams & Projections
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="h-[300px] w-full">
@@ -111,7 +115,9 @@ export default function DashboardOverview() {
                           contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'}}
                           cursor={{fill: '#f1f5f9'}}
                         />
-                        <Bar dataKey="revenue" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                        <Bar dataKey="revenue" fill="#3b82f6" radius={[4, 4, 0, 0]} name="Tourism" />
+                        <Bar dataKey="revenue" fill="#a855f7" radius={[4, 4, 0, 0]} name="Media" />
+                        <Bar dataKey="revenue" fill="#22c55e" radius={[4, 4, 0, 0]} name="Commerce" />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -120,30 +126,37 @@ export default function DashboardOverview() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg font-semibold">Recent Activity</CardTitle>
+                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                    <ShieldCheck className="h-5 w-5 text-amber-500" /> Debt Recovery Tracking
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-6">
-                    <ActivityItem 
-                      title="New Booking Request" 
-                      subtitle="Angkor Wat Sunrise Tour - John Doe" 
-                      time="2 hours ago" 
-                      status="New"
-                    />
-                    <ActivityItem 
-                      title="Digital Product Sold" 
-                      subtitle="'Hidden Meanings' Ebook - Sarah J." 
-                      time="5 hours ago" 
-                      status="Success"
-                    />
-                    <ActivityItem 
-                      title="Donation Received" 
-                      subtitle="$50 from Global Support Program" 
-                      time="1 day ago" 
-                      status="Success"
-                    />
+                    <div className="p-4 bg-slate-50 rounded-xl border">
+                      <div className="flex justify-between items-center mb-2">
+                        <span className="text-sm font-medium text-slate-600">Recovery Probability</span>
+                        <span className="text-sm font-bold text-emerald-600">90.2%</span>
+                      </div>
+                      <div className="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-emerald-500 rounded-full" style={{ width: '90%' }} />
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div className="flex justify-between text-sm border-b pb-2">
+                        <span className="text-slate-500">Amount Due</span>
+                        <span className="font-bold">$12,450</span>
+                      </div>
+                      <div className="flex justify-between text-sm border-b pb-2">
+                        <span className="text-slate-500">Days Overdue</span>
+                        <span className="font-bold text-red-500">14 Days (Avg)</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-slate-500">AI Recommendation</span>
+                        <span className="text-emerald-600 font-medium italic text-right">Instant settlement suggested</span>
+                      </div>
+                    </div>
                   </div>
-                  <Button variant="ghost" className="w-full mt-4 text-primary">View All Activity <ArrowUpRight className="ml-1 h-4 w-4" /></Button>
                 </CardContent>
               </Card>
             </div>
