@@ -1,0 +1,229 @@
+🌏 OnlineGuide.io — Master Core Summary & Architecture (Replit Ready)
+1️⃣ Platform Vision
+
+AI-powered global tourism ecosystem launching from 🇰🇭 Cambodia (Angkor Wat, Phnom Penh).
+
+Fully Integrated Modules:
+
+AI Travel OS – Itinerary planning, multilingual voice guides, trend prediction
+
+Knowledge Graph – Tourism, media, commerce, food, education, real estate
+
+Marketplace & Commerce – Products, dropshipping, ROI tracking, affiliate management
+
+Financial Assistant – Personal, business, enterprise AI agents
+
+Media Ecosystem – Photo/video capture & monetization
+
+Sustainability Mapping – Eco-tourism, agro-tourism, community projects
+
+Core Values:
+
+Accessibility: Multi-language support, global reach
+
+Sustainability: Eco-tourism & community projects
+
+Personalization: AI-driven recommendations for travel, products, and experiences
+
+Integration: Seamless connection across marketplaces, finance, and media
+
+2️⃣ Replit Project Structure (Deployment Ready)
+onlineguide-global/
+├── client/      # React Web App (dashboards, marketplace UI, media gallery)
+├── mobile/      # React Native App (iOS & Android)
+├── server/      # Node.js + Express backend & API layer
+├── ai/          # TravelOS, MediaAI, FinanceAI, MarketingAI
+├── graph/       # Knowledge Graph engine & visualization (React Flow / D3.js)
+├── marketplace/ # E-commerce system (CRUD, stock sync, affiliate, dropshipping)
+├── food/        # Food & Culture ecosystem (recipes, tours, dishes)
+├── media/       # Media uploads, gallery, processing
+├── integrations/# External APIs (maps, social media, payment gateways)
+├── marketing/   # Campaign automation & SEO optimization
+├── cloud/       # Deployment configs (Replit + optional AWS/GCP)
+├── scripts/     # Dev automation (DB seed, builds, maintenance)
+├── database/    # MongoDB / Firebase schemas & seed data
+├── docs/        # Documentation & developer guides
+├── .env
+├── package.json
+├── replit.nix
+└── README.md
+
+✅ Fully modular, scalable, Replit deployment-ready
+
+3️⃣ Core Modules & Functionality
+Module	Functionality
+Travel Dashboard	AI itineraries, temple navigation, media feed
+Guide Dashboard	Tour schedules, revenue insights, media portfolio
+Marketplace	Products, stores, cart, checkout, dropshipping
+AI Travel OS	Personalized itineraries, multilingual voice tours, trend prediction
+Knowledge Graph	Relationships: Traveler → Temple, Guide → Tour, Product → Store
+Financial AI	Personal, Business, Enterprise agents; integrates marketplace & KG
+Media Ecosystem	Photo/video capture, monetization, gallery management
+Food & Culture	Dishes, recipes, tours, cooking classes
+Sustainability Maps	Eco-tourism, agro-tourism, community projects
+4️⃣ AI Layers
+
+Travel Intelligence – Itinerary generation, cultural storytelling, trend prediction
+
+Media Intelligence – Photo/video tagging, location recognition
+
+Business & Financial Intelligence – Revenue optimization, investment planning
+
+Marketing Intelligence – Social media content, SEO, campaign automation
+
+Voice AI Tour Guide – GPS-based, multilingual narration
+
+5️⃣ Knowledge Graph
+
+Node Types: Tourism, Media, Commerce, Food, Education, Real Estate, Agriculture, Technology
+
+Relationships: VISITS, LEADS, SOLD_BY, CAPTURED_AT, SERVED_AT
+
+Visualization: React Flow / D3.js, color-coded by sector
+
+Purpose: Central brain for AI reasoning, marketplace recommendations, and ecosystem insights
+
+6️⃣ Financial Assistant
+
+Personal AI: Budgeting, debt, investment
+
+Business AI: Startup planning, departmental budgets, funding strategy
+
+Enterprise AI: IPO readiness, corporate investments, risk & compliance
+
+Integration: Marketplace, Knowledge Graph, ERP/CRM/bank APIs
+
+APIs: /personal/*, /business/*, /enterprise/*
+
+7️⃣ Marketplace & Core API Integration
+
+Purpose: Real-time product management, cart/checkout, dropshipping, affiliate revenue tracking, AI-powered recommendations
+
+Supported Platforms: Shopify, WooCommerce, Magento, Amazon Associates, AliExpress, Gumroad, Paddle, local SE Asia marketplaces
+
+Key API Endpoints (Express + Node.js):
+
+Products & Inventory: /api/products, /api/products/:id, /api/products/stock
+
+Stores & Merchants: /api/stores, /api/stores/:id
+
+Cart & Checkout: /api/cart/add, /api/checkout, /api/payments
+
+Orders & Fulfillment: /api/orders, /api/fulfillment/:orderId
+
+Affiliate & Commission: /api/affiliates, /api/affiliate/:id/revenue
+
+Dropshipping: /api/dropship/order, /api/dropship/status/:id
+
+AI-Powered Features:
+
+Product recommendations & trending bundles
+
+Dynamic pricing & commission optimization
+
+Revenue forecasting & analytics dashboards
+
+Auto-generated product descriptions, SEO, multi-language translations
+
+8️⃣ Cloud & Global Scalability
+
+Multi-country nodes: Cambodia → Laos → Vietnam → Indonesia → Philippines → India → Japan → Europe → USA
+
+AI adaptation per country: Recommendations, trends, local events
+
+Multilingual support: English, Khmer, Chinese, Korean, Japanese, French, Tagalog, Hindi, Bahasa Indonesia, Lao
+
+Cloud Deployment: Replit primary, optional AWS/GCP for redundancy, failover, global reach
+
+9️⃣ Deployment Flow (Replit)
+
+Seed initial Cambodia data (temples, guides, businesses, food)
+
+Connect AI Modules: TravelOS, MediaAI, FinanceAI, MarketingAI
+
+Test cross-platform UI (Web + Mobile dashboards)
+
+Deploy backend & APIs
+
+Monitor Knowledge Graph visualization & API usage
+
+Gradual country expansion:
+Laos → Vietnam → Indonesia → Philippines → India → Japan → Europe → USA
+
+Optimize AI recommendations, marketplace sync, and multilingual content per region
+
+🔟 Developer & Investor-Friendly Architecture Visualization
+
+Frontend & Mobile Apps
+
+Travel Dashboard
+
+Guide Dashboard
+
+Marketplace UI
+
+Finance Dashboard
+
+Media & Food Modules
+
+Backend & API Layer (Node.js + Express)
+
+Products, Stores, Orders
+
+Cart & Checkout
+
+Affiliate & Dropshipping
+
+Connects Frontend ↔ AI ↔ Knowledge Graph ↔ Marketplace
+
+AI Modules
+
+TravelOS
+
+MediaAI
+
+FinanceAI
+
+MarketingAI
+
+Knowledge Graph
+
+Nodes & Relationships (D3.js / React Flow)
+
+Marketplace Integration
+
+Shopify, WooCommerce, Amazon, AliExpress, Local SE Asia
+
+Financial Assistant
+
+Personal, Business, Enterprise AI → integrates with Marketplace & KG
+
+Media & Food Ecosystem
+
+Photo/video capture
+
+Recipes & Tours
+
+Sustainability Mapping
+
+Global Scaling
+
+Multi-country nodes
+
+Multilingual AI recommendations
+
+Deployment Layer
+
+Replit primary + optional AWS/GCP
+
+✅ Key Takeaways
+
+Fully modular & scalable
+
+AI-driven ecosystem across travel, media, finance, marketing
+
+Marketplace ready for global e-commerce, dropshipping, affiliates
+
+Knowledge Graph as central brain for insights & AI reasoning
+
+Replit deployment-ready with optional global replication
