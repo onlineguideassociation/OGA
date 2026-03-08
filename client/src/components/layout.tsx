@@ -125,6 +125,44 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Modules</DropdownMenuLabel>
+              <Link href="/marketplace">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Zap className="h-5 w-5 text-amber-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Marketplace</div>
+                    <div className="text-xs text-muted-foreground">E-commerce & dropshipping</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/travel">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Travel OS</div>
+                    <div className="text-xs text-muted-foreground">AI itineraries & guides</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/finance">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <BarChart className="h-5 w-5 text-purple-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Finance AI</div>
+                    <div className="text-xs text-muted-foreground">Revenue & investment tracking</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/media">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Code className="h-5 w-5 text-pink-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Media Ecosystem</div>
+                    <div className="text-xs text-muted-foreground">Photo/video monetization</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
 

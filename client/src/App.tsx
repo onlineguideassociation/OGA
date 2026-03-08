@@ -22,6 +22,10 @@ import GlobalVision from "@/pages/global/vision";
 import AIGuideBook from "@/pages/global/ai-guide";
 import DigitalPostcards from "@/pages/global/postcards";
 import Login from "@/pages/login";
+import MarketplaceModule from "@/pages/marketplace/index";
+import FinanceModule from "@/pages/finance/index";
+import TravelOSModule from "@/pages/travel/index";
+import MediaModule from "@/pages/media/index";
 
 function Router() {
   return (
@@ -43,6 +47,10 @@ function Router() {
       <Route path="/dashboard/fundraising" component={FundraisingDashboard} />
       <Route path="/dashboard/investor" component={InvestorDashboard} />
       <Route path="/dashboard/graph" component={GraphExplorer} />
+      <Route path="/marketplace" component={MarketplaceModule} />
+      <Route path="/finance" component={FinanceModule} />
+      <Route path="/travel" component={TravelOSModule} />
+      <Route path="/media" component={MediaModule} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
