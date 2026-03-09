@@ -1,0 +1,240 @@
+🌏 OnlineGuide.io — Global AI Tourism & Creator Super-App + Travel Experiences Marketplace
+
+Headquarters: 🇰🇭 Cambodia (launching from Angkor Wat, Siem Reap, Phnom Penh)
+Platform Type: AI-powered tourism ecosystem, creator tools, marketplace, and freelance platform
+
+Purpose: Connect travelers, guides, creators, businesses, and investors in a single intelligent ecosystem that unifies travel planning, content creation, bookings, commerce, and investment workflows.
+
+1️⃣ Platform Vision & Core Values
+
+Mission: Become the AI Operating System for Global Tourism — replacing fragmented apps with a unified, intelligent ecosystem.
+
+Core Values:
+
+Accessibility: Multilingual AI support (English, Khmer, Chinese, Korean, Japanese, French, Hindi, Bahasa, Tagalog, Lao)
+
+Sustainability: Protects communities, culture, and environment
+
+Personalization: AI recommends experiences, tours, products, and investments
+
+Integration: Connects travel, commerce, finance, media, and startups
+
+2️⃣ Ecosystem Modules & Features
+Module	Key Functions
+AI Travel OS	Smart itineraries, GPS voice tours, multilingual narration, tourism trend prediction
+Knowledge Graph	Connects tourism, media, commerce, food, education, real estate, agriculture; powers AI recommendations
+Marketplace & Commerce	Product marketplaces, affiliate programs, dropshipping, ROI analytics
+Financial AI Assistant	Personal finance, startup planning, enterprise investment tools
+Media Ecosystem	AI photo/video editing, creator monetization, travel storytelling
+Sustainability Mapping	Eco-tourism, agro-tourism, community tourism projects
+Startup Investment Networks	Investor discovery, fundraising CRM, pitch analytics, warm introductions
+Global Travel Experiences Marketplace	Tours, activities, excursions, attraction tickets, operator booking management
+3️⃣ Technology & Architecture
+
+Frontend: React, Tailwind CSS, React Native
+
+Backend: Node.js + Express
+
+Database: MongoDB & Firebase
+
+Graph Visualization: React Flow & D3.js
+
+Deployment: Replit primary, optional AWS/Google Cloud scaling
+
+Project Structure (Replit-ready):
+
+onlineguide-global/
+├── client/        React Web App
+├── mobile/        React Native App
+├── server/        Node.js + Express API
+├── ai/            AI modules
+├── graph/         Knowledge Graph engine
+├── marketplace/   E-commerce & bookings
+├── media/         Media processing
+├── food/          Culture & cuisine system
+├── marketing/     AI marketing automation
+├── integrations/  External APIs
+├── cloud/         Deployment configs
+├── scripts/       Dev automation
+├── database/      MongoDB/Firebase
+├── docs/          Documentation
+4️⃣ Core Modules & User Services
+
+Travel & Booking: Flights, hotels, homestays, trains, cars, scooters, tours, packages
+
+Global Hotel Search: Compare multiple platforms, 1.2M+ properties
+
+Restaurant Booking: Diners and restaurant operations, POS integration, loyalty rewards
+
+Community & Creators: Discussions, media sharing, online courses, gamification, memberships
+
+AI-Powered Media Tools: Drag-and-drop editor, batch processing, multi-format export, Knowledge Graph integration
+
+Browser-Based IDE: Build websites, apps, AI workflows, scripts; real-time collaboration; AI assistance for content/code
+
+Freelance & Creator Marketplace: AI, media, tourism, web development; secure payment and project management
+
+5️⃣ AI & Intelligence Layers
+
+Travel Intelligence: Personalized itineraries, GPS voice guides, trend forecasts
+
+Media Intelligence: Auto-tagging, location recognition, smart galleries
+
+Business Intelligence: Revenue analytics, marketplace insights
+
+Marketing Intelligence: Social media automation, SEO, advertising
+
+Financial AI Assistant: Budgeting, forecasts, investment analysis
+
+Content & Workflow AI: Generate, edit, optimize content, media, and code
+
+6️⃣ Strategic Opportunity
+
+OnlineGuide.io combines:
+
+AI Travel Planning
+
+Creator Media & Design Tools
+
+E-Commerce & Marketplace
+
+Community & Online Courses
+
+Hotel Search & Booking
+
+Restaurant Reservations
+
+Startup & Investor Networks
+
+Travel Experiences Marketplace
+
+Global Market Potential: Fully integrated AI-powered ecosystem enabling planning, booking, creation, collaboration, and monetization — all in one platform.
+
+7️⃣ Scale, Impact & User Insights
+
+Supports professionals from beginners to experts
+
+Empowers planning, content creation, marketplace management, and monetization
+
+Community success depends on niche expertise, AI tool usage, and project strategy
+
+Highly valued for integrated AI, creative tools, and global collaboration
+
+In short, OnlineGuide.io merges the functionality of a travel experiences marketplace with AI-powered tourism, content creation, and freelance collaboration tools — creating a single “super-app” for travelers, creators, guides, businesses, and investors.
+
+🌐 OnlineGuide.io Super-App Ecosystem Map
+                       ┌────────────────────────┐
+                       │  Travelers & Tourists  │
+                       └──────────┬─────────────┘
+                                  │ Book experiences
+                                  │ Access AI recommendations
+                                  ▼
+                    ┌─────────────────────────────┐
+                    │      Travel Experiences     │
+                    │  Marketplace & Bookings     │
+                    └──────────┬───────────────┘
+                               │ Feeds data
+                               ▼
+             ┌───────────────────────────────────────┐
+             │          Knowledge Graph              │
+             │ Tourism, Media, Commerce, Food,      │
+             │ Education, Real Estate, Agriculture  │
+             └──────────┬─────────────┬────────────┘
+                        │             │
+         ┌──────────────┘             └───────────────┐
+         ▼                                          ▼
+ ┌────────────────────┐                    ┌────────────────────┐
+ │   AI Travel OS     │                    │  AI Intelligence   │
+ │ Itineraries, GPS   │                    │  Layers: Travel,   │
+ │ Voice Guides,      │                    │  Media, Business, │
+ │ Trend Prediction   │                    │  Marketing, Finance│
+ └─────────┬──────────┘                    └──────────┬─────────┘
+           │                                        │
+           │                                        │
+           ▼                                        ▼
+┌─────────────────────────┐                ┌─────────────────────────┐
+│  Media Ecosystem        │                │  Financial AI Assistant │
+│ Photo/Video Editing     │                │ Budgeting, Investment   │
+│ Storytelling, Monetize  │                │ Analysis, Forecasts     │
+└─────────┬───────────────┘                └─────────┬──────────────┘
+           │                                        │
+           ▼                                        ▼
+ ┌────────────────────────┐                 ┌───────────────────────┐
+ │ Community & Creators   │                 │ Marketplace & Commerce│
+ │ Forums, Courses,       │                 │ Product listings,     │
+ │ Gamification, Memberships │              │ Dropshipping, ROI     │
+ └─────────┬──────────────┘                 └─────────┬─────────────┘
+           │                                        │
+           └──────────────┬─────────────┬───────────┘
+                          ▼             ▼
+                   ┌───────────────────────────┐
+                   │ Browser-Based IDE & AI    │
+                   │ Web/App Development,      │
+                   │ AI Workflows, Collab,     │
+                   │ Smart Automation          │
+                   └───────────────────────────┘
+🔹 How the Pieces Work Together
+
+Travelers access tours, activities, and AI-guided itineraries.
+
+Knowledge Graph connects all modules — providing insights, personalization, and recommendations.
+
+AI Layers enhance travel planning, media intelligence, business analytics, and marketing automation.
+
+Media & Financial AI support creators and guides with storytelling, monetization, budgeting, and investment insights.
+
+Community, Marketplace & IDE allow collaboration, freelance work, content creation, and e-commerce.
+
+Integrated Ecosystem ensures all users — travelers, guides, creators, and investors — interact within one unified AI-powered platform.
+
+🎨 Design Concept for OnlineGuide.io Ecosystem
+
+1️⃣ User Layer (Top):
+
+Travelers & Tourists → book experiences, access AI recommendations
+
+Color: 🌟 Light Blue
+
+2️⃣ Core Service Layer:
+
+Travel Experiences Marketplace & Booking
+
+Global Hotel & Restaurant Search
+
+Color: 🟢 Green
+
+3️⃣ Intelligence & AI Layer:
+
+Knowledge Graph connecting Tourism, Media, Commerce, Food, Education, Real Estate, Agriculture
+
+AI Travel OS
+
+AI Intelligence Layers (Travel, Media, Business, Marketing, Finance)
+
+Financial AI Assistant
+
+Color: 🟡 Yellow
+
+4️⃣ Content & Creator Layer:
+
+Media Ecosystem (Photo/Video Editing, Storytelling, Monetization)
+
+Community & Creators (Forums, Courses, Gamification)
+
+Freelance & Creator Marketplace
+
+Color: 🟠 Orange
+
+5️⃣ Platform & Dev Layer (Bottom):
+
+Browser-Based IDE & AI (Web/App Development, AI Workflows, Collaboration, Smart Automation)
+
+Marketplace & Commerce (Product Listings, Dropshipping, ROI Analytics)
+
+Color: 🔵 Blue
+
+6️⃣ Flow & Integration:
+
+Arrows from Travelers → Marketplace → Knowledge Graph → AI Layers → Media & Financial AI → Community/Creators → IDE/Commerce
+
+Highlight closed-loop interaction, showing data, personalization, and AI intelligence flowing back into the ecosystem.
