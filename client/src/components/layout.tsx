@@ -252,6 +252,7 @@ export function Navbar() {
                   <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
                   <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>
                   <Link href="/events"><span className="block text-lg font-medium">Events</span></Link>
+                  <Link href="/cinema"><span className="block text-lg font-medium">Cultural Cinema</span></Link>
                   <Link href="/global/vision"><span className="block text-lg font-medium">Global Vision</span></Link>
                 </div>
                 <Link href="/pricing">
@@ -300,6 +301,7 @@ export function Footer() {
               <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
               <li><Link href="/association" className="hover:text-primary transition-colors">OGA Network</Link></li>
               <li><Link href="/events" className="hover:text-primary transition-colors">Industry Events</Link></li>
+              <li><Link href="/cinema" className="hover:text-primary transition-colors">Cultural Cinema</Link></li>
               <li><Link href="/global/vision" className="hover:text-primary transition-colors">Global Vision</Link></li>
             </ul>
           </div>

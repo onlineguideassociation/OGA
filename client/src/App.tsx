@@ -36,6 +36,7 @@ import ERPDashboard from "@/pages/erp/index";
 import RestaurantBooking from "@/pages/restaurants/index";
 import HospitalityPMS from "@/pages/hospitality/index";
 import IndustryEvents from "@/pages/events/index";
+import CulturalCinema from "@/pages/cinema/index";
 
 function Router() {
   return (
@@ -71,6 +72,7 @@ function Router() {
       <Route path="/restaurants" component={RestaurantBooking} />
       <Route path="/hospitality" component={HospitalityPMS} />
       <Route path="/events" component={IndustryEvents} />
+      <Route path="/cinema" component={CulturalCinema} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
