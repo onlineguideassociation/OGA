@@ -34,6 +34,8 @@ import BrowserIDE from "@/pages/ide/index";
 import DropshippingModule from "@/pages/dropshipping/index";
 import ERPDashboard from "@/pages/erp/index";
 import RestaurantBooking from "@/pages/restaurants/index";
+import HospitalityPMS from "@/pages/hospitality/index";
+import IndustryEvents from "@/pages/events/index";
 
 function Router() {
   return (
@@ -67,6 +69,8 @@ function Router() {
       <Route path="/dropshipping" component={DropshippingModule} />
       <Route path="/erp" component={ERPDashboard} />
       <Route path="/restaurants" component={RestaurantBooking} />
+      <Route path="/hospitality" component={HospitalityPMS} />
+      <Route path="/events" component={IndustryEvents} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

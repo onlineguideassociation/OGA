@@ -190,6 +190,15 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
+              <Link href="/hospitality">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Building2 className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Hospitality Tech</div>
+                    <div className="text-xs text-muted-foreground">PMS & Channel Manager</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
               <Link href="/media">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Code className="h-5 w-5 text-pink-600 mt-0.5" />
@@ -242,6 +251,7 @@ export function Navbar() {
                   <Link href="/dashboard/tools"><span className="block text-lg font-medium">AI Tools</span></Link>
                   <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
                   <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>
+                  <Link href="/events"><span className="block text-lg font-medium">Events</span></Link>
                   <Link href="/global/vision"><span className="block text-lg font-medium">Global Vision</span></Link>
                 </div>
                 <Link href="/pricing">
@@ -289,6 +299,7 @@ export function Footer() {
               <li><Link href="/dashboard/tools" className="hover:text-primary transition-colors">AI Tools</Link></li>
               <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
               <li><Link href="/association" className="hover:text-primary transition-colors">OGA Network</Link></li>
+              <li><Link href="/events" className="hover:text-primary transition-colors">Industry Events</Link></li>
               <li><Link href="/global/vision" className="hover:text-primary transition-colors">Global Vision</Link></li>
             </ul>
           </div>
