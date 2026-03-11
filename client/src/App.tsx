@@ -31,6 +31,9 @@ import CommunityHub from "@/pages/community/index";
 import FreelanceMarketplace from "@/pages/freelance/index";
 import SustainabilityMapping from "@/pages/sustainability/index";
 import BrowserIDE from "@/pages/ide/index";
+import DropshippingModule from "@/pages/dropshipping/index";
+import ERPDashboard from "@/pages/erp/index";
+import RestaurantBooking from "@/pages/restaurants/index";
 
 function Router() {
   return (
@@ -61,6 +64,9 @@ function Router() {
       <Route path="/freelance" component={FreelanceMarketplace} />
       <Route path="/sustainability" component={SustainabilityMapping} />
       <Route path="/ide" component={BrowserIDE} />
+      <Route path="/dropshipping" component={DropshippingModule} />
+      <Route path="/erp" component={ERPDashboard} />
+      <Route path="/restaurants" component={RestaurantBooking} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

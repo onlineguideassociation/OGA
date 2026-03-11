@@ -136,12 +136,48 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
+              <Link href="/dropshipping">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Zap className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Dropshipping</div>
+                    <div className="text-xs text-muted-foreground">E-commerce Automation</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/erp">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <BarChart className="h-5 w-5 text-teal-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">ERP Dashboard</div>
+                    <div className="text-xs text-muted-foreground">Unified management console</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
               <Link href="/travel">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
                   <div>
                     <div className="font-bold">Travel OS</div>
                     <div className="text-xs text-muted-foreground">AI itineraries & guides</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/hotels">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Global Hotels</div>
+                    <div className="text-xs text-muted-foreground">Accommodation search</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/restaurants">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <MapPin className="h-5 w-5 text-red-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Dining & Loyalty</div>
+                    <div className="text-xs text-muted-foreground">Restaurant bookings & POS</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
