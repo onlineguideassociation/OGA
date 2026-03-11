@@ -26,6 +26,11 @@ import MarketplaceModule from "@/pages/marketplace/index";
 import FinanceModule from "@/pages/finance/index";
 import TravelOSModule from "@/pages/travel/index";
 import MediaModule from "@/pages/media/index";
+import HotelsSearch from "@/pages/hotels/index";
+import CommunityHub from "@/pages/community/index";
+import FreelanceMarketplace from "@/pages/freelance/index";
+import SustainabilityMapping from "@/pages/sustainability/index";
+import BrowserIDE from "@/pages/ide/index";
 
 function Router() {
   return (
@@ -51,6 +56,11 @@ function Router() {
       <Route path="/finance" component={FinanceModule} />
       <Route path="/travel" component={TravelOSModule} />
       <Route path="/media" component={MediaModule} />
+      <Route path="/hotels" component={HotelsSearch} />
+      <Route path="/community" component={CommunityHub} />
+      <Route path="/freelance" component={FreelanceMarketplace} />
+      <Route path="/sustainability" component={SustainabilityMapping} />
+      <Route path="/ide" component={BrowserIDE} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>
