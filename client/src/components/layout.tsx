@@ -47,21 +47,12 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/graph">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Network className="h-5 w-5 text-indigo-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Knowledge Graph</div>
-                    <div className="text-xs text-muted-foreground">Visualize ecosystem relationships</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
               <Link href="/map">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Map className="h-5 w-5 text-emerald-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Tourism Map</div>
-                    <div className="text-xs text-muted-foreground">Interactive Cambodia knowledge graph map</div>
+                    <div className="font-bold">Knowledge Graph & Map</div>
+                    <div className="text-xs text-muted-foreground">Tourism map + entity graph explorer</div>
                   </div>
                 </DropdownMenuItem>
               </Link>

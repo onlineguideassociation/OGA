@@ -74,8 +74,7 @@ export default function DashboardOverview() {
           <nav className="space-y-1">
             {[
               { href: "/dashboard", icon: TrendingUp, label: "Overview" },
-              { href: "/map", icon: Map, label: "Knowledge Graph Map" },
-              { href: "/dashboard/graph", icon: Network, label: "Graph Explorer" },
+              { href: "/map", icon: Map, label: "Knowledge Graph & Map" },
               { href: "/dashboard/tools", icon: Wand2, label: "AI Tools" },
               { href: "/dashboard/products", icon: Package, label: "Digital Products" },
               { href: "/dashboard/agents", icon: Bot, label: "AI Agents" },
