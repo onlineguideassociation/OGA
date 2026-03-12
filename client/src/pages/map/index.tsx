@@ -15,11 +15,12 @@ import ToursExperiencesSection from "./tours-experiences-section";
 import CrmMarketingSection from "./crm-marketing-section";
 import ServicesMarketplaceSection from "./services-marketplace-section";
 import LocalMarketplaceSection from "./local-marketplace-section";
+import ScenarioPlannerSection from "./scenario-planner-section";
 import LocationBar from "@/components/location-bar";
 import HeroSection from "./hero-section";
 import { CategoryFilterBar, SalesPanel } from "./sales-panel";
 
-type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm" | "services" | "local";
+type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm" | "services" | "local" | "scenarios";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
@@ -28,6 +29,7 @@ const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group:
   { key: "booking", label: "Book & Reserve", icon: ShoppingBag, group: "Tourism" },
   { key: "local", label: "Local Marketplace", icon: Store, group: "Community" },
   { key: "services", label: "Services Marketplace", icon: Briefcase, group: "Creator" },
+  { key: "scenarios", label: "What If? Planner", icon: Brain, group: "Management" },
   { key: "crm", label: "CRM & Marketing", icon: Briefcase, group: "Management" },
   { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
   { key: "community", label: "Community & Network", icon: Users, group: "Community" },
@@ -128,6 +130,7 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "crm" && <CrmMarketingSection />}
                   {viewMode === "services" && <ServicesMarketplaceSection />}
                   {viewMode === "local" && <LocalMarketplaceSection />}
+                  {viewMode === "scenarios" && <ScenarioPlannerSection />}
                   {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
                   {viewMode === "management" && <ManagementFlowSection />}

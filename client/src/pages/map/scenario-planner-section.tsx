@@ -1,136 +1,120 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart, Cell } from "recharts";
+import { Badge } from "@/components/ui/badge";
 import {
-  Sparkles, TrendingUp, TrendingDown, DollarSign, PiggyBank, Wallet,
-  AlertTriangle, CheckCircle, ArrowRight, RotateCcw, Sliders, Target,
-  Building2, Plane, Users, ShoppingBag, Zap, Calculator,
-  Home, Car, UtensilsCrossed, Shirt, Wifi, Heart, GraduationCap,
-  Shield, Gift, Coffee, Banknote, BarChart3, CircleDollarSign,
-  ArrowUpRight, ArrowDownRight, Landmark, Briefcase
+  TrendingUp, TrendingDown, DollarSign, PiggyBank, Target, Lightbulb,
+  ArrowRight, Plus, X, BarChart3, Wallet, Calculator,
+  Percent, Calendar, Zap, AlertTriangle, CheckCircle, Clock, Sparkles,
+  ChevronDown, ChevronUp, Minus, Globe
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 
-type PlannerMode = "personal" | "business";
-
-interface PersonalInputs {
+interface Scenario {
+  id: string;
+  name: string;
+  color: string;
   monthlyIncome: number;
-  housing: number;
-  food: number;
-  transport: number;
-  utilities: number;
-  entertainment: number;
-  clothing: number;
-  healthcare: number;
-  education: number;
-  subscriptions: number;
-  miscellaneous: number;
-  savingsGoalPercent: number;
-  emergencyFundTarget: number;
+  monthlySavings: number;
+  monthlySpending: number;
   investmentReturn: number;
-  incomeGrowthRate: number;
   inflationRate: number;
+  timeHorizon: number;
+  oneTimeInvestment: number;
+  travelBudgetMonthly: number;
 }
 
-const DEFAULT_PERSONAL: PersonalInputs = {
-  monthlyIncome: 3500,
-  housing: 900,
-  food: 450,
-  transport: 200,
-  utilities: 150,
-  entertainment: 150,
-  clothing: 80,
-  healthcare: 100,
-  education: 50,
-  subscriptions: 40,
-  miscellaneous: 100,
-  savingsGoalPercent: 20,
-  emergencyFundTarget: 10000,
+const DEFAULT_SCENARIO: Omit<Scenario, "id" | "name" | "color"> = {
+  monthlyIncome: 3000,
+  monthlySavings: 500,
+  monthlySpending: 2000,
   investmentReturn: 7,
-  incomeGrowthRate: 3,
   inflationRate: 3,
+  timeHorizon: 10,
+  oneTimeInvestment: 5000,
+  travelBudgetMonthly: 200,
 };
 
-const PERSONAL_PRESETS: { label: string; description: string; icon: React.ElementType; color: string; inputs: Partial<PersonalInputs> }[] = [
-  {
-    label: "Frugal Saver",
-    description: "Minimize spending, maximize savings",
-    icon: PiggyBank,
-    color: "emerald",
-    inputs: { monthlyIncome: 3000, housing: 600, food: 300, transport: 100, utilities: 100, entertainment: 50, clothing: 30, healthcare: 50, education: 0, subscriptions: 15, miscellaneous: 50, savingsGoalPercent: 40, investmentReturn: 7 },
-  },
-  {
-    label: "Balanced",
-    description: "50/30/20 budgeting rule",
-    icon: Target,
-    color: "blue",
-    inputs: { ...DEFAULT_PERSONAL },
-  },
-  {
-    label: "Comfort Spender",
-    description: "Higher lifestyle, moderate savings",
-    icon: Coffee,
-    color: "amber",
-    inputs: { monthlyIncome: 5000, housing: 1500, food: 700, transport: 350, utilities: 200, entertainment: 400, clothing: 200, healthcare: 150, education: 100, subscriptions: 80, miscellaneous: 200, savingsGoalPercent: 12, investmentReturn: 6 },
-  },
-  {
-    label: "Aggressive Investor",
-    description: "Live lean, invest heavily",
-    icon: TrendingUp,
-    color: "violet",
-    inputs: { monthlyIncome: 4500, housing: 700, food: 350, transport: 150, utilities: 120, entertainment: 80, clothing: 40, healthcare: 80, education: 200, subscriptions: 20, miscellaneous: 60, savingsGoalPercent: 50, investmentReturn: 10, incomeGrowthRate: 5 },
-  },
+const SCENARIO_COLORS = [
+  { name: "Conservative", hex: "#3b82f6" },
+  { name: "Moderate", hex: "#10b981" },
+  { name: "Aggressive", hex: "#f59e0b" },
+  { name: "Dream Big", hex: "#8b5cf6" },
 ];
 
-interface BusinessInputs {
-  monthlyRevenue: number;
-  tourCommissionRate: number;
-  aiSubscribers: number;
-  aiAvgPrice: number;
-  saasClients: number;
-  saasAvgPrice: number;
-  adListings: number;
-  adPricePerListing: number;
-  creatorFeeRate: number;
-  creatorVolume: number;
-  operatingCosts: number;
-  marketingSpend: number;
-  staffCosts: number;
-  techInfra: number;
-  growthRate: number;
-  savingsRate: number;
+const PRESETS = [
+  { label: "Budget Backpacker", icon: "🎒", savings: 800, spending: 1200, travel: 100, investment: 2000, returns: 5 },
+  { label: "Balanced Traveler", icon: "✈️", savings: 500, spending: 2000, travel: 300, investment: 5000, returns: 7 },
+  { label: "Luxury Explorer", icon: "🏝️", savings: 300, spending: 3500, travel: 800, investment: 10000, returns: 8 },
+  { label: "Digital Nomad", icon: "💻", savings: 1000, spending: 1500, travel: 500, investment: 8000, returns: 9 },
+  { label: "Tourism Investor", icon: "📈", savings: 1500, spending: 1500, travel: 200, investment: 20000, returns: 12 },
+  { label: "Retire in Cambodia", icon: "🌴", savings: 2000, spending: 1000, travel: 150, investment: 50000, returns: 6 },
+];
+
+function computeProjection(scenario: Scenario) {
+  const months = scenario.timeHorizon * 12;
+  const monthlyReturnRate = scenario.investmentReturn / 100 / 12;
+  const monthlyInflationRate = scenario.inflationRate / 100 / 12;
+  const realReturnRate = monthlyReturnRate - monthlyInflationRate;
+
+  let totalSaved = scenario.oneTimeInvestment;
+  let totalContributed = scenario.oneTimeInvestment;
+  let totalTravelSpent = 0;
+  const yearlyData: { year: number; saved: number; contributed: number; travelSpent: number }[] = [];
+
+  for (let m = 1; m <= months; m++) {
+    totalSaved = totalSaved * (1 + realReturnRate) + scenario.monthlySavings;
+    totalContributed += scenario.monthlySavings;
+    totalTravelSpent += scenario.travelBudgetMonthly;
+
+    if (m % 12 === 0) {
+      yearlyData.push({
+        year: m / 12,
+        saved: Math.round(totalSaved),
+        contributed: Math.round(totalContributed),
+        travelSpent: Math.round(totalTravelSpent),
+      });
+    }
+  }
+
+  const investmentGains = totalSaved - totalContributed;
+
+  return {
+    finalAmount: Math.round(totalSaved),
+    totalContributed: Math.round(totalContributed),
+    investmentGains: Math.round(investmentGains),
+    totalSpending: Math.round(scenario.monthlySpending * months),
+    totalTravelSpent: Math.round(totalTravelSpent),
+    monthlyPassiveIncome: Math.round(totalSaved * realReturnRate),
+    yearlyData,
+  };
 }
 
-const DEFAULT_BUSINESS: BusinessInputs = {
-  monthlyRevenue: 8000, tourCommissionRate: 15, aiSubscribers: 1000, aiAvgPrice: 9,
-  saasClients: 80, saasAvgPrice: 79, adListings: 100, adPricePerListing: 50,
-  creatorFeeRate: 20, creatorVolume: 15000, operatingCosts: 5000, marketingSpend: 3000,
-  staffCosts: 8000, techInfra: 2000, growthRate: 10, savingsRate: 20,
-};
-
-const BUSINESS_PRESETS: { label: string; description: string; icon: React.ElementType; inputs: Partial<BusinessInputs> }[] = [
-  { label: "Conservative", description: "Low growth, high savings", icon: PiggyBank, inputs: { monthlyRevenue: 5000, aiSubscribers: 500, saasClients: 30, adListings: 40, growthRate: 5, savingsRate: 35, marketingSpend: 1500, staffCosts: 5000 } },
-  { label: "Moderate", description: "Balanced approach", icon: Target, inputs: { ...DEFAULT_BUSINESS } },
-  { label: "Aggressive", description: "High spend, rapid growth", icon: Zap, inputs: { monthlyRevenue: 15000, aiSubscribers: 3000, saasClients: 200, adListings: 250, growthRate: 25, savingsRate: 10, marketingSpend: 8000, staffCosts: 15000 } },
-  { label: "Bootstrap", description: "Minimal costs, organic growth", icon: Sparkles, inputs: { monthlyRevenue: 3000, aiSubscribers: 200, saasClients: 15, adListings: 20, growthRate: 8, savingsRate: 40, marketingSpend: 500, staffCosts: 2000, techInfra: 500, operatingCosts: 1500 } },
-];
-
-function SliderInput({ label, value, onChange, min, max, step, prefix, suffix, icon: Icon }: {
-  label: string; value: number; onChange: (v: number) => void; min: number; max: number; step: number; prefix?: string; suffix?: string; icon: React.ElementType;
+function SliderInput({ label, icon: Icon, value, onChange, min, max, step, prefix, suffix, color }: {
+  label: string; icon: React.ElementType; value: number; onChange: (v: number) => void;
+  min: number; max: number; step: number; prefix?: string; suffix?: string; color?: string;
 }) {
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="text-[10px] font-semibold text-slate-600 flex items-center gap-1.5">
-          <Icon className="h-3 w-3 text-[#0081C9]" /> {label}
+        <label className="text-xs font-medium text-slate-600 flex items-center gap-1.5">
+          <Icon className={`h-3.5 w-3.5 ${color || "text-slate-400"}`} /> {label}
         </label>
-        <span className="text-xs font-bold text-slate-900">{prefix}{value.toLocaleString()}{suffix}</span>
+        <div className="flex items-center gap-1">
+          <button onClick={() => onChange(Math.max(min, value - step))} className="h-5 w-5 rounded bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200" data-testid={`btn-dec-${label.toLowerCase().replace(/\s/g, "-")}`}>
+            <Minus className="h-3 w-3" />
+          </button>
+          <span className="text-sm font-bold text-slate-900 min-w-[70px] text-center">
+            {prefix}{value.toLocaleString()}{suffix}
+          </span>
+          <button onClick={() => onChange(Math.min(max, value + step))} className="h-5 w-5 rounded bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200" data-testid={`btn-inc-${label.toLowerCase().replace(/\s/g, "-")}`}>
+            <Plus className="h-3 w-3" />
+          </button>
+        </div>
       </div>
       <input
         type="range" min={min} max={max} step={step} value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className="w-full h-1.5 bg-slate-200 rounded-full appearance-none cursor-pointer accent-[#0081C9]"
+        className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#0081C9]"
         data-testid={`slider-${label.toLowerCase().replace(/\s/g, "-")}`}
       />
       <div className="flex justify-between text-[8px] text-slate-400">
@@ -141,574 +125,392 @@ function SliderInput({ label, value, onChange, min, max, step, prefix, suffix, i
   );
 }
 
-function PersonalFinancePlanner() {
-  const [inputs, setInputs] = useState<PersonalInputs>(DEFAULT_PERSONAL);
-  const [activePreset, setActivePreset] = useState<string>("Balanced");
-
-  const update = (key: keyof PersonalInputs, value: number) => {
-    setInputs(prev => ({ ...prev, [key]: value }));
-    setActivePreset("");
-  };
-
-  const applyPreset = (preset: typeof PERSONAL_PRESETS[0]) => {
-    setInputs(prev => ({ ...prev, ...preset.inputs }));
-    setActivePreset(preset.label);
-  };
-
-  const projections = useMemo(() => {
-    const totalSpending = inputs.housing + inputs.food + inputs.transport + inputs.utilities + inputs.entertainment + inputs.clothing + inputs.healthcare + inputs.education + inputs.subscriptions + inputs.miscellaneous;
-    const actualSavings = inputs.monthlyIncome - totalSpending;
-    const targetSavings = inputs.monthlyIncome * (inputs.savingsGoalPercent / 100);
-    const savingsGap = targetSavings - actualSavings;
-    const savingsRate = inputs.monthlyIncome > 0 ? (actualSavings / inputs.monthlyIncome) * 100 : 0;
-    const spendingRate = inputs.monthlyIncome > 0 ? (totalSpending / inputs.monthlyIncome) * 100 : 0;
-
-    const needsTotal = inputs.housing + inputs.food + inputs.transport + inputs.utilities + inputs.healthcare;
-    const wantsTotal = inputs.entertainment + inputs.clothing + inputs.subscriptions + inputs.miscellaneous;
-    const needsPercent = inputs.monthlyIncome > 0 ? (needsTotal / inputs.monthlyIncome) * 100 : 0;
-    const wantsPercent = inputs.monthlyIncome > 0 ? (wantsTotal / inputs.monthlyIncome) * 100 : 0;
-    const savingsPercent = inputs.monthlyIncome > 0 ? (actualSavings / inputs.monthlyIncome) * 100 : 0;
-
-    const monthlyInvestmentReturn = inputs.investmentReturn / 100 / 12;
-    const monthlyIncomeGrowth = inputs.incomeGrowthRate / 100 / 12;
-    const monthlyInflation = inputs.inflationRate / 100 / 12;
-
-    const months: { month: string; income: number; spending: number; savings: number; cumSavings: number; invested: number; netWorth: number }[] = [];
-    let cumSavings = 0;
-    let investedBalance = 0;
-
-    for (let m = 1; m <= 24; m++) {
-      const incomeGrowth = Math.pow(1 + monthlyIncomeGrowth, m);
-      const inflationGrowth = Math.pow(1 + monthlyInflation, m);
-      const mIncome = Math.round(inputs.monthlyIncome * incomeGrowth);
-      const mSpending = Math.round(totalSpending * inflationGrowth);
-      const mSavings = mIncome - mSpending;
-      cumSavings += Math.max(mSavings, 0);
-      investedBalance = (investedBalance + Math.max(mSavings, 0)) * (1 + monthlyInvestmentReturn);
-      months.push({
-        month: m <= 12 ? `M${m}` : `Y2-M${m - 12}`,
-        income: mIncome,
-        spending: mSpending,
-        savings: mSavings,
-        cumSavings,
-        invested: Math.round(investedBalance),
-        netWorth: Math.round(investedBalance),
-      });
-    }
-
-    const emergencyMonths = totalSpending > 0 ? Math.round(inputs.emergencyFundTarget / totalSpending * 10) / 10 : 0;
-    const monthsToEmergencyFund = actualSavings > 0 ? Math.ceil(inputs.emergencyFundTarget / actualSavings) : Infinity;
-    const year1Savings = months.slice(0, 12).reduce((s, m) => s + m.savings, 0);
-    const year1Invested = months[11]?.invested || 0;
-    const investmentGains = year1Invested - year1Savings;
-
-    const financialFreedomYears = actualSavings > 0 && inputs.monthlyIncome > 0
-      ? Math.round((inputs.monthlyIncome * 12 * 25) / (actualSavings * 12) * 10) / 10
-      : Infinity;
-
-    return {
-      totalSpending, actualSavings, targetSavings, savingsGap, savingsRate, spendingRate,
-      needsTotal, wantsTotal, needsPercent, wantsPercent, savingsPercent,
-      months, emergencyMonths, monthsToEmergencyFund,
-      year1Savings, year1Invested, investmentGains, financialFreedomYears,
-    };
-  }, [inputs]);
-
-  const spendingCategories = [
-    { name: "Housing", value: inputs.housing, icon: Home, color: "#0081C9" },
-    { name: "Food", value: inputs.food, icon: UtensilsCrossed, color: "#22c55e" },
-    { name: "Transport", value: inputs.transport, icon: Car, color: "#f59e0b" },
-    { name: "Utilities", value: inputs.utilities, icon: Wifi, color: "#8b5cf6" },
-    { name: "Health", value: inputs.healthcare, icon: Heart, color: "#ef4444" },
-    { name: "Fun", value: inputs.entertainment, icon: Coffee, color: "#ec4899" },
-    { name: "Clothing", value: inputs.clothing, icon: Shirt, color: "#06b6d4" },
-    { name: "Education", value: inputs.education, icon: GraduationCap, color: "#14b8a6" },
-    { name: "Subs", value: inputs.subscriptions, icon: Wifi, color: "#6366f1" },
-    { name: "Other", value: inputs.miscellaneous, icon: Gift, color: "#78716c" },
-  ];
-
-  const budgetHealthColor = projections.savingsRate >= 20 ? "emerald" : projections.savingsRate >= 10 ? "amber" : "red";
-  const budgetHealthLabel = projections.savingsRate >= 20 ? "Healthy" : projections.savingsRate >= 10 ? "Caution" : "At Risk";
-
+function MiniBarChart({ data, maxVal, hexColor }: { data: { year: number; saved: number }[]; maxVal: number; hexColor: string }) {
+  if (data.length === 0) return null;
   return (
-    <div className="space-y-5">
-      <div className="flex items-center gap-2 flex-wrap">
-        {PERSONAL_PRESETS.map((preset) => {
-          const Icon = preset.icon;
-          const isActive = activePreset === preset.label;
-          return (
-            <button
-              key={preset.label}
-              onClick={() => applyPreset(preset)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium transition-all border ${isActive ? "bg-[#0081C9]/10 text-[#0081C9] border-[#0081C9]/20 shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:border-[#0081C9]/15 hover:bg-slate-50"}`}
-              data-testid={`preset-personal-${preset.label.toLowerCase().replace(/\s/g, "-")}`}
-            >
-              <Icon className="h-3.5 w-3.5" />
-              <div className="text-left">
-                <div className="font-bold">{preset.label}</div>
-                <div className="text-[9px] opacity-60">{preset.description}</div>
-              </div>
-            </button>
-          );
-        })}
-        <button onClick={() => { setInputs(DEFAULT_PERSONAL); setActivePreset("Balanced"); }}
-          className="ml-auto flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] text-slate-500 hover:text-[#C1121F] transition-colors"
-          data-testid="btn-reset-personal">
-          <RotateCcw className="h-3 w-3" /> Reset
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
-        <div className="bg-gradient-to-br from-[#0081C9]/10 to-[#0081C9]/5 border border-[#0081C9]/15 rounded-xl p-3 text-center">
-          <Banknote className="h-4 w-4 text-[#0081C9] mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">${inputs.monthlyIncome.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Monthly Income</div>
+    <div className="flex items-end gap-[2px] h-20">
+      {data.map((d) => (
+        <div key={d.year} className="flex-1 flex flex-col items-center gap-0.5">
+          <div
+            className="w-full rounded-t transition-all duration-300"
+            style={{ height: `${Math.max(2, (d.saved / maxVal) * 100)}%`, backgroundColor: hexColor }}
+          />
+          <span className="text-[7px] text-slate-400">{d.year}</span>
         </div>
-        <div className="bg-gradient-to-br from-red-500/10 to-red-500/5 border border-red-500/15 rounded-xl p-3 text-center">
-          <ArrowDownRight className="h-4 w-4 text-red-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-red-700">${projections.totalSpending.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Total Spending</div>
-        </div>
-        <div className={`bg-gradient-to-br ${projections.actualSavings >= 0 ? "from-emerald-500/10 to-emerald-500/5 border-emerald-500/15" : "from-red-500/10 to-red-500/5 border-red-500/15"} border rounded-xl p-3 text-center`}>
-          <PiggyBank className="h-4 w-4 text-emerald-600 mx-auto mb-1" />
-          <div className={`text-lg font-bold ${projections.actualSavings >= 0 ? "text-emerald-700" : "text-red-700"}`}>${projections.actualSavings.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Monthly Savings</div>
-        </div>
-        <div className="bg-gradient-to-br from-violet-500/10 to-violet-500/5 border border-violet-500/15 rounded-xl p-3 text-center">
-          <ArrowUpRight className="h-4 w-4 text-violet-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-violet-700">${projections.year1Invested.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">1-Year Invested</div>
-        </div>
-        <div className={`bg-gradient-to-br from-${budgetHealthColor}-500/10 to-${budgetHealthColor}-500/5 border border-${budgetHealthColor}-500/15 rounded-xl p-3 text-center`}>
-          <Shield className="h-4 w-4 mx-auto mb-1" style={{ color: budgetHealthColor === "emerald" ? "#059669" : budgetHealthColor === "amber" ? "#d97706" : "#dc2626" }} />
-          <div className="text-lg font-bold text-slate-900">{projections.savingsRate.toFixed(0)}%</div>
-          <div className="text-[9px] text-slate-500">Savings Rate</div>
-        </div>
-        <div className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/15 rounded-xl p-3 text-center">
-          <Landmark className="h-4 w-4 text-amber-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">{projections.monthsToEmergencyFund === Infinity ? "N/A" : `${projections.monthsToEmergencyFund}mo`}</div>
-          <div className="text-[9px] text-slate-500">Emergency Fund ETA</div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-1 space-y-4">
-          <Card className="border-[#0081C9]/10">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm flex items-center gap-2"><Banknote className="h-4 w-4 text-[#0081C9]" /> Income & Strategy</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <SliderInput label="Monthly Income" value={inputs.monthlyIncome} onChange={v => update("monthlyIncome", v)} min={1000} max={20000} step={100} prefix="$" icon={DollarSign} />
-              <SliderInput label="Savings Goal" value={inputs.savingsGoalPercent} onChange={v => update("savingsGoalPercent", v)} min={0} max={60} step={5} suffix="%" icon={Target} />
-              <SliderInput label="Emergency Fund Target" value={inputs.emergencyFundTarget} onChange={v => update("emergencyFundTarget", v)} min={1000} max={50000} step={1000} prefix="$" icon={Shield} />
-              <SliderInput label="Investment Return" value={inputs.investmentReturn} onChange={v => update("investmentReturn", v)} min={0} max={15} step={0.5} suffix="% /yr" icon={TrendingUp} />
-              <SliderInput label="Income Growth" value={inputs.incomeGrowthRate} onChange={v => update("incomeGrowthRate", v)} min={0} max={10} step={0.5} suffix="% /yr" icon={ArrowUpRight} />
-              <SliderInput label="Inflation Rate" value={inputs.inflationRate} onChange={v => update("inflationRate", v)} min={0} max={10} step={0.5} suffix="% /yr" icon={ArrowDownRight} />
-            </CardContent>
-          </Card>
-
-          <Card className="border-[#C1121F]/10">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm flex items-center gap-2"><Wallet className="h-4 w-4 text-[#C1121F]" /> Monthly Spending</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <SliderInput label="Housing / Rent" value={inputs.housing} onChange={v => update("housing", v)} min={0} max={5000} step={50} prefix="$" icon={Home} />
-              <SliderInput label="Food & Groceries" value={inputs.food} onChange={v => update("food", v)} min={0} max={2000} step={25} prefix="$" icon={UtensilsCrossed} />
-              <SliderInput label="Transport" value={inputs.transport} onChange={v => update("transport", v)} min={0} max={1000} step={25} prefix="$" icon={Car} />
-              <SliderInput label="Utilities & Bills" value={inputs.utilities} onChange={v => update("utilities", v)} min={0} max={500} step={10} prefix="$" icon={Wifi} />
-              <SliderInput label="Entertainment" value={inputs.entertainment} onChange={v => update("entertainment", v)} min={0} max={1000} step={25} prefix="$" icon={Coffee} />
-              <SliderInput label="Clothing" value={inputs.clothing} onChange={v => update("clothing", v)} min={0} max={500} step={10} prefix="$" icon={Shirt} />
-              <SliderInput label="Healthcare" value={inputs.healthcare} onChange={v => update("healthcare", v)} min={0} max={500} step={10} prefix="$" icon={Heart} />
-              <SliderInput label="Education" value={inputs.education} onChange={v => update("education", v)} min={0} max={1000} step={25} prefix="$" icon={GraduationCap} />
-              <SliderInput label="Subscriptions" value={inputs.subscriptions} onChange={v => update("subscriptions", v)} min={0} max={200} step={5} prefix="$" icon={Wifi} />
-              <SliderInput label="Miscellaneous" value={inputs.miscellaneous} onChange={v => update("miscellaneous", v)} min={0} max={500} step={10} prefix="$" icon={Gift} />
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="lg:col-span-2 space-y-4">
-          <Card className="border-[#0081C9]/10">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm flex items-center gap-2"><TrendingUp className="h-4 w-4 text-[#0081C9]" /> 24-Month Income vs Spending Projection</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-56">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={projections.months}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 9, fill: "#94a3b8" }} interval={1} />
-                    <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${(v / 1000).toFixed(1)}k`} />
-                    <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                    <Area type="monotone" dataKey="income" stroke="#0081C9" fill="#0081C9" fillOpacity={0.1} strokeWidth={2} name="Income" />
-                    <Area type="monotone" dataKey="spending" stroke="#C1121F" fill="#C1121F" fillOpacity={0.05} strokeWidth={1.5} strokeDasharray="4 4" name="Spending" />
-                    <Area type="monotone" dataKey="savings" stroke="#22c55e" fill="#22c55e" fillOpacity={0.1} strokeWidth={2} name="Monthly Savings" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-emerald-500/10">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm flex items-center gap-2"><PiggyBank className="h-4 w-4 text-emerald-600" /> Wealth Growth: Savings vs Invested</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={projections.months}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 9, fill: "#94a3b8" }} interval={1} />
-                    <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                    <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                    <Area type="monotone" dataKey="invested" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.15} strokeWidth={2} name="Invested (with returns)" />
-                    <Area type="monotone" dataKey="cumSavings" stroke="#22c55e" fill="#22c55e" fillOpacity={0.08} strokeWidth={1.5} strokeDasharray="4 4" name="Cash Savings" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-[#0081C9]/10">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2"><BarChart3 className="h-4 w-4 text-[#0081C9]" /> Spending Breakdown</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="h-52">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={spendingCategories} layout="vertical">
-                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                      <XAxis type="number" tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${v}`} />
-                      <YAxis dataKey="name" type="category" tick={{ fontSize: 9, fill: "#94a3b8" }} width={55} />
-                      <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                      <Bar dataKey="value" radius={[0, 4, 4, 0]}>
-                        {spendingCategories.map((entry, i) => (
-                          <Cell key={i} fill={entry.color} />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-[#C1121F]/10">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm flex items-center gap-2"><Calculator className="h-4 w-4 text-[#C1121F]" /> Financial Summary</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="mb-3">
-                  <div className="text-[10px] font-semibold text-slate-500 mb-1.5">50/30/20 Budget Rule</div>
-                  <div className="flex gap-1 h-3 rounded-full overflow-hidden bg-slate-100">
-                    <div className="bg-[#0081C9] rounded-l-full transition-all" style={{ width: `${Math.min(projections.needsPercent, 100)}%` }} />
-                    <div className="bg-[#f59e0b] transition-all" style={{ width: `${Math.min(projections.wantsPercent, 100)}%` }} />
-                    <div className="bg-[#22c55e] rounded-r-full transition-all" style={{ width: `${Math.max(projections.savingsPercent, 0)}%` }} />
-                  </div>
-                  <div className="flex justify-between mt-1 text-[8px] text-slate-500">
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#0081C9]" />Needs {projections.needsPercent.toFixed(0)}%</span>
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#f59e0b]" />Wants {projections.wantsPercent.toFixed(0)}%</span>
-                    <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />Save {Math.max(projections.savingsPercent, 0).toFixed(0)}%</span>
-                  </div>
-                </div>
-                {[
-                  { label: "Year 1 Total Savings", value: `$${projections.year1Savings.toLocaleString()}`, color: "text-emerald-600" },
-                  { label: "Year 1 Invested Value", value: `$${projections.year1Invested.toLocaleString()}`, color: "text-violet-600" },
-                  { label: "Investment Gains (Y1)", value: `$${projections.investmentGains.toLocaleString()}`, color: "text-[#0081C9]" },
-                  { label: "Emergency Fund Covers", value: `${projections.emergencyMonths} months`, color: "text-amber-600" },
-                  { label: "Emergency Fund ETA", value: projections.monthsToEmergencyFund === Infinity ? "N/A" : `${projections.monthsToEmergencyFund} months`, color: "text-slate-700" },
-                  { label: "Financial Freedom ETA", value: projections.financialFreedomYears === Infinity ? "N/A" : `~${projections.financialFreedomYears} years`, color: "text-[#C1121F]" },
-                ].map((row) => (
-                  <div key={row.label} className="flex items-center justify-between pb-2 border-b border-slate-100 last:border-0 last:pb-0">
-                    <span className="text-xs text-slate-600">{row.label}</span>
-                    <span className={`text-xs font-bold ${row.color}`}>{row.value}</span>
-                  </div>
-                ))}
-                <div className="mt-3 p-3 rounded-lg bg-gradient-to-r from-[#0081C9]/5 to-[#C1121F]/5 border border-[#0081C9]/10">
-                  <div className="flex items-start gap-2">
-                    {projections.savingsRate >= 20 ? (
-                      <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                    ) : projections.savingsRate >= 10 ? (
-                      <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                    ) : (
-                      <AlertTriangle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />
-                    )}
-                    <p className="text-[10px] text-slate-600 leading-relaxed">
-                      {projections.savingsRate >= 20
-                        ? `Great financial health! You're saving ${projections.savingsRate.toFixed(0)}% of income. At this rate, your emergency fund will be fully funded in ${projections.monthsToEmergencyFund === Infinity ? "N/A" : projections.monthsToEmergencyFund + " months"}. Consider increasing investments for compound growth.`
-                        : projections.savingsRate >= 10
-                        ? `Your savings rate of ${projections.savingsRate.toFixed(0)}% is acceptable but below the recommended 20%. Consider reducing entertainment or subscriptions to boost savings.`
-                        : projections.savingsRate >= 0
-                        ? `Warning: Only saving ${projections.savingsRate.toFixed(0)}% of income. Review spending categories — housing should be under 30% of income, and discretionary spending needs tightening.`
-                        : `Critical: You're spending more than you earn! Reduce expenses by $${Math.abs(projections.actualSavings)} per month to avoid going into debt. Focus on cutting non-essential spending first.`}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function BusinessFinancePlanner() {
-  const [inputs, setInputs] = useState<BusinessInputs>(DEFAULT_BUSINESS);
-  const [activePreset, setActivePreset] = useState<string>("Moderate");
-
-  const update = (key: keyof BusinessInputs, value: number) => {
-    setInputs(prev => ({ ...prev, [key]: value }));
-    setActivePreset("");
-  };
-
-  const applyPreset = (preset: typeof BUSINESS_PRESETS[0]) => {
-    setInputs(prev => ({ ...prev, ...preset.inputs }));
-    setActivePreset(preset.label);
-  };
-
-  const projections = useMemo(() => {
-    const tourIncome = inputs.monthlyRevenue * (inputs.tourCommissionRate / 100);
-    const aiIncome = inputs.aiSubscribers * inputs.aiAvgPrice;
-    const saasIncome = inputs.saasClients * inputs.saasAvgPrice;
-    const adIncome = inputs.adListings * inputs.adPricePerListing;
-    const creatorIncome = inputs.creatorVolume * (inputs.creatorFeeRate / 100);
-    const totalRevenue = tourIncome + aiIncome + saasIncome + adIncome + creatorIncome;
-    const totalCosts = inputs.operatingCosts + inputs.marketingSpend + inputs.staffCosts + inputs.techInfra;
-    const netProfit = totalRevenue - totalCosts;
-    const savings = netProfit * (inputs.savingsRate / 100);
-    const reinvestment = netProfit - savings;
-    const profitMargin = totalRevenue > 0 ? (netProfit / totalRevenue) * 100 : 0;
-    const monthlyGrowthRate = inputs.growthRate / 100 / 12;
-    const months12: { month: string; revenue: number; costs: number; profit: number; savings: number; cumSavings: number }[] = [];
-    let cumSavings = 0;
-    for (let m = 1; m <= 12; m++) {
-      const factor = Math.pow(1 + monthlyGrowthRate, m);
-      const mRevenue = Math.round(totalRevenue * factor);
-      const mCosts = Math.round(totalCosts * (1 + monthlyGrowthRate * m * 0.3));
-      const mProfit = mRevenue - mCosts;
-      const mSavings = Math.round(mProfit * (inputs.savingsRate / 100));
-      cumSavings += mSavings;
-      months12.push({ month: `M${m}`, revenue: mRevenue, costs: mCosts, profit: mProfit, savings: mSavings, cumSavings });
-    }
-    const yearEndRevenue = months12[11].revenue;
-    const annualRevenue = months12.reduce((sum, m) => sum + m.revenue, 0);
-    const annualProfit = months12.reduce((sum, m) => sum + m.profit, 0);
-    const annualSavings = cumSavings;
-    return { tourIncome, aiIncome, saasIncome, adIncome, creatorIncome, totalRevenue, totalCosts, netProfit, savings, reinvestment, profitMargin, months12, yearEndRevenue, annualRevenue, annualProfit, annualSavings };
-  }, [inputs]);
-
-  const revenueBreakdown = [
-    { name: "Tours", value: projections.tourIncome, color: "#0081C9" },
-    { name: "AI SaaS", value: projections.aiIncome, color: "#22c55e" },
-    { name: "B2B SaaS", value: projections.saasIncome, color: "#a855f7" },
-    { name: "Ads", value: projections.adIncome, color: "#f59e0b" },
-    { name: "Creator", value: projections.creatorIncome, color: "#C1121F" },
-  ];
-
-  return (
-    <div className="space-y-5">
-      <div className="flex items-center gap-2 flex-wrap">
-        {BUSINESS_PRESETS.map((preset) => {
-          const Icon = preset.icon;
-          const isActive = activePreset === preset.label;
-          return (
-            <button
-              key={preset.label}
-              onClick={() => applyPreset(preset)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-medium transition-all border ${isActive ? "bg-[#0081C9]/10 text-[#0081C9] border-[#0081C9]/20 shadow-sm" : "bg-white text-slate-600 border-slate-200 hover:border-[#0081C9]/15 hover:bg-slate-50"}`}
-              data-testid={`preset-${preset.label.toLowerCase()}`}
-            >
-              <Icon className="h-3.5 w-3.5" />
-              <div className="text-left">
-                <div className="font-bold">{preset.label}</div>
-                <div className="text-[9px] opacity-60">{preset.description}</div>
-              </div>
-            </button>
-          );
-        })}
-        <button onClick={() => { setInputs(DEFAULT_BUSINESS); setActivePreset("Moderate"); }}
-          className="ml-auto flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[10px] text-slate-500 hover:text-[#C1121F] transition-colors"
-          data-testid="btn-reset-scenario">
-          <RotateCcw className="h-3 w-3" /> Reset
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-        <div className="bg-gradient-to-br from-[#0081C9]/10 to-[#0081C9]/5 border border-[#0081C9]/15 rounded-xl p-3 text-center">
-          <DollarSign className="h-4 w-4 text-[#0081C9] mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">${projections.totalRevenue.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Monthly Revenue</div>
-        </div>
-        <div className={`bg-gradient-to-br ${projections.netProfit >= 0 ? "from-emerald-500/10 to-emerald-500/5 border-emerald-500/15" : "from-red-500/10 to-red-500/5 border-red-500/15"} border rounded-xl p-3 text-center`}>
-          {projections.netProfit >= 0 ? <TrendingUp className="h-4 w-4 text-emerald-600 mx-auto mb-1" /> : <TrendingDown className="h-4 w-4 text-red-600 mx-auto mb-1" />}
-          <div className={`text-lg font-bold ${projections.netProfit >= 0 ? "text-emerald-700" : "text-red-700"}`}>${projections.netProfit.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Net Profit/mo</div>
-        </div>
-        <div className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/15 rounded-xl p-3 text-center">
-          <PiggyBank className="h-4 w-4 text-amber-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">${projections.savings.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">Monthly Savings</div>
-        </div>
-        <div className="bg-gradient-to-br from-violet-500/10 to-violet-500/5 border border-violet-500/15 rounded-xl p-3 text-center">
-          <Wallet className="h-4 w-4 text-violet-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">${projections.annualSavings.toLocaleString()}</div>
-          <div className="text-[9px] text-slate-500">12-Month Savings</div>
-        </div>
-        <div className={`bg-gradient-to-br ${projections.profitMargin >= 20 ? "from-emerald-500/10 to-emerald-500/5 border-emerald-500/15" : projections.profitMargin >= 0 ? "from-amber-500/10 to-amber-500/5 border-amber-500/15" : "from-red-500/10 to-red-500/5 border-red-500/15"} border rounded-xl p-3 text-center`}>
-          <Target className="h-4 w-4 text-slate-600 mx-auto mb-1" />
-          <div className="text-lg font-bold text-slate-900">{projections.profitMargin.toFixed(1)}%</div>
-          <div className="text-[9px] text-slate-500">Profit Margin</div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-1 space-y-4">
-          <Card className="border-[#0081C9]/10">
-            <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><TrendingUp className="h-4 w-4 text-[#0081C9]" /> Revenue Inputs</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <SliderInput label="Tour Bookings Revenue" value={inputs.monthlyRevenue} onChange={v => update("monthlyRevenue", v)} min={0} max={50000} step={500} prefix="$" suffix="/mo" icon={Plane} />
-              <SliderInput label="Commission Rate" value={inputs.tourCommissionRate} onChange={v => update("tourCommissionRate", v)} min={5} max={30} step={1} suffix="%" icon={DollarSign} />
-              <SliderInput label="AI Subscribers" value={inputs.aiSubscribers} onChange={v => update("aiSubscribers", v)} min={0} max={10000} step={50} icon={Sparkles} />
-              <SliderInput label="AI Avg Price" value={inputs.aiAvgPrice} onChange={v => update("aiAvgPrice", v)} min={0} max={99} step={1} prefix="$" suffix="/mo" icon={Zap} />
-              <SliderInput label="SaaS Clients" value={inputs.saasClients} onChange={v => update("saasClients", v)} min={0} max={500} step={5} icon={Building2} />
-              <SliderInput label="SaaS Avg Price" value={inputs.saasAvgPrice} onChange={v => update("saasAvgPrice", v)} min={0} max={199} step={1} prefix="$" suffix="/mo" icon={DollarSign} />
-              <SliderInput label="Ad Listings" value={inputs.adListings} onChange={v => update("adListings", v)} min={0} max={500} step={5} icon={ShoppingBag} />
-              <SliderInput label="Ad Price/Listing" value={inputs.adPricePerListing} onChange={v => update("adPricePerListing", v)} min={10} max={200} step={5} prefix="$" suffix="/mo" icon={DollarSign} />
-              <SliderInput label="Creator Volume" value={inputs.creatorVolume} onChange={v => update("creatorVolume", v)} min={0} max={100000} step={1000} prefix="$" icon={Users} />
-            </CardContent>
-          </Card>
-          <Card className="border-[#C1121F]/10">
-            <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><Wallet className="h-4 w-4 text-[#C1121F]" /> Costs & Strategy</CardTitle></CardHeader>
-            <CardContent className="space-y-4">
-              <SliderInput label="Operating Costs" value={inputs.operatingCosts} onChange={v => update("operatingCosts", v)} min={0} max={20000} step={500} prefix="$" suffix="/mo" icon={Building2} />
-              <SliderInput label="Marketing Spend" value={inputs.marketingSpend} onChange={v => update("marketingSpend", v)} min={0} max={20000} step={500} prefix="$" suffix="/mo" icon={ShoppingBag} />
-              <SliderInput label="Staff Costs" value={inputs.staffCosts} onChange={v => update("staffCosts", v)} min={0} max={30000} step={500} prefix="$" suffix="/mo" icon={Users} />
-              <SliderInput label="Tech Infrastructure" value={inputs.techInfra} onChange={v => update("techInfra", v)} min={0} max={10000} step={250} prefix="$" suffix="/mo" icon={Zap} />
-              <SliderInput label="Annual Growth Rate" value={inputs.growthRate} onChange={v => update("growthRate", v)} min={0} max={50} step={1} suffix="%" icon={TrendingUp} />
-              <SliderInput label="Savings Rate" value={inputs.savingsRate} onChange={v => update("savingsRate", v)} min={0} max={60} step={5} suffix="%" icon={PiggyBank} />
-            </CardContent>
-          </Card>
-        </div>
-        <div className="lg:col-span-2 space-y-4">
-          <Card className="border-[#0081C9]/10">
-            <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><TrendingUp className="h-4 w-4 text-[#0081C9]" /> 12-Month Revenue & Profit Projection</CardTitle></CardHeader>
-            <CardContent>
-              <div className="h-56">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={projections.months12}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#94a3b8" }} />
-                    <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                    <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                    <Area type="monotone" dataKey="revenue" stroke="#0081C9" fill="#0081C9" fillOpacity={0.1} strokeWidth={2} name="Revenue" />
-                    <Area type="monotone" dataKey="profit" stroke="#22c55e" fill="#22c55e" fillOpacity={0.1} strokeWidth={2} name="Profit" />
-                    <Area type="monotone" dataKey="costs" stroke="#C1121F" fill="#C1121F" fillOpacity={0.05} strokeWidth={1.5} strokeDasharray="4 4" name="Costs" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-          <Card className="border-emerald-500/10">
-            <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><PiggyBank className="h-4 w-4 text-emerald-600" /> Cumulative Savings Growth</CardTitle></CardHeader>
-            <CardContent>
-              <div className="h-44">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={projections.months12}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                    <XAxis dataKey="month" tick={{ fontSize: 10, fill: "#94a3b8" }} />
-                    <YAxis tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${(v / 1000).toFixed(0)}k`} />
-                    <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                    <Area type="monotone" dataKey="cumSavings" stroke="#22c55e" fill="#22c55e" fillOpacity={0.15} strokeWidth={2} name="Cumulative Savings" />
-                    <Area type="monotone" dataKey="savings" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.1} strokeWidth={1.5} name="Monthly Savings" />
-                  </AreaChart>
-                </ResponsiveContainer>
-              </div>
-            </CardContent>
-          </Card>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-[#0081C9]/10">
-              <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><DollarSign className="h-4 w-4 text-[#0081C9]" /> Revenue Breakdown</CardTitle></CardHeader>
-              <CardContent>
-                <div className="h-44">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={revenueBreakdown} layout="vertical">
-                      <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                      <XAxis type="number" tick={{ fontSize: 10, fill: "#94a3b8" }} tickFormatter={v => `$${(v / 1000).toFixed(1)}k`} />
-                      <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: "#94a3b8" }} width={55} />
-                      <Tooltip formatter={(value: number) => [`$${value.toLocaleString()}`, ""]} contentStyle={{ fontSize: 11, borderRadius: 8, border: "1px solid #e2e8f0" }} />
-                      <Bar dataKey="value" radius={[0, 4, 4, 0]}>
-                        {revenueBreakdown.map((entry, i) => (
-                          <Cell key={i} fill={entry.color} />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="border-[#C1121F]/10">
-              <CardHeader className="pb-2"><CardTitle className="text-sm flex items-center gap-2"><Sliders className="h-4 w-4 text-[#C1121F]" /> Scenario Summary</CardTitle></CardHeader>
-              <CardContent className="space-y-2">
-                {[
-                  { label: "Annual Revenue", value: `$${projections.annualRevenue.toLocaleString()}`, color: "text-[#0081C9]" },
-                  { label: "Annual Profit", value: `$${projections.annualProfit.toLocaleString()}`, color: projections.annualProfit >= 0 ? "text-emerald-600" : "text-red-600" },
-                  { label: "12-Month Savings", value: `$${projections.annualSavings.toLocaleString()}`, color: "text-amber-600" },
-                  { label: "Year-End Monthly Rev", value: `$${projections.yearEndRevenue.toLocaleString()}`, color: "text-violet-600" },
-                  { label: "Reinvestment/mo", value: `$${projections.reinvestment.toLocaleString()}`, color: "text-slate-700" },
-                ].map((row) => (
-                  <div key={row.label} className="flex items-center justify-between pb-2 border-b border-slate-100 last:border-0 last:pb-0">
-                    <span className="text-xs text-slate-600">{row.label}</span>
-                    <span className={`text-xs font-bold ${row.color}`}>{row.value}</span>
-                  </div>
-                ))}
-                <div className="mt-3 p-3 rounded-lg bg-gradient-to-r from-[#0081C9]/5 to-[#C1121F]/5 border border-[#0081C9]/10">
-                  <div className="flex items-start gap-2">
-                    {projections.profitMargin >= 20 ? <CheckCircle className="h-4 w-4 text-emerald-600 flex-shrink-0 mt-0.5" /> : projections.profitMargin >= 0 ? <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5" /> : <AlertTriangle className="h-4 w-4 text-red-600 flex-shrink-0 mt-0.5" />}
-                    <p className="text-[10px] text-slate-600 leading-relaxed">
-                      {projections.profitMargin >= 20 ? "Strong financial position. This scenario generates healthy margins with good savings potential. Consider reinvesting in growth." : projections.profitMargin >= 0 ? "Tight margins. Revenue covers costs but leaves limited room for savings. Consider reducing spend or increasing prices." : "This scenario operates at a loss. Reduce costs or increase revenue streams to reach profitability."}
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
 
 export default function ScenarioPlannerSection() {
-  const [mode, setMode] = useState<PlannerMode>("personal");
+  const [scenarios, setScenarios] = useState<Scenario[]>([
+    { id: "1", name: "Conservative", ...DEFAULT_SCENARIO, monthlySavings: 300, investmentReturn: 5, travelBudgetMonthly: 100, color: SCENARIO_COLORS[0].hex },
+    { id: "2", name: "Moderate", ...DEFAULT_SCENARIO, color: SCENARIO_COLORS[1].hex },
+  ]);
+  const [activeScenarioId, setActiveScenarioId] = useState("1");
+  const [expandedInsights, setExpandedInsights] = useState(true);
+
+  const activeScenario = scenarios.find(s => s.id === activeScenarioId) || scenarios[0];
+
+  const updateScenario = useCallback((field: keyof Scenario, value: number | string) => {
+    setScenarios(prev => prev.map(s => s.id === activeScenarioId ? { ...s, [field]: value } : s));
+  }, [activeScenarioId]);
+
+  const addScenario = () => {
+    if (scenarios.length >= 4) return;
+    const colorIdx = scenarios.length;
+    const newId = String(Date.now());
+    setScenarios(prev => [...prev, {
+      id: newId, name: SCENARIO_COLORS[colorIdx]?.name || `Scenario ${colorIdx + 1}`,
+      ...DEFAULT_SCENARIO, color: SCENARIO_COLORS[colorIdx]?.hex || "#64748b",
+    }]);
+    setActiveScenarioId(newId);
+  };
+
+  const removeScenario = (id: string) => {
+    if (scenarios.length <= 1) return;
+    setScenarios(prev => {
+      const remaining = prev.filter(s => s.id !== id);
+      if (activeScenarioId === id) setActiveScenarioId(remaining[0].id);
+      return remaining;
+    });
+  };
+
+  const applyPreset = (preset: typeof PRESETS[0]) => {
+    setScenarios(prev => prev.map(s => s.id === activeScenarioId ? {
+      ...s, monthlySavings: preset.savings, monthlySpending: preset.spending,
+      travelBudgetMonthly: preset.travel, oneTimeInvestment: preset.investment,
+      investmentReturn: preset.returns,
+    } : s));
+  };
+
+  const projections = useMemo(() => {
+    return scenarios.map(s => ({ scenario: s, projection: computeProjection(s) }));
+  }, [scenarios]);
+
+  const activeProjection = projections.find(p => p.scenario.id === activeScenarioId)?.projection || projections[0].projection;
+  const maxChartVal = Math.max(...projections.flatMap(p => p.projection.yearlyData.map(d => d.saved)), 1);
+
+  const bestScenario = projections.reduce((best, curr) => curr.projection.finalAmount > best.projection.finalAmount ? curr : best);
+  const worstScenario = projections.reduce((worst, curr) => curr.projection.finalAmount < worst.projection.finalAmount ? curr : worst);
+
+  const generateInsights = () => {
+    const insights: { icon: React.ElementType; text: string; type: "tip" | "warning" | "success" }[] = [];
+    const savingsRate = (activeScenario.monthlySavings / activeScenario.monthlyIncome) * 100;
+
+    if (savingsRate < 15) {
+      insights.push({ icon: AlertTriangle, text: `Your savings rate is ${savingsRate.toFixed(0)}%. Financial experts recommend saving at least 20% of income.`, type: "warning" });
+    } else if (savingsRate >= 30) {
+      insights.push({ icon: CheckCircle, text: `Excellent! Your ${savingsRate.toFixed(0)}% savings rate puts you ahead of most people.`, type: "success" });
+    }
+
+    if (activeScenario.travelBudgetMonthly > activeScenario.monthlySavings) {
+      insights.push({ icon: AlertTriangle, text: "You're spending more on travel than you save. Consider balancing experiences with long-term goals.", type: "warning" });
+    }
+
+    if (activeProjection.monthlyPassiveIncome > 500) {
+      insights.push({ icon: Sparkles, text: `In ${activeScenario.timeHorizon} years, your investments could generate $${activeProjection.monthlyPassiveIncome.toLocaleString()}/month in passive income.`, type: "success" });
+    }
+
+    const tripsToCambodia = Math.floor(activeProjection.totalTravelSpent / 1500);
+    if (tripsToCambodia > 0) {
+      insights.push({ icon: Lightbulb, text: `Your travel budget over ${activeScenario.timeHorizon} years ($${activeProjection.totalTravelSpent.toLocaleString()}) could fund ~${tripsToCambodia} trips to Cambodia!`, type: "tip" });
+    }
+
+    if (activeProjection.investmentGains > activeProjection.totalContributed * 0.5) {
+      insights.push({ icon: TrendingUp, text: `Compound interest is working hard — your investment gains ($${activeProjection.investmentGains.toLocaleString()}) are significant relative to what you put in.`, type: "success" });
+    }
+
+    if (activeScenario.monthlyIncome - activeScenario.monthlySpending - activeScenario.monthlySavings - activeScenario.travelBudgetMonthly < 0) {
+      insights.push({ icon: AlertTriangle, text: "Your expenses exceed your income! Reduce spending, savings, or travel budget to balance.", type: "warning" });
+    }
+
+    return insights;
+  };
+
+  const insights = generateInsights();
+  const surplus = activeScenario.monthlyIncome - activeScenario.monthlySpending - activeScenario.monthlySavings - activeScenario.travelBudgetMonthly;
 
   return (
-    <div className="space-y-5" data-testid="scenario-planner-section">
+    <div className="space-y-6" data-testid="scenario-planner-section">
       <div className="text-center max-w-2xl mx-auto">
-        <Badge className="mb-3 text-white bg-gradient-to-r from-[#0081C9] to-[#C1121F] border-0 px-4 py-1.5 text-xs font-semibold shadow-sm">
-          <Calculator className="h-3 w-3 mr-1.5" /> What If? Scenario Planner
+        <Badge className="mb-3 text-white bg-gradient-to-r from-[#0081C9] to-indigo-600 border-0 px-4 py-1.5 text-xs font-semibold shadow-sm">
+          <Calculator className="h-3 w-3 mr-1.5" /> Financial Scenario Planner
         </Badge>
-        <h2 className="text-xl font-bold text-slate-900 mb-1" data-testid="text-scenario-title">Financial Scenario Planner</h2>
-        <p className="text-sm text-slate-500">Project financial outcomes based on different savings, spending, and growth strategies</p>
+        <h2 className="text-xl font-bold text-slate-900 mb-1" data-testid="text-scenario-title">
+          "What If?" Financial Planner
+        </h2>
+        <p className="text-sm text-slate-500">
+          Project your financial future based on different savings, spending, and travel habits. Compare up to 4 scenarios side by side.
+        </p>
       </div>
 
-      <div className="flex items-center justify-center gap-2">
-        <button
-          onClick={() => setMode("personal")}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all border ${mode === "personal" ? "bg-[#0081C9] text-white border-[#0081C9] shadow-md" : "bg-white text-slate-600 border-slate-200 hover:border-[#0081C9]/30"}`}
-          data-testid="btn-mode-personal"
-        >
-          <Wallet className="h-4 w-4" /> Personal Finance
-        </button>
-        <button
-          onClick={() => setMode("business")}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all border ${mode === "business" ? "bg-[#0081C9] text-white border-[#0081C9] shadow-md" : "bg-white text-slate-600 border-slate-200 hover:border-[#0081C9]/30"}`}
-          data-testid="btn-mode-business"
-        >
-          <Briefcase className="h-4 w-4" /> Business Revenue
-        </button>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="bg-gradient-to-br from-[#0081C9]/10 to-[#0081C9]/5 border border-[#0081C9]/15 rounded-xl p-3 text-center">
+          <Target className="h-4 w-4 text-[#0081C9] mx-auto mb-1" />
+          <div className="text-lg font-bold text-slate-900" data-testid="text-projected-savings">${activeProjection.finalAmount.toLocaleString()}</div>
+          <div className="text-[9px] text-slate-500">Projected Savings</div>
+        </div>
+        <div className="bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 border border-emerald-500/15 rounded-xl p-3 text-center">
+          <TrendingUp className="h-4 w-4 text-emerald-500 mx-auto mb-1" />
+          <div className="text-lg font-bold text-slate-900" data-testid="text-investment-gains">${activeProjection.investmentGains.toLocaleString()}</div>
+          <div className="text-[9px] text-slate-500">Investment Gains</div>
+        </div>
+        <div className="bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/15 rounded-xl p-3 text-center">
+          <Wallet className="h-4 w-4 text-amber-500 mx-auto mb-1" />
+          <div className="text-lg font-bold text-slate-900" data-testid="text-passive-income">${activeProjection.monthlyPassiveIncome.toLocaleString()}</div>
+          <div className="text-[9px] text-slate-500">Monthly Passive Income</div>
+        </div>
+        <div className="bg-gradient-to-br from-purple-500/10 to-purple-500/5 border border-purple-500/15 rounded-xl p-3 text-center">
+          <Globe className="h-4 w-4 text-purple-500 mx-auto mb-1" />
+          <div className="text-lg font-bold text-slate-900" data-testid="text-travel-budget">${activeProjection.totalTravelSpent.toLocaleString()}</div>
+          <div className="text-[9px] text-slate-500">Total Travel Budget</div>
+        </div>
       </div>
 
-      {mode === "personal" ? <PersonalFinancePlanner /> : <BusinessFinancePlanner />}
+      <div className="flex items-center gap-2 flex-wrap">
+        {scenarios.map((s) => (
+          <button key={s.id} onClick={() => setActiveScenarioId(s.id)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all border ${
+              s.id === activeScenarioId
+                ? "bg-white shadow-md border-[#0081C9] text-[#0081C9]"
+                : "bg-white text-slate-600 border-slate-200 hover:border-slate-300"
+            }`}
+            data-testid={`btn-scenario-${s.id}`}>
+            <div className="h-3 w-3 rounded-full" style={{ backgroundColor: s.color }} />
+            {s.name}
+            {scenarios.length > 1 && (
+              <span onClick={e => { e.stopPropagation(); removeScenario(s.id); }} className="text-slate-300 hover:text-rose-500 ml-1">
+                <X className="h-3 w-3" />
+              </span>
+            )}
+          </button>
+        ))}
+        {scenarios.length < 4 && (
+          <button onClick={addScenario}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium border border-dashed border-slate-300 text-slate-500 hover:border-[#0081C9] hover:text-[#0081C9] transition-all"
+            data-testid="btn-add-scenario">
+            <Plus className="h-3 w-3" /> Add Scenario
+          </button>
+        )}
+      </div>
+
+      <div>
+        <h3 className="text-xs font-bold text-slate-700 mb-2 flex items-center gap-1.5">
+          <Zap className="h-3.5 w-3.5 text-amber-500" /> Quick Presets
+        </h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+          {PRESETS.map(p => (
+            <button key={p.label} onClick={() => applyPreset(p)}
+              className="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-[#0081C9] hover:bg-blue-50/50 transition-all text-left"
+              data-testid={`btn-preset-${p.label.toLowerCase().replace(/\s/g, "-")}`}>
+              <span className="text-xl">{p.icon}</span>
+              <div>
+                <div className="text-[10px] font-bold text-slate-700">{p.label}</div>
+                <div className="text-[8px] text-slate-400">Save ${p.savings}/mo</div>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="border-[#0081C9]/20">
+          <CardContent className="pt-5 space-y-4">
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                <Calculator className="h-4 w-4 text-[#0081C9]" /> Adjust Parameters
+              </h3>
+              <div className="flex items-center gap-1">
+                <div className="h-3 w-3 rounded-full" style={{ backgroundColor: activeScenario.color }} />
+                <input
+                  type="text" value={activeScenario.name}
+                  onChange={e => updateScenario("name", e.target.value)}
+                  className="text-xs font-medium text-slate-600 bg-transparent outline-none border-b border-transparent hover:border-slate-300 focus:border-[#0081C9] w-24 text-right"
+                  data-testid="input-scenario-name"
+                />
+              </div>
+            </div>
+
+            <SliderInput label="Monthly Income" icon={DollarSign} value={activeScenario.monthlyIncome} onChange={v => updateScenario("monthlyIncome", v)} min={500} max={20000} step={100} prefix="$" color="text-emerald-500" />
+            <SliderInput label="Monthly Savings" icon={PiggyBank} value={activeScenario.monthlySavings} onChange={v => updateScenario("monthlySavings", v)} min={0} max={10000} step={50} prefix="$" color="text-blue-500" />
+            <SliderInput label="Monthly Spending" icon={Wallet} value={activeScenario.monthlySpending} onChange={v => updateScenario("monthlySpending", v)} min={200} max={15000} step={100} prefix="$" color="text-rose-500" />
+            <SliderInput label="Travel Budget" icon={Globe} value={activeScenario.travelBudgetMonthly} onChange={v => updateScenario("travelBudgetMonthly", v)} min={0} max={3000} step={25} prefix="$" suffix="/mo" color="text-purple-500" />
+
+            <div className="pt-2 border-t border-slate-100">
+              <SliderInput label="Initial Investment" icon={Target} value={activeScenario.oneTimeInvestment} onChange={v => updateScenario("oneTimeInvestment", v)} min={0} max={100000} step={500} prefix="$" color="text-indigo-500" />
+            </div>
+            <SliderInput label="Expected Returns" icon={Percent} value={activeScenario.investmentReturn} onChange={v => updateScenario("investmentReturn", v)} min={1} max={20} step={0.5} suffix="%" color="text-amber-500" />
+            <SliderInput label="Inflation Rate" icon={TrendingDown} value={activeScenario.inflationRate} onChange={v => updateScenario("inflationRate", v)} min={0} max={10} step={0.5} suffix="%" color="text-rose-400" />
+            <SliderInput label="Time Horizon" icon={Calendar} value={activeScenario.timeHorizon} onChange={v => updateScenario("timeHorizon", v)} min={1} max={40} step={1} suffix=" yrs" color="text-slate-500" />
+
+            <div className={`rounded-xl p-3 text-center ${surplus >= 0 ? "bg-emerald-50 border border-emerald-100" : "bg-rose-50 border border-rose-100"}`}>
+              <div className="text-[10px] text-slate-500 mb-0.5">Monthly Balance</div>
+              <div className={`text-lg font-bold ${surplus >= 0 ? "text-emerald-600" : "text-rose-600"}`} data-testid="text-monthly-balance">
+                {surplus >= 0 ? "+" : ""}${surplus.toLocaleString()}
+              </div>
+              <div className="text-[9px] text-slate-400">Income - Spending - Savings - Travel</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="space-y-4">
+          <Card>
+            <CardContent className="pt-5">
+              <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-1.5">
+                <BarChart3 className="h-4 w-4 text-[#0081C9]" /> Growth Projection
+              </h3>
+              <div className="space-y-4">
+                {projections.map(({ scenario, projection }) => (
+                  <div key={scenario.id}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-medium text-slate-600 flex items-center gap-1.5">
+                        <div className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: scenario.color }} />
+                        {scenario.name}
+                      </span>
+                      <span className="text-xs font-bold text-slate-900">${projection.finalAmount.toLocaleString()}</span>
+                    </div>
+                    <MiniBarChart data={projection.yearlyData} maxVal={maxChartVal} hexColor={scenario.color} />
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="pt-5">
+              <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-1.5">
+                <Target className="h-4 w-4 text-[#0081C9]" /> Scenario Comparison
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="border-b border-slate-100">
+                      <th className="text-left py-2 text-slate-500 font-medium">Metric</th>
+                      {projections.map(({ scenario }) => (
+                        <th key={scenario.id} className="text-right py-2 font-medium" style={{ color: scenario.color }}>{scenario.name}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-50">
+                    {[
+                      { label: "Final Savings", key: "finalAmount" },
+                      { label: "Total Contributed", key: "totalContributed" },
+                      { label: "Investment Gains", key: "investmentGains" },
+                      { label: "Travel Spent", key: "totalTravelSpent" },
+                      { label: "Passive Income/mo", key: "monthlyPassiveIncome" },
+                    ].map(row => (
+                      <tr key={row.key}>
+                        <td className="py-2 text-slate-600">{row.label}</td>
+                        {projections.map(({ scenario, projection }) => (
+                          <td key={scenario.id} className="text-right py-2 font-bold text-slate-900">
+                            ${(projection[row.key as keyof typeof projection] as number).toLocaleString()}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {projections.length > 1 && (
+                <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px]">
+                  <span className="text-emerald-600 flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" /> Best: {bestScenario.scenario.name} (+${bestScenario.projection.finalAmount.toLocaleString()})
+                  </span>
+                  <span className="text-slate-400">
+                    Difference: ${(bestScenario.projection.finalAmount - worstScenario.projection.finalAmount).toLocaleString()}
+                  </span>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card className={insights.some(i => i.type === "warning") ? "border-amber-200" : "border-emerald-200"}>
+            <CardContent className="pt-5">
+              <button onClick={() => setExpandedInsights(!expandedInsights)} className="flex items-center justify-between w-full" data-testid="btn-toggle-insights">
+                <h3 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                  <Lightbulb className="h-4 w-4 text-amber-500" /> AI Insights & Tips
+                  <Badge className="bg-[#0081C9]/10 text-[#0081C9] border-0 text-[9px]">{insights.length}</Badge>
+                </h3>
+                {expandedInsights ? <ChevronUp className="h-4 w-4 text-slate-400" /> : <ChevronDown className="h-4 w-4 text-slate-400" />}
+              </button>
+              {expandedInsights && (
+                <div className="mt-3 space-y-2">
+                  {insights.map((insight, i) => (
+                    <div key={i} className={`flex items-start gap-2.5 p-2.5 rounded-lg ${
+                      insight.type === "warning" ? "bg-amber-50" : insight.type === "success" ? "bg-emerald-50" : "bg-blue-50"
+                    }`}>
+                      <insight.icon className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
+                        insight.type === "warning" ? "text-amber-500" : insight.type === "success" ? "text-emerald-500" : "text-blue-500"
+                      }`} />
+                      <span className="text-xs text-slate-700 leading-relaxed">{insight.text}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      <Card className="border-[#0081C9]/20 bg-gradient-to-r from-[#0081C9]/5 to-indigo-500/5">
+        <CardContent className="py-5">
+          <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-1.5">
+            <Clock className="h-4 w-4 text-[#0081C9]" /> Year-by-Year Breakdown — {activeScenario.name}
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-slate-200">
+                  <th className="text-left py-2 text-slate-500 font-medium">Year</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">Net Worth</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">Contributed</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">Gains</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">Travel Spent</th>
+                  <th className="text-right py-2 text-slate-500 font-medium">Growth</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-50">
+                {activeProjection.yearlyData.map((d, i) => {
+                  const gains = d.saved - d.contributed;
+                  const prevSaved = i > 0 ? activeProjection.yearlyData[i - 1].saved : activeScenario.oneTimeInvestment;
+                  const growth = prevSaved > 0 ? ((d.saved - prevSaved) / prevSaved * 100) : 0;
+                  return (
+                    <tr key={d.year} className="hover:bg-white/50">
+                      <td className="py-2 text-slate-700 font-medium">Year {d.year}</td>
+                      <td className="text-right py-2 font-bold text-slate-900">${d.saved.toLocaleString()}</td>
+                      <td className="text-right py-2 text-slate-600">${d.contributed.toLocaleString()}</td>
+                      <td className={`text-right py-2 font-medium ${gains >= 0 ? "text-emerald-600" : "text-rose-600"}`}>
+                        {gains >= 0 ? "+" : ""}${gains.toLocaleString()}
+                      </td>
+                      <td className="text-right py-2 text-purple-600">${d.travelSpent.toLocaleString()}</td>
+                      <td className="text-right py-2">
+                        <Badge className={`text-[8px] border-0 ${growth >= 0 ? "bg-emerald-50 text-emerald-600" : "bg-rose-50 text-rose-600"}`}>
+                          {growth >= 0 ? "+" : ""}{growth.toFixed(1)}%
+                        </Badge>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="border-[#C1121F]/10 bg-gradient-to-r from-[#C1121F]/5 to-rose-500/5">
+        <CardContent className="py-5">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex-1">
+              <h3 className="text-base font-bold text-slate-900 mb-1">Ready to turn plans into reality?</h3>
+              <p className="text-sm text-slate-500">Browse Cambodia tours and experiences that fit your travel budget. Start saving and exploring today.</p>
+            </div>
+            <Button className="bg-[#C1121F] hover:bg-[#a30f1a] text-white font-semibold rounded-xl h-11 px-6 whitespace-nowrap" data-testid="btn-explore-tours">
+              Explore Tours <ArrowRight className="h-4 w-4 ml-1.5" />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
