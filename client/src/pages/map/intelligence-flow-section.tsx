@@ -15,10 +15,12 @@ import {
 } from "lucide-react";
 import AutobotSection from "./autobot-section";
 import FinanceSection from "./finance-section";
+import DashboardSection from "./dashboard-section";
 
-type IntelTab = "map" | "graph" | "autobot" | "finance";
+type IntelTab = "dashboard" | "map" | "graph" | "autobot" | "finance";
 
 const INTEL_TABS: { key: IntelTab; label: string; icon: React.ElementType; color: string }[] = [
+  { key: "dashboard", label: "Dashboard", icon: Globe, color: "text-emerald-600" },
   { key: "map", label: "Tourism Map", icon: MapIcon, color: "text-blue-600" },
   { key: "graph", label: "Graph Explorer", icon: GitBranch, color: "text-violet-600" },
   { key: "autobot", label: "AutoBot & RDTB", icon: Bot, color: "text-indigo-600" },
@@ -119,7 +121,7 @@ function buildReactFlowEdges(nodes: MapNode[]): Edge[] {
 }
 
 export default function IntelligenceFlowSection() {
-  const [activeTab, setActiveTab] = useState<IntelTab>("map");
+  const [activeTab, setActiveTab] = useState<IntelTab>("dashboard");
   const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set(NODE_TYPES.map(n => n.type)));
   const [selectedNode, setSelectedNode] = useState<MapNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
@@ -165,6 +167,7 @@ export default function IntelligenceFlowSection() {
   const nodeConfig = selectedNode ? getNodeConfig(selectedNode.type) : null;
 
   const isVisual = activeTab === "map" || activeTab === "graph";
+  const isScrollable = activeTab === "dashboard" || activeTab === "autobot" || activeTab === "finance";
 
   return (
     <div className="flex flex-col h-full">
@@ -217,7 +220,7 @@ export default function IntelligenceFlowSection() {
         </div>
       )}
 
-      <div className={`flex-1 relative ${isVisual ? "min-h-[500px] rounded-xl overflow-hidden border border-slate-200" : ""}`}>
+      <div className={`flex-1 relative ${isVisual ? "min-h-[500px] rounded-xl overflow-hidden border border-slate-200" : "overflow-y-auto"}`}>
         {activeTab === "map" && (
           <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 relative">
             <div className="absolute top-3 left-3 z-10">
@@ -365,6 +368,7 @@ export default function IntelligenceFlowSection() {
           </div>
         )}
 
+        {activeTab === "dashboard" && <DashboardSection />}
         {activeTab === "autobot" && <AutobotSection />}
         {activeTab === "finance" && <FinanceSection />}
       </div>

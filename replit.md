@@ -18,7 +18,8 @@ client/src/           - React frontend
   pages/
     map/              - **UNIFIED KNOWLEDGE HUB** (All-in-One page)
       index.tsx       - Main KnowledgeGraphMap: 5-tab sidebar across 5 groups
-      intelligence-flow-section.tsx - Intelligence flow (Map, Graph, AutoBot, Forecasting)
+      intelligence-flow-section.tsx - Intelligence flow (Dashboard, Map, Graph, AutoBot, Forecasting)
+      dashboard-section.tsx          - Guiding Intelligence Dashboard with analytics & charts
       tourism-flow-section.tsx      - Tourism flow (Travel OS, Hotels, Dining, Conferences)
       creator-flow-section.tsx      - Creator flow (Content Generator, Cultural Cinema)
       community-flow-section.tsx    - Community flow (Trust Network & API, GuideFund, OGA)
@@ -40,7 +41,7 @@ db/
 
 ## Unified Knowledge Hub (5 Sidebar Tabs, 5 Groups)
 The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
-- **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine (pill sub-tabs)
+- **Intelligence**: Dashboard, Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine (pill sub-tabs)
 - **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences (pill sub-tabs)
 - **Creator**: Content Generator, Cultural Cinema (pill sub-tabs)
 - **Community**: Trust Network & API, GuideFund, OGA (pill sub-tabs)
