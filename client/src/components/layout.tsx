@@ -65,15 +65,6 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dashboard/investor">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Stewardship Intelligence</div>
-                    <div className="text-xs text-muted-foreground">Transparency & impact reports</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
               <DropdownMenuSeparator className="my-2" />
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Resources</DropdownMenuLabel>
               <Link href="/product">
