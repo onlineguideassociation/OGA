@@ -22,28 +22,29 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Solutions",
     items: [
-      { href: "/map", label: "Knowledge Hub", description: "AI-powered travel intelligence" },
-      { href: "/tours-map", label: "Tour Discovery", description: "Find and book verified tours" },
-      { href: "/map", label: "AI Travel Planner", description: "Smart itinerary generation" },
-      { href: "/map", label: "Creator Studio", description: "Content creation tools" },
-      { href: "/map", label: "Business Intelligence", description: "Analytics & forecasting" },
+      { href: "/map", label: "Affiliate Network", description: "Connect brands with global publishers" },
+      { href: "/map", label: "Travel Booking Distribution", description: "Distribute tours, hotels & experiences" },
+      { href: "/map", label: "Creator Monetization", description: "Earn commissions as a digital creator" },
+      { href: "/map", label: "AI Travel Planner", description: "Smart itinerary & discovery tools" },
+      { href: "/map", label: "Business Intelligence", description: "Analytics, forecasting & RDTB" },
     ],
   },
   { label: "Pricing", href: "/pricing" },
   {
     label: "Resources",
     items: [
+      { href: "/tours-map", label: "Tour Discovery", description: "Find and book verified tours" },
       { href: "/map", label: "Travel Guides", description: "Destination insights & tips" },
-      { href: "/map", label: "Community", description: "Connect with travelers" },
-      { href: "/map", label: "API Documentation", description: "Developer resources" },
+      { href: "/map", label: "Community", description: "Connect with travelers & creators" },
+      { href: "/map", label: "API Documentation", description: "Developer & integration resources" },
       { href: "/map", label: "Blog & News", description: "Latest travel tech updates" },
     ],
   },
   {
     label: "About us",
     items: [
-      { href: "/map", label: "Our Story", description: "Connecting cultures with truth" },
-      { href: "/map", label: "Trust & Safety", description: "Verified reviews & partners" },
+      { href: "/map", label: "Our Story", description: "Connecting cultures with loyalty and truth" },
+      { href: "/map", label: "Trust & Safety", description: "Verified reviews & 30K+ partner brands" },
       { href: "/map", label: "Careers", description: "Join our global team" },
       { href: "/map", label: "Press", description: "Media & press resources" },
     ],
@@ -93,7 +94,7 @@ export function Navbar() {
         <div className="bg-[#0f172a] text-white" data-testid="announcement-bar">
           <div className="container mx-auto px-4 h-10 flex items-center justify-between">
             <p className="text-xs text-slate-300">
-              Choose another country or region to see content specific to your location
+              Connect with 30K+ trusted brands and 1M+ approved partners who support your marketing goals and deliver results.
             </p>
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 text-xs text-white font-medium">
@@ -283,7 +284,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h3 className="text-xl font-bold text-white mb-2">Join the Global Travel Community</h3>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xl">
-              OnlineGuide.io helps travelers explore tours, culture, hotels, and experiences worldwide. Plan smarter trips, discover authentic places, and share reviews with the global travel community.
+              OnlineGuide.io is a global affiliate marketing and travel commerce network connecting brands, tourism businesses, and digital creators with publishers who earn commissions for every successful booking or sale.
             </p>
           </div>
           <div>

@@ -56,12 +56,12 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSe
           </div>
 
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight" data-testid="hero-headline">
-            Find Tours, Hotels &{" "}
-            <span className="bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent">Experiences</span>
+            Your growth,{" "}
+            <span className="bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent italic">your way.</span>
           </h1>
 
           <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto mb-6 leading-relaxed" data-testid="hero-subheadline">
-            Explore Angkor Wat, Siem Reap and Cambodia with AI-powered recommendations
+            Connect with 30K+ trusted brands and 1M+ approved partners who support your marketing goals and deliver results.
           </p>
 
           <div className="max-w-3xl mx-auto mb-6">
