@@ -16,19 +16,25 @@ import CrmMarketingSection from "./crm-marketing-section";
 import ServicesMarketplaceSection from "./services-marketplace-section";
 import LocalMarketplaceSection from "./local-marketplace-section";
 import ScenarioPlannerSection from "./scenario-planner-section";
+import TravelBookingSection from "./travel-booking-section";
+import AIPowerhouseSection from "./ai-powerhouse-section";
+import WhatsAppGuideSection from "./whatsapp-guide-section";
 import LocationBar from "@/components/location-bar";
 import HeroSection from "./hero-section";
 import { CategoryFilterBar, SalesPanel } from "./sales-panel";
 
-type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm" | "services" | "local" | "scenarios";
+type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm" | "services" | "local" | "scenarios" | "travelbooking" | "aitools" | "guidescrm";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
   { key: "tours", label: "Tours & Experiences", icon: Compass, group: "Tourism" },
   { key: "booking", label: "Book & Reserve", icon: ShoppingBag, group: "Tourism" },
+  { key: "travelbooking", label: "Travel Booking", icon: Plane, group: "Tourism" },
   { key: "local", label: "Local Marketplace", icon: Store, group: "Community" },
   { key: "services", label: "Services Marketplace", icon: Briefcase, group: "Creator" },
+  { key: "aitools", label: "AI Powerhouse", icon: Brain, group: "Creator" },
+  { key: "guidescrm", label: "Guide & Driver CRM", icon: Users, group: "Management" },
   { key: "scenarios", label: "What If? Planner", icon: Brain, group: "Management" },
   { key: "crm", label: "CRM & Marketing", icon: Briefcase, group: "Management" },
   { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
@@ -131,6 +137,9 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "services" && <ServicesMarketplaceSection />}
                   {viewMode === "local" && <LocalMarketplaceSection />}
                   {viewMode === "scenarios" && <ScenarioPlannerSection />}
+                  {viewMode === "travelbooking" && <TravelBookingSection />}
+                  {viewMode === "aitools" && <AIPowerhouseSection />}
+                  {viewMode === "guidescrm" && <WhatsAppGuideSection />}
                   {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
                   {viewMode === "management" && <ManagementFlowSection />}

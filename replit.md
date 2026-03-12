@@ -43,14 +43,13 @@ db/
   seed.ts             - Database seed script (all entities including 12 tours, 10 reviews)
 ```
 
-## Unified Knowledge Hub (6 Sidebar Tabs)
+## Unified Knowledge Hub (14 Sidebar Tabs across 5 Groups)
 The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
-- **Intelligence**: Dashboard, Tourism Map, Graph Explorer, Forecasting & RDTB
-- **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences
-- **Book & Reserve**: Split-view booking (45% cards / 55% map) with live API data
-- **Creator**: Content Generator, Cultural Cinema
-- **Community**: Trust Network & API, GuideFund, OGA, Global Vision, AI Guide Book, Digital Postcards
-- **Management**: ERP/CRM, Hospitality PMS, Community Hub, Freelance Network, Sustainability & ESG, WebOS IDE
+- **Intelligence**: Intelligence Dashboard
+- **Tourism**: Tourism Flow, Tours & Experiences, Book & Reserve, Travel Booking (Trip.com-style: Flights, Hotels, Trains, Cars, Attractions, Packages)
+- **Creator**: Services Marketplace (Fiverr-style), AI Powerhouse (Review Reply, Itinerary Generator, Marketing Copy, Social Media, Email, Analytics), Creator Studio
+- **Community**: Local Marketplace (C2C classifieds), Community & Network
+- **Management**: Guide & Driver CRM (WhatsApp-first: Dashboard, Bookings, Messages, Broadcast, Settings), What If? Planner (multi-scenario comparison), CRM & Marketing, Management
 
 ## Database Tables (13)
 - `users` - User accounts
