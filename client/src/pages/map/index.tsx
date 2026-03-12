@@ -2,24 +2,26 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe, Bot, Plane, Users, Palette, Brain
+  Globe, Bot, Plane, Users, Palette, Brain, Wrench
 } from "lucide-react";
 
 import IntelligenceFlowSection from "./intelligence-flow-section";
 import TourismFlowSection from "./tourism-flow-section";
 import CommunityFlowSection from "./community-flow-section";
 import CreatorFlowSection from "./creator-flow-section";
+import ManagementFlowSection from "./management-flow-section";
 
-type ViewMode = "intelligence" | "tourism" | "creator" | "community";
+type ViewMode = "intelligence" | "tourism" | "creator" | "community" | "management";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
   { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
   { key: "community", label: "Community & Network", icon: Users, group: "Community" },
+  { key: "management", label: "Management", icon: Wrench, group: "Management" },
 ];
 
-const GROUPS = ["Intelligence", "Tourism", "Creator", "Community"];
+const GROUPS = ["Intelligence", "Tourism", "Creator", "Community", "Management"];
 
 export default function KnowledgeGraphMap() {
   const [viewMode, setViewMode] = useState<ViewMode>("intelligence");
@@ -91,6 +93,7 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "tourism" && <TourismFlowSection />}
                   {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
+                  {viewMode === "management" && <ManagementFlowSection />}
                 </div>
               </div>
             )}

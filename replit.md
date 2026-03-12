@@ -17,11 +17,12 @@ OnlineGuide.io is a comprehensive AI-powered platform for Cambodia/Southeast Asi
 client/src/           - React frontend
   pages/
     map/              - **UNIFIED KNOWLEDGE HUB** (All-in-One page)
-      index.tsx       - Main KnowledgeGraphMap: 4-tab sidebar across 4 groups
+      index.tsx       - Main KnowledgeGraphMap: 5-tab sidebar across 5 groups
       intelligence-flow-section.tsx - Intelligence flow (Map, Graph, AutoBot, Forecasting)
       tourism-flow-section.tsx      - Tourism flow (Travel OS, Hotels, Dining, Conferences)
       creator-flow-section.tsx      - Creator flow (Content Generator, Cultural Cinema)
       community-flow-section.tsx    - Community flow (Trust Network & API, GuideFund, OGA)
+      management-flow-section.tsx   - Management flow (ERP, Hospitality, Community, Freelance, Sustainability, IDE)
     dashboard/        - Dashboard with analytics, AI tools
     ...               - Other standalone module pages
   components/         - Shared components (layout, ui)
@@ -37,12 +38,13 @@ db/
   seed.ts             - Database seed script
 ```
 
-## Unified Knowledge Hub (4 Sidebar Tabs, 4 Groups)
+## Unified Knowledge Hub (5 Sidebar Tabs, 5 Groups)
 The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
 - **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine (pill sub-tabs)
 - **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences (pill sub-tabs)
 - **Creator**: Content Generator, Cultural Cinema (pill sub-tabs)
 - **Community**: Trust Network & API, GuideFund, OGA (pill sub-tabs)
+- **Management**: ERP/CRM, Hospitality PMS, Community Hub, Freelance Network, Sustainability & ESG, WebOS IDE (pill sub-tabs)
 
 Routes `/hotels`, `/restaurants`, `/travel`, `/events`, `/cinema`, `/autobot`, `/rdtb`, `/media`, `/finance`, `/fundraising`, `/association` all redirect to KnowledgeGraphMap.
 
