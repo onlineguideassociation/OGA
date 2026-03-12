@@ -1,15 +1,15 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2, Bitcoin, Wifi, Users, Map } from "lucide-react";
+import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, TrendingUp, BookOpen, Building2, Map } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuLabel, 
-  DropdownMenuSeparator, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
@@ -19,7 +19,6 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/">
           <span className="flex items-center gap-2 font-bold text-xl tracking-tight hover:opacity-90 transition-opacity cursor-pointer">
             <img src="/logo.png" alt="OnlineGuide.io" className="h-8 w-auto" />
@@ -28,91 +27,41 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer outline-none">
-                Resources <ChevronDown className="h-4 w-4" />
+                Platform <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[300px] p-4">
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Foundation</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core</DropdownMenuLabel>
+              <Link href="/map">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Map className="h-5 w-5 text-[#0081C9] mt-0.5" />
+                  <div>
+                    <div className="font-bold">Knowledge Hub</div>
+                    <div className="text-xs text-muted-foreground">All-in-One: Map, Hotels, Travel, AI & more</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
               <Link href="/dashboard">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <LayoutDashboard className="h-5 w-5 text-slate-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Overview</div>
-                    <div className="text-xs text-muted-foreground">Main management console</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/map">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Map className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Knowledge Graph & Map</div>
-                    <div className="text-xs text-muted-foreground">Tourism map + entity graph explorer</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/dashboard/products">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <BookOpen className="h-5 w-5 text-amber-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Cultural Archive</div>
-                    <div className="text-xs text-muted-foreground">Digital heritage preservation</div>
+                    <div className="font-bold">Dashboard</div>
+                    <div className="text-xs text-muted-foreground">Analytics & management console</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Intelligence</DropdownMenuLabel>
-              <Link href="/dashboard/tools">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Bot className="h-5 w-5 text-purple-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">AI Guide Assistant</div>
-                    <div className="text-xs text-muted-foreground">Smart heritage education</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/rdtb">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Microscope className="h-5 w-5 text-indigo-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Research & Insights</div>
-                    <div className="text-xs text-muted-foreground">Cultural truth & sensing layer</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Network</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Network & Trust</DropdownMenuLabel>
               <Link href="/association">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Network className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Guide Association</div>
-                    <div className="text-xs text-muted-foreground">Official OGA Network</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/global/vision">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Globe className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Global Community</div>
-                    <div className="text-xs text-muted-foreground">World Loyalty Alliance</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Trust & Growth</DropdownMenuLabel>
-              <Link href="/dashboard/investor">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Stewardship Intelligence</div>
-                    <div className="text-xs text-muted-foreground">Transparency & Impact reports</div>
+                    <div className="font-bold">OGA Network</div>
+                    <div className="text-xs text-muted-foreground">Online Guide Association</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -121,12 +70,21 @@ export function Navbar() {
                   <Heart className="h-5 w-5 text-rose-600 mt-0.5" />
                   <div>
                     <div className="font-bold">GuideFund</div>
-                    <div className="text-xs text-muted-foreground">Supporting cultural truth</div>
+                    <div className="text-xs text-muted-foreground">Support cultural tourism</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/global/vision">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Globe className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Global Vision</div>
+                    <div className="text-xs text-muted-foreground">World Loyalty Alliance</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Core Modules</DropdownMenuLabel>
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Business</DropdownMenuLabel>
               <Link href="/marketplace">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <Zap className="h-5 w-5 text-amber-600 mt-0.5" />
@@ -136,102 +94,12 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/dropshipping">
+              <Link href="/dashboard/investor">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Zap className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Dropshipping</div>
-                    <div className="text-xs text-muted-foreground">E-commerce Automation</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/erp">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <BarChart className="h-5 w-5 text-teal-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">ERP Dashboard</div>
-                    <div className="text-xs text-muted-foreground">Unified management console</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/travel">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Travel OS</div>
-                    <div className="text-xs text-muted-foreground">AI itineraries & guides</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/map">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Knowledge Hub</div>
-                    <div className="text-xs text-muted-foreground">Maps, graph explorer, hotels & dining</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/finance">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <BarChart className="h-5 w-5 text-purple-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Finance AI</div>
-                    <div className="text-xs text-muted-foreground">Revenue & investment tracking</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/hospitality">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Building2 className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Hospitality Tech</div>
-                    <div className="text-xs text-muted-foreground">PMS & Channel Manager</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/media">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Code className="h-5 w-5 text-pink-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Media Ecosystem</div>
-                    <div className="text-xs text-muted-foreground">Photo/video monetization</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/crypto">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Bitcoin className="h-5 w-5 text-emerald-500 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Crypto & DeFi</div>
-                    <div className="text-xs text-muted-foreground">Portfolio & tokenomics</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/connectivity">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Wifi className="h-5 w-5 text-cyan-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Connectivity</div>
-                    <div className="text-xs text-muted-foreground">Network & Cyber Autobot</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/hr">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Users className="h-5 w-5 text-orange-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">HR & Networking</div>
-                    <div className="text-xs text-muted-foreground">Talent & skill analysis</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/autobot">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Bot className="h-5 w-5 text-indigo-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Autobot Workspace</div>
-                    <div className="text-xs text-muted-foreground">Multi-model AI console</div>
+                    <div className="font-bold">Stewardship Intelligence</div>
+                    <div className="text-xs text-muted-foreground">Transparency & impact reports</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -246,15 +114,6 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/pricing">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Pricing</div>
-                    <div className="text-xs text-muted-foreground">Plans & subscription options</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
               <Link href="/community">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <MessageSquare className="h-5 w-5 text-purple-600 mt-0.5" />
@@ -264,21 +123,12 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/events">
+              <Link href="/pricing">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <FileText className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Events</div>
-                    <div className="text-xs text-muted-foreground">Industry events & conferences</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/cinema">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Globe className="h-5 w-5 text-rose-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Cultural Cinema</div>
-                    <div className="text-xs text-muted-foreground">Heritage films & documentaries</div>
+                    <div className="font-bold">Pricing</div>
+                    <div className="text-xs text-muted-foreground">Plans & subscription options</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -286,20 +136,18 @@ export function Navbar() {
           </DropdownMenu>
         </nav>
 
-        {/* Actions */}
         <div className="flex items-center gap-4">
           <Link href="/login">
             <span className="hidden md:inline-block text-sm font-medium text-muted-foreground hover:text-primary cursor-pointer">
               Log in
             </span>
           </Link>
-          <Link href="/dashboard">
+          <Link href="/map">
             <Button variant="default" size="sm" className="hidden md:inline-flex">
               Get Started
             </Button>
           </Link>
 
-          {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -309,27 +157,26 @@ export function Navbar() {
             <SheetContent side="right">
               <div className="flex flex-col gap-6 mt-6">
                 <div className="space-y-4">
-                  <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Resources</h4>
+                  <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Platform</h4>
+                  <Link href="/map"><span className="block text-lg font-medium">Knowledge Hub</span></Link>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
-                  <Link href="/map"><span className="block text-lg font-medium">Tourism Map</span></Link>
-                  <Link href="/dashboard/tools"><span className="block text-lg font-medium">AI Tools</span></Link>
+                  <Link href="/association"><span className="block text-lg font-medium">OGA Network</span></Link>
                   <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
-                  <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>
-                  <Link href="/events"><span className="block text-lg font-medium">Events</span></Link>
-                  <Link href="/cinema"><span className="block text-lg font-medium">Cultural Cinema</span></Link>
                   <Link href="/global/vision"><span className="block text-lg font-medium">Global Vision</span></Link>
+                  <Link href="/marketplace"><span className="block text-lg font-medium">Marketplace</span></Link>
+                  <Link href="/community"><span className="block text-lg font-medium">Community</span></Link>
                 </div>
                 <Link href="/pricing">
                   <span className="text-lg font-medium cursor-pointer">Pricing</span>
                 </Link>
                 <Link href="/product">
-                  <span className="text-lg font-medium cursor-pointer">Resources</span>
+                  <span className="text-lg font-medium cursor-pointer">Documentation</span>
                 </Link>
                 <div className="mt-4 pt-4 border-t">
                   <Link href="/login">
                     <Button variant="outline" className="w-full mb-2">Log in</Button>
                   </Link>
-                  <Link href="/dashboard">
+                  <Link href="/map">
                     <Button className="w-full">Get Started</Button>
                   </Link>
                 </div>
@@ -354,41 +201,41 @@ export function Footer() {
               <span className="text-[#0081C9]">Guide.io</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Official platform of the <strong>Online Guide Association (OGA)</strong>. Empowering local guides in Siem Reap & Phnom Penh through digital infrastructure and community support.
+              Official platform of the <strong>Online Guide Association (OGA)</strong>. Connecting Cultures with Loyalty and Truth.
             </p>
           </div>
-          
+
           <div>
             <h4 className="font-semibold mb-4 text-slate-900">Platform</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/dashboard/tools" className="hover:text-primary transition-colors">AI Tools</Link></li>
-              <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
+              <li><Link href="/map" className="hover:text-primary transition-colors">Knowledge Hub</Link></li>
+              <li><Link href="/dashboard" className="hover:text-primary transition-colors">Dashboard</Link></li>
+              <li><Link href="/marketplace" className="hover:text-primary transition-colors">Marketplace</Link></li>
+              <li><Link href="/community" className="hover:text-primary transition-colors">Community</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold mb-4 text-slate-900">Network</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link href="/association" className="hover:text-primary transition-colors">OGA Network</Link></li>
-              <li><Link href="/events" className="hover:text-primary transition-colors">Industry Events</Link></li>
-              <li><Link href="/cinema" className="hover:text-primary transition-colors">Cultural Cinema</Link></li>
+              <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
               <li><Link href="/global/vision" className="hover:text-primary transition-colors">Global Vision</Link></li>
+              <li><Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="font-semibold mb-4 text-slate-900">Resources</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
+              <li><Link href="/product" className="hover:text-primary transition-colors">Documentation</Link></li>
               <li><a href="#" className="hover:text-primary transition-colors">API Reference</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Community</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold mb-4 text-slate-900">Legal</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
               <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
             </ul>
           </div>
         </div>
-        
+
         <div className="border-t border-slate-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>&copy; 2025 OnlineGuide.io. All rights reserved.</p>
           <div className="flex gap-6">

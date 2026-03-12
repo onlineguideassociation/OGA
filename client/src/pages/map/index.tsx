@@ -10,10 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   MapPin, Plane, Hotel, Utensils, ShoppingBag, Landmark, Building,
-  Filter, Layers, Zap, Star, Navigation, Globe, ChevronRight, X,
+  Zap, Star, Navigation, Globe, ChevronRight, X,
   Wifi, Bot, DollarSign, Map as MapIcon, Shield,
   GitBranch, Search, Calendar, Users, Loader2, Gift, Building2,
-  Film, Image as ImageIcon, Heart, Radio, CalendarDays, Sparkles
+  Film, Image as ImageIcon, Heart, CalendarDays
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
