@@ -9,12 +9,23 @@ OnlineGuide.io is a comprehensive AI-powered platform for Cambodia/Southeast Asi
 - **Database**: PostgreSQL with Drizzle ORM
 - **Routing**: Wouter (frontend), Express (backend)
 - **State Management**: TanStack Query (React Query)
+- **Charts**: Recharts (BarChart, PieChart)
 - **Branding**: OnlineGuide.io with colors #C1121F (red) and #0081C9 (blue)
 
 ## Architecture
 ```
 client/src/           - React frontend
   pages/              - All module pages (35+ routes)
+    map/              - Knowledge Graph Map (interactive SVG Cambodia map)
+    dashboard/        - Dashboard with analytics, graph explorer, AI tools
+    marketplace/      - E-commerce module
+    hotels/           - Hotel search & booking
+    restaurants/      - Restaurant booking
+    travel/           - AI itineraries
+    community/        - Community hub
+    freelance/        - Freelance marketplace
+    events/           - Industry events
+    ...               - 20+ more module pages
   components/         - Shared components (layout, ui)
   hooks/              - Custom hooks (use-toast, use-mobile)
 server/               - Express backend
@@ -49,14 +60,16 @@ All routes prefixed with `/api/`:
 - `GET/POST /api/events` - Event listings + registration
 - `GET/POST /api/freelance-gigs` - Freelance job postings
 - `GET/POST /api/community-posts` - Community posts + likes
-- `POST /api/bookings` - Unified booking creation
+- `GET/POST /api/bookings` - Booking CRUD
 - `POST /api/contact` - Contact form
 
-## Key Modules
-- Travel OS, Marketplace, Hotels, Restaurants (data-driven, API-connected)
-- Community Hub, Freelance Network, Events (data-driven, API-connected)
-- Crypto/DeFi, Connectivity, HR, Autobot (prototype/display pages)
-- Dashboard, Finance, Media, Sustainability, Cinema, IDE, ERP, Hospitality PMS
+## Key Features
+- **Knowledge Graph Map** (`/map`): Interactive SVG-based Cambodia map with nodes for airports, cities, temples, markets, hotels, restaurants. Filterable sidebar, connection polylines, AI recommendations panel, and node detail popups.
+- **Dashboard** (`/dashboard`): Real-time analytics pulling live API data. Revenue charts, module health status, AI insights, community activity feed, pie chart revenue split.
+- **Travel OS, Marketplace, Hotels, Restaurants**: Data-driven, API-connected modules with booking/purchase flows
+- **Community Hub, Freelance Network, Events**: Data-driven, API-connected with social features
+- **Crypto/DeFi, Connectivity, HR, Autobot**: Prototype/display pages
+- **Finance, Media, Sustainability, Cinema, IDE, ERP, Hospitality PMS**: Additional module pages
 
 ## Running
 - `npm run dev` - Start full-stack dev server (port 5000)

@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2, Bitcoin, Wifi, Users } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2, Bitcoin, Wifi, Users, Map } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -53,6 +53,15 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">Knowledge Graph</div>
                     <div className="text-xs text-muted-foreground">Visualize ecosystem relationships</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/map">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Map className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Tourism Map</div>
+                    <div className="text-xs text-muted-foreground">Interactive Cambodia knowledge graph map</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -284,6 +293,7 @@ export function Navbar() {
                 <div className="space-y-4">
                   <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Resources</h4>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
+                  <Link href="/map"><span className="block text-lg font-medium">Tourism Map</span></Link>
                   <Link href="/dashboard/tools"><span className="block text-lg font-medium">AI Tools</span></Link>
                   <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
                   <Link href="/association"><span className="block text-lg font-medium">Association</span></Link>

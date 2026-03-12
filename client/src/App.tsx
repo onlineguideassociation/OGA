@@ -41,11 +41,13 @@ import CryptoModule from "@/pages/crypto/index";
 import ConnectivityModule from "@/pages/connectivity/index";
 import HRNetworkingModule from "@/pages/hr/index";
 import AutobotDashboard from "@/pages/autobot/index";
+import KnowledgeGraphMap from "@/pages/map/index";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/map" component={KnowledgeGraphMap} />
       <Route path="/product" component={Product} />
       <Route path="/rdtb" component={RDTBPage} />
       <Route path="/roles" component={RoleSelection} />
