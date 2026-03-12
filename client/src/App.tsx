@@ -37,6 +37,10 @@ import RestaurantBooking from "@/pages/restaurants/index";
 import HospitalityPMS from "@/pages/hospitality/index";
 import IndustryEvents from "@/pages/events/index";
 import CulturalCinema from "@/pages/cinema/index";
+import CryptoModule from "@/pages/crypto/index";
+import ConnectivityModule from "@/pages/connectivity/index";
+import HRNetworkingModule from "@/pages/hr/index";
+import AutobotDashboard from "@/pages/autobot/index";
 
 function Router() {
   return (
@@ -73,6 +77,10 @@ function Router() {
       <Route path="/hospitality" component={HospitalityPMS} />
       <Route path="/events" component={IndustryEvents} />
       <Route path="/cinema" component={CulturalCinema} />
+      <Route path="/crypto" component={CryptoModule} />
+      <Route path="/connectivity" component={ConnectivityModule} />
+      <Route path="/hr" component={HRNetworkingModule} />
+      <Route path="/autobot" component={AutobotDashboard} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

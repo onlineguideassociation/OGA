@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2 } from "lucide-react";
+import { Menu, X, Zap, BarChart, Code, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, Wand2, FileText, TrendingUp, Microscope, ShieldCheck, BookOpen, Building2, Bitcoin, Wifi, Users } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -205,6 +205,42 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">Media Ecosystem</div>
                     <div className="text-xs text-muted-foreground">Photo/video monetization</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/crypto">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Bitcoin className="h-5 w-5 text-emerald-500 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Crypto & DeFi</div>
+                    <div className="text-xs text-muted-foreground">Portfolio & tokenomics</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/connectivity">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Wifi className="h-5 w-5 text-cyan-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Connectivity</div>
+                    <div className="text-xs text-muted-foreground">Network & Cyber Autobot</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/hr">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Users className="h-5 w-5 text-orange-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">HR & Networking</div>
+                    <div className="text-xs text-muted-foreground">Talent & skill analysis</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/autobot">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Bot className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Autobot Workspace</div>
+                    <div className="text-xs text-muted-foreground">Multi-model AI console</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
