@@ -5,10 +5,13 @@ import {
   Star, MapPin, Clock, Users, ChevronRight, Search, Filter,
   Plane, Hotel, Utensils, Ticket, ShoppingBag, Sparkles,
   Heart, Share2, DollarSign, CheckCircle, Bot, Navigation,
-  X, ChevronDown, SlidersHorizontal, ArrowUpDown
+  X, ChevronDown, SlidersHorizontal, ArrowUpDown, Loader2
 } from "lucide-react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { CAMBODIA_NODES, NODE_TYPES, getNodeConfig, toX, toY, type MapNode } from "./map-data";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest, queryClient } from "@/lib/queryClient";
 
 type BookingCategory = "all" | "tours" | "hotels" | "restaurants" | "experiences" | "transport";
 
@@ -23,31 +26,173 @@ const BOOKING_CATEGORIES: { key: BookingCategory; label: string; icon: React.Ele
 
 type SortOption = "popular" | "price-low" | "price-high" | "rating";
 
-const BOOKABLE_ITEMS = [
-  { id: 1, category: "tours", name: "Angkor Wat Sunrise Tour", location: "Siem Reap", price: 65, currency: "$", rating: 4.9, reviews: 342, duration: "4h", badge: "BESTSELLER", image: "🌅", description: "Watch the sunrise over the iconic Angkor Wat temple. Includes guide, transport, and breakfast.", lat: 13.4125, lng: 103.8667, features: ["Pick-up included", "Licensed guide", "Breakfast"] },
-  { id: 2, category: "tours", name: "Temple Bike Tour", location: "Siem Reap", price: 18, currency: "$", rating: 4.8, reviews: 189, duration: "3h", badge: "POPULAR", image: "🚴", description: "Cycle through ancient temples at your own pace with expert local guide.", lat: 13.36, lng: 103.86, features: ["Bike included", "Small group", "Water provided"] },
-  { id: 3, category: "tours", name: "Mekong River Cruise", location: "Kampong Cham", price: 85, currency: "$", rating: 4.8, reviews: 256, duration: "6h", badge: "PREMIUM", image: "🚢", description: "Full-day cruise along the Mekong with floating village visits and local lunch.", lat: 11.98, lng: 105.45, features: ["Lunch included", "Village visit", "Sunset views"] },
-  { id: 4, category: "tours", name: "Phnom Penh City Walk", location: "Phnom Penh", price: 35, currency: "$", rating: 4.7, reviews: 178, duration: "3h", badge: "", image: "🏛️", description: "Discover the capital's royal palace, markets, and street food scene.", lat: 11.5564, lng: 104.9282, features: ["Street food", "History guide", "Small group"] },
-  { id: 5, category: "tours", name: "Kampot Pepper Tour", location: "Kampot", price: 30, currency: "$", rating: 4.7, reviews: 98, duration: "5h", badge: "CULTURAL", image: "🌶️", description: "Visit world-famous Kampot pepper farms and learn traditional cultivation.", lat: 10.6, lng: 104.18, features: ["Farm visit", "Tasting", "Transport"] },
-  { id: 6, category: "hotels", name: "Raffles Hotel Le Royal", location: "Phnom Penh", price: 350, currency: "$", rating: 4.9, reviews: 1284, duration: "per night", badge: "LUXURY", image: "🏨", description: "Historic 5-star colonial hotel in the heart of Phnom Penh.", lat: 11.5684, lng: 104.9222, features: ["Pool", "Spa", "Free WiFi"] },
-  { id: 7, category: "hotels", name: "Shinta Mani Angkor", location: "Siem Reap", price: 220, currency: "$", rating: 4.8, reviews: 956, duration: "per night", badge: "BOUTIQUE", image: "🌴", description: "Award-winning boutique hotel with social enterprise mission.", lat: 13.36, lng: 103.86, features: ["Pool", "Restaurant", "Social impact"] },
-  { id: 8, category: "hotels", name: "Mad Monkey Hostel", location: "Siem Reap", price: 12, currency: "$", rating: 4.5, reviews: 2340, duration: "per night", badge: "BUDGET", image: "🐒", description: "Popular backpacker hostel with rooftop pool and social events.", lat: 13.355, lng: 103.855, features: ["Pool", "Bar", "Events"] },
-  { id: 9, category: "restaurants", name: "Khmer Kitchen", location: "Siem Reap", price: 8, currency: "$", rating: 4.8, reviews: 845, duration: "avg meal", badge: "FEATURED", image: "🥘", description: "Authentic Khmer cuisine in a traditional wooden house setting.", lat: 13.352, lng: 103.858, features: ["Traditional", "Vegetarian options", "Local favorite"] },
-  { id: 10, category: "restaurants", name: "Malis Restaurant", location: "Phnom Penh", price: 25, currency: "$", rating: 4.9, reviews: 1240, duration: "avg meal", badge: "FINE DINING", image: "🍲", description: "Cambodia's most celebrated chef showcasing modern Khmer cuisine.", lat: 11.56, lng: 104.93, features: ["Fine dining", "Cocktails", "Garden seating"] },
-  { id: 11, category: "experiences", name: "Khmer Cooking Class", location: "Siem Reap", price: 40, currency: "$", rating: 4.9, reviews: 567, duration: "4h", badge: "TOP RATED", image: "👨‍🍳", description: "Learn to cook traditional Cambodian dishes with market visit.", lat: 13.358, lng: 103.862, features: ["Market tour", "Recipe book", "Tastings"] },
-  { id: 12, category: "experiences", name: "Silk Weaving Workshop", location: "Siem Reap", price: 25, currency: "$", rating: 4.7, reviews: 234, duration: "2h", badge: "CULTURAL", image: "🧶", description: "Hands-on silk weaving with master artisans at Artisans Angkor.", lat: 13.365, lng: 103.855, features: ["Hands-on", "Souvenir", "Expert artisan"] },
-  { id: 13, category: "experiences", name: "Apsara Dance Show", location: "Siem Reap", price: 35, currency: "$", rating: 4.6, reviews: 412, duration: "2h", badge: "", image: "💃", description: "Traditional Khmer dance performance with buffet dinner.", lat: 13.35, lng: 103.85, features: ["Dinner included", "Live music", "Photo ops"] },
-  { id: 14, category: "transport", name: "Airport Transfer", location: "Siem Reap", price: 15, currency: "$", rating: 4.8, reviews: 890, duration: "30min", badge: "ESSENTIAL", image: "🚐", description: "Private car from Siem Reap airport to your hotel.", lat: 13.4067, lng: 103.8133, features: ["Private car", "Meet & greet", "24/7"] },
-  { id: 15, category: "transport", name: "Tuk-Tuk Day Hire", location: "Siem Reap", price: 20, currency: "$", rating: 4.6, reviews: 567, duration: "full day", badge: "LOCAL", image: "🛺", description: "Hire a tuk-tuk and driver for a full day of temple exploration.", lat: 13.37, lng: 103.87, features: ["Flexible route", "Local driver", "Bargain stops"] },
-];
+interface BookableItem {
+  id: number;
+  category: string;
+  name: string;
+  location: string;
+  price: number;
+  currency: string;
+  rating: number;
+  reviews: number;
+  duration: string;
+  badge: string;
+  image: string;
+  description: string;
+  features: string[];
+  lat: number | null;
+  lng: number | null;
+}
 
 export default function BookingSection() {
   const [activeCategory, setActiveCategory] = useState<BookingCategory>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<SortOption>("popular");
-  const [selectedItem, setSelectedItem] = useState<typeof BOOKABLE_ITEMS[0] | null>(null);
+  const [selectedItem, setSelectedItem] = useState<BookableItem | null>(null);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const [savedItems, setSavedItems] = useState<Set<number>>(new Set());
+  const { toast } = useToast();
+
+  const { data: toursData = [], isLoading: toursLoading } = useQuery({
+    queryKey: ["/api/tours"],
+    queryFn: async () => {
+      const res = await fetch("/api/tours");
+      return res.json();
+    },
+  });
+
+  const { data: hotelsData = [], isLoading: hotelsLoading } = useQuery({
+    queryKey: ["/api/hotels"],
+    queryFn: async () => {
+      const res = await fetch("/api/hotels");
+      return res.json();
+    },
+  });
+
+  const { data: restaurantsData = [], isLoading: restaurantsLoading } = useQuery({
+    queryKey: ["/api/restaurants"],
+    queryFn: async () => {
+      const res = await fetch("/api/restaurants");
+      return res.json();
+    },
+  });
+
+  const { data: itinerariesData = [] } = useQuery({
+    queryKey: ["/api/itineraries"],
+    queryFn: async () => {
+      const res = await fetch("/api/itineraries");
+      return res.json();
+    },
+  });
+
+  const bookMutation = useMutation({
+    mutationFn: async (item: BookableItem) => {
+      return apiRequest("POST", "/api/bookings", {
+        type: item.category === "hotels" ? "hotel" : item.category === "restaurants" ? "restaurant" : "tour",
+        referenceId: item.id,
+        referenceName: item.name,
+        checkIn: new Date().toISOString().split("T")[0],
+        guests: 2,
+        totalPrice: item.price,
+        status: "confirmed",
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/bookings"] });
+      toast({ title: "Booking Confirmed!", description: "Your reservation has been made successfully." });
+    },
+    onError: () => {
+      toast({ title: "Booking Failed", description: "Please try again.", variant: "destructive" });
+    },
+  });
+
+  const allItems: BookableItem[] = useMemo(() => {
+    const items: BookableItem[] = [];
+
+    toursData.forEach((t: any) => {
+      items.push({
+        id: t.id,
+        category: "tours",
+        name: t.name,
+        location: t.location,
+        price: t.price,
+        currency: t.currency || "$",
+        rating: t.rating || 0,
+        reviews: t.reviews || 0,
+        duration: t.duration || "",
+        badge: t.badge || "",
+        image: t.image || "🏛️",
+        description: t.description || "",
+        features: t.features || [],
+        lat: t.lat,
+        lng: t.lng,
+      });
+    });
+
+    hotelsData.forEach((h: any) => {
+      items.push({
+        id: 1000 + h.id,
+        category: "hotels",
+        name: h.name,
+        location: h.location,
+        price: h.price,
+        currency: "$",
+        rating: h.rating || 0,
+        reviews: h.reviews || 0,
+        duration: "per night",
+        badge: h.type === "Luxury" ? "LUXURY" : h.type === "Boutique" ? "BOUTIQUE" : h.ecoCertified ? "ECO" : "",
+        image: h.image || "🏨",
+        description: h.description || "",
+        features: (h.amenities || []).slice(0, 4),
+        lat: null,
+        lng: null,
+      });
+    });
+
+    restaurantsData.forEach((r: any) => {
+      items.push({
+        id: 2000 + r.id,
+        category: "restaurants",
+        name: r.name,
+        location: r.location,
+        price: r.priceRange === "$$$" ? 25 : r.priceRange === "$$" ? 15 : 8,
+        currency: "$",
+        rating: r.rating || 0,
+        reviews: r.reviews || 0,
+        duration: "avg meal",
+        badge: r.rating >= 4.8 ? "TOP RATED" : "",
+        image: r.image || "🍽️",
+        description: r.description || "",
+        features: r.features || [],
+        lat: null,
+        lng: null,
+      });
+    });
+
+    itinerariesData.forEach((i: any) => {
+      items.push({
+        id: 3000 + i.id,
+        category: "experiences",
+        name: i.title,
+        location: "Cambodia",
+        price: i.price,
+        currency: "$",
+        rating: i.rating || 0,
+        reviews: 0,
+        duration: i.duration || "",
+        badge: i.aiGuided ? "AI GUIDED" : "",
+        image: "🗺️",
+        description: i.description || "",
+        features: i.languages ? [`${i.languages.length} languages`, i.difficulty || "Moderate", `${(i.sites || []).length} sites`] : [],
+        lat: null,
+        lng: null,
+      });
+    });
+
+    return items;
+  }, [toursData, hotelsData, restaurantsData, itinerariesData]);
+
+  const isLoading = toursLoading || hotelsLoading || restaurantsLoading;
 
   const toggleSave = (id: number) => {
     setSavedItems(prev => {
@@ -57,7 +202,7 @@ export default function BookingSection() {
     });
   };
 
-  const filtered = BOOKABLE_ITEMS
+  const filtered = allItems
     .filter(item => activeCategory === "all" || item.category === activeCategory)
     .filter(item => searchQuery === "" || item.name.toLowerCase().includes(searchQuery.toLowerCase()) || item.location.toLowerCase().includes(searchQuery.toLowerCase()))
     .sort((a, b) => {
@@ -69,15 +214,20 @@ export default function BookingSection() {
 
   const getConnections = useCallback(() => {
     const lines: { x1: number; y1: number; x2: number; y2: number }[] = [];
-    const items = filtered.slice(0, 10);
+    const items = filtered.filter(i => i.lat && i.lng).slice(0, 10);
     for (let i = 0; i < items.length - 1; i++) {
       const a = items[i], b = items[i + 1];
-      if (a.lat && b.lat) {
+      if (a.lat && b.lat && a.lng && b.lng) {
         lines.push({ x1: toX(a.lng), y1: toY(a.lat), x2: toX(b.lng), y2: toY(b.lat) });
       }
     }
     return lines;
   }, [filtered]);
+
+  const getCategoryCount = (key: BookingCategory) => {
+    if (key === "all") return allItems.length;
+    return allItems.filter(i => i.category === key).length;
+  };
 
   return (
     <div className="h-full flex flex-col" data-testid="booking-section">
@@ -86,7 +236,7 @@ export default function BookingSection() {
           {BOOKING_CATEGORIES.map(cat => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.key;
-            const count = cat.key === "all" ? BOOKABLE_ITEMS.length : BOOKABLE_ITEMS.filter(i => i.category === cat.key).length;
+            const count = getCategoryCount(cat.key);
             return (
               <button
                 key={cat.key}
@@ -132,7 +282,13 @@ export default function BookingSection() {
       <div className="flex-1 flex overflow-hidden">
         <div className="w-[45%] overflow-y-auto bg-slate-50 border-r border-slate-200" data-testid="booking-list">
           <div className="p-3 space-y-3">
-            {filtered.map((item) => {
+            {isLoading ? (
+              <div className="flex flex-col items-center justify-center py-16 text-slate-400">
+                <Loader2 className="h-8 w-8 animate-spin mb-3 text-[#0081C9]" />
+                <p className="text-sm font-medium">Loading listings...</p>
+                <p className="text-xs mt-1">Fetching live data from the platform</p>
+              </div>
+            ) : filtered.map((item) => {
               const isHovered = hoveredItem === item.id;
               const isSelected = selectedItem?.id === item.id;
               const isSaved = savedItems.has(item.id);
@@ -182,15 +338,21 @@ export default function BookingSection() {
                       </div>
                       <p className="text-[10px] text-slate-500 mt-1.5 line-clamp-2">{item.description}</p>
                       <div className="flex items-center gap-1.5 mt-2">
-                        {item.features.slice(0, 3).map(f => (
+                        {(item.features || []).slice(0, 3).map(f => (
                           <span key={f} className="flex items-center gap-0.5 text-[8px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-full">
                             <CheckCircle className="h-2 w-2" /> {f}
                           </span>
                         ))}
                       </div>
                       <div className="flex items-center gap-2 mt-2">
-                        <Button size="sm" className="h-7 text-[10px] px-3 bg-[#0081C9] hover:bg-[#006ba3] font-semibold" data-testid={`btn-book-${item.id}`}>
-                          {item.category === "hotels" ? "Reserve" : item.category === "restaurants" ? "Book Table" : item.category === "transport" ? "Book Ride" : "Book Now"}
+                        <Button
+                          size="sm"
+                          className="h-7 text-[10px] px-3 bg-[#0081C9] hover:bg-[#006ba3] font-semibold"
+                          onClick={(e) => { e.stopPropagation(); bookMutation.mutate(item); }}
+                          disabled={bookMutation.isPending}
+                          data-testid={`btn-book-${item.id}`}
+                        >
+                          {bookMutation.isPending ? "Booking..." : item.category === "hotels" ? "Reserve" : item.category === "restaurants" ? "Book Table" : item.category === "transport" ? "Book Ride" : "Book Now"}
                         </Button>
                         <Button size="sm" variant="outline" className="h-7 text-[10px] px-2.5 border-slate-200 text-slate-500 hover:text-[#0081C9]" data-testid={`btn-details-${item.id}`}>
                           Details <ChevronRight className="h-3 w-3 ml-0.5" />
@@ -201,7 +363,7 @@ export default function BookingSection() {
                 </div>
               );
             })}
-            {filtered.length === 0 && (
+            {!isLoading && filtered.length === 0 && (
               <div className="text-center py-12 text-slate-400">
                 <Search className="h-8 w-8 mx-auto mb-3 opacity-30" />
                 <p className="text-sm font-medium">No results found</p>
@@ -273,7 +435,7 @@ export default function BookingSection() {
                   </div>
                   <p className="text-[10px] text-slate-400 mb-2">{selectedItem.description}</p>
                   <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-                    {selectedItem.features.map(f => (
+                    {(selectedItem.features || []).map(f => (
                       <span key={f} className="flex items-center gap-0.5 text-[8px] text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-1.5 py-0.5 rounded-full">
                         <CheckCircle className="h-2 w-2" /> {f}
                       </span>
@@ -283,8 +445,14 @@ export default function BookingSection() {
                     <span className="text-xl font-bold text-[#22c55e]">{selectedItem.currency}{selectedItem.price}</span>
                     <span className="text-[10px] text-slate-500">/ {selectedItem.duration}</span>
                     <div className="ml-auto flex gap-2">
-                      <Button size="sm" className="h-8 text-xs px-4 bg-[#0081C9] hover:bg-[#006ba3] font-semibold" data-testid="btn-book-selected">
-                        {selectedItem.category === "hotels" ? "Reserve Now" : selectedItem.category === "restaurants" ? "Book Table" : "Book Now"}
+                      <Button
+                        size="sm"
+                        className="h-8 text-xs px-4 bg-[#0081C9] hover:bg-[#006ba3] font-semibold"
+                        onClick={() => bookMutation.mutate(selectedItem)}
+                        disabled={bookMutation.isPending}
+                        data-testid="btn-book-selected"
+                      >
+                        {bookMutation.isPending ? "Booking..." : selectedItem.category === "hotels" ? "Reserve Now" : selectedItem.category === "restaurants" ? "Book Table" : "Book Now"}
                       </Button>
                       <Button size="sm" variant="outline" className="h-8 text-xs border-white/10 text-slate-300 hover:bg-slate-700" data-testid="btn-share-selected">
                         <Share2 className="h-3.5 w-3.5" />
@@ -298,7 +466,7 @@ export default function BookingSection() {
 
           <div className="absolute top-3 left-3 z-10">
             <Badge className="bg-slate-900/90 text-slate-300 border-white/10 text-[9px] backdrop-blur-sm">
-              <MapPin className="h-3 w-3 mr-1 text-[#0081C9]" /> {filtered.length} locations shown
+              <MapPin className="h-3 w-3 mr-1 text-[#0081C9]" /> {filtered.filter(i => i.lat && i.lng).length} locations on map
             </Badge>
           </div>
         </div>

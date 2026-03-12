@@ -5,6 +5,7 @@ import {
   MapPin, TrendingUp, Star, Search, Calendar, UserPlus, ChevronDown
 } from "lucide-react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface HeroSectionProps {
   onExploreMap: () => void;
@@ -17,6 +18,14 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSe
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
   const [travelers, setTravelers] = useState("2");
+
+  const { data: stats } = useQuery({
+    queryKey: ["/api/stats"],
+    queryFn: async () => {
+      const res = await fetch("/api/stats");
+      return res.json();
+    },
+  });
 
   const handleSearch = () => {
     if (onSearch) onSearch(destination, date, travelers);
@@ -133,16 +142,16 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSe
 
           <div className="flex items-center justify-center gap-6 flex-wrap text-white/50 text-[10px]">
             <span className="flex items-center gap-1.5">
-              <MapPin className="h-3 w-3" /> 21 Destinations
+              <MapPin className="h-3 w-3" /> {stats?.totalTours || 0} Tours Live
             </span>
             <span className="flex items-center gap-1.5">
-              <Users className="h-3 w-3" /> 200+ Guides
+              <Users className="h-3 w-3" /> {stats?.totalHotels || 0} Hotels
             </span>
             <span className="flex items-center gap-1.5">
-              <TrendingUp className="h-3 w-3" /> 8 Revenue Streams
+              <TrendingUp className="h-3 w-3" /> {stats?.totalProducts || 0} Products
             </span>
             <span className="flex items-center gap-1.5">
-              <Star className="h-3 w-3" /> 4.8 Avg Rating
+              <Star className="h-3 w-3" /> {stats?.totalReviews || 0} Reviews
             </span>
             <span className="flex items-center gap-1.5">
               <Sparkles className="h-3 w-3" /> AI-Powered

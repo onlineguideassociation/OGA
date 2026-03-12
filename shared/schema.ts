@@ -123,6 +123,51 @@ export const bookings = pgTable("bookings", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const tours = pgTable("tours", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  category: text("category").default("tours"),
+  location: text("location").notNull(),
+  price: doublePrecision("price").notNull(),
+  currency: text("currency").default("$"),
+  rating: doublePrecision("rating").default(0),
+  reviews: integer("reviews").default(0),
+  duration: text("duration"),
+  badge: text("badge"),
+  image: text("image").default("🏛️"),
+  description: text("description"),
+  features: text("features").array(),
+  lat: doublePrecision("lat"),
+  lng: doublePrecision("lng"),
+  maxGuests: integer("max_guests").default(20),
+  languages: text("languages").array(),
+  guideId: integer("guide_id"),
+  guideName: text("guide_name"),
+  active: boolean("active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const reviewsTable = pgTable("reviews", {
+  id: serial("id").primaryKey(),
+  entityType: text("entity_type").notNull(),
+  entityId: integer("entity_id").notNull(),
+  authorName: text("author_name").notNull(),
+  authorAvatar: text("author_avatar").default("👤"),
+  rating: integer("rating").notNull(),
+  title: text("title"),
+  content: text("content").notNull(),
+  helpful: integer("helpful").default(0),
+  verified: boolean("verified").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const newsletterSubscribers = pgTable("newsletter_subscribers", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  source: text("source").default("footer"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const contactMessages = pgTable("contact_messages", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -141,6 +186,9 @@ export const insertEventSchema = createInsertSchema(events).omit({ id: true });
 export const insertFreelanceGigSchema = createInsertSchema(freelanceGigs).omit({ id: true });
 export const insertCommunityPostSchema = createInsertSchema(communityPosts).omit({ id: true, createdAt: true });
 export const insertBookingSchema = createInsertSchema(bookings).omit({ id: true, createdAt: true });
+export const insertTourSchema = createInsertSchema(tours).omit({ id: true, createdAt: true });
+export const insertReviewSchema = createInsertSchema(reviewsTable).omit({ id: true, createdAt: true });
+export const insertNewsletterSchema = createInsertSchema(newsletterSubscribers).omit({ id: true, createdAt: true });
 export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({ id: true, createdAt: true });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
@@ -161,5 +209,11 @@ export type InsertCommunityPost = z.infer<typeof insertCommunityPostSchema>;
 export type CommunityPost = typeof communityPosts.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
 export type Booking = typeof bookings.$inferSelect;
+export type InsertTour = z.infer<typeof insertTourSchema>;
+export type Tour = typeof tours.$inferSelect;
+export type InsertReview = z.infer<typeof insertReviewSchema>;
+export type Review = typeof reviewsTable.$inferSelect;
+export type InsertNewsletter = z.infer<typeof insertNewsletterSchema>;
+export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
 export type ContactMessage = typeof contactMessages.$inferSelect;

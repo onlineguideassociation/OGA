@@ -5,6 +5,7 @@ import {
   insertProductSchema, insertHotelSchema, insertRestaurantSchema,
   insertItinerarySchema, insertEventSchema, insertFreelanceGigSchema,
   insertCommunityPostSchema, insertBookingSchema, insertContactMessageSchema,
+  insertTourSchema, insertReviewSchema, insertNewsletterSchema,
 } from "@shared/schema";
 
 export async function registerRoutes(
@@ -186,6 +187,87 @@ export async function registerRoutes(
       trustScore: "A+",
       responseTime: "42ms",
       dataIntegrity: "99.8%",
+    });
+  });
+
+  app.get("/api/tours", async (req, res) => {
+    const location = req.query.location as string | undefined;
+    const category = req.query.category as string | undefined;
+    const search = req.query.search as string | undefined;
+    if (search) {
+      const results = await storage.searchTours(search);
+      return res.json(results);
+    }
+    const results = await storage.getTours(location, category);
+    res.json(results);
+  });
+
+  app.get("/api/tours/:id", async (req, res) => {
+    const tour = await storage.getTour(Number(req.params.id));
+    if (!tour) return res.status(404).json({ message: "Tour not found" });
+    res.json(tour);
+  });
+
+  app.post("/api/tours", async (req, res) => {
+    const parsed = insertTourSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid tour data", errors: parsed.error.errors });
+    const tour = await storage.createTour(parsed.data);
+    res.status(201).json(tour);
+  });
+
+  app.get("/api/reviews/:entityType/:entityId", async (req, res) => {
+    const reviews = await storage.getReviews(req.params.entityType, Number(req.params.entityId));
+    res.json(reviews);
+  });
+
+  app.post("/api/reviews", async (req, res) => {
+    const parsed = insertReviewSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid review data", errors: parsed.error.errors });
+    const review = await storage.createReview(parsed.data);
+    res.status(201).json(review);
+  });
+
+  app.post("/api/reviews/:id/helpful", async (req, res) => {
+    const review = await storage.markReviewHelpful(Number(req.params.id));
+    if (!review) return res.status(404).json({ message: "Review not found" });
+    res.json(review);
+  });
+
+  app.post("/api/newsletter/subscribe", async (req, res) => {
+    const parsed = insertNewsletterSchema.safeParse(req.body);
+    if (!parsed.success) return res.status(400).json({ message: "Invalid email", errors: parsed.error.errors });
+    try {
+      const sub = await storage.subscribeNewsletter(parsed.data);
+      res.status(201).json(sub);
+    } catch (err: any) {
+      if (err.code === '23505') {
+        return res.status(409).json({ message: "Already subscribed" });
+      }
+      throw err;
+    }
+  });
+
+  app.get("/api/search", async (req, res) => {
+    const q = req.query.q as string;
+    if (!q || q.length < 2) return res.status(400).json({ message: "Query must be at least 2 characters" });
+    const results = await storage.globalSearch(q);
+    res.json(results);
+  });
+
+  app.get("/api/stats", async (_req, res) => {
+    const stats = await storage.getPlatformStats();
+    res.json(stats);
+  });
+
+  app.get("/api/health", async (_req, res) => {
+    res.json({
+      status: "healthy",
+      timestamp: new Date().toISOString(),
+      version: "1.0.0",
+      services: {
+        database: "connected",
+        api: "running",
+      }
     });
   });
 

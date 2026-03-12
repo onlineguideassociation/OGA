@@ -4,6 +4,7 @@ import * as React from "react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useToast } from "@/hooks/use-toast";
 
 const NAV_LINKS: { href: string; label: string; icon: React.ElementType }[] = [
   { href: "/", label: "Home", icon: Map },
@@ -115,6 +116,35 @@ export function Navbar() {
 
 export function Footer() {
   const [email, setEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubscribe = async () => {
+    if (!email || !email.includes("@")) {
+      toast({ title: "Please enter a valid email", variant: "destructive" });
+      return;
+    }
+    setSubscribing(true);
+    try {
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (res.status === 409) {
+        toast({ title: "Already subscribed!", description: "This email is already on our list." });
+      } else if (res.ok) {
+        toast({ title: "Subscribed!", description: "You'll receive travel deals and AI tips." });
+        setEmail("");
+      } else {
+        toast({ title: "Failed to subscribe", variant: "destructive" });
+      }
+    } catch {
+      toast({ title: "Network error", variant: "destructive" });
+    } finally {
+      setSubscribing(false);
+    }
+  };
 
   return (
     <footer className="mt-auto" style={{ background: "#0f172a" }} data-testid="footer">
@@ -139,8 +169,14 @@ export function Footer() {
                 className="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-[#22c55e] focus:ring-1 focus:ring-[#22c55e]/20"
                 data-testid="input-footer-email"
               />
-              <Button size="sm" className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-semibold px-4 h-9" data-testid="btn-footer-subscribe">
-                Subscribe
+              <Button
+                size="sm"
+                className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-semibold px-4 h-9"
+                onClick={handleSubscribe}
+                disabled={subscribing}
+                data-testid="btn-footer-subscribe"
+              >
+                {subscribing ? "..." : "Subscribe"}
               </Button>
             </div>
           </div>

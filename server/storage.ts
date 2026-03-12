@@ -3,6 +3,7 @@ import { db } from "../db";
 import {
   users, products, hotels, restaurants, itineraries, events,
   freelanceGigs, communityPosts, bookings, contactMessages,
+  tours, reviewsTable, newsletterSubscribers,
   type User, type InsertUser,
   type Product, type InsertProduct,
   type Hotel, type InsertHotel,
@@ -13,6 +14,9 @@ import {
   type CommunityPost, type InsertCommunityPost,
   type Booking, type InsertBooking,
   type ContactMessage, type InsertContactMessage,
+  type Tour, type InsertTour,
+  type Review, type InsertReview,
+  type NewsletterSubscriber, type InsertNewsletter,
 } from "@shared/schema";
 
 export interface IStorage {
@@ -53,7 +57,39 @@ export interface IStorage {
   getBookings(userId?: number): Promise<Booking[]>;
   createBooking(booking: InsertBooking): Promise<Booking>;
 
+  getTours(location?: string, category?: string): Promise<Tour[]>;
+  getTour(id: number): Promise<Tour | undefined>;
+  createTour(tour: InsertTour): Promise<Tour>;
+  searchTours(query: string): Promise<Tour[]>;
+
+  getReviews(entityType: string, entityId: number): Promise<Review[]>;
+  createReview(review: InsertReview): Promise<Review>;
+  markReviewHelpful(id: number): Promise<Review | undefined>;
+
+  subscribeNewsletter(data: InsertNewsletter): Promise<NewsletterSubscriber>;
+
   createContactMessage(message: InsertContactMessage): Promise<ContactMessage>;
+
+  getPlatformStats(): Promise<{
+    totalTours: number;
+    totalHotels: number;
+    totalRestaurants: number;
+    totalProducts: number;
+    totalEvents: number;
+    totalBookings: number;
+    totalCommunityPosts: number;
+    totalFreelanceGigs: number;
+    totalReviews: number;
+  }>;
+
+  globalSearch(query: string): Promise<{
+    tours: Tour[];
+    hotels: Hotel[];
+    restaurants: Restaurant[];
+    products: Product[];
+    events: Event[];
+    itineraries: Itinerary[];
+  }>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -213,9 +249,97 @@ export class DatabaseStorage implements IStorage {
     return created;
   }
 
+  async getTours(location?: string, category?: string): Promise<Tour[]> {
+    if (location && category) {
+      return db.select().from(tours).where(sql`${ilike(tours.location, `%${location}%`)} AND ${eq(tours.category, category)}`);
+    }
+    if (location) {
+      return db.select().from(tours).where(ilike(tours.location, `%${location}%`));
+    }
+    if (category) {
+      return db.select().from(tours).where(eq(tours.category, category));
+    }
+    return db.select().from(tours).orderBy(desc(tours.createdAt));
+  }
+
+  async getTour(id: number): Promise<Tour | undefined> {
+    const [t] = await db.select().from(tours).where(eq(tours.id, id));
+    return t;
+  }
+
+  async createTour(tour: InsertTour): Promise<Tour> {
+    const [created] = await db.insert(tours).values(tour).returning();
+    return created;
+  }
+
+  async searchTours(query: string): Promise<Tour[]> {
+    return db.select().from(tours).where(
+      sql`${ilike(tours.name, `%${query}%`)} OR ${ilike(tours.location, `%${query}%`)}`
+    );
+  }
+
+  async getReviews(entityType: string, entityId: number): Promise<Review[]> {
+    return db.select().from(reviewsTable)
+      .where(sql`${eq(reviewsTable.entityType, entityType)} AND ${eq(reviewsTable.entityId, entityId)}`)
+      .orderBy(desc(reviewsTable.createdAt));
+  }
+
+  async createReview(review: InsertReview): Promise<Review> {
+    const [created] = await db.insert(reviewsTable).values(review).returning();
+    return created;
+  }
+
+  async markReviewHelpful(id: number): Promise<Review | undefined> {
+    const [updated] = await db.update(reviewsTable)
+      .set({ helpful: sql`${reviewsTable.helpful} + 1` })
+      .where(eq(reviewsTable.id, id))
+      .returning();
+    return updated;
+  }
+
+  async subscribeNewsletter(data: InsertNewsletter): Promise<NewsletterSubscriber> {
+    const [created] = await db.insert(newsletterSubscribers).values(data).returning();
+    return created;
+  }
+
   async createContactMessage(message: InsertContactMessage): Promise<ContactMessage> {
     const [created] = await db.insert(contactMessages).values(message).returning();
     return created;
+  }
+
+  async getPlatformStats() {
+    const [tourCount] = await db.select({ count: sql<number>`count(*)::int` }).from(tours);
+    const [hotelCount] = await db.select({ count: sql<number>`count(*)::int` }).from(hotels);
+    const [restaurantCount] = await db.select({ count: sql<number>`count(*)::int` }).from(restaurants);
+    const [productCount] = await db.select({ count: sql<number>`count(*)::int` }).from(products);
+    const [eventCount] = await db.select({ count: sql<number>`count(*)::int` }).from(events);
+    const [bookingCount] = await db.select({ count: sql<number>`count(*)::int` }).from(bookings);
+    const [postCount] = await db.select({ count: sql<number>`count(*)::int` }).from(communityPosts);
+    const [gigCount] = await db.select({ count: sql<number>`count(*)::int` }).from(freelanceGigs);
+    const [reviewCount] = await db.select({ count: sql<number>`count(*)::int` }).from(reviewsTable);
+    return {
+      totalTours: tourCount.count,
+      totalHotels: hotelCount.count,
+      totalRestaurants: restaurantCount.count,
+      totalProducts: productCount.count,
+      totalEvents: eventCount.count,
+      totalBookings: bookingCount.count,
+      totalCommunityPosts: postCount.count,
+      totalFreelanceGigs: gigCount.count,
+      totalReviews: reviewCount.count,
+    };
+  }
+
+  async globalSearch(query: string) {
+    const [t, h, r, p, e, i] = await Promise.all([
+      db.select().from(tours).where(sql`${ilike(tours.name, `%${query}%`)} OR ${ilike(tours.location, `%${query}%`)}`),
+      db.select().from(hotels).where(sql`${ilike(hotels.name, `%${query}%`)} OR ${ilike(hotels.location, `%${query}%`)}`),
+      db.select().from(restaurants).where(sql`${ilike(restaurants.name, `%${query}%`)} OR ${ilike(restaurants.location, `%${query}%`)}`),
+      db.select().from(products).where(ilike(products.name, `%${query}%`)),
+      db.select().from(events).where(ilike(events.title, `%${query}%`)),
+      db.select().from(itineraries).where(ilike(itineraries.title, `%${query}%`)),
+    ]);
+    return { tours: t, hotels: h, restaurants: r, products: p, events: e, itineraries: i };
   }
 }
 
