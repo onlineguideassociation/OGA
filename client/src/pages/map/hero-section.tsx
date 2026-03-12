@@ -61,7 +61,7 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSe
           </h1>
 
           <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto mb-6 leading-relaxed" data-testid="hero-subheadline">
-            Connect with 30K+ trusted brands and 1M+ approved partners who support your marketing goals and deliver results.
+            AI-powered hospitality technology for hotels, tour operators, and tourism businesses. Manage bookings, distribution, and operations from one platform.
           </p>
 
           <div className="max-w-3xl mx-auto mb-6">

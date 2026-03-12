@@ -22,11 +22,12 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: "Solutions",
     items: [
-      { href: "/map", label: "Affiliate Network", description: "Connect brands with global publishers" },
-      { href: "/map", label: "Travel Booking Distribution", description: "Distribute tours, hotels & experiences" },
-      { href: "/map", label: "Creator Monetization", description: "Earn commissions as a digital creator" },
-      { href: "/map", label: "AI Travel Planner", description: "Smart itinerary & discovery tools" },
-      { href: "/map", label: "Business Intelligence", description: "Analytics, forecasting & RDTB" },
+      { href: "/map", label: "Booking Engine", description: "Direct reservations from your website" },
+      { href: "/map", label: "Channel Manager", description: "Sync across 150+ travel platforms" },
+      { href: "/map", label: "Property Management", description: "PMS for hotels, hostels & rentals" },
+      { href: "/map", label: "AI Revenue Optimization", description: "Automated pricing & demand forecasting" },
+      { href: "/map", label: "Guest Relationship (GRM)", description: "Track profiles, preferences & communication" },
+      { href: "/map", label: "OnlineGuide POS", description: "Point-of-sale for restaurants & bars" },
     ],
   },
   { label: "Pricing", href: "/pricing" },
@@ -34,17 +35,18 @@ const NAV_ITEMS: NavItem[] = [
     label: "Resources",
     items: [
       { href: "/tours-map", label: "Tour Discovery", description: "Find and book verified tours" },
-      { href: "/map", label: "Travel Guides", description: "Destination insights & tips" },
-      { href: "/map", label: "Community", description: "Connect with travelers & creators" },
+      { href: "/map", label: "Analytics & Insights", description: "Business intelligence dashboards" },
       { href: "/map", label: "API Documentation", description: "Developer & integration resources" },
-      { href: "/map", label: "Blog & News", description: "Latest travel tech updates" },
+      { href: "/map", label: "Community", description: "Connect with hospitality professionals" },
+      { href: "/map", label: "Blog & News", description: "Latest hospitality tech updates" },
     ],
   },
   {
     label: "About us",
     items: [
       { href: "/map", label: "Our Story", description: "Connecting cultures with loyalty and truth" },
-      { href: "/map", label: "Trust & Safety", description: "Verified reviews & 30K+ partner brands" },
+      { href: "/map", label: "Trust & Safety", description: "Verified partners across 190+ countries" },
+      { href: "/map", label: "Consultancy Services", description: "Revenue management & digital transformation" },
       { href: "/map", label: "Careers", description: "Join our global team" },
       { href: "/map", label: "Press", description: "Media & press resources" },
     ],
@@ -94,7 +96,7 @@ export function Navbar() {
         <div className="bg-[#0f172a] text-white" data-testid="announcement-bar">
           <div className="container mx-auto px-4 h-10 flex items-center justify-between">
             <p className="text-xs text-slate-300">
-              Connect with 30K+ trusted brands and 1M+ approved partners who support your marketing goals and deliver results.
+              Cloud-based travel technology for hotels, vacation rentals, hostels, and tourism businesses across 190+ countries.
             </p>
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5 text-xs text-white font-medium">
@@ -284,7 +286,7 @@ export function Footer() {
           <div className="lg:col-span-2">
             <h3 className="text-xl font-bold text-white mb-2">Join the Global Travel Community</h3>
             <p className="text-sm text-slate-400 leading-relaxed max-w-xl">
-              OnlineGuide.io is a global affiliate marketing and travel commerce network connecting brands, tourism businesses, and digital creators with publishers who earn commissions for every successful booking or sale.
+              OnlineGuide.io is a cloud-based travel technology platform and B2B network helping hotels, vacation rentals, hostels, travel agencies, and tourism businesses manage their sales, distribution, operations, and digital presence.
             </p>
           </div>
           <div>
