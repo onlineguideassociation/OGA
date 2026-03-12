@@ -1,114 +1,244 @@
 import { Link, useLocation } from "wouter";
-import { Menu, MapPin, Bot, Map, Compass, Users, ShoppingBag, Sparkles, Plus, LogIn, CheckCircle, Globe, Mail, ChevronDown } from "lucide-react";
+import { Menu, MapPin, Bot, Map, Compass, Users, ShoppingBag, Sparkles, Plus, LogIn, CheckCircle, Globe, Mail, ChevronDown, X, ArrowRight } from "lucide-react";
 import * as React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useToast } from "@/hooks/use-toast";
 
-const NAV_LINKS: { href: string; label: string; icon: React.ElementType }[] = [
-  { href: "/", label: "Home", icon: Map },
-  { href: "/tours-map", label: "Find Tours", icon: Compass },
-  { href: "/map", label: "Knowledge Hub", icon: Sparkles },
-  { href: "/map", label: "Destinations", icon: MapPin },
-  { href: "/map", label: "Creators", icon: Users },
-  { href: "/map", label: "Marketplace", icon: ShoppingBag },
-  { href: "/map", label: "AI Planner", icon: Bot },
+interface NavDropdownItem {
+  href: string;
+  label: string;
+  description?: string;
+}
+
+interface NavItem {
+  label: string;
+  href?: string;
+  items?: NavDropdownItem[];
+}
+
+const NAV_ITEMS: NavItem[] = [
+  {
+    label: "Solutions",
+    items: [
+      { href: "/map", label: "Knowledge Hub", description: "AI-powered travel intelligence" },
+      { href: "/tours-map", label: "Tour Discovery", description: "Find and book verified tours" },
+      { href: "/map", label: "AI Travel Planner", description: "Smart itinerary generation" },
+      { href: "/map", label: "Creator Studio", description: "Content creation tools" },
+      { href: "/map", label: "Business Intelligence", description: "Analytics & forecasting" },
+    ],
+  },
+  { label: "Pricing", href: "/pricing" },
+  {
+    label: "Resources",
+    items: [
+      { href: "/map", label: "Travel Guides", description: "Destination insights & tips" },
+      { href: "/map", label: "Community", description: "Connect with travelers" },
+      { href: "/map", label: "API Documentation", description: "Developer resources" },
+      { href: "/map", label: "Blog & News", description: "Latest travel tech updates" },
+    ],
+  },
+  {
+    label: "About us",
+    items: [
+      { href: "/map", label: "Our Story", description: "Connecting cultures with truth" },
+      { href: "/map", label: "Trust & Safety", description: "Verified reviews & partners" },
+      { href: "/map", label: "Careers", description: "Join our global team" },
+      { href: "/map", label: "Press", description: "Media & press resources" },
+    ],
+  },
+  { label: "Contact", href: "/map" },
 ];
+
+function NavDropdown({ items, isOpen, onClose }: { items: NavDropdownItem[]; isOpen: boolean; onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+    }
+    if (isOpen) document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div ref={ref} className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+      {items.map((item) => (
+        <Link key={item.label} href={item.href}>
+          <span
+            onClick={onClose}
+            className="flex flex-col px-4 py-2.5 hover:bg-[#0081C9]/5 transition-colors cursor-pointer"
+            data-testid={`dropdown-${item.label.toLowerCase().replace(/\s/g, "-")}`}
+          >
+            <span className="text-sm font-medium text-slate-800">{item.label}</span>
+            {item.description && <span className="text-[11px] text-slate-400 mt-0.5">{item.description}</span>}
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
 
 export function Navbar() {
   const [location] = useLocation();
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [showBanner, setShowBanner] = useState(true);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 h-14 flex items-center justify-between gap-4">
-        <Link href="/">
-          <span className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity cursor-pointer flex-shrink-0" data-testid="link-logo">
-            <img src="/logo.png" alt="OnlineGuide.io" className="h-7 w-auto" />
-            <span className="text-[#C1121F]">Online</span>
-            <span className="text-[#0081C9]">Guide.io</span>
-          </span>
-        </Link>
+    <header className="sticky top-0 z-50 w-full">
+      {showBanner && (
+        <div className="bg-[#0f172a] text-white" data-testid="announcement-bar">
+          <div className="container mx-auto px-4 h-10 flex items-center justify-between">
+            <p className="text-xs text-slate-300">
+              Choose another country or region to see content specific to your location
+            </p>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5 text-xs text-white font-medium">
+                <Globe className="h-3.5 w-3.5" /> Global
+              </span>
+              <a href="#" className="text-xs text-[#0081C9] font-semibold hover:text-[#00a1f9] transition-colors underline underline-offset-2" data-testid="link-change-territory">
+                Change Territory
+              </a>
+              <button
+                onClick={() => setShowBanner(false)}
+                className="ml-2 text-slate-400 hover:text-white transition-colors"
+                data-testid="btn-close-banner"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
-        <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center" data-testid="nav-main">
-          {NAV_LINKS.map((link) => {
-            const isActive = location === link.href;
-            return (
-              <Link key={link.label} href={link.href}>
-                <span
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors cursor-pointer whitespace-nowrap ${
-                    isActive
-                      ? "text-[#0081C9] bg-[#0081C9]/8"
-                      : "text-muted-foreground hover:text-foreground hover:bg-slate-100"
-                  }`}
-                  data-testid={`nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
-                >
-                  {link.label}
-                </span>
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-          <Link href="/login">
-            <span className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer transition-colors" data-testid="nav-sign-in">
-              <LogIn className="h-4 w-4" /> Sign In
+      <div className="bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between gap-6">
+          <Link href="/">
+            <span className="flex items-center gap-2 font-bold text-lg tracking-tight hover:opacity-90 transition-opacity cursor-pointer flex-shrink-0" data-testid="link-logo">
+              <img src="/logo.png" alt="OnlineGuide.io" className="h-8 w-auto" />
+              <span className="text-[#C1121F]">Online</span>
+              <span className="text-[#0081C9]">Guide.io</span>
             </span>
           </Link>
-          <Link href="/map">
-            <Button size="sm" className="bg-[#0081C9] hover:bg-[#006ba3] text-white font-semibold px-4 h-9" data-testid="nav-add-listing">
-              <Plus className="h-4 w-4 mr-1.5" /> Add Listing
-            </Button>
-          </Link>
-        </div>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden flex-shrink-0">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-72">
-            <div className="flex flex-col gap-1 mt-6">
-              <div className="flex items-center gap-2 font-bold text-lg mb-4 px-2">
-                <img src="/logo.png" alt="OnlineGuide.io" className="h-6 w-auto" />
-                <span className="text-[#C1121F]">Online</span>
-                <span className="text-[#0081C9]">Guide.io</span>
-              </div>
-              {NAV_LINKS.map((link) => {
-                const Icon = link.icon;
-                const isActive = location === link.href;
-                return (
-                  <Link key={link.label} href={link.href}>
-                    <span
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors cursor-pointer ${
-                        isActive
-                          ? "text-[#0081C9] bg-[#0081C9]/8"
-                          : "text-muted-foreground hover:text-foreground hover:bg-slate-100"
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center" data-testid="nav-main">
+            {NAV_ITEMS.map((item) => {
+              const hasDropdown = !!item.items;
+              const isActive = item.href ? location === item.href : false;
+              const isDropdownOpen = openDropdown === item.label;
+
+              return (
+                <div key={item.label} className="relative">
+                  {hasDropdown ? (
+                    <button
+                      onClick={() => setOpenDropdown(isDropdownOpen ? null : item.label)}
+                      onMouseEnter={() => setOpenDropdown(item.label)}
+                      className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
+                        isDropdownOpen
+                          ? "text-[#0081C9]"
+                          : "text-slate-600 hover:text-slate-900"
                       }`}
-                      data-testid={`mobile-nav-${link.label.toLowerCase().replace(/\s/g, "-")}`}
+                      data-testid={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
                     >
-                      <Icon className="h-4 w-4 flex-shrink-0" /> {link.label}
-                    </span>
+                      {item.label}
+                      <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isDropdownOpen ? "rotate-180" : ""}`} />
+                    </button>
+                  ) : (
+                    <Link href={item.href || "/"}>
+                      <span
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer whitespace-nowrap ${
+                          isActive
+                            ? "text-[#0081C9]"
+                            : "text-slate-600 hover:text-slate-900"
+                        }`}
+                        data-testid={`nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}
+                      >
+                        {item.label}
+                      </span>
+                    </Link>
+                  )}
+                  {hasDropdown && (
+                    <NavDropdown
+                      items={item.items!}
+                      isOpen={isDropdownOpen}
+                      onClose={() => setOpenDropdown(null)}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+            <Link href="/login">
+              <span className="text-sm font-medium text-slate-600 hover:text-slate-900 cursor-pointer transition-colors" data-testid="nav-login">
+                Login
+              </span>
+            </Link>
+            <Link href="/map">
+              <Button className="bg-[#C1121F] hover:bg-[#a30f1a] text-white font-semibold px-6 h-10 rounded-full shadow-md hover:shadow-lg transition-all" data-testid="nav-get-started">
+                Get started
+              </Button>
+            </Link>
+          </div>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="lg:hidden flex-shrink-0">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80 p-0">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center gap-2 font-bold text-lg p-5 border-b">
+                  <img src="/logo.png" alt="OnlineGuide.io" className="h-6 w-auto" />
+                  <span className="text-[#C1121F]">Online</span>
+                  <span className="text-[#0081C9]">Guide.io</span>
+                </div>
+                <div className="flex-1 overflow-y-auto py-3">
+                  {NAV_ITEMS.map((item) => (
+                    <div key={item.label}>
+                      {item.items ? (
+                        <div>
+                          <div className="px-5 py-2.5 text-xs font-bold text-slate-400 uppercase tracking-wider">{item.label}</div>
+                          {item.items.map((sub) => (
+                            <Link key={sub.label} href={sub.href}>
+                              <span className="flex flex-col px-5 py-2.5 hover:bg-slate-50 transition-colors cursor-pointer" data-testid={`mobile-nav-${sub.label.toLowerCase().replace(/\s/g, "-")}`}>
+                                <span className="text-sm font-medium text-slate-700">{sub.label}</span>
+                                {sub.description && <span className="text-[11px] text-slate-400">{sub.description}</span>}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      ) : (
+                        <Link href={item.href || "/"}>
+                          <span className="flex items-center px-5 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors cursor-pointer" data-testid={`mobile-nav-${item.label.toLowerCase().replace(/\s/g, "-")}`}>
+                            {item.label}
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className="p-5 border-t space-y-3">
+                  <Link href="/login">
+                    <Button variant="outline" className="w-full justify-center gap-2 h-10 rounded-full" data-testid="mobile-login">
+                      Login
+                    </Button>
                   </Link>
-                );
-              })}
-              <div className="mt-4 pt-4 border-t space-y-2 px-1">
-                <Link href="/login">
-                  <Button variant="outline" className="w-full justify-center gap-2" data-testid="mobile-sign-in">
-                    <LogIn className="h-4 w-4" /> Sign In
-                  </Button>
-                </Link>
-                <Link href="/map">
-                  <Button className="w-full justify-center gap-2 bg-[#0081C9] hover:bg-[#006ba3]" data-testid="mobile-add-listing">
-                    <Plus className="h-4 w-4" /> Add Listing
-                  </Button>
-                </Link>
+                  <Link href="/map">
+                    <Button className="w-full justify-center gap-2 bg-[#C1121F] hover:bg-[#a30f1a] h-10 rounded-full" data-testid="mobile-get-started">
+                      Get started <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            </div>
-          </SheetContent>
-        </Sheet>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );
