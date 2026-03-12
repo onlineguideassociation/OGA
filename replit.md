@@ -44,7 +44,7 @@ The `/map` route hosts the unified "All in One" page with a dark sidebar navigat
 - **Intelligence**: Dashboard, Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine (pill sub-tabs)
 - **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences (pill sub-tabs)
 - **Creator**: Content Generator, Cultural Cinema (pill sub-tabs)
-- **Community**: Trust Network & API, GuideFund, OGA (pill sub-tabs)
+- **Community**: Trust Network & API, GuideFund, OGA, Global Vision, AI Guide Book, Digital Postcards (pill sub-tabs)
 - **Management**: ERP/CRM, Hospitality PMS, Community Hub, Freelance Network, Sustainability & ESG, WebOS IDE (pill sub-tabs)
 
 Routes `/hotels`, `/restaurants`, `/travel`, `/events`, `/cinema`, `/autobot`, `/rdtb`, `/media`, `/finance`, `/fundraising`, `/association` all redirect to KnowledgeGraphMap.
