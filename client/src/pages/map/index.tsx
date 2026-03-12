@@ -10,6 +10,7 @@ import TourismFlowSection from "./tourism-flow-section";
 import CommunityFlowSection from "./community-flow-section";
 import CreatorFlowSection from "./creator-flow-section";
 import ManagementFlowSection from "./management-flow-section";
+import LocationBar from "@/components/location-bar";
 
 type ViewMode = "intelligence" | "tourism" | "creator" | "community" | "management";
 
@@ -29,6 +30,7 @@ export default function KnowledgeGraphMap() {
   return (
     <Layout>
       <div className="min-h-screen bg-slate-900">
+        <LocationBar />
         <div className="flex h-[calc(100vh-64px)]">
           <div className="w-72 bg-slate-800 border-r border-slate-700 flex flex-col overflow-hidden">
             <div className="p-4 border-b border-slate-700">
@@ -65,9 +67,10 @@ export default function KnowledgeGraphMap() {
               <div className="flex items-center gap-1.5 mb-1">
                 <Bot className="h-3.5 w-3.5 text-[#0081C9]" />
                 <span className="text-[10px] font-bold text-white">AI Insights</span>
+                <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 text-[8px] px-1 py-0">LIVE</Badge>
               </div>
               <p className="text-[10px] text-slate-300 leading-relaxed">
-                Peak tourism season. Siem Reap 87% occupancy. Angkor Wat content 3.2x engagement. Book 2+ weeks ahead.
+                Peak tourism season. Siem Reap 87% occupancy. Angkor Wat content 3.2x engagement. Book 2+ weeks ahead. Content personalized to your location.
               </p>
             </div>
           </div>
