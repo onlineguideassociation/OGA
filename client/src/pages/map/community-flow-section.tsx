@@ -7,7 +7,8 @@ import {
   Code, Activity, Server, Database, Cpu, Copy, Play, ShieldCheck,
   Sparkles, MapPin, GraduationCap, Award, Rocket, TrendingUp,
   Bot, Zap, MessageSquare, BookOpen, Image as ImageIcon, Share2, Download,
-  User, Wallet, Languages
+  User, Wallet, Languages, Video, Coins, Wifi, Brain, Star,
+  ChevronRight, Layers, ArrowRight, Lightbulb, Map
 } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -327,98 +328,222 @@ function GuideFundContent() {
   );
 }
 
+type OGALayer = "proposal" | "truth-future" | "ecosystem" | "roadmap";
+
+const OGA_LAYERS: { key: OGALayer; label: string; icon: React.ElementType }[] = [
+  { key: "proposal", label: "Official Proposal", icon: Award },
+  { key: "truth-future", label: "Truth Future", icon: Sparkles },
+  { key: "ecosystem", label: "Future Ecosystem", icon: Layers },
+  { key: "roadmap", label: "Roadmap", icon: TrendingUp },
+];
+
+const TRUTH_FUTURE_VISION = [
+  { icon: Bot, title: "AI Super Agents", description: "Automated AI agents powering travel, business, research, and real-time tourism intelligence across Southeast Asia.", color: "from-cyan-500 to-blue-600", stats: "12 Active Agents" },
+  { icon: Globe, title: "Global Tourism OS", description: "Unified tourism platform connecting destinations, creators, guides, and travelers into one intelligent network.", color: "from-blue-500 to-indigo-600", stats: "21 Destinations" },
+  { icon: Video, title: "Creator Economy", description: "Tools for media production, storytelling, digital entrepreneurship, and content-to-commerce conversion.", color: "from-violet-500 to-purple-600", stats: "500+ Creators" },
+];
+
+const FUTURE_ECOSYSTEM = [
+  { icon: Globe, title: "Global Tourism Intelligence", description: "AI-powered tourism analytics spanning Cambodia, Thailand, Vietnam, and beyond. Real-time traveler insights and predictive demand forecasting.", badge: "LIVE", badgeColor: "bg-emerald-100 text-emerald-700 border-emerald-200" },
+  { icon: Brain, title: "AI Super Agent Network", description: "Autonomous AI agents that plan itineraries, recommend experiences, manage bookings, and optimize tourism operations 24/7.", badge: "ACTIVE", badgeColor: "bg-blue-100 text-blue-700 border-blue-200" },
+  { icon: Video, title: "Creator Media Network", description: "A decentralized creator ecosystem for tourism storytelling, destination marketing, and digital content monetization.", badge: "GROWING", badgeColor: "bg-violet-100 text-violet-700 border-violet-200" },
+  { icon: Coins, title: "Web3 Economy", description: "Blockchain-powered loyalty tokens, transparent guide payments, and decentralized tourism marketplace infrastructure.", badge: "BETA", badgeColor: "bg-amber-100 text-amber-700 border-amber-200" },
+  { icon: Wifi, title: "Global Connectivity", description: "Connecting rural tourism destinations with digital infrastructure, enabling remote guides and communities to participate in the global economy.", badge: "EXPANDING", badgeColor: "bg-sky-100 text-sky-700 border-sky-200" },
+];
+
+const FULL_ROADMAP = [
+  { phase: "Phase 1", title: "Pilot & Foundation", status: "complete" as const, items: ["Launch in Siem Reap", "Onboard 100 guides", "Knowledge Hub Launch", "Tourism Map & Graph Explorer", "AI Dashboard & AutoBot"] },
+  { phase: "Phase 2", title: "Expansion & Intelligence", status: "active" as const, items: ["Expand to Phnom Penh", "Reach 500 guides", "RDTB Payment Network", "Forecasting Engine", "Creator Economy Tools", "NGO Partnerships"] },
+  { phase: "Phase 3", title: "Regional Scale", status: "upcoming" as const, items: ["Expand to SE Asia", "Global Tourism OS", "AI Super Agent Network", "Web3 Token Economy", "1,000 Guides Target"] },
+  { phase: "Phase 4", title: "Global Vision", status: "upcoming" as const, items: ["Full Autonomous AI Guides", "Cross-border Tourism Protocol", "Decentralized Creator DAO", "World Loyalty Alliance"] },
+];
+
 function OGAContent() {
+  const [activeLayer, setActiveLayer] = useState<OGALayer>("proposal");
+
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="text-center max-w-2xl mx-auto">
-        <Badge variant="secondary" className="mb-3 text-[#0081C9] bg-[#0081C9]/10">Official Proposal</Badge>
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Online Guide Association (OGA)</h2>
-        <p className="text-sm text-slate-500">Empowering Cambodian Tour Guides through Digital Infrastructure</p>
-        <p className="text-xs text-slate-400 mt-1">Connecting Cultures with Loyalty and Truth</p>
+        <Badge className="mb-3 text-[#0081C9] bg-[#0081C9]/10 border-[#0081C9]/20 px-3 py-1">OGA Official Proposal</Badge>
+        <h2 className="text-2xl font-bold text-slate-900 mb-1" data-testid="text-oga-title">Online Guide Association (OGA)</h2>
+        <p className="text-sm text-slate-600 font-medium">Empowering Cambodian Tour Guides through Digital Infrastructure</p>
+        <p className="text-xs text-slate-400 mt-1 italic">Connecting Cultures with Loyalty and Truth</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-none shadow-sm bg-[#0081C9] text-white">
-          <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Globe className="h-5 w-5" /> Our Vision</CardTitle></CardHeader>
-          <CardContent><p className="text-sm text-blue-50">To become the digital infrastructure for tourism professionals in Cambodia and Southeast Asia.</p></CardContent>
-        </Card>
-        <Card className="border-none shadow-sm bg-slate-900 text-white">
-          <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Rocket className="h-5 w-5" /> Our Mission</CardTitle></CardHeader>
-          <CardContent>
-            <ul className="space-y-1.5 text-sm text-slate-300">
-              <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Digitize 1,000 Cambodian tour guides</li>
-              <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Increase guide income by 30-50%</li>
-              <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Access to education & fundraising</li>
-              <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Promote responsible tourism</li>
-            </ul>
-          </CardContent>
-        </Card>
+      <div className="flex gap-1 bg-slate-100 p-1 rounded-xl">
+        {OGA_LAYERS.map(layer => {
+          const Icon = layer.icon;
+          const isActive = activeLayer === layer.key;
+          return (
+            <button key={layer.key} onClick={() => setActiveLayer(layer.key)}
+              className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${isActive ? "bg-white shadow-sm text-slate-900" : "text-slate-500 hover:text-slate-700"}`}
+              data-testid={`oga-layer-${layer.key}`}>
+              <Icon className={`h-3.5 w-3.5 ${isActive ? "text-[#0081C9]" : ""}`} />
+              <span className="hidden sm:inline">{layer.label}</span>
+            </button>
+          );
+        })}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[
-          { title: "Digital Platform", desc: "Professional profiles, booking systems, and AI assistants for every guide.", icon: <Award className="h-5 w-5 text-blue-600" /> },
-          { title: "GuideFund", desc: "Crowdfunding for certification, training, and community projects.", icon: <Heart className="h-5 w-5 text-rose-600" /> },
-          { title: "Digital Training", desc: "Specialized programs in digital marketing, branding, and storytelling.", icon: <TrendingUp className="h-5 w-5 text-emerald-600" /> },
-        ].map((item, i) => (
-          <div key={i} className="p-5 rounded-xl bg-white border shadow-sm hover:shadow-md transition-shadow">
-            <div className="h-10 w-10 rounded-lg bg-slate-50 flex items-center justify-center mb-3 border">{item.icon}</div>
-            <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
-            <p className="text-xs text-slate-600">{item.desc}</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold text-slate-900">Who We Support</h3>
-          <div className="space-y-2">
-            {["Licensed tour guides in Siem Reap & Phnom Penh", "Young tourism graduates entering the field", "Women guides seeking digital independence", "Rural community tourism leaders", "Drivers expanding into professional guiding"].map((text, i) => (
-              <div key={i} className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[#0081C9] shrink-0" /><span className="text-sm text-slate-700">{text}</span></div>
-            ))}
-          </div>
-        </div>
-        <Card className="bg-white border shadow-sm">
-          <CardHeader className="pb-2"><CardTitle className="text-base">3-Year Impact Targets</CardTitle></CardHeader>
-          <CardContent className="space-y-2">
-            {[
-              { label: "Registered Guides", value: "1,000" },
-              { label: "Avg Income Increase", value: "30-50%" },
-              { label: "Fundraising Campaigns", value: "200+" },
-              { label: "Training Graduates", value: "500" },
-              { label: "Int'l Partnerships", value: "20" },
-            ].map((stat, i) => (
-              <div key={i} className="flex items-center justify-between pb-2 border-b last:border-0 last:pb-0">
-                <span className="text-xs text-slate-600">{stat.label}</span>
-                <span className="text-xs font-bold text-[#0081C9]">{stat.value}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-      </div>
-
-      <div>
-        <h3 className="text-lg font-bold text-slate-900 mb-4 text-center">Implementation Roadmap</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {[
-            { phase: "Phase 1 - Pilot", time: "6 Months", tasks: ["Launch in Siem Reap", "Onboard 100 guides", "Beta GuideFund", "Workshops"] },
-            { phase: "Phase 2 - Expansion", time: "Year 1", tasks: ["Expand to Phnom Penh", "Reach 500 guides", "NGO Partnerships"] },
-            { phase: "Phase 3 - Regional Growth", time: "Year 2-3", tasks: ["Expand to SE Asia", "Network Launch"] },
-          ].map((step, i) => (
-            <Card key={i} className="bg-white border shadow-sm">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-bold text-sm text-slate-900">{step.phase}</span>
-                  <Badge variant="outline" className="text-[10px] text-[#0081C9]">{step.time}</Badge>
-                </div>
-                <ul className="list-disc list-inside text-xs text-slate-600 space-y-0.5">
-                  {step.tasks.map((t, j) => <li key={j}>{t}</li>)}
+      {activeLayer === "proposal" && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Card className="border-none shadow-sm bg-[#0081C9] text-white">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Globe className="h-5 w-5" /> Our Vision</CardTitle></CardHeader>
+              <CardContent><p className="text-sm text-blue-50">To become the digital infrastructure for tourism professionals in Cambodia and Southeast Asia.</p></CardContent>
+            </Card>
+            <Card className="border-none shadow-sm bg-slate-900 text-white">
+              <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Rocket className="h-5 w-5" /> Our Mission</CardTitle></CardHeader>
+              <CardContent>
+                <ul className="space-y-1.5 text-sm text-slate-300">
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Digitize 1,000 Cambodian tour guides</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Increase guide income by 30-50%</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Access to education & fundraising</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Promote responsible tourism</li>
                 </ul>
               </CardContent>
             </Card>
-          ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { title: "Digital Platform", desc: "Professional profiles, booking systems, and AI assistants for every guide.", icon: <Award className="h-5 w-5 text-blue-600" /> },
+              { title: "GuideFund", desc: "Crowdfunding for certification, training, and community projects.", icon: <Heart className="h-5 w-5 text-rose-600" /> },
+              { title: "Digital Training", desc: "Specialized programs in digital marketing, branding, and storytelling.", icon: <TrendingUp className="h-5 w-5 text-emerald-600" /> },
+            ].map((item, i) => (
+              <div key={i} className="p-5 rounded-xl bg-white border shadow-sm hover:shadow-md transition-shadow">
+                <div className="h-10 w-10 rounded-lg bg-slate-50 flex items-center justify-center mb-3 border">{item.icon}</div>
+                <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
+                <p className="text-xs text-slate-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-bold text-slate-900">Who We Support</h3>
+              <div className="space-y-2">
+                {["Licensed tour guides in Siem Reap & Phnom Penh", "Young tourism graduates entering the field", "Women guides seeking digital independence", "Rural community tourism leaders", "Drivers expanding into professional guiding"].map((text, i) => (
+                  <div key={i} className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-[#0081C9] shrink-0" /><span className="text-sm text-slate-700">{text}</span></div>
+                ))}
+              </div>
+            </div>
+            <Card className="bg-white border shadow-sm">
+              <CardHeader className="pb-2"><CardTitle className="text-base">3-Year Impact Targets</CardTitle></CardHeader>
+              <CardContent className="space-y-2">
+                {[
+                  { label: "Registered Guides", value: "1,000" },
+                  { label: "Avg Income Increase", value: "30-50%" },
+                  { label: "Fundraising Campaigns", value: "200+" },
+                  { label: "Training Graduates", value: "500" },
+                  { label: "Int'l Partnerships", value: "20" },
+                ].map((stat, i) => (
+                  <div key={i} className="flex items-center justify-between pb-2 border-b last:border-0 last:pb-0">
+                    <span className="text-xs text-slate-600">{stat.label}</span>
+                    <span className="text-xs font-bold text-[#0081C9]">{stat.value}</span>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          </div>
         </div>
-      </div>
+      )}
+
+      {activeLayer === "truth-future" && (
+        <div className="space-y-6">
+          <div className="rounded-2xl p-8 text-center" style={{ background: "linear-gradient(135deg, #081b33, #0c1f4d)" }}>
+            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-3 py-1 text-[10px] mb-4 inline-flex items-center gap-1.5">
+              <Sparkles className="h-3 w-3" /> Truth Future Initiative
+            </Badge>
+            <h3 className="text-2xl font-bold text-white mb-2">Truth Future</h3>
+            <p className="text-sm text-blue-200/70 max-w-lg mx-auto">Building a transparent digital future powered by AI, tourism, creators, and global connectivity.</p>
+            <div className="flex items-center justify-center gap-6 mt-5 text-xs text-blue-200/50">
+              <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> AI Systems Active</span>
+              <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> 200+ Guides</span>
+              <span className="flex items-center gap-1.5"><Globe className="h-3.5 w-3.5" /> SE Asia Network</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {TRUTH_FUTURE_VISION.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div key={card.title} className="bg-white border rounded-xl p-5 hover:shadow-md transition-shadow group" data-testid={`card-tf-${card.title.toLowerCase().replace(/\s/g, "-")}`}>
+                  <div className={`h-10 w-10 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                    <Icon className="h-5 w-5 text-white" />
+                  </div>
+                  <h3 className="text-sm font-bold text-slate-900 mb-2">{card.title}</h3>
+                  <p className="text-xs text-slate-600 leading-relaxed mb-3">{card.description}</p>
+                  <div className="flex items-center gap-1.5">
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#0081C9] animate-pulse" />
+                    <span className="text-[10px] text-[#0081C9] font-medium">{card.stats}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {activeLayer === "ecosystem" && (
+        <div className="space-y-4">
+          <div className="text-center mb-2">
+            <h3 className="text-lg font-bold text-slate-900">Future Ecosystem</h3>
+            <p className="text-xs text-slate-500">Five interconnected systems building the transparent digital future</p>
+          </div>
+          {FUTURE_ECOSYSTEM.map((section, i) => {
+            const Icon = section.icon;
+            return (
+              <div key={section.title} className="bg-white border rounded-xl p-5 flex items-start gap-4 hover:shadow-md transition-shadow group" data-testid={`ecosystem-${i}`}>
+                <div className="h-10 w-10 rounded-lg bg-slate-50 border flex items-center justify-center flex-shrink-0 group-hover:border-[#0081C9]/30 transition-colors">
+                  <Icon className="h-5 w-5 text-[#0081C9]" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="text-sm font-bold text-slate-900">{section.title}</h4>
+                    <Badge className={`${section.badgeColor} text-[9px] px-1.5 py-0`}>{section.badge}</Badge>
+                  </div>
+                  <p className="text-xs text-slate-600 leading-relaxed">{section.description}</p>
+                </div>
+                <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-[#0081C9]/50 flex-shrink-0 mt-1 transition-colors" />
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {activeLayer === "roadmap" && (
+        <div className="space-y-5">
+          <div className="text-center mb-2">
+            <h3 className="text-lg font-bold text-slate-900">Development Roadmap</h3>
+            <p className="text-xs text-slate-500">OGA & Truth Future phased implementation plan</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {FULL_ROADMAP.map((phase, i) => (
+              <Card key={phase.phase} className={`border shadow-sm ${phase.status === "active" ? "border-[#0081C9]/40 shadow-md ring-1 ring-[#0081C9]/10" : ""}`} data-testid={`roadmap-${i}`}>
+                <CardContent className="p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${phase.status === "complete" ? "bg-emerald-100 text-emerald-700" : phase.status === "active" ? "bg-[#0081C9]/10 text-[#0081C9]" : "bg-slate-100 text-slate-500"}`}>
+                      {phase.phase}
+                    </span>
+                    {phase.status === "complete" && <Star className="h-3 w-3 text-emerald-500 fill-emerald-500" />}
+                    {phase.status === "active" && <div className="h-2 w-2 rounded-full bg-[#0081C9] animate-pulse" />}
+                  </div>
+                  <h4 className="text-sm font-bold text-slate-900 mb-2">{phase.title}</h4>
+                  <ul className="space-y-1.5">
+                    {phase.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-slate-600">
+                        <div className={`h-1.5 w-1.5 rounded-full mt-1 flex-shrink-0 ${phase.status === "complete" ? "bg-emerald-400" : phase.status === "active" ? "bg-[#0081C9]" : "bg-slate-300"}`} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

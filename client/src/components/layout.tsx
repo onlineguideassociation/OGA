@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, MessageSquare, TrendingUp, BookOpen, Building2, Map, GitBranch, Sparkles } from "lucide-react";
+import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, MessageSquare, TrendingUp, BookOpen, Building2, Map, GitBranch } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -72,15 +72,6 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/truth-future">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Sparkles className="h-5 w-5 text-cyan-500 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Truth Future</div>
-                    <div className="text-xs text-muted-foreground">AI, tourism & creator economy vision</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
               <DropdownMenuSeparator className="my-2" />
               <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Business</DropdownMenuLabel>
               <Link href="/marketplace">
@@ -150,7 +141,6 @@ export function Navbar() {
                   <Link href="/map"><span className="block text-lg font-medium">Knowledge Hub</span></Link>
                   <Link href="/tours-map"><span className="block text-lg font-medium">Tours Map</span></Link>
                   <Link href="/graph-explorer"><span className="block text-lg font-medium">Graph Explorer</span></Link>
-                  <Link href="/truth-future"><span className="block text-lg font-medium">Truth Future</span></Link>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
                   <Link href="/marketplace"><span className="block text-lg font-medium">Marketplace</span></Link>
                   <Link href="/community"><span className="block text-lg font-medium">Community</span></Link>
