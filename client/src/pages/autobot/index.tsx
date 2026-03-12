@@ -2,7 +2,7 @@ import { Layout } from "@/components/layout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Bot, Sparkles, MessageSquare, Zap, Cpu, Search, Database, ArrowRight } from "lucide-react";
+import { Bot, Sparkles, MessageSquare, Zap, Cpu, Search, Database, ArrowRight, CheckCircle } from "lucide-react";
 
 export default function AutobotDashboard() {
   return (
