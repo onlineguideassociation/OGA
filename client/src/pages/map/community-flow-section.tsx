@@ -328,13 +328,89 @@ function GuideFundContent() {
   );
 }
 
-type OGALayer = "proposal" | "truth-future" | "ecosystem" | "roadmap";
+type OGALayer = "proposal" | "income" | "truth-future" | "ecosystem" | "roadmap";
 
 const OGA_LAYERS: { key: OGALayer; label: string; icon: React.ElementType }[] = [
-  { key: "proposal", label: "Official Proposal", icon: Award },
+  { key: "proposal", label: "Proposal", icon: Award },
+  { key: "income", label: "Income Streams", icon: Wallet },
   { key: "truth-future", label: "Truth Future", icon: Sparkles },
-  { key: "ecosystem", label: "Future Ecosystem", icon: Layers },
+  { key: "ecosystem", label: "Ecosystem", icon: Layers },
   { key: "roadmap", label: "Roadmap", icon: TrendingUp },
+];
+
+const INCOME_STREAMS = [
+  {
+    id: 1, icon: Globe, title: "Tourism Marketplace", subtitle: "Main Revenue", badge: "ACTIVE", badgeColor: "bg-emerald-100 text-emerald-700",
+    description: "Commission-based revenue on tours, activities, guides, transport, hotels, and experiences.",
+    model: "10–25% commission per booking",
+    example: "500 tours/month × $10 commission = $5,000/month",
+    products: ["Tours", "Activities", "Guides", "Transport", "Hotels", "Experiences"],
+    monthly: "$8,000",
+  },
+  {
+    id: 2, icon: Bot, title: "AI Platform Revenue", subtitle: "SaaS Subscriptions", badge: "GROWING", badgeColor: "bg-blue-100 text-blue-700",
+    description: "Monetize AI tools with a freemium subscription model for creators, businesses, and enterprises.",
+    model: "Freemium: Free → $9 → $29 → $99/mo",
+    example: "1,000 users × $9 avg = $9,000/month",
+    products: ["AI Travel Planner", "AI Review Reply", "AI Business Assistant", "AI Creator Tools", "AI Marketing Assistant"],
+    monthly: "$10,000",
+  },
+  {
+    id: 3, icon: Server, title: "Tourism SaaS System", subtitle: "B2B Platform", badge: "BUILDING", badgeColor: "bg-violet-100 text-violet-700",
+    description: "Sell tourism management software to tour operators, hotels, guides, and travel agencies.",
+    model: "Starter $29 → Pro $79 → Enterprise $199/mo",
+    example: "Recurring subscriptions from tourism businesses",
+    products: ["Booking Management", "CRM", "AI Marketing", "Review Management", "OTA Distribution"],
+    monthly: "$12,000",
+  },
+  {
+    id: 4, icon: Code, title: "Digital Services Marketplace", subtitle: "Freelance Platform", badge: "PLANNED", badgeColor: "bg-amber-100 text-amber-700",
+    description: "Platform for digital services — web development, SEO, social media, AI automation, design, video.",
+    model: "15% platform fee on services",
+    example: "$100 service → $15 platform fee",
+    products: ["Website Development", "SEO", "Social Media Marketing", "AI Automation", "Graphic Design", "Video Editing"],
+    monthly: "$3,000",
+  },
+  {
+    id: 5, icon: Zap, title: "Advertising Network", subtitle: "Ad Revenue", badge: "PLANNED", badgeColor: "bg-amber-100 text-amber-700",
+    description: "Sell sponsored listings, banners, featured tours, and promoted business placements.",
+    model: "Featured listing from $50/month",
+    example: "Hotels, restaurants, bars, tour operators, airlines",
+    products: ["Sponsored Listings", "Homepage Banner", "Featured Tours", "Promoted Businesses"],
+    monthly: "$5,000",
+  },
+  {
+    id: 6, icon: Video, title: "Creator Economy", subtitle: "Content Monetization", badge: "GROWING", badgeColor: "bg-blue-100 text-blue-700",
+    description: "Creators earn from tourism content — travel videos, guides, itineraries, and photography.",
+    model: "Platform takes 20% fee on creator sales",
+    example: "Creator sells itinerary $10 → Platform fee $2",
+    products: ["Travel Videos", "Digital Guides", "Itineraries", "Photography"],
+    monthly: "$3,000",
+  },
+  {
+    id: 7, icon: Share2, title: "Affiliate Revenue", subtitle: "Partner Commissions", badge: "ACTIVE", badgeColor: "bg-emerald-100 text-emerald-700",
+    description: "Earn referral commissions from travel platform partners on bookings and purchases.",
+    model: "Commission on referred bookings",
+    example: "Hotel bookings, flights, insurance, SIM cards, travel gear",
+    products: ["Hotel Bookings", "Flights", "Insurance", "SIM Cards", "Travel Gear"],
+    monthly: "$2,000",
+  },
+  {
+    id: 8, icon: Coins, title: "Web3 / Token Economy", subtitle: "Future Revenue", badge: "FUTURE", badgeColor: "bg-slate-100 text-slate-500",
+    description: "Optional blockchain-powered income through tourism NFT passes, creator tokens, and memberships.",
+    model: "Token sales & membership fees",
+    example: "Tourism NFT passes, Creator tokens, Community membership",
+    products: ["Tourism NFT Passes", "Creator Tokens", "Community Membership"],
+    monthly: "TBD",
+  },
+];
+
+const REVENUE_SUMMARY = [
+  { label: "Tours Commissions", value: "$8,000" },
+  { label: "AI Subscriptions", value: "$10,000" },
+  { label: "Business SaaS", value: "$12,000" },
+  { label: "Advertising", value: "$5,000" },
+  { label: "Creator Marketplace", value: "$3,000" },
 ];
 
 const TRUTH_FUTURE_VISION = [
@@ -445,6 +521,86 @@ function OGAContent() {
                 ))}
               </CardContent>
             </Card>
+          </div>
+        </div>
+      )}
+
+      {activeLayer === "income" && (
+        <div className="space-y-5">
+          <div className="rounded-2xl p-6 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0081C9, #C1121F)" }}>
+            <div className="absolute inset-0 bg-black/15" />
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
+              <div>
+                <h3 className="text-xl font-bold text-white mb-1">Revenue Projection</h3>
+                <p className="text-sm text-white/70">8 income streams powering the OnlineGuide.io ecosystem</p>
+              </div>
+              <div className="text-center md:text-right">
+                <div className="text-3xl font-bold text-white" data-testid="text-revenue-total">$38,000<span className="text-lg text-white/70">/mo</span></div>
+                <div className="text-xs text-white/60">~$456,000 / year projected</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {REVENUE_SUMMARY.map((item, i) => (
+              <div key={i} className="bg-white border border-[#0081C9]/10 rounded-xl p-3 text-center">
+                <div className="text-lg font-bold text-[#C1121F]">{item.value}</div>
+                <div className="text-[10px] text-slate-500 mt-0.5">{item.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="space-y-3">
+            {INCOME_STREAMS.map((stream) => {
+              const Icon = stream.icon;
+              return (
+                <div key={stream.id} className="bg-gradient-to-r from-white to-[#0081C9]/5 border border-[#0081C9]/10 rounded-xl overflow-hidden hover:shadow-md hover:border-[#0081C9]/25 transition-all group" data-testid={`income-stream-${stream.id}`}>
+                  <div className="p-5">
+                    <div className="flex items-start gap-4">
+                      <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-[#0081C9]/10 to-[#C1121F]/10 border border-[#0081C9]/15 flex items-center justify-center flex-shrink-0 group-hover:from-[#0081C9]/20 group-hover:to-[#C1121F]/20 transition-colors">
+                        <Icon className="h-5 w-5 text-[#0081C9]" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
+                          <h4 className="text-sm font-bold text-slate-900">{stream.title}</h4>
+                          <Badge className={`${stream.badgeColor} text-[9px] px-1.5 py-0 border-0`}>{stream.badge}</Badge>
+                          <span className="text-[10px] text-slate-400 ml-auto hidden sm:inline">{stream.subtitle}</span>
+                        </div>
+                        <p className="text-xs text-slate-600 mb-2">{stream.description}</p>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                          <div className="flex items-center gap-1.5 bg-[#0081C9]/5 border border-[#0081C9]/10 rounded-lg px-2.5 py-1">
+                            <Wallet className="h-3 w-3 text-[#0081C9]" />
+                            <span className="text-[10px] font-semibold text-[#0081C9]">{stream.model}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5 bg-[#C1121F]/5 border border-[#C1121F]/10 rounded-lg px-2.5 py-1">
+                            <TrendingUp className="h-3 w-3 text-[#C1121F]" />
+                            <span className="text-[10px] font-semibold text-[#C1121F]">{stream.monthly}/mo</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mt-3 ml-15">
+                      {stream.products.map((product) => (
+                        <span key={product} className="px-2 py-0.5 bg-slate-50 border border-slate-200 rounded-md text-[10px] text-slate-600">{product}</span>
+                      ))}
+                    </div>
+                    <div className="mt-2 ml-15">
+                      <p className="text-[10px] text-slate-400 italic">{stream.example}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="rounded-xl p-5 bg-gradient-to-br from-[#C1121F]/5 to-[#0081C9]/5 border border-[#C1121F]/10 text-center">
+            <p className="text-sm font-bold text-slate-900 mb-1">The Real Vision</p>
+            <p className="text-xs text-slate-600 mb-3">OnlineGuide.io = AI + Tourism + Creator + Marketplace + SaaS</p>
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              {["AI Platform", "Tourism OS", "Creator Economy", "Marketplace", "SaaS B2B"].map((item) => (
+                <span key={item} className="px-3 py-1 rounded-full text-[10px] font-semibold bg-gradient-to-r from-[#0081C9]/10 to-[#C1121F]/10 text-slate-700 border border-[#0081C9]/15">{item}</span>
+              ))}
+            </div>
           </div>
         </div>
       )}
