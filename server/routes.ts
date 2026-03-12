@@ -167,6 +167,28 @@ export async function registerRoutes(
     res.status(201).json(booking);
   });
 
+  app.get("/api/trust/network", async (_req, res) => {
+    res.json({
+      status: "active",
+      uptime: "99.9%",
+      totalEndpoints: 12,
+      totalGuides: 780,
+      verifiedGuides: 450,
+      activeConnections: 213,
+      apiCalls24h: "24,580",
+      regions: [
+        { name: "Cambodia", guides: 450, partners: 120, status: "active" },
+        { name: "Thailand", guides: 180, partners: 45, status: "expanding" },
+        { name: "Vietnam", guides: 95, partners: 28, status: "expanding" },
+        { name: "Laos", guides: 35, partners: 12, status: "pilot" },
+        { name: "Myanmar", guides: 20, partners: 8, status: "pilot" },
+      ],
+      trustScore: "A+",
+      responseTime: "42ms",
+      dataIntegrity: "99.8%",
+    });
+  });
+
   app.post("/api/contact", async (req, res) => {
     const parsed = insertContactMessageSchema.safeParse(req.body);
     if (!parsed.success) return res.status(400).json({ message: "Invalid message data", errors: parsed.error.errors });

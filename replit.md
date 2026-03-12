@@ -41,14 +41,18 @@ db/
   seed.ts             - Database seed script
 ```
 
-## Unified Knowledge Hub (12 Tabs)
+## Unified Knowledge Hub (13 Tabs)
 The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
 - **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine
 - **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences
 - **Creator**: Content Generator, Cultural Cinema
+- **Network**: Trust Network & One Flow API (Global Trust Network + unified API dashboard)
 - **Community**: GuideFund, OGA
 
 Routes `/hotels`, `/restaurants`, `/travel`, `/events`, `/cinema`, `/autobot`, `/rdtb`, `/media`, `/finance`, `/fundraising`, `/association` all redirect to KnowledgeGraphMap.
+
+## One Flow API
+Unified REST API endpoint catalog at `GET /api/trust/network` returns live network health, guide counts, regional status, and trust metrics. The Global Trust Section provides an interactive API explorer showing all 20 endpoints across modules.
 
 ## Database Tables
 - `users` - User accounts

@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
   MapPin, Plane, Hotel, Utensils, ShoppingBag, Landmark, Building,
   Filter, Layers, Zap, Star, Navigation, Globe, ChevronRight, X,
-  Wifi, Bot, DollarSign, Map as MapIcon,
+  Wifi, Bot, DollarSign, Map as MapIcon, Shield,
   GitBranch, Search, Calendar, Users, Loader2, Gift, Building2,
   Film, Image as ImageIcon, Heart, Radio, CalendarDays, Sparkles
 } from "lucide-react";
@@ -27,8 +27,9 @@ import MediaSection from "./media-section";
 import FinanceSection from "./finance-section";
 import FundraisingSection from "./fundraising-section";
 import AssociationSection from "./association-section";
+import GlobalTrustSection from "./global-trust-section";
 
-type ViewMode = "map" | "graph" | "hotels" | "dining" | "events" | "travel" | "cinema" | "autobot" | "media" | "finance" | "fundraising" | "association";
+type ViewMode = "map" | "graph" | "hotels" | "dining" | "events" | "travel" | "cinema" | "autobot" | "media" | "finance" | "fundraising" | "association" | "trust";
 
 interface MapNode {
   id: string;
@@ -134,11 +135,12 @@ const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group:
   { key: "events", label: "Conferences", icon: CalendarDays, group: "Tourism" },
   { key: "media", label: "Content Generator", icon: ImageIcon, group: "Creator" },
   { key: "cinema", label: "Cultural Cinema", icon: Film, group: "Creator" },
+  { key: "trust", label: "Trust Network & API", icon: Shield, group: "Network" },
   { key: "fundraising", label: "GuideFund", icon: Heart, group: "Community" },
   { key: "association", label: "OGA", icon: Globe, group: "Community" },
 ];
 
-const GROUPS = ["Intelligence", "Tourism", "Creator", "Community"];
+const GROUPS = ["Intelligence", "Tourism", "Creator", "Network", "Community"];
 
 export default function KnowledgeGraphMap() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
@@ -502,6 +504,7 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "finance" && <FinanceSection />}
                   {viewMode === "fundraising" && <FundraisingSection />}
                   {viewMode === "association" && <AssociationSection />}
+                  {viewMode === "trust" && <GlobalTrustSection />}
                 </div>
               </div>
             )}
