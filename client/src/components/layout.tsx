@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, Heart, Network, Globe, MessageSquare, TrendingUp, BookOpen, Building2, Map } from "lucide-react";
+import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, MessageSquare, TrendingUp, BookOpen, Building2, Map } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -51,35 +51,6 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">Dashboard</div>
                     <div className="text-xs text-muted-foreground">Analytics & management console</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Network & Trust</DropdownMenuLabel>
-              <Link href="/association">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Network className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">OGA Network</div>
-                    <div className="text-xs text-muted-foreground">Online Guide Association</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/fundraising">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Heart className="h-5 w-5 text-rose-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">GuideFund</div>
-                    <div className="text-xs text-muted-foreground">Support cultural tourism</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/global/vision">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Globe className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Global Vision</div>
-                    <div className="text-xs text-muted-foreground">World Loyalty Alliance</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -160,9 +131,6 @@ export function Navbar() {
                   <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Platform</h4>
                   <Link href="/map"><span className="block text-lg font-medium">Knowledge Hub</span></Link>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
-                  <Link href="/association"><span className="block text-lg font-medium">OGA Network</span></Link>
-                  <Link href="/fundraising"><span className="block text-lg font-medium">GuideFund</span></Link>
-                  <Link href="/global/vision"><span className="block text-lg font-medium">Global Vision</span></Link>
                   <Link href="/marketplace"><span className="block text-lg font-medium">Marketplace</span></Link>
                   <Link href="/community"><span className="block text-lg font-medium">Community</span></Link>
                 </div>
@@ -216,11 +184,11 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-4 text-slate-900">Network</h4>
+            <h4 className="font-semibold mb-4 text-slate-900">Explore</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="/association" className="hover:text-primary transition-colors">OGA Network</Link></li>
-              <li><Link href="/fundraising" className="hover:text-primary transition-colors">GuideFund</Link></li>
-              <li><Link href="/global/vision" className="hover:text-primary transition-colors">Global Vision</Link></li>
+              <li><Link href="/map" className="hover:text-primary transition-colors">Intelligence Hub</Link></li>
+              <li><Link href="/map" className="hover:text-primary transition-colors">Tourism Flow</Link></li>
+              <li><Link href="/map" className="hover:text-primary transition-colors">Creator Studio</Link></li>
               <li><Link href="/pricing" className="hover:text-primary transition-colors">Pricing</Link></li>
             </ul>
           </div>
