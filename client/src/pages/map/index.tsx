@@ -11,6 +11,8 @@ import CommunityFlowSection from "./community-flow-section";
 import CreatorFlowSection from "./creator-flow-section";
 import ManagementFlowSection from "./management-flow-section";
 import LocationBar from "@/components/location-bar";
+import HeroSection from "./hero-section";
+import { CategoryFilterBar, SalesPanel } from "./sales-panel";
 
 type ViewMode = "intelligence" | "tourism" | "creator" | "community" | "management";
 
@@ -26,11 +28,24 @@ const GROUPS = ["Intelligence", "Tourism", "Creator", "Community", "Management"]
 
 export default function KnowledgeGraphMap() {
   const [viewMode, setViewMode] = useState<ViewMode>("intelligence");
+  const [activeCategory, setActiveCategory] = useState<"all" | "tours" | "hotels" | "restaurants" | "shops" | "experiences" | "digital" | "realestate" | "ai">("all");
+  const [showHero, setShowHero] = useState(true);
 
   return (
     <Layout>
       <div className="min-h-screen bg-slate-900">
         <LocationBar />
+
+        {showHero && (
+          <HeroSection
+            onExploreMap={() => { setViewMode("intelligence"); setShowHero(false); }}
+            onBookTours={() => { setViewMode("tourism"); setShowHero(false); }}
+            onStartAI={() => { setViewMode("intelligence"); setShowHero(false); }}
+          />
+        )}
+
+        <CategoryFilterBar activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
+
         <div className="flex h-[calc(100vh-64px)]">
           <div className="w-72 bg-slate-800 border-r border-slate-700 flex flex-col overflow-hidden">
             <div className="p-4 border-b border-slate-700">
@@ -101,6 +116,8 @@ export default function KnowledgeGraphMap() {
               </div>
             )}
           </div>
+
+          <SalesPanel activeCategory={activeCategory} />
         </div>
       </div>
     </Layout>

@@ -1,0 +1,233 @@
+🌏 OnlineGuide.io Front Hook (Hero Value)
+
+Place this above the map so visitors understand the platform instantly.
+
+Front Hook Text
+
+Headline
+
+Discover Cambodia Through AI, Maps, and Cultural Truth
+
+Sub-headline
+
+OnlineGuide.io connects tourism, AI intelligence, creators, and local businesses into one live network powered by interactive maps.
+
+CTA Buttons
+
+[Explore Tourism Map]
+[Book Tours]
+[Start AI Assistant]
+
+This improves conversion and engagement.
+
+🗺 Google Maps Integration
+
+Add Google Maps layer under your tourism intelligence nodes.
+
+Example script for your project:
+
+<div id="map"></div>
+
+<script>
+function initMap() {
+
+const cambodia = { lat: 12.5657, lng: 104.9910 };
+
+const map = new google.maps.Map(document.getElementById("map"), {
+zoom: 7,
+center: cambodia,
+styles: [
+{ elementType: "geometry", stylers: [{ color: "#0b1f3a" }] },
+{ elementType: "labels.text.fill", stylers: [{ color: "#ffffff" }] }
+]
+});
+
+const angkor = { lat: 13.4125, lng: 103.8667 };
+
+new google.maps.Marker({
+position: angkor,
+map: map,
+title: "Angkor Wat"
+});
+
+}
+</script>
+
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+
+Benefits:
+
+• Real location data
+• Businesses can appear on map
+• Better tourism discovery
+• Monetization opportunity
+
+💰 8 Revenue Streams Visible on Map
+
+Add category filters that generate income.
+
+Your top filter bar can become:
+
+Tours
+Hotels
+Restaurants
+Shops
+Experiences
+Digital Services
+Real Estate
+AI Services
+
+Each category connects to a revenue model.
+
+💵 OnlineGuide.io 8 Income Streams
+1️⃣ Tours & Experiences
+
+Commission from bookings.
+
+Example:
+
+Angkor Wat Tour
+$60
+Commission: $10
+2️⃣ Hotel Bookings
+
+Affiliate or direct booking fees.
+
+3️⃣ Restaurant Listings
+
+Featured placement.
+
+Example:
+
+Featured restaurant
+$30/month
+4️⃣ Local Shops
+
+Marketplace listing.
+
+Example:
+
+Local shop listing
+$20/month
+5️⃣ Experiences Marketplace
+
+Classes, workshops, cultural activities.
+
+Example:
+
+Khmer cooking class
+$40
+Commission: $8
+6️⃣ Digital Services
+
+Sell services through the platform.
+
+Examples:
+
+website design
+
+SEO
+
+marketing
+
+video editing
+
+Platform fee:
+
+15% commission
+7️⃣ Real Estate Listings
+
+Tourism property marketplace.
+
+Examples:
+
+hotels for sale
+
+land
+
+rentals
+
+Listing price:
+
+$99 per listing
+8️⃣ AI Services
+
+Your AI tools become SaaS products.
+
+Examples:
+
+AI Travel Planner
+
+AI Review Reply
+
+AI Marketing
+
+Pricing:
+
+Free
+$9/month
+$29/month
+$99/month
+🚀 Map-Based Sales System
+
+Your map becomes a tourism marketplace.
+
+Example nodes:
+
+Angkor Wat
+Tour operators
+Hotels
+Restaurants
+Markets
+Museums
+Events
+
+Click node → opens:
+
+Photos
+Booking button
+AI recommendations
+Reviews
+🎯 Add a Sales Panel on Right Side
+
+Example layout:
+
+Top Tours Today
+Angkor Sunrise Tour
+$65
+[Book Now]
+
+Top Restaurants
+Khmer Kitchen
+[Reserve]
+
+Featured Experience
+Khmer Cooking Class
+[Join]
+📈 Sales Features You Should Add
+1️⃣ "Book Tour" button on map nodes
+2️⃣ "List Your Business"
+
+For local businesses.
+
+3️⃣ AI Travel Planner
+
+Users type:
+
+Plan my 3 day trip to Siem Reap
+
+AI suggests tours.
+
+4️⃣ Featured Listings
+
+Businesses pay to appear first.
+
+🧠 Your Platform Vision
+
+OnlineGuide.io becomes:
+
+Google Maps + TripAdvisor + AI + Tourism Marketplace
+
+Your map becomes a live tourism intelligence network.
