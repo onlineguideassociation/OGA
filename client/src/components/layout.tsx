@@ -72,46 +72,6 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Business</DropdownMenuLabel>
-              <Link href="/marketplace">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <Zap className="h-5 w-5 text-amber-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Marketplace</div>
-                    <div className="text-xs text-muted-foreground">E-commerce & dropshipping</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <DropdownMenuSeparator className="my-2" />
-              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Resources</DropdownMenuLabel>
-              <Link href="/product">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <BookOpen className="h-5 w-5 text-slate-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Documentation</div>
-                    <div className="text-xs text-muted-foreground">Infrastructure & API reference</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/community">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <MessageSquare className="h-5 w-5 text-purple-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Community</div>
-                    <div className="text-xs text-muted-foreground">Forums, posts & discussions</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/pricing">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Pricing</div>
-                    <div className="text-xs text-muted-foreground">Plans & subscription options</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>
@@ -142,15 +102,7 @@ export function Navbar() {
                   <Link href="/tours-map"><span className="block text-lg font-medium">Tours Map</span></Link>
                   <Link href="/graph-explorer"><span className="block text-lg font-medium">Graph Explorer</span></Link>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
-                  <Link href="/marketplace"><span className="block text-lg font-medium">Marketplace</span></Link>
-                  <Link href="/community"><span className="block text-lg font-medium">Community</span></Link>
                 </div>
-                <Link href="/pricing">
-                  <span className="text-lg font-medium cursor-pointer">Pricing</span>
-                </Link>
-                <Link href="/product">
-                  <span className="text-lg font-medium cursor-pointer">Documentation</span>
-                </Link>
                 <div className="mt-4 pt-4 border-t">
                   <Link href="/login">
                     <Button variant="outline" className="w-full mb-2">Log in</Button>
