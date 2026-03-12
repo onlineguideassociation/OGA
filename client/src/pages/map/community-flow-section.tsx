@@ -338,9 +338,9 @@ const OGA_LAYERS: { key: OGALayer; label: string; icon: React.ElementType }[] = 
 ];
 
 const TRUTH_FUTURE_VISION = [
-  { icon: Bot, title: "AI Super Agents", description: "Automated AI agents powering travel, business, research, and real-time tourism intelligence across Southeast Asia.", color: "from-cyan-500 to-blue-600", stats: "12 Active Agents" },
-  { icon: Globe, title: "Global Tourism OS", description: "Unified tourism platform connecting destinations, creators, guides, and travelers into one intelligent network.", color: "from-blue-500 to-indigo-600", stats: "21 Destinations" },
-  { icon: Video, title: "Creator Economy", description: "Tools for media production, storytelling, digital entrepreneurship, and content-to-commerce conversion.", color: "from-violet-500 to-purple-600", stats: "500+ Creators" },
+  { icon: Bot, title: "AI Super Agents", description: "Automated AI agents powering travel, business, research, and real-time tourism intelligence across Southeast Asia.", color: "from-[#0081C9] to-[#005a8c]", stats: "12 Active Agents" },
+  { icon: Globe, title: "Global Tourism OS", description: "Unified tourism platform connecting destinations, creators, guides, and travelers into one intelligent network.", color: "from-[#C1121F] to-[#8b0d16]", stats: "21 Destinations" },
+  { icon: Video, title: "Creator Economy", description: "Tools for media production, storytelling, digital entrepreneurship, and content-to-commerce conversion.", color: "from-[#0081C9] to-[#C1121F]", stats: "500+ Creators" },
 ];
 
 const FUTURE_ECOSYSTEM = [
@@ -364,21 +364,21 @@ function OGAContent() {
   return (
     <div className="space-y-5">
       <div className="text-center max-w-2xl mx-auto">
-        <Badge className="mb-3 text-[#0081C9] bg-[#0081C9]/10 border-[#0081C9]/20 px-3 py-1">OGA Official Proposal</Badge>
+        <Badge className="mb-3 text-white bg-gradient-to-r from-[#C1121F] to-[#0081C9] border-0 px-4 py-1.5 text-xs font-semibold shadow-sm">OGA Official Proposal</Badge>
         <h2 className="text-2xl font-bold text-slate-900 mb-1" data-testid="text-oga-title">Online Guide Association (OGA)</h2>
         <p className="text-sm text-slate-600 font-medium">Empowering Cambodian Tour Guides through Digital Infrastructure</p>
-        <p className="text-xs text-slate-400 mt-1 italic">Connecting Cultures with Loyalty and Truth</p>
+        <p className="text-xs mt-1 italic"><span className="text-[#C1121F]">Connecting Cultures</span> <span className="text-slate-400">with</span> <span className="text-[#0081C9]">Loyalty and Truth</span></p>
       </div>
 
-      <div className="flex gap-1 bg-slate-100 p-1 rounded-xl">
+      <div className="flex gap-1 bg-gradient-to-r from-[#0081C9]/5 to-[#C1121F]/5 p-1 rounded-xl border border-[#0081C9]/10">
         {OGA_LAYERS.map(layer => {
           const Icon = layer.icon;
           const isActive = activeLayer === layer.key;
           return (
             <button key={layer.key} onClick={() => setActiveLayer(layer.key)}
-              className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${isActive ? "bg-white shadow-sm text-slate-900" : "text-slate-500 hover:text-slate-700"}`}
+              className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${isActive ? "bg-white shadow-sm text-slate-900 border border-[#0081C9]/20" : "text-slate-500 hover:text-slate-700"}`}
               data-testid={`oga-layer-${layer.key}`}>
-              <Icon className={`h-3.5 w-3.5 ${isActive ? "text-[#0081C9]" : ""}`} />
+              <Icon className={`h-3.5 w-3.5 ${isActive ? "text-[#C1121F]" : ""}`} />
               <span className="hidden sm:inline">{layer.label}</span>
             </button>
           );
@@ -388,18 +388,18 @@ function OGAContent() {
       {activeLayer === "proposal" && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Card className="border-none shadow-sm bg-[#0081C9] text-white">
+            <Card className="border-none shadow-sm text-white" style={{ background: "linear-gradient(135deg, #0081C9, #005a8c)" }}>
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Globe className="h-5 w-5" /> Our Vision</CardTitle></CardHeader>
               <CardContent><p className="text-sm text-blue-50">To become the digital infrastructure for tourism professionals in Cambodia and Southeast Asia.</p></CardContent>
             </Card>
-            <Card className="border-none shadow-sm bg-slate-900 text-white">
+            <Card className="border-none shadow-sm text-white" style={{ background: "linear-gradient(135deg, #C1121F, #8b0d16)" }}>
               <CardHeader className="pb-2"><CardTitle className="flex items-center gap-2 text-base"><Rocket className="h-5 w-5" /> Our Mission</CardTitle></CardHeader>
               <CardContent>
-                <ul className="space-y-1.5 text-sm text-slate-300">
-                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Digitize 1,000 Cambodian tour guides</li>
-                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Increase guide income by 30-50%</li>
-                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Access to education & fundraising</li>
-                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-[#0081C9]" /> Promote responsible tourism</li>
+                <ul className="space-y-1.5 text-sm text-red-100">
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-white/70" /> Digitize 1,000 Cambodian tour guides</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-white/70" /> Increase guide income by 30-50%</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-white/70" /> Access to education & fundraising</li>
+                  <li className="flex items-center gap-2"><div className="h-1.5 w-1.5 rounded-full bg-white/70" /> Promote responsible tourism</li>
                 </ul>
               </CardContent>
             </Card>
@@ -407,12 +407,12 @@ function OGAContent() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { title: "Digital Platform", desc: "Professional profiles, booking systems, and AI assistants for every guide.", icon: <Award className="h-5 w-5 text-blue-600" /> },
-              { title: "GuideFund", desc: "Crowdfunding for certification, training, and community projects.", icon: <Heart className="h-5 w-5 text-rose-600" /> },
-              { title: "Digital Training", desc: "Specialized programs in digital marketing, branding, and storytelling.", icon: <TrendingUp className="h-5 w-5 text-emerald-600" /> },
+              { title: "Digital Platform", desc: "Professional profiles, booking systems, and AI assistants for every guide.", icon: <Award className="h-5 w-5 text-[#0081C9]" /> },
+              { title: "GuideFund", desc: "Crowdfunding for certification, training, and community projects.", icon: <Heart className="h-5 w-5 text-[#C1121F]" /> },
+              { title: "Digital Training", desc: "Specialized programs in digital marketing, branding, and storytelling.", icon: <TrendingUp className="h-5 w-5 text-[#0081C9]" /> },
             ].map((item, i) => (
-              <div key={i} className="p-5 rounded-xl bg-white border shadow-sm hover:shadow-md transition-shadow">
-                <div className="h-10 w-10 rounded-lg bg-slate-50 flex items-center justify-center mb-3 border">{item.icon}</div>
+              <div key={i} className="p-5 rounded-xl bg-white border border-[#0081C9]/10 shadow-sm hover:shadow-md hover:border-[#0081C9]/25 transition-all">
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#0081C9]/10 to-[#C1121F]/10 flex items-center justify-center mb-3 border border-[#0081C9]/15">{item.icon}</div>
                 <h3 className="text-sm font-bold text-slate-900 mb-1">{item.title}</h3>
                 <p className="text-xs text-slate-600">{item.desc}</p>
               </div>
@@ -428,8 +428,8 @@ function OGAContent() {
                 ))}
               </div>
             </div>
-            <Card className="bg-white border shadow-sm">
-              <CardHeader className="pb-2"><CardTitle className="text-base">3-Year Impact Targets</CardTitle></CardHeader>
+            <Card className="bg-white border border-[#C1121F]/10 shadow-sm">
+              <CardHeader className="pb-2"><CardTitle className="text-base flex items-center gap-2"><TrendingUp className="h-4 w-4 text-[#C1121F]" /> 3-Year Impact Targets</CardTitle></CardHeader>
               <CardContent className="space-y-2">
                 {[
                   { label: "Registered Guides", value: "1,000" },
@@ -438,9 +438,9 @@ function OGAContent() {
                   { label: "Training Graduates", value: "500" },
                   { label: "Int'l Partnerships", value: "20" },
                 ].map((stat, i) => (
-                  <div key={i} className="flex items-center justify-between pb-2 border-b last:border-0 last:pb-0">
+                  <div key={i} className="flex items-center justify-between pb-2 border-b border-[#0081C9]/10 last:border-0 last:pb-0">
                     <span className="text-xs text-slate-600">{stat.label}</span>
-                    <span className="text-xs font-bold text-[#0081C9]">{stat.value}</span>
+                    <span className="text-xs font-bold text-[#C1121F]">{stat.value}</span>
                   </div>
                 ))}
               </CardContent>
@@ -451,16 +451,19 @@ function OGAContent() {
 
       {activeLayer === "truth-future" && (
         <div className="space-y-6">
-          <div className="rounded-2xl p-8 text-center" style={{ background: "linear-gradient(135deg, #081b33, #0c1f4d)" }}>
-            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-3 py-1 text-[10px] mb-4 inline-flex items-center gap-1.5">
-              <Sparkles className="h-3 w-3" /> Truth Future Initiative
-            </Badge>
-            <h3 className="text-2xl font-bold text-white mb-2">Truth Future</h3>
-            <p className="text-sm text-blue-200/70 max-w-lg mx-auto">Building a transparent digital future powered by AI, tourism, creators, and global connectivity.</p>
-            <div className="flex items-center justify-center gap-6 mt-5 text-xs text-blue-200/50">
-              <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> AI Systems Active</span>
-              <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> 200+ Guides</span>
-              <span className="flex items-center gap-1.5"><Globe className="h-3.5 w-3.5" /> SE Asia Network</span>
+          <div className="rounded-2xl p-8 text-center relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0081C9, #C1121F)" }}>
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="relative z-10">
+              <Badge className="bg-white/20 text-white border-white/30 px-3 py-1 text-[10px] mb-4 inline-flex items-center gap-1.5">
+                <Sparkles className="h-3 w-3" /> Truth Future Initiative
+              </Badge>
+              <h3 className="text-2xl font-bold text-white mb-2">Truth Future</h3>
+              <p className="text-sm text-white/80 max-w-lg mx-auto">Building a transparent digital future powered by AI, tourism, creators, and global connectivity.</p>
+              <div className="flex items-center justify-center gap-6 mt-5 text-xs text-white/60">
+                <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" /> AI Systems Active</span>
+                <span className="flex items-center gap-1.5"><Users className="h-3.5 w-3.5" /> 200+ Guides</span>
+                <span className="flex items-center gap-1.5"><Globe className="h-3.5 w-3.5" /> SE Asia Network</span>
+              </div>
             </div>
           </div>
 
@@ -468,15 +471,15 @@ function OGAContent() {
             {TRUTH_FUTURE_VISION.map((card) => {
               const Icon = card.icon;
               return (
-                <div key={card.title} className="bg-white border rounded-xl p-5 hover:shadow-md transition-shadow group" data-testid={`card-tf-${card.title.toLowerCase().replace(/\s/g, "-")}`}>
+                <div key={card.title} className="bg-gradient-to-b from-white to-[#0081C9]/5 border border-[#0081C9]/15 rounded-xl p-5 hover:shadow-md hover:border-[#0081C9]/30 transition-all group" data-testid={`card-tf-${card.title.toLowerCase().replace(/\s/g, "-")}`}>
                   <div className={`h-10 w-10 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                     <Icon className="h-5 w-5 text-white" />
                   </div>
                   <h3 className="text-sm font-bold text-slate-900 mb-2">{card.title}</h3>
                   <p className="text-xs text-slate-600 leading-relaxed mb-3">{card.description}</p>
                   <div className="flex items-center gap-1.5">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#0081C9] animate-pulse" />
-                    <span className="text-[10px] text-[#0081C9] font-medium">{card.stats}</span>
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#C1121F] animate-pulse" />
+                    <span className="text-[10px] text-[#C1121F] font-medium">{card.stats}</span>
                   </div>
                 </div>
               );
@@ -488,14 +491,18 @@ function OGAContent() {
       {activeLayer === "ecosystem" && (
         <div className="space-y-4">
           <div className="text-center mb-2">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0081C9]/10 to-[#C1121F]/10 px-4 py-1.5 rounded-full mb-3">
+              <Layers className="h-3.5 w-3.5 text-[#0081C9]" />
+              <span className="text-xs font-semibold text-[#0081C9]">Ecosystem</span>
+            </div>
             <h3 className="text-lg font-bold text-slate-900">Future Ecosystem</h3>
             <p className="text-xs text-slate-500">Five interconnected systems building the transparent digital future</p>
           </div>
           {FUTURE_ECOSYSTEM.map((section, i) => {
             const Icon = section.icon;
             return (
-              <div key={section.title} className="bg-white border rounded-xl p-5 flex items-start gap-4 hover:shadow-md transition-shadow group" data-testid={`ecosystem-${i}`}>
-                <div className="h-10 w-10 rounded-lg bg-slate-50 border flex items-center justify-center flex-shrink-0 group-hover:border-[#0081C9]/30 transition-colors">
+              <div key={section.title} className="bg-gradient-to-r from-white to-[#0081C9]/5 border border-[#0081C9]/10 rounded-xl p-5 flex items-start gap-4 hover:shadow-md hover:border-[#0081C9]/25 transition-all group" data-testid={`ecosystem-${i}`}>
+                <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#0081C9]/10 to-[#C1121F]/10 border border-[#0081C9]/20 flex items-center justify-center flex-shrink-0 group-hover:from-[#0081C9]/20 group-hover:to-[#C1121F]/20 transition-colors">
                   <Icon className="h-5 w-5 text-[#0081C9]" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -505,7 +512,7 @@ function OGAContent() {
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">{section.description}</p>
                 </div>
-                <ChevronRight className="h-4 w-4 text-slate-300 group-hover:text-[#0081C9]/50 flex-shrink-0 mt-1 transition-colors" />
+                <ChevronRight className="h-4 w-4 text-[#0081C9]/30 group-hover:text-[#C1121F]/50 flex-shrink-0 mt-1 transition-colors" />
               </div>
             );
           })}
@@ -515,25 +522,29 @@ function OGAContent() {
       {activeLayer === "roadmap" && (
         <div className="space-y-5">
           <div className="text-center mb-2">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#C1121F]/10 to-[#0081C9]/10 px-4 py-1.5 rounded-full mb-3">
+              <TrendingUp className="h-3.5 w-3.5 text-[#C1121F]" />
+              <span className="text-xs font-semibold text-[#C1121F]">Roadmap</span>
+            </div>
             <h3 className="text-lg font-bold text-slate-900">Development Roadmap</h3>
             <p className="text-xs text-slate-500">OGA & Truth Future phased implementation plan</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {FULL_ROADMAP.map((phase, i) => (
-              <Card key={phase.phase} className={`border shadow-sm ${phase.status === "active" ? "border-[#0081C9]/40 shadow-md ring-1 ring-[#0081C9]/10" : ""}`} data-testid={`roadmap-${i}`}>
+              <Card key={phase.phase} className={`border shadow-sm ${phase.status === "active" ? "border-[#0081C9]/40 shadow-md ring-2 ring-[#0081C9]/10 bg-gradient-to-br from-white to-[#0081C9]/5" : phase.status === "complete" ? "bg-gradient-to-br from-white to-[#C1121F]/5 border-[#C1121F]/15" : ""}`} data-testid={`roadmap-${i}`}>
                 <CardContent className="p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${phase.status === "complete" ? "bg-emerald-100 text-emerald-700" : phase.status === "active" ? "bg-[#0081C9]/10 text-[#0081C9]" : "bg-slate-100 text-slate-500"}`}>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${phase.status === "complete" ? "bg-[#C1121F]/10 text-[#C1121F]" : phase.status === "active" ? "bg-[#0081C9]/10 text-[#0081C9]" : "bg-slate-100 text-slate-500"}`}>
                       {phase.phase}
                     </span>
-                    {phase.status === "complete" && <Star className="h-3 w-3 text-emerald-500 fill-emerald-500" />}
+                    {phase.status === "complete" && <Star className="h-3 w-3 text-[#C1121F] fill-[#C1121F]" />}
                     {phase.status === "active" && <div className="h-2 w-2 rounded-full bg-[#0081C9] animate-pulse" />}
                   </div>
                   <h4 className="text-sm font-bold text-slate-900 mb-2">{phase.title}</h4>
                   <ul className="space-y-1.5">
                     {phase.items.map((item) => (
                       <li key={item} className="flex items-start gap-2 text-xs text-slate-600">
-                        <div className={`h-1.5 w-1.5 rounded-full mt-1 flex-shrink-0 ${phase.status === "complete" ? "bg-emerald-400" : phase.status === "active" ? "bg-[#0081C9]" : "bg-slate-300"}`} />
+                        <div className={`h-1.5 w-1.5 rounded-full mt-1 flex-shrink-0 ${phase.status === "complete" ? "bg-[#C1121F]" : phase.status === "active" ? "bg-[#0081C9]" : "bg-slate-300"}`} />
                         {item}
                       </li>
                     ))}
