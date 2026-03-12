@@ -17,15 +17,12 @@ OnlineGuide.io is a comprehensive AI-powered platform for Cambodia/Southeast Asi
 client/src/           - React frontend
   pages/
     map/              - **UNIFIED KNOWLEDGE HUB** (All-in-One page)
-      index.tsx       - Main KnowledgeGraphMap component with 12-tab sidebar
-      events-section.tsx    - Conferences & Events tab
-      travel-section.tsx    - Travel OS / AI Itinerary tab
-      cinema-section.tsx    - Cultural Cinema tab
-      autobot-section.tsx   - AutoBot + RDTB Intelligence tab
-      media-section.tsx     - AI Content Generator tab
-      finance-section.tsx   - National Forecasting Engine tab
-      fundraising-section.tsx - GuideFund crowdfunding tab
-      association-section.tsx - OGA (Online Guide Association) tab
+      index.tsx       - Main KnowledgeGraphMap: 5-tab sidebar across 4 groups
+      intelligence-flow-section.tsx - Intelligence flow (Map, Graph, AutoBot, Forecasting)
+      tourism-flow-section.tsx      - Tourism flow (Travel OS, Hotels, Dining, Conferences)
+      community-flow-section.tsx    - Community flow (Trust Network & API, GuideFund, OGA)
+      cinema-section.tsx            - Cultural Cinema tab
+      media-section.tsx             - AI Content Generator tab
     dashboard/        - Dashboard with analytics, AI tools
     ...               - Other standalone module pages
   components/         - Shared components (layout, ui)
@@ -41,13 +38,12 @@ db/
   seed.ts             - Database seed script
 ```
 
-## Unified Knowledge Hub (13 Tabs)
+## Unified Knowledge Hub (5 Sidebar Tabs, 4 Groups)
 The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
-- **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine
-- **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences
+- **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine (pill sub-tabs)
+- **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences (pill sub-tabs)
 - **Creator**: Content Generator, Cultural Cinema
-- **Network**: Trust Network & One Flow API (Global Trust Network + unified API dashboard)
-- **Community**: GuideFund, OGA
+- **Community**: Trust Network & API, GuideFund, OGA (pill sub-tabs)
 
 Routes `/hotels`, `/restaurants`, `/travel`, `/events`, `/cinema`, `/autobot`, `/rdtb`, `/media`, `/finance`, `/fundraising`, `/association` all redirect to KnowledgeGraphMap.
 

@@ -2,31 +2,27 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe, Bot, Plane, Shield,
-  Film, Image as ImageIcon, Heart, Brain
+  Globe, Bot, Plane, Users,
+  Film, Image as ImageIcon, Brain
 } from "lucide-react";
 
 import IntelligenceFlowSection from "./intelligence-flow-section";
 import TourismFlowSection from "./tourism-flow-section";
 import CinemaSection from "./cinema-section";
 import MediaSection from "./media-section";
-import FundraisingSection from "./fundraising-section";
-import AssociationSection from "./association-section";
-import GlobalTrustSection from "./global-trust-section";
+import CommunityFlowSection from "./community-flow-section";
 
-type ViewMode = "intelligence" | "tourism" | "cinema" | "media" | "trust" | "fundraising" | "association";
+type ViewMode = "intelligence" | "tourism" | "cinema" | "media" | "community";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
   { key: "media", label: "Content Generator", icon: ImageIcon, group: "Creator" },
   { key: "cinema", label: "Cultural Cinema", icon: Film, group: "Creator" },
-  { key: "trust", label: "Trust Network & API", icon: Shield, group: "Network" },
-  { key: "fundraising", label: "GuideFund", icon: Heart, group: "Community" },
-  { key: "association", label: "OGA", icon: Globe, group: "Community" },
+  { key: "community", label: "Community & Network", icon: Users, group: "Community" },
 ];
 
-const GROUPS = ["Intelligence", "Tourism", "Creator", "Network", "Community"];
+const GROUPS = ["Intelligence", "Tourism", "Creator", "Community"];
 
 export default function KnowledgeGraphMap() {
   const [viewMode, setViewMode] = useState<ViewMode>("intelligence");
@@ -98,9 +94,7 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "tourism" && <TourismFlowSection />}
                   {viewMode === "cinema" && <CinemaSection />}
                   {viewMode === "media" && <MediaSection />}
-                  {viewMode === "fundraising" && <FundraisingSection />}
-                  {viewMode === "association" && <AssociationSection />}
-                  {viewMode === "trust" && <GlobalTrustSection />}
+                  {viewMode === "community" && <CommunityFlowSection />}
                 </div>
               </div>
             )}
