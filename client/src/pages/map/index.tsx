@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe, Bot, Plane, Users, Palette, Brain, Wrench, ShoppingBag, Compass, Briefcase
+  Globe, Bot, Plane, Users, Palette, Brain, Wrench, ShoppingBag, Compass, Briefcase, Store
 } from "lucide-react";
 
 import IntelligenceFlowSection from "./intelligence-flow-section";
@@ -13,17 +13,19 @@ import ManagementFlowSection from "./management-flow-section";
 import BookingSection from "./booking-section";
 import ToursExperiencesSection from "./tours-experiences-section";
 import CrmMarketingSection from "./crm-marketing-section";
+import ServicesMarketplaceSection from "./services-marketplace-section";
 import LocationBar from "@/components/location-bar";
 import HeroSection from "./hero-section";
 import { CategoryFilterBar, SalesPanel } from "./sales-panel";
 
-type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm";
+type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management" | "crm" | "services";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
   { key: "tours", label: "Tours & Experiences", icon: Compass, group: "Tourism" },
   { key: "booking", label: "Book & Reserve", icon: ShoppingBag, group: "Tourism" },
+  { key: "services", label: "Services Marketplace", icon: Store, group: "Creator" },
   { key: "crm", label: "CRM & Marketing", icon: Briefcase, group: "Management" },
   { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
   { key: "community", label: "Community & Network", icon: Users, group: "Community" },
@@ -122,6 +124,7 @@ export default function KnowledgeGraphMap() {
                   {viewMode === "tourism" && <TourismFlowSection />}
                   {viewMode === "tours" && <ToursExperiencesSection />}
                   {viewMode === "crm" && <CrmMarketingSection />}
+                  {viewMode === "services" && <ServicesMarketplaceSection />}
                   {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
                   {viewMode === "management" && <ManagementFlowSection />}
