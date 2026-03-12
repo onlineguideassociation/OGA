@@ -2,23 +2,20 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe, Bot, Plane, Users,
-  Film, Image as ImageIcon, Brain
+  Globe, Bot, Plane, Users, Palette, Brain
 } from "lucide-react";
 
 import IntelligenceFlowSection from "./intelligence-flow-section";
 import TourismFlowSection from "./tourism-flow-section";
-import CinemaSection from "./cinema-section";
-import MediaSection from "./media-section";
 import CommunityFlowSection from "./community-flow-section";
+import CreatorFlowSection from "./creator-flow-section";
 
-type ViewMode = "intelligence" | "tourism" | "cinema" | "media" | "community";
+type ViewMode = "intelligence" | "tourism" | "creator" | "community";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
-  { key: "media", label: "Content Generator", icon: ImageIcon, group: "Creator" },
-  { key: "cinema", label: "Cultural Cinema", icon: Film, group: "Creator" },
+  { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
   { key: "community", label: "Community & Network", icon: Users, group: "Community" },
 ];
 
@@ -92,8 +89,7 @@ export default function KnowledgeGraphMap() {
               <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
                 <div className="max-w-5xl mx-auto">
                   {viewMode === "tourism" && <TourismFlowSection />}
-                  {viewMode === "cinema" && <CinemaSection />}
-                  {viewMode === "media" && <MediaSection />}
+                  {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
                 </div>
               </div>
