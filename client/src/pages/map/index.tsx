@@ -58,8 +58,9 @@ export default function KnowledgeGraphMap() {
           <HeroSection
             onExploreMap={() => { setViewMode("intelligence"); setShowHero(false); }}
             onBookTours={() => { setViewMode("tours"); setShowHero(false); }}
-            onStartAI={() => { setViewMode("intelligence"); setShowHero(false); }}
+            onStartAI={() => { setViewMode("aitools"); setShowHero(false); }}
             onSearch={() => { setViewMode("booking"); setShowHero(false); }}
+            onNavigate={(view: string) => { setViewMode(view as ViewMode); setShowHero(false); }}
           />
         )}
 
