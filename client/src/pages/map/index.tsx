@@ -12,15 +12,12 @@ import {
   MapPin, Plane, Hotel, Utensils, ShoppingBag, Landmark, Building,
   Zap, Star, Navigation, Globe, ChevronRight, X,
   Wifi, Bot, DollarSign, Map as MapIcon, Shield,
-  GitBranch, Search, Calendar, Users, Loader2, Gift, Building2,
-  Film, Image as ImageIcon, Heart, CalendarDays
+  GitBranch, Search, Users, Loader2,
+  Film, Image as ImageIcon, Heart
 } from "lucide-react";
-import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
-import type { Hotel as HotelType, Restaurant } from "@shared/schema";
 
-import EventsSection from "./events-section";
-import TravelSection from "./travel-section";
+import TourismFlowSection from "./tourism-flow-section";
 import CinemaSection from "./cinema-section";
 import AutobotSection from "./autobot-section";
 import MediaSection from "./media-section";
@@ -29,7 +26,7 @@ import FundraisingSection from "./fundraising-section";
 import AssociationSection from "./association-section";
 import GlobalTrustSection from "./global-trust-section";
 
-type ViewMode = "map" | "graph" | "hotels" | "dining" | "events" | "travel" | "cinema" | "autobot" | "media" | "finance" | "fundraising" | "association" | "trust";
+type ViewMode = "map" | "graph" | "tourism" | "cinema" | "autobot" | "media" | "finance" | "fundraising" | "association" | "trust";
 
 interface MapNode {
   id: string;
@@ -129,10 +126,7 @@ const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group:
   { key: "graph", label: "Graph Explorer", icon: GitBranch, group: "Intelligence" },
   { key: "autobot", label: "AI AutoBot & RDTB", icon: Bot, group: "Intelligence" },
   { key: "finance", label: "Forecasting Engine", icon: DollarSign, group: "Intelligence" },
-  { key: "travel", label: "Travel OS", icon: MapPin, group: "Tourism" },
-  { key: "hotels", label: "Hotels", icon: Hotel, group: "Tourism" },
-  { key: "dining", label: "Dining & Loyalty", icon: Utensils, group: "Tourism" },
-  { key: "events", label: "Conferences", icon: CalendarDays, group: "Tourism" },
+  { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
   { key: "media", label: "Content Generator", icon: ImageIcon, group: "Creator" },
   { key: "cinema", label: "Cultural Cinema", icon: Film, group: "Creator" },
   { key: "trust", label: "Trust Network & API", icon: Shield, group: "Network" },
@@ -148,60 +142,7 @@ export default function KnowledgeGraphMap() {
   const [selectedNode, setSelectedNode] = useState<MapNode | null>(null);
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchLocation, setSearchLocation] = useState("");
-  const [checkIn, setCheckIn] = useState("Oct 15 - Oct 20");
-  const [guests, setGuests] = useState("2 Adults, 1 Room");
   const { toast } = useToast();
-
-  const { data: hotels = [], isLoading: hotelsLoading } = useQuery<HotelType[]>({
-    queryKey: ["/api/hotels", searchLocation],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (searchLocation) params.set("location", searchLocation);
-      const res = await fetch(`/api/hotels?${params}`);
-      if (!res.ok) throw new Error("Failed to fetch hotels");
-      return res.json();
-    },
-    enabled: viewMode === "hotels" || viewMode === "dining",
-  });
-
-  const { data: restaurants = [], isLoading: restaurantsLoading } = useQuery<Restaurant[]>({
-    queryKey: ["/api/restaurants", searchLocation],
-    queryFn: async () => {
-      const params = new URLSearchParams();
-      if (searchLocation) params.set("location", searchLocation);
-      const res = await fetch(`/api/restaurants?${params}`);
-      if (!res.ok) throw new Error("Failed to fetch restaurants");
-      return res.json();
-    },
-    enabled: viewMode === "hotels" || viewMode === "dining",
-  });
-
-  const hotelBookMutation = useMutation({
-    mutationFn: async (hotel: HotelType) => {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "hotel", referenceId: hotel.id, referenceName: hotel.name, checkIn: "2026-10-15", checkOut: "2026-10-20", guests: 2, totalPrice: hotel.price * 5, status: "confirmed" }),
-      });
-      if (!res.ok) throw new Error("Booking failed");
-      return res.json();
-    },
-    onSuccess: () => { toast({ title: "Booking Confirmed!", description: "Your hotel reservation has been created." }); },
-  });
-
-  const restaurantBookMutation = useMutation({
-    mutationFn: async ({ restaurant, time }: { restaurant: Restaurant; time: string }) => {
-      const res = await fetch("/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "restaurant", referenceId: restaurant.id, referenceName: restaurant.name, checkIn: `Today ${time}`, guests: 2, status: "confirmed" }),
-      });
-      if (!res.ok) throw new Error("Booking failed");
-      return res.json();
-    },
-    onSuccess: () => { toast({ title: "Table Reserved!", description: "Your reservation has been confirmed." }); },
-  });
 
   const toggleFilter = (type: string) => {
     setActiveFilters(prev => {
@@ -242,7 +183,7 @@ export default function KnowledgeGraphMap() {
   const onNodeClick = (_: any, node: any) => { setSelectedNode(node.data.original as MapNode); };
   const nodeConfig = selectedNode ? getNodeConfig(selectedNode.type) : null;
   const isGraphView = viewMode === "map" || viewMode === "graph";
-  const isContentView = !isGraphView && viewMode !== "hotels" && viewMode !== "dining";
+  const isContentView = !isGraphView;
 
   return (
     <Layout>
@@ -377,127 +318,10 @@ export default function KnowledgeGraphMap() {
                   <Background /><Controls /><MiniMap />
                 </ReactFlow>
               </div>
-            ) : viewMode === "hotels" ? (
-              <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
-                <div className="max-w-5xl mx-auto space-y-5">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl"><Building2 className="h-6 w-6 text-blue-600" /></div>
-                    <div><h1 className="text-xl font-bold text-slate-900" data-testid="text-hotels-title">Hotel Search</h1><p className="text-xs text-slate-500">Find & book accommodations</p></div>
-                  </div>
-                  <Card className="bg-white/80 border-none shadow-md">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
-                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Destination</label><div className="relative"><MapPin className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Where?" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} data-testid="input-hotel-destination" /></div></div>
-                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Dates</label><div className="relative"><Calendar className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} data-testid="input-hotel-dates" /></div></div>
-                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Guests</label><div className="relative"><Users className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={guests} onChange={(e) => setGuests(e.target.value)} data-testid="input-hotel-guests" /></div></div>
-                        <Button className="h-8 bg-blue-600 hover:bg-blue-700 text-white text-sm" data-testid="button-search-hotels"><Search className="h-3.5 w-3.5 mr-1" /> Search</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  {hotelsLoading ? (
-                    <div className="flex items-center justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-blue-500" /><span className="ml-3 text-slate-600">Searching hotels...</span></div>
-                  ) : hotels.length === 0 ? (
-                    <div className="text-center py-20 text-slate-500">No hotels found.</div>
-                  ) : (
-                    <div className="space-y-4">
-                      {hotels.map(hotel => (
-                        <Card key={hotel.id} className="overflow-hidden hover:shadow-md transition-shadow" data-testid={`hotel-card-${hotel.id}`}>
-                          <div className="flex flex-col sm:flex-row">
-                            <div className="sm:w-48 bg-slate-100 flex items-center justify-center text-4xl h-36 sm:h-auto border-r border-slate-100">{hotel.image}</div>
-                            <div className="flex-1 p-4 flex flex-col justify-between">
-                              <div>
-                                <div className="flex justify-between items-start mb-1">
-                                  <div>
-                                    <div className="flex items-center gap-1.5 mb-0.5">
-                                      <Badge variant="outline" className="text-[10px] bg-slate-50">{hotel.type}</Badge>
-                                      {hotel.ecoCertified && <Badge variant="secondary" className="text-[10px] bg-emerald-100 text-emerald-700">Eco</Badge>}
-                                    </div>
-                                    <h3 className="text-base font-bold text-slate-900">{hotel.name}</h3>
-                                    <p className="text-xs text-slate-500 flex items-center mt-0.5"><MapPin className="h-3 w-3 mr-0.5" /> {hotel.location}</p>
-                                  </div>
-                                  <div className="text-right">
-                                    <div className="flex items-center justify-end gap-0.5"><Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" /><span className="font-bold text-sm">{hotel.rating}</span></div>
-                                    <span className="text-[10px] text-slate-500">{hotel.reviews} reviews</span>
-                                  </div>
-                                </div>
-                                {hotel.description && <p className="text-xs text-slate-600 mt-1">{hotel.description}</p>}
-                                <div className="flex flex-wrap gap-1 mt-2">
-                                  {(hotel.amenities || []).slice(0, 3).map(a => <Badge key={a} variant="outline" className="text-[10px]">{a}</Badge>)}
-                                  {(hotel.amenities || []).length > 3 && <Badge variant="outline" className="text-[10px] bg-slate-50">+{(hotel.amenities || []).length - 3}</Badge>}
-                                </div>
-                              </div>
-                              <div className="flex justify-between items-end mt-3 pt-3 border-t border-slate-100">
-                                <div><p className="text-xl font-bold">${hotel.price}</p><p className="text-[10px] text-slate-500">per night</p></div>
-                                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white px-6" onClick={() => hotelBookMutation.mutate(hotel)} disabled={hotelBookMutation.isPending} data-testid={`button-book-hotel-${hotel.id}`}>
-                                  {hotelBookMutation.isPending ? "Booking..." : "Book Now"}
-                                </Button>
-                              </div>
-                            </div>
-                          </div>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : viewMode === "dining" ? (
-              <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
-                <div className="max-w-5xl mx-auto space-y-5">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 bg-gradient-to-br from-red-100 to-rose-50 rounded-xl"><Utensils className="h-6 w-6 text-red-600" /></div>
-                    <div><h1 className="text-xl font-bold text-slate-900" data-testid="text-dining-title">Dining & Loyalty</h1><p className="text-xs text-slate-500">Book tables, earn rewards</p></div>
-                  </div>
-                  <Card className="bg-white border-none shadow-md">
-                    <CardContent className="p-4">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Search</label><div className="relative"><MapPin className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Location, cuisine, or name" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm" value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} data-testid="input-search-restaurants" /></div></div>
-                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Date & Time</label><div className="relative"><Calendar className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Today, 19:00" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm" data-testid="input-restaurant-date" /></div></div>
-                        <Button className="h-8 bg-red-600 hover:bg-red-700 text-white text-sm" data-testid="button-find-table">Find a Table</Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  {restaurantsLoading ? (
-                    <div className="flex items-center justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-red-500" /><span className="ml-3 text-slate-600">Loading restaurants...</span></div>
-                  ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                      {restaurants.map(restaurant => (
-                        <Card key={restaurant.id} className="bg-white border-none shadow-sm hover:shadow-md transition-shadow group overflow-hidden" data-testid={`restaurant-card-${restaurant.id}`}>
-                          <div className="h-36 bg-slate-100 flex items-center justify-center text-4xl relative">
-                            {restaurant.image}
-                            <div className="absolute top-2 right-2 bg-white/90 backdrop-blur px-1.5 py-0.5 rounded flex items-center gap-0.5 text-xs font-bold shadow-sm">
-                              <Star className="h-3 w-3 fill-amber-400 text-amber-400" /> {restaurant.rating}
-                            </div>
-                          </div>
-                          <CardContent className="p-4">
-                            <h3 className="font-bold text-slate-900 group-hover:text-red-600 transition-colors">{restaurant.name}</h3>
-                            <p className="text-xs text-slate-500 mb-2">{restaurant.cuisine} • {restaurant.priceRange}</p>
-                            {restaurant.description && <p className="text-xs text-slate-600 mb-2">{restaurant.description}</p>}
-                            <div className="flex flex-wrap gap-1 mb-3">
-                              {(restaurant.features || []).map(f => (
-                                <Badge key={f} variant="secondary" className="bg-red-50 text-red-700 text-[10px]">
-                                  {f === 'Loyalty Rewards' && <Gift className="h-2.5 w-2.5 mr-0.5" />}{f}
-                                </Badge>
-                              ))}
-                            </div>
-                            <div className="grid grid-cols-3 gap-1.5">
-                              {['18:00', '19:00', '20:30'].map(time => (
-                                <Button key={time} variant="outline" size="sm" className="border-red-200 text-red-600 hover:bg-red-50 w-full text-xs h-7" onClick={() => restaurantBookMutation.mutate({ restaurant, time })} disabled={restaurantBookMutation.isPending} data-testid={`button-book-${restaurant.id}-${time}`}>
-                                  {time}
-                                </Button>
-                              ))}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
             ) : (
               <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
                 <div className="max-w-5xl mx-auto">
-                  {viewMode === "events" && <EventsSection />}
-                  {viewMode === "travel" && <TravelSection />}
+                  {viewMode === "tourism" && <TourismFlowSection />}
                   {viewMode === "cinema" && <CinemaSection />}
                   {viewMode === "autobot" && <AutobotSection />}
                   {viewMode === "media" && <MediaSection />}
