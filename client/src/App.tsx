@@ -30,6 +30,8 @@ import CryptoModule from "@/pages/crypto/index";
 import ConnectivityModule from "@/pages/connectivity/index";
 import HRNetworkingModule from "@/pages/hr/index";
 import KnowledgeGraphMap from "@/pages/map/index";
+import ToursMapPage from "@/pages/tours-map";
+import GraphExplorerPage from "@/pages/graph-explorer";
 
 function Router() {
   return (
@@ -39,6 +41,8 @@ function Router() {
       <Route path="/roles" component={RoleSelection} />
       <Route path="/pricing" component={Pricing} />
       <Route path="/login" component={Login} />
+      <Route path="/tours-map" component={ToursMapPage} />
+      <Route path="/graph-explorer" component={GraphExplorerPage} />
       <Route path="/global/vision" component={GlobalVision} />
       <Route path="/global/ai-guide" component={AIGuideBook} />
       <Route path="/global/postcards" component={DigitalPostcards} />

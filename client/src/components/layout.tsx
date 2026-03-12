@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, MessageSquare, TrendingUp, BookOpen, Building2, Map } from "lucide-react";
+import { Menu, Zap, BarChart, MapPin, LayoutDashboard, ChevronDown, Bot, MessageSquare, TrendingUp, BookOpen, Building2, Map, GitBranch } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -51,6 +51,24 @@ export function Navbar() {
                   <div>
                     <div className="font-bold">Dashboard</div>
                     <div className="text-xs text-muted-foreground">Analytics & management console</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/tours-map">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Map className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Tours Map</div>
+                    <div className="text-xs text-muted-foreground">Interactive Cambodia tourism map</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/graph-explorer">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <GitBranch className="h-5 w-5 text-violet-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Graph Explorer</div>
+                    <div className="text-xs text-muted-foreground">Knowledge graph & node relationships</div>
                   </div>
                 </DropdownMenuItem>
               </Link>
@@ -121,6 +139,8 @@ export function Navbar() {
                 <div className="space-y-4">
                   <h4 className="text-sm font-bold text-muted-foreground uppercase tracking-wider">Platform</h4>
                   <Link href="/map"><span className="block text-lg font-medium">Knowledge Hub</span></Link>
+                  <Link href="/tours-map"><span className="block text-lg font-medium">Tours Map</span></Link>
+                  <Link href="/graph-explorer"><span className="block text-lg font-medium">Graph Explorer</span></Link>
                   <Link href="/dashboard"><span className="block text-lg font-medium">Dashboard</span></Link>
                   <Link href="/marketplace"><span className="block text-lg font-medium">Marketplace</span></Link>
                   <Link href="/community"><span className="block text-lg font-medium">Community</span></Link>
