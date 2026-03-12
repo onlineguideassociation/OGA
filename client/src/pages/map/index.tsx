@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Layout } from "@/components/layout";
 import { Badge } from "@/components/ui/badge";
 import {
-  Globe, Bot, Plane, Users, Palette, Brain, Wrench, ShoppingBag
+  Globe, Bot, Plane, Users, Palette, Brain, Wrench, ShoppingBag, Compass
 } from "lucide-react";
 
 import IntelligenceFlowSection from "./intelligence-flow-section";
@@ -11,15 +11,17 @@ import CommunityFlowSection from "./community-flow-section";
 import CreatorFlowSection from "./creator-flow-section";
 import ManagementFlowSection from "./management-flow-section";
 import BookingSection from "./booking-section";
+import ToursExperiencesSection from "./tours-experiences-section";
 import LocationBar from "@/components/location-bar";
 import HeroSection from "./hero-section";
 import { CategoryFilterBar, SalesPanel } from "./sales-panel";
 
-type ViewMode = "intelligence" | "tourism" | "booking" | "creator" | "community" | "management";
+type ViewMode = "intelligence" | "tourism" | "tours" | "booking" | "creator" | "community" | "management";
 
 const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
   { key: "intelligence", label: "Intelligence", icon: Brain, group: "Intelligence" },
   { key: "tourism", label: "Tourism Flow", icon: Plane, group: "Tourism" },
+  { key: "tours", label: "Tours & Experiences", icon: Compass, group: "Tourism" },
   { key: "booking", label: "Book & Reserve", icon: ShoppingBag, group: "Tourism" },
   { key: "creator", label: "Creator Studio", icon: Palette, group: "Creator" },
   { key: "community", label: "Community & Network", icon: Users, group: "Community" },
@@ -41,7 +43,7 @@ export default function KnowledgeGraphMap() {
         {showHero && (
           <HeroSection
             onExploreMap={() => { setViewMode("intelligence"); setShowHero(false); }}
-            onBookTours={() => { setViewMode("booking"); setShowHero(false); }}
+            onBookTours={() => { setViewMode("tours"); setShowHero(false); }}
             onStartAI={() => { setViewMode("intelligence"); setShowHero(false); }}
             onSearch={() => { setViewMode("booking"); setShowHero(false); }}
           />
@@ -116,6 +118,7 @@ export default function KnowledgeGraphMap() {
               <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
                 <div className="max-w-5xl mx-auto">
                   {viewMode === "tourism" && <TourismFlowSection />}
+                  {viewMode === "tours" && <ToursExperiencesSection />}
                   {viewMode === "creator" && <CreatorFlowSection />}
                   {viewMode === "community" && <CommunityFlowSection />}
                   {viewMode === "management" && <ManagementFlowSection />}
