@@ -61,7 +61,7 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSe
           </h1>
 
           <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto mb-6 leading-relaxed" data-testid="hero-subheadline">
-            AI-powered hospitality technology for hotels, tour operators, and tourism businesses. Manage bookings, distribution, and operations from one platform.
+            The global travel marketplace connecting travelers, tourism businesses, and creators. Discover tours, hotels, and experiences across Southeast Asia and the world.
           </p>
 
           <div className="max-w-3xl mx-auto mb-6">
