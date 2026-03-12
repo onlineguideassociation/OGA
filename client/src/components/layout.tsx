@@ -163,12 +163,12 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
-              <Link href="/hotels">
+              <Link href="/map">
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Hotels & Dining</div>
-                    <div className="text-xs text-muted-foreground">Accommodations, restaurants & loyalty</div>
+                    <div className="font-bold">Knowledge Hub</div>
+                    <div className="text-xs text-muted-foreground">Maps, graph explorer, hotels & dining</div>
                   </div>
                 </DropdownMenuItem>
               </Link>

@@ -25,7 +25,6 @@ import MarketplaceModule from "@/pages/marketplace/index";
 import FinanceModule from "@/pages/finance/index";
 import TravelOSModule from "@/pages/travel/index";
 import MediaModule from "@/pages/media/index";
-import HotelsAndDining from "@/pages/hotels/index";
 import CommunityHub from "@/pages/community/index";
 import FreelanceMarketplace from "@/pages/freelance/index";
 import SustainabilityMapping from "@/pages/sustainability/index";
@@ -66,8 +65,8 @@ function Router() {
       <Route path="/finance" component={FinanceModule} />
       <Route path="/travel" component={TravelOSModule} />
       <Route path="/media" component={MediaModule} />
-      <Route path="/hotels" component={HotelsAndDining} />
-      <Route path="/restaurants" component={HotelsAndDining} />
+      <Route path="/hotels" component={KnowledgeGraphMap} />
+      <Route path="/restaurants" component={KnowledgeGraphMap} />
       <Route path="/community" component={CommunityHub} />
       <Route path="/freelance" component={FreelanceMarketplace} />
       <Route path="/sustainability" component={SustainabilityMapping} />
