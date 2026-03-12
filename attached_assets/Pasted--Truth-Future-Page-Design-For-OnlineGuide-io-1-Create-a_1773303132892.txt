@@ -1,0 +1,197 @@
+🌍 Truth Future Page Design (For OnlineGuide.io)
+1️⃣ Create a New Page
+
+Create a file:
+
+truth-future.html
+🧭 Truth Future Page (HTML)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Truth Future | OnlineGuide</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="logo">OnlineGuide</div>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/tourism">Tourism</a>
+    <a href="/ai">AI</a>
+    <a href="/truth-future">Truth Future</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Truth Future</h1>
+  <p>
+  Building a transparent digital future powered by AI,
+  tourism, creators, and global connectivity.
+  </p>
+
+  <button class="btn-primary">
+  Explore the Future
+  </button>
+</section>
+
+<section class="vision">
+
+<div class="card">
+<h3>AI Super Agents</h3>
+<p>Automated AI agents powering travel, business and research.</p>
+</div>
+
+<div class="card">
+<h3>Global Tourism OS</h3>
+<p>Unified tourism platform connecting destinations and creators.</p>
+</div>
+
+<div class="card">
+<h3>Creator Economy</h3>
+<p>Tools for media, storytelling and digital entrepreneurs.</p>
+</div>
+
+</section>
+
+<footer>
+© 2026 OnlineGuide.io • Truth Future Initiative
+</footer>
+
+</body>
+</html>
+🎨 Global Colors (Match Your Logo)
+
+Create or update:
+
+style.css
+body{
+font-family: Arial, sans-serif;
+margin:0;
+background:#0b0f19;
+color:white;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+padding:20px;
+background:#050914;
+border-bottom:1px solid #1f2a44;
+}
+
+.navbar a{
+color:#8ec5ff;
+margin-left:20px;
+text-decoration:none;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:120px 20px;
+background:linear-gradient(135deg,#081b33,#0c1f4d);
+}
+
+.hero h1{
+font-size:60px;
+color:#00d4ff;
+}
+
+.hero p{
+max-width:700px;
+margin:auto;
+color:#b5c9ff;
+}
+
+/* BUTTON */
+
+.btn-primary{
+margin-top:30px;
+padding:14px 30px;
+background:#00d4ff;
+border:none;
+border-radius:30px;
+color:#001224;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* CARDS */
+
+.vision{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:80px 20px;
+flex-wrap:wrap;
+}
+
+.card{
+background:#0f1b33;
+padding:30px;
+border-radius:15px;
+width:260px;
+border:1px solid #1d2a4d;
+}
+🎨 Recommended Color System (Truth Future Theme)
+
+Use these across your site:
+
+Purpose	Color
+Primary	#00D4FF
+Dark background	#0B0F19
+Gradient	#081B33 → #0C1F4D
+Text	#FFFFFF
+Accent	#8EC5FF
+
+This gives a AI / space / future tech brand look.
+
+🌐 Suggested Menu for Your Site
+
+For OnlineGuide.io ecosystem
+
+Home
+AI Workspace
+Tourism
+Creator Economy
+Truth Future
+OnlineGuide Association
+Contact
+🚀 Truth Future Section Ideas
+
+Add pages like:
+
+/truth-future
+/truth-future/ai
+/truth-future/tourism
+/truth-future/creator
+/truth-future/blockchain
+
+Sections:
+
+🌍 Global Tourism Intelligence
+
+🤖 AI Super Agent Network
+
+🎥 Creator Media Network
+
+💰 Web3 Economy
+
+🌐 Global Connectivity
+
+⭐ Big Improvement for Your Replit Project
+
+I recommend you also add:
+
+/assets/logo
+/assets/images
+/assets/icons
+/components/navbar
+/components/footer

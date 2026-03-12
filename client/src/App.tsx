@@ -32,6 +32,7 @@ import HRNetworkingModule from "@/pages/hr/index";
 import KnowledgeGraphMap from "@/pages/map/index";
 import ToursMapPage from "@/pages/tours-map";
 import GraphExplorerPage from "@/pages/graph-explorer";
+import TruthFuturePage from "@/pages/truth-future";
 
 function Router() {
   return (
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/login" component={Login} />
       <Route path="/tours-map" component={ToursMapPage} />
       <Route path="/graph-explorer" component={GraphExplorerPage} />
+      <Route path="/truth-future" component={TruthFuturePage} />
       <Route path="/global/vision" component={GlobalVision} />
       <Route path="/global/ai-guide" component={AIGuideBook} />
       <Route path="/global/postcards" component={DigitalPostcards} />
