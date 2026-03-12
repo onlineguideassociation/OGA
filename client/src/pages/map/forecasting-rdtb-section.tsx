@@ -8,13 +8,15 @@ import {
   AlertCircle, User, Briefcase, Building2
 } from "lucide-react";
 import { useState } from "react";
+import ScenarioPlannerSection from "./scenario-planner-section";
 
-type SubTab = "autobot" | "rdtb" | "forecasting" | "integration";
+type SubTab = "autobot" | "rdtb" | "forecasting" | "whatif" | "integration";
 
 const SUB_TABS: { key: SubTab; label: string; icon: React.ElementType; color: string }[] = [
   { key: "autobot", label: "AutoBot AI", icon: Bot, color: "text-indigo-600" },
   { key: "rdtb", label: "RDTB Intelligence", icon: Radio, color: "text-[#0081C9]" },
   { key: "forecasting", label: "Forecasting Engine", icon: DollarSign, color: "text-purple-600" },
+  { key: "whatif", label: "What If?", icon: Target, color: "text-[#C1121F]" },
   { key: "integration", label: "Integration Status", icon: Globe, color: "text-emerald-600" },
 ];
 
@@ -475,6 +477,7 @@ export default function ForecastingRDTBSection() {
       {activeTab === "autobot" && <AutobotContent />}
       {activeTab === "rdtb" && <RDTBContent />}
       {activeTab === "forecasting" && <ForecastingContent />}
+      {activeTab === "whatif" && <ScenarioPlannerSection />}
       {activeTab === "integration" && <IntegrationContent />}
 
       <div className="text-center py-2">
