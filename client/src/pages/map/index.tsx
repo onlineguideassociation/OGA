@@ -11,14 +11,24 @@ import { Button } from "@/components/ui/button";
 import {
   MapPin, Plane, Hotel, Utensils, ShoppingBag, Landmark, Building,
   Filter, Layers, Zap, Star, Navigation, Globe, ChevronRight, X,
-  Wifi, TrendingUp, Bot, Network, Info, DollarSign, Map as MapIcon,
-  GitBranch, Search, Calendar, Users, Loader2, Gift, Building2
+  Wifi, Bot, DollarSign, Map as MapIcon,
+  GitBranch, Search, Calendar, Users, Loader2, Gift, Building2,
+  Film, Image as ImageIcon, Heart, Radio, CalendarDays, Sparkles
 } from "lucide-react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import type { Hotel as HotelType, Restaurant } from "@shared/schema";
 
-type ViewMode = "map" | "graph" | "hotels" | "dining";
+import EventsSection from "./events-section";
+import TravelSection from "./travel-section";
+import CinemaSection from "./cinema-section";
+import AutobotSection from "./autobot-section";
+import MediaSection from "./media-section";
+import FinanceSection from "./finance-section";
+import FundraisingSection from "./fundraising-section";
+import AssociationSection from "./association-section";
+
+type ViewMode = "map" | "graph" | "hotels" | "dining" | "events" | "travel" | "cinema" | "autobot" | "media" | "finance" | "fundraising" | "association";
 
 interface MapNode {
   id: string;
@@ -80,8 +90,7 @@ function buildReactFlowNodes(nodes: MapNode[]): Node[] {
   const typePositions: Record<string, { col: number; row: number }> = {};
   let colIndex = 0;
   const typeRowCounters: Record<string, number> = {};
-
-  return nodes.map((node, i) => {
+  return nodes.map((node) => {
     if (!typePositions[node.type]) {
       typePositions[node.type] = { col: colIndex++, row: 0 };
       typeRowCounters[node.type] = 0;
@@ -89,21 +98,11 @@ function buildReactFlowNodes(nodes: MapNode[]): Node[] {
     const row = typeRowCounters[node.type]++;
     const col = typePositions[node.type].col;
     const config = getNodeConfig(node.type);
-
     return {
-      id: node.id,
-      type: "default",
-      data: { label: `${node.name}`, type: node.type, revenue: node.revenue || "N/A", original: node },
+      id: node.id, type: "default",
+      data: { label: node.name, type: node.type, revenue: node.revenue || "N/A", original: node },
       position: { x: col * 220 + (row % 2) * 40, y: row * 120 + (col % 2) * 60 },
-      style: {
-        background: config.graphBg,
-        border: `2px solid ${config.graphColor}`,
-        borderRadius: "12px",
-        padding: "10px",
-        width: 180,
-        fontSize: "12px",
-        fontWeight: 600,
-      },
+      style: { background: config.graphBg, border: `2px solid ${config.graphColor}`, borderRadius: "12px", padding: "10px", width: 180, fontSize: "12px", fontWeight: 600 },
     };
   });
 }
@@ -117,107 +116,29 @@ function buildReactFlowEdges(nodes: MapNode[]): Edge[] {
       if (!seen.has(key) && nodes.find(n => n.id === connId)) {
         seen.add(key);
         const config = getNodeConfig(node.type);
-        edges.push({
-          id: `e-${key}`,
-          source: node.id,
-          target: connId,
-          markerEnd: { type: MarkerType.ArrowClosed },
-          style: { stroke: config.graphColor, strokeWidth: 1.5 },
-          animated: true,
-        });
+        edges.push({ id: `e-${key}`, source: node.id, target: connId, markerEnd: { type: MarkerType.ArrowClosed }, style: { stroke: config.graphColor, strokeWidth: 1.5 }, animated: true });
       }
     });
   });
   return edges;
 }
 
-function HotelsSidebar({ searchLocation, setSearchLocation }: { searchLocation: string; setSearchLocation: (v: string) => void }) {
-  return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
-        <input
-          type="text"
-          placeholder="Search destination..."
-          value={searchLocation}
-          onChange={e => setSearchLocation(e.target.value)}
-          className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-[#0081C9] transition-colors"
-          data-testid="input-hotel-sidebar-search"
-        />
-      </div>
-      <div>
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-          <Filter className="h-3 w-3" /> Property Type
-        </h3>
-        <div className="space-y-1.5">
-          {["Hotels", "Resorts", "Villas", "Apartments"].map(type => (
-            <label key={type} className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer hover:text-white">
-              <input type="checkbox" className="rounded border-slate-600 bg-slate-700 text-[#0081C9] focus:ring-[#0081C9]" /> {type}
-            </label>
-          ))}
-        </div>
-      </div>
-      <div>
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Price Range</h3>
-        <input type="range" className="w-full accent-[#0081C9]" />
-        <div className="flex justify-between text-xs text-slate-500 mt-1">
-          <span>$0</span><span>$1000+</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; group: string }[] = [
+  { key: "map", label: "Tourism Map", icon: MapIcon, group: "Intelligence" },
+  { key: "graph", label: "Graph Explorer", icon: GitBranch, group: "Intelligence" },
+  { key: "autobot", label: "AI AutoBot & RDTB", icon: Bot, group: "Intelligence" },
+  { key: "finance", label: "Forecasting Engine", icon: DollarSign, group: "Intelligence" },
+  { key: "travel", label: "Travel OS", icon: MapPin, group: "Tourism" },
+  { key: "hotels", label: "Hotels", icon: Hotel, group: "Tourism" },
+  { key: "dining", label: "Dining & Loyalty", icon: Utensils, group: "Tourism" },
+  { key: "events", label: "Conferences", icon: CalendarDays, group: "Tourism" },
+  { key: "media", label: "Content Generator", icon: ImageIcon, group: "Creator" },
+  { key: "cinema", label: "Cultural Cinema", icon: Film, group: "Creator" },
+  { key: "fundraising", label: "GuideFund", icon: Heart, group: "Community" },
+  { key: "association", label: "OGA", icon: Globe, group: "Community" },
+];
 
-function DiningSidebar({ searchLocation, setSearchLocation }: { searchLocation: string; setSearchLocation: (v: string) => void }) {
-  return (
-    <div className="flex-1 overflow-y-auto p-4 space-y-4">
-      <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
-        <input
-          type="text"
-          placeholder="Search restaurants..."
-          value={searchLocation}
-          onChange={e => setSearchLocation(e.target.value)}
-          className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-[#C1121F] transition-colors"
-          data-testid="input-dining-sidebar-search"
-        />
-      </div>
-
-      <Card className="bg-gradient-to-br from-red-600/30 to-rose-600/20 border-red-500/30">
-        <CardContent className="p-4">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-red-500/30 rounded-full flex items-center justify-center">
-              <Gift className="h-5 w-5 text-red-300" />
-            </div>
-            <div>
-              <h3 className="font-bold text-white text-sm">Your Rewards</h3>
-              <p className="text-xs text-red-200">Gold Tier</p>
-            </div>
-          </div>
-          <div className="mb-2">
-            <span className="text-2xl font-bold text-white">2,450</span>
-            <span className="text-red-200 text-sm ml-1">pts</span>
-          </div>
-          <p className="text-xs text-red-200 mb-3">50 pts away from a $20 dining voucher</p>
-          <Button size="sm" className="w-full bg-white/20 text-white hover:bg-white/30 border-none text-xs" data-testid="button-view-offers">View Offers</Button>
-        </CardContent>
-      </Card>
-
-      <div>
-        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-          <Filter className="h-3 w-3" /> Cuisine Types
-        </h3>
-        <div className="space-y-1.5">
-          {['Khmer Authentic', 'French Fine Dining', 'Asian Fusion', 'Seafood', 'Vegetarian'].map(type => (
-            <label key={type} className="flex items-center gap-2 text-sm text-slate-300 cursor-pointer hover:text-white">
-              <input type="checkbox" className="rounded border-slate-600 bg-slate-700 text-[#C1121F] focus:ring-[#C1121F]" /> {type}
-            </label>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+const GROUPS = ["Intelligence", "Tourism", "Creator", "Community"];
 
 export default function KnowledgeGraphMap() {
   const [viewMode, setViewMode] = useState<ViewMode>("map");
@@ -259,23 +180,12 @@ export default function KnowledgeGraphMap() {
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "hotel",
-          referenceId: hotel.id,
-          referenceName: hotel.name,
-          checkIn: "2026-10-15",
-          checkOut: "2026-10-20",
-          guests: 2,
-          totalPrice: hotel.price * 5,
-          status: "confirmed",
-        }),
+        body: JSON.stringify({ type: "hotel", referenceId: hotel.id, referenceName: hotel.name, checkIn: "2026-10-15", checkOut: "2026-10-20", guests: 2, totalPrice: hotel.price * 5, status: "confirmed" }),
       });
       if (!res.ok) throw new Error("Booking failed");
       return res.json();
     },
-    onSuccess: () => {
-      toast({ title: "Booking Confirmed!", description: "Your hotel reservation has been created." });
-    },
+    onSuccess: () => { toast({ title: "Booking Confirmed!", description: "Your hotel reservation has been created." }); },
   });
 
   const restaurantBookMutation = useMutation({
@@ -283,28 +193,18 @@ export default function KnowledgeGraphMap() {
       const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "restaurant",
-          referenceId: restaurant.id,
-          referenceName: restaurant.name,
-          checkIn: `Today ${time}`,
-          guests: 2,
-          status: "confirmed",
-        }),
+        body: JSON.stringify({ type: "restaurant", referenceId: restaurant.id, referenceName: restaurant.name, checkIn: `Today ${time}`, guests: 2, status: "confirmed" }),
       });
       if (!res.ok) throw new Error("Booking failed");
       return res.json();
     },
-    onSuccess: () => {
-      toast({ title: "Table Reserved!", description: "Your reservation has been confirmed." });
-    },
+    onSuccess: () => { toast({ title: "Table Reserved!", description: "Your reservation has been confirmed." }); },
   });
 
   const toggleFilter = (type: string) => {
     setActiveFilters(prev => {
       const next = new Set(prev);
-      if (next.has(type)) next.delete(type);
-      else next.add(type);
+      if (next.has(type)) next.delete(type); else next.add(type);
       return next;
     });
   };
@@ -326,10 +226,7 @@ export default function KnowledgeGraphMap() {
         const key = [node.id, connId].sort().join("-");
         if (seen.has(key)) return;
         const target = filteredNodes.find(n => n.id === connId);
-        if (target) {
-          seen.add(key);
-          lines.push({ x1: toX(node.lng), y1: toY(node.lat), x2: toX(target.lng), y2: toY(target.lat) });
-        }
+        if (target) { seen.add(key); lines.push({ x1: toX(node.lng), y1: toY(node.lat), x2: toX(target.lng), y2: toY(target.lat) }); }
       });
     });
     return lines;
@@ -340,188 +237,98 @@ export default function KnowledgeGraphMap() {
   const [flowEdges, setFlowEdges] = useState<Edge[]>([]);
   const onConnect = useCallback((params: Connection | Edge) => setFlowEdges(eds => addEdge(params, eds)), []);
   const mergedEdges = useMemo(() => [...rfEdges, ...flowEdges], [rfEdges, flowEdges]);
-
-  const onNodeClick = (_: any, node: any) => {
-    const original = node.data.original as MapNode;
-    setSelectedNode(original);
-  };
-
+  const onNodeClick = (_: any, node: any) => { setSelectedNode(node.data.original as MapNode); };
   const nodeConfig = selectedNode ? getNodeConfig(selectedNode.type) : null;
   const isGraphView = viewMode === "map" || viewMode === "graph";
-
-  const VIEW_TABS: { key: ViewMode; label: string; icon: React.ElementType; color: string }[] = [
-    { key: "map", label: "Tourism Map", icon: MapIcon, color: "#0081C9" },
-    { key: "graph", label: "Graph Explorer", icon: GitBranch, color: "#0081C9" },
-    { key: "hotels", label: "Hotels", icon: Hotel, color: "#3b82f6" },
-    { key: "dining", label: "Dining", icon: Utensils, color: "#C1121F" },
-  ];
+  const isContentView = !isGraphView && viewMode !== "hotels" && viewMode !== "dining";
 
   return (
     <Layout>
       <div className="min-h-screen bg-slate-900">
         <div className="flex h-[calc(100vh-64px)]">
-          <div className="w-80 bg-slate-800 border-r border-slate-700 flex flex-col overflow-hidden">
-            <div className="p-5 border-b border-slate-700">
-              <div className="flex items-center gap-3 mb-3">
-                <Globe className="h-6 w-6 text-[#0081C9]" />
-                <h2 className="text-lg font-bold text-white">Knowledge Hub</h2>
+          <div className="w-72 bg-slate-800 border-r border-slate-700 flex flex-col overflow-hidden">
+            <div className="p-4 border-b border-slate-700">
+              <div className="flex items-center gap-2 mb-1">
+                <Globe className="h-5 w-5 text-[#0081C9]" />
+                <h2 className="text-base font-bold text-white">OnlineGuide Hub</h2>
               </div>
-              <p className="text-xs text-slate-400 mb-4">Maps, graph intelligence, hotels & dining</p>
-              <div className="grid grid-cols-2 gap-1 bg-slate-700/50 rounded-lg p-1">
-                {VIEW_TABS.map(vt => {
-                  const Icon = vt.icon;
-                  return (
-                    <button
-                      key={vt.key}
-                      onClick={() => setViewMode(vt.key)}
-                      className={`flex items-center justify-center gap-1.5 px-2 py-2 rounded-md text-[11px] font-medium transition-all ${viewMode === vt.key ? "text-white shadow" : "text-slate-400 hover:text-white"}`}
-                      style={viewMode === vt.key ? { backgroundColor: vt.color } : {}}
-                      data-testid={`toggle-${vt.key}-view`}
-                    >
-                      <Icon className="h-3.5 w-3.5" /> {vt.label}
-                    </button>
-                  );
-                })}
-              </div>
+              <p className="text-[10px] text-slate-400">All-in-One Tourism Super-App</p>
             </div>
 
-            {isGraphView ? (
+            <div className="flex-1 overflow-y-auto py-2">
+              {GROUPS.map(group => (
+                <div key={group} className="mb-1">
+                  <div className="px-4 py-1.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider">{group}</div>
+                  {VIEW_TABS.filter(t => t.group === group).map(vt => {
+                    const Icon = vt.icon;
+                    const isActive = viewMode === vt.key;
+                    return (
+                      <button
+                        key={vt.key}
+                        onClick={() => setViewMode(vt.key)}
+                        className={`w-full flex items-center gap-2.5 px-4 py-2 text-xs font-medium transition-all ${isActive ? "bg-[#0081C9]/20 text-[#0081C9] border-r-2 border-[#0081C9]" : "text-slate-400 hover:text-white hover:bg-slate-700/50"}`}
+                        data-testid={`toggle-${vt.key}-view`}
+                      >
+                        <Icon className="h-3.5 w-3.5 flex-shrink-0" /> {vt.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              ))}
+            </div>
+
+            {isGraphView && (
               <>
-                <div className="px-4 pt-4 pb-2">
+                <div className="px-3 pt-3 pb-1 border-t border-slate-700">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
-                    <input
-                      type="text"
-                      placeholder="Search nodes..."
-                      value={searchQuery}
-                      onChange={e => setSearchQuery(e.target.value)}
-                      className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-9 pr-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:border-[#0081C9] transition-colors"
-                      data-testid="input-search-nodes"
-                    />
+                    <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-500" />
+                    <input type="text" placeholder="Search nodes..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                      className="w-full bg-slate-700/50 border border-slate-600 rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder:text-slate-500 outline-none focus:border-[#0081C9]"
+                      data-testid="input-search-nodes" />
                   </div>
                 </div>
-
-                <div className="p-4 border-b border-slate-700">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <Filter className="h-3 w-3" /> Filters
-                  </h3>
-                  <div className="grid grid-cols-2 gap-1.5">
+                <div className="px-3 py-2 border-b border-slate-700 max-h-24 overflow-y-auto">
+                  <div className="grid grid-cols-2 gap-1">
                     {NODE_TYPES.map(nt => {
-                      const Icon = nt.icon;
                       const active = activeFilters.has(nt.type);
-                      const count = CAMBODIA_NODES.filter(n => n.type === nt.type).length;
                       return (
-                        <button
-                          key={nt.type}
-                          onClick={() => toggleFilter(nt.type)}
-                          className={`flex items-center gap-1.5 px-2 py-1.5 rounded-md text-[11px] transition-all ${active ? "bg-slate-700 text-white" : "text-slate-500 hover:text-slate-300"}`}
-                          data-testid={`filter-${nt.type}`}
-                        >
-                          <div className={`w-2 h-2 rounded-full flex-shrink-0 ${active ? nt.color : "bg-slate-600"}`} />
+                        <button key={nt.type} onClick={() => toggleFilter(nt.type)}
+                          className={`flex items-center gap-1 px-1.5 py-1 rounded text-[10px] transition ${active ? "bg-slate-700 text-white" : "text-slate-500 hover:text-slate-300"}`}
+                          data-testid={`filter-${nt.type}`}>
+                          <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${active ? nt.color : "bg-slate-600"}`} />
                           <span className="truncate">{nt.label}</span>
-                          <span className="text-[10px] text-slate-500 ml-auto">{count}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4">
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <Layers className="h-3 w-3" /> Nodes ({filteredNodes.length})
-                  </h3>
-                  <div className="space-y-1.5">
-                    {filteredNodes.map(node => {
-                      const config = getNodeConfig(node.type);
-                      const Icon = config.icon;
-                      return (
-                        <button
-                          key={node.id}
-                          onClick={() => setSelectedNode(node)}
-                          onMouseEnter={() => setHoveredNode(node.id)}
-                          onMouseLeave={() => setHoveredNode(null)}
-                          className={`w-full text-left p-2.5 rounded-lg transition-all ${selectedNode?.id === node.id ? "bg-[#0081C9]/20 border border-[#0081C9]/50" : "bg-slate-700/30 hover:bg-slate-700/60 border border-transparent"}`}
-                          data-testid={`node-${node.id}`}
-                        >
-                          <div className="flex items-center gap-2 mb-0.5">
-                            <Icon className={`h-3.5 w-3.5 ${config.textColor} flex-shrink-0`} />
-                            <span className="text-sm font-medium text-white truncate">{node.name}</span>
-                          </div>
-                          <div className="flex items-center gap-2 pl-5.5">
-                            {node.rating && (
-                              <div className="flex items-center gap-0.5">
-                                <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                                <span className="text-[11px] text-amber-400">{node.rating}</span>
-                              </div>
-                            )}
-                            {node.revenue && (
-                              <span className="text-[11px] text-emerald-400">{node.revenue}</span>
-                            )}
-                          </div>
                         </button>
                       );
                     })}
                   </div>
                 </div>
               </>
-            ) : viewMode === "hotels" ? (
-              <HotelsSidebar searchLocation={searchLocation} setSearchLocation={setSearchLocation} />
-            ) : (
-              <DiningSidebar searchLocation={searchLocation} setSearchLocation={setSearchLocation} />
             )}
 
-            <div className="p-4 border-t border-slate-700 bg-gradient-to-r from-[#0081C9]/10 to-[#C1121F]/10">
-              <div className="flex items-center gap-2 mb-2">
-                <Bot className="h-4 w-4 text-[#0081C9]" />
-                <span className="text-xs font-bold text-white">AI Insights</span>
+            <div className="p-3 border-t border-slate-700 bg-gradient-to-r from-[#0081C9]/10 to-[#C1121F]/10">
+              <div className="flex items-center gap-1.5 mb-1">
+                <Bot className="h-3.5 w-3.5 text-[#0081C9]" />
+                <span className="text-[10px] font-bold text-white">AI Insights</span>
               </div>
-              <p className="text-xs text-slate-300">
-                {isGraphView
-                  ? "Peak tourism season detected. Siem Reap hotels at 87% occupancy. Angkor Wat content generates 3.2x higher engagement."
-                  : viewMode === "hotels"
-                  ? `${hotels.length} properties available. Avg rate $${hotels.length > 0 ? Math.round(hotels.reduce((s, h) => s + h.price, 0) / hotels.length) : 0}/night. Book 2+ weeks ahead for best rates.`
-                  : `${restaurants.length} restaurants listed. Peak dining hours 18:00-20:30. Khmer cuisine trending +15% in bookings.`
-                }
+              <p className="text-[10px] text-slate-300 leading-relaxed">
+                Peak tourism season. Siem Reap 87% occupancy. Angkor Wat content 3.2x engagement. Book 2+ weeks ahead.
               </p>
             </div>
           </div>
 
           <div className="flex-1 relative">
             <div className="absolute top-4 left-4 z-10 flex gap-2">
-              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-3 py-1">
-                <span className="relative flex h-2 w-2 mr-2">
+              <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 px-2.5 py-0.5 text-[10px]">
+                <span className="relative flex h-1.5 w-1.5 mr-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400"></span>
                 </span>
                 LIVE
               </Badge>
-              {isGraphView ? (
-                <>
-                  <Badge className="bg-[#0081C9]/20 text-[#0081C9] border-[#0081C9]/30 px-3 py-1">
-                    <Wifi className="h-3 w-3 mr-1" /> {filteredNodes.length} Nodes
-                  </Badge>
-                  <Badge className="bg-slate-700/80 text-slate-300 border-slate-600 px-3 py-1">
-                    <Navigation className="h-3 w-3 mr-1" /> Cambodia
-                  </Badge>
-                </>
-              ) : viewMode === "hotels" ? (
-                <>
-                  <Badge className="bg-blue-500/20 text-blue-400 border-blue-500/30 px-3 py-1">
-                    <Hotel className="h-3 w-3 mr-1" /> {hotels.length} Hotels
-                  </Badge>
-                  <Badge className="bg-slate-700/80 text-slate-300 border-slate-600 px-3 py-1">
-                    <Navigation className="h-3 w-3 mr-1" /> SE Asia
-                  </Badge>
-                </>
-              ) : (
-                <>
-                  <Badge className="bg-red-500/20 text-red-400 border-red-500/30 px-3 py-1">
-                    <Utensils className="h-3 w-3 mr-1" /> {restaurants.length} Restaurants
-                  </Badge>
-                  <Badge className="bg-slate-700/80 text-slate-300 border-slate-600 px-3 py-1">
-                    <Navigation className="h-3 w-3 mr-1" /> SE Asia
-                  </Badge>
-                </>
+              {isGraphView && (
+                <Badge className="bg-[#0081C9]/20 text-[#0081C9] border-[#0081C9]/30 px-2.5 py-0.5 text-[10px]">
+                  <Wifi className="h-3 w-3 mr-1" /> {filteredNodes.length} Nodes
+                </Badge>
               )}
             </div>
 
@@ -529,61 +336,32 @@ export default function KnowledgeGraphMap() {
               <div className="w-full h-full bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
                   <defs>
-                    <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#0081C9" stopOpacity="0.08" />
-                      <stop offset="100%" stopColor="transparent" stopOpacity="0" />
-                    </radialGradient>
-                    <filter id="glow">
-                      <feGaussianBlur stdDeviation="0.3" result="coloredBlur" />
-                      <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
+                    <radialGradient id="mapGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#0081C9" stopOpacity="0.08" /><stop offset="100%" stopColor="transparent" stopOpacity="0" /></radialGradient>
+                    <filter id="glow"><feGaussianBlur stdDeviation="0.3" result="coloredBlur" /><feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
                   </defs>
                   <rect width="100" height="100" fill="url(#mapGlow)" />
-
-                  <path d="M 42,12 Q 50,8 58,14 Q 66,22 64,32 Q 70,38 68,48 Q 72,55 67,65 Q 62,72 55,78 Q 48,82 42,76 Q 34,72 36,62 Q 30,55 33,45 Q 28,38 34,28 Q 30,20 42,12 Z"
-                    fill="none" stroke="#334155" strokeWidth="0.25" strokeDasharray="0.8,0.8" opacity="0.4" />
+                  <path d="M 42,12 Q 50,8 58,14 Q 66,22 64,32 Q 70,38 68,48 Q 72,55 67,65 Q 62,72 55,78 Q 48,82 42,76 Q 34,72 36,62 Q 30,55 33,45 Q 28,38 34,28 Q 30,20 42,12 Z" fill="none" stroke="#334155" strokeWidth="0.25" strokeDasharray="0.8,0.8" opacity="0.4" />
                   <text x="52" y="50" textAnchor="middle" fill="#475569" fontSize="1.8" fontWeight="bold" opacity="0.2">CAMBODIA</text>
                   <text x="52" y="53" textAnchor="middle" fill="#475569" fontSize="0.9" opacity="0.15">SOUTHEAST ASIA</text>
-
                   {getConnections().map((line, i) => (
-                    <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2}
-                      stroke="#0081C9" strokeWidth="0.12" strokeDasharray="0.4,0.4" opacity="0.35" />
+                    <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2} stroke="#0081C9" strokeWidth="0.12" strokeDasharray="0.4,0.4" opacity="0.35" />
                   ))}
-
                   {filteredNodes.map(node => {
-                    const x = toX(node.lng);
-                    const y = toY(node.lat);
+                    const x = toX(node.lng), y = toY(node.lat);
                     const isSelected = selectedNode?.id === node.id;
                     const isHovered = hoveredNode === node.id;
                     const isActive = isSelected || isHovered;
-                    const colorMap: Record<string, string> = {
-                      airport: "#3b82f6", city: "#64748b", temple: "#f59e0b", market: "#22c55e",
-                      hotel: "#a855f7", restaurant: "#ef4444", shop: "#ec4899", media: "#8b5cf6",
-                      commerce: "#10b981", realestate: "#f97316", agriculture: "#65a30d", skills: "#06b6d4",
-                    };
+                    const colorMap: Record<string, string> = { airport: "#3b82f6", city: "#64748b", temple: "#f59e0b", market: "#22c55e", hotel: "#a855f7", restaurant: "#ef4444", shop: "#ec4899", media: "#8b5cf6", commerce: "#10b981", realestate: "#f97316", agriculture: "#65a30d", skills: "#06b6d4" };
                     const color = colorMap[node.type] || "#64748b";
-
                     return (
                       <g key={node.id} className="cursor-pointer" filter={isActive ? "url(#glow)" : undefined}
-                        onClick={() => setSelectedNode(node)}
-                        onMouseEnter={() => setHoveredNode(node.id)}
-                        onMouseLeave={() => setHoveredNode(null)}
-                      >
-                        {isActive && (
-                          <circle cx={x} cy={y} r="2" fill={color} opacity="0.15">
-                            <animate attributeName="r" values="1.5;2.5;1.5" dur="2s" repeatCount="indefinite" />
-                          </circle>
-                        )}
-                        <circle cx={x} cy={y} r={isActive ? "0.9" : "0.6"} fill={color}
-                          stroke={isActive ? "#fff" : "transparent"} strokeWidth="0.12" />
+                        onClick={() => setSelectedNode(node)} onMouseEnter={() => setHoveredNode(node.id)} onMouseLeave={() => setHoveredNode(null)}>
+                        {isActive && <circle cx={x} cy={y} r="2" fill={color} opacity="0.15"><animate attributeName="r" values="1.5;2.5;1.5" dur="2s" repeatCount="indefinite" /></circle>}
+                        <circle cx={x} cy={y} r={isActive ? "0.9" : "0.6"} fill={color} stroke={isActive ? "#fff" : "transparent"} strokeWidth="0.12" />
                         {isActive && (
                           <>
-                            <rect x={x - (Math.min(node.name.length, 22) * 0.32)} y={y - 2.8}
-                              width={Math.min(node.name.length, 22) * 0.64} height="1.6"
-                              rx="0.4" fill="rgba(0,0,0,0.7)" />
-                            <text x={x} y={y - 1.7} textAnchor="middle" fill="white" fontSize="0.95" fontWeight="bold">
-                              {node.name.length > 22 ? node.name.slice(0, 22) + "…" : node.name}
-                            </text>
+                            <rect x={x - (Math.min(node.name.length, 22) * 0.32)} y={y - 2.8} width={Math.min(node.name.length, 22) * 0.64} height="1.6" rx="0.4" fill="rgba(0,0,0,0.7)" />
+                            <text x={x} y={y - 1.7} textAnchor="middle" fill="white" fontSize="0.95" fontWeight="bold">{node.name.length > 22 ? node.name.slice(0, 22) + "…" : node.name}</text>
                           </>
                         )}
                       </g>
@@ -593,145 +371,62 @@ export default function KnowledgeGraphMap() {
               </div>
             ) : viewMode === "graph" ? (
               <div className="w-full h-full bg-slate-50">
-                <ReactFlow
-                  nodes={rfNodes}
-                  edges={mergedEdges}
-                  onConnect={onConnect}
-                  onNodeClick={onNodeClick}
-                  fitView
-                  className="bg-slate-50"
-                >
-                  <Background />
-                  <Controls />
-                  <MiniMap />
+                <ReactFlow nodes={rfNodes} edges={mergedEdges} onConnect={onConnect} onNodeClick={onNodeClick} fitView className="bg-slate-50">
+                  <Background /><Controls /><MiniMap />
                 </ReactFlow>
               </div>
             ) : viewMode === "hotels" ? (
-              <div className="w-full h-full overflow-y-auto bg-slate-50 p-8">
-                <div className="max-w-5xl mx-auto space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl">
-                        <Building2 className="h-7 w-7 text-blue-600" />
-                      </div>
-                      <div>
-                        <h1 className="text-2xl font-bold text-slate-900" data-testid="text-hotels-title">Hotel Search</h1>
-                        <p className="text-sm text-slate-500">Find & book accommodations across SE Asia</p>
-                      </div>
-                    </div>
+              <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
+                <div className="max-w-5xl mx-auto space-y-5">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl"><Building2 className="h-6 w-6 text-blue-600" /></div>
+                    <div><h1 className="text-xl font-bold text-slate-900" data-testid="text-hotels-title">Hotel Search</h1><p className="text-xs text-slate-500">Find & book accommodations</p></div>
                   </div>
-
-                  <Card className="bg-white/80 backdrop-blur border-none shadow-md">
-                    <CardContent className="p-5">
-                      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-                        <div className="space-y-1.5">
-                          <label className="text-sm font-medium text-slate-700">Destination</label>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input
-                              type="text"
-                              placeholder="Where are you going?"
-                              className="w-full pl-9 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
-                              value={searchLocation}
-                              onChange={(e) => setSearchLocation(e.target.value)}
-                              data-testid="input-hotel-destination"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-sm font-medium text-slate-700">Dates</label>
-                          <div className="relative">
-                            <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input
-                              type="text"
-                              placeholder="Check-in - Check-out"
-                              className="w-full pl-9 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
-                              value={checkIn}
-                              onChange={(e) => setCheckIn(e.target.value)}
-                              data-testid="input-hotel-dates"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-sm font-medium text-slate-700">Guests</label>
-                          <div className="relative">
-                            <Users className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input
-                              type="text"
-                              placeholder="Guests & Rooms"
-                              className="w-full pl-9 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
-                              value={guests}
-                              onChange={(e) => setGuests(e.target.value)}
-                              data-testid="input-hotel-guests"
-                            />
-                          </div>
-                        </div>
-                        <Button className="w-full h-10 bg-blue-600 hover:bg-blue-700 text-white" data-testid="button-search-hotels">
-                          <Search className="h-4 w-4 mr-2" /> Search
-                        </Button>
+                  <Card className="bg-white/80 border-none shadow-md">
+                    <CardContent className="p-4">
+                      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Destination</label><div className="relative"><MapPin className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Where?" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} data-testid="input-hotel-destination" /></div></div>
+                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Dates</label><div className="relative"><Calendar className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} data-testid="input-hotel-dates" /></div></div>
+                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Guests</label><div className="relative"><Users className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm" value={guests} onChange={(e) => setGuests(e.target.value)} data-testid="input-hotel-guests" /></div></div>
+                        <Button className="h-8 bg-blue-600 hover:bg-blue-700 text-white text-sm" data-testid="button-search-hotels"><Search className="h-3.5 w-3.5 mr-1" /> Search</Button>
                       </div>
                     </CardContent>
                   </Card>
-
                   {hotelsLoading ? (
-                    <div className="flex items-center justify-center py-20">
-                      <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
-                      <span className="ml-3 text-slate-600">Searching hotels...</span>
-                    </div>
+                    <div className="flex items-center justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-blue-500" /><span className="ml-3 text-slate-600">Searching hotels...</span></div>
                   ) : hotels.length === 0 ? (
-                    <div className="text-center py-20 text-slate-500">No hotels found. Try adjusting your search.</div>
+                    <div className="text-center py-20 text-slate-500">No hotels found.</div>
                   ) : (
                     <div className="space-y-4">
                       {hotels.map(hotel => (
                         <Card key={hotel.id} className="overflow-hidden hover:shadow-md transition-shadow" data-testid={`hotel-card-${hotel.id}`}>
                           <div className="flex flex-col sm:flex-row">
-                            <div className="sm:w-56 bg-slate-100 flex items-center justify-center text-5xl h-44 sm:h-auto border-r border-slate-100">
-                              {hotel.image}
-                            </div>
-                            <div className="flex-1 p-5 flex flex-col justify-between">
+                            <div className="sm:w-48 bg-slate-100 flex items-center justify-center text-4xl h-36 sm:h-auto border-r border-slate-100">{hotel.image}</div>
+                            <div className="flex-1 p-4 flex flex-col justify-between">
                               <div>
-                                <div className="flex justify-between items-start mb-2">
+                                <div className="flex justify-between items-start mb-1">
                                   <div>
-                                    <div className="flex items-center gap-2 mb-1">
-                                      <Badge variant="outline" className="text-xs bg-slate-50">{hotel.type}</Badge>
-                                      {hotel.ecoCertified && (
-                                        <Badge variant="secondary" className="text-xs bg-emerald-100 text-emerald-700 border-emerald-200">Eco-Certified</Badge>
-                                      )}
+                                    <div className="flex items-center gap-1.5 mb-0.5">
+                                      <Badge variant="outline" className="text-[10px] bg-slate-50">{hotel.type}</Badge>
+                                      {hotel.ecoCertified && <Badge variant="secondary" className="text-[10px] bg-emerald-100 text-emerald-700">Eco</Badge>}
                                     </div>
-                                    <h3 className="text-lg font-bold text-slate-900">{hotel.name}</h3>
-                                    <p className="text-sm text-slate-500 flex items-center mt-1">
-                                      <MapPin className="h-3 w-3 mr-1" /> {hotel.location}
-                                    </p>
+                                    <h3 className="text-base font-bold text-slate-900">{hotel.name}</h3>
+                                    <p className="text-xs text-slate-500 flex items-center mt-0.5"><MapPin className="h-3 w-3 mr-0.5" /> {hotel.location}</p>
                                   </div>
                                   <div className="text-right">
-                                    <div className="flex items-center justify-end gap-1 mb-1">
-                                      <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                                      <span className="font-bold text-slate-900">{hotel.rating}</span>
-                                    </div>
-                                    <span className="text-xs text-slate-500">{hotel.reviews} reviews</span>
+                                    <div className="flex items-center justify-end gap-0.5"><Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" /><span className="font-bold text-sm">{hotel.rating}</span></div>
+                                    <span className="text-[10px] text-slate-500">{hotel.reviews} reviews</span>
                                   </div>
                                 </div>
-                                {hotel.description && <p className="text-sm text-slate-600 mt-2">{hotel.description}</p>}
-                                <div className="flex flex-wrap gap-2 mt-3">
-                                  {(hotel.amenities || []).slice(0, 4).map(amenity => (
-                                    <Badge key={amenity} variant="outline" className="text-xs text-slate-600 border-slate-200">{amenity}</Badge>
-                                  ))}
-                                  {(hotel.amenities || []).length > 4 && (
-                                    <Badge variant="outline" className="text-xs text-slate-500 border-slate-200 bg-slate-50">+{(hotel.amenities || []).length - 4} more</Badge>
-                                  )}
+                                {hotel.description && <p className="text-xs text-slate-600 mt-1">{hotel.description}</p>}
+                                <div className="flex flex-wrap gap-1 mt-2">
+                                  {(hotel.amenities || []).slice(0, 3).map(a => <Badge key={a} variant="outline" className="text-[10px]">{a}</Badge>)}
+                                  {(hotel.amenities || []).length > 3 && <Badge variant="outline" className="text-[10px] bg-slate-50">+{(hotel.amenities || []).length - 3}</Badge>}
                                 </div>
                               </div>
-                              <div className="flex justify-between items-end mt-4 pt-4 border-t border-slate-100">
-                                <div>
-                                  <p className="text-2xl font-bold text-slate-900">${hotel.price}</p>
-                                  <p className="text-xs text-slate-500">per night, incl. taxes</p>
-                                </div>
-                                <Button
-                                  className="bg-blue-600 hover:bg-blue-700 text-white px-8"
-                                  onClick={() => hotelBookMutation.mutate(hotel)}
-                                  disabled={hotelBookMutation.isPending}
-                                  data-testid={`button-book-hotel-${hotel.id}`}
-                                >
+                              <div className="flex justify-between items-end mt-3 pt-3 border-t border-slate-100">
+                                <div><p className="text-xl font-bold">${hotel.price}</p><p className="text-[10px] text-slate-500">per night</p></div>
+                                <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white px-6" onClick={() => hotelBookMutation.mutate(hotel)} disabled={hotelBookMutation.isPending} data-testid={`button-book-hotel-${hotel.id}`}>
                                   {hotelBookMutation.isPending ? "Booking..." : "Book Now"}
                                 </Button>
                               </div>
@@ -743,97 +438,48 @@ export default function KnowledgeGraphMap() {
                   )}
                 </div>
               </div>
-            ) : (
-              <div className="w-full h-full overflow-y-auto bg-slate-50 p-8">
-                <div className="max-w-5xl mx-auto space-y-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-gradient-to-br from-red-100 to-rose-50 rounded-xl">
-                        <Utensils className="h-7 w-7 text-red-600" />
-                      </div>
-                      <div>
-                        <h1 className="text-2xl font-bold text-slate-900" data-testid="text-dining-title">Dining & Loyalty</h1>
-                        <p className="text-sm text-slate-500">Book tables, earn rewards, discover cuisines</p>
-                      </div>
-                    </div>
+            ) : viewMode === "dining" ? (
+              <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
+                <div className="max-w-5xl mx-auto space-y-5">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2.5 bg-gradient-to-br from-red-100 to-rose-50 rounded-xl"><Utensils className="h-6 w-6 text-red-600" /></div>
+                    <div><h1 className="text-xl font-bold text-slate-900" data-testid="text-dining-title">Dining & Loyalty</h1><p className="text-xs text-slate-500">Book tables, earn rewards</p></div>
                   </div>
-
                   <Card className="bg-white border-none shadow-md">
-                    <CardContent className="p-5">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-                        <div className="space-y-1.5">
-                          <label className="text-sm font-medium text-slate-700">Search Restaurants</label>
-                          <div className="relative">
-                            <MapPin className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input
-                              type="text"
-                              placeholder="Location, cuisine, or name"
-                              className="w-full pl-9 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm"
-                              value={searchLocation}
-                              onChange={(e) => setSearchLocation(e.target.value)}
-                              data-testid="input-search-restaurants"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-sm font-medium text-slate-700">Date & Time</label>
-                          <div className="relative">
-                            <Calendar className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-                            <input type="text" placeholder="Today, 19:00" className="w-full pl-9 pr-4 py-2 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm" data-testid="input-restaurant-date" />
-                          </div>
-                        </div>
-                        <Button className="w-full h-10 bg-red-600 hover:bg-red-700 text-white" data-testid="button-find-table">
-                          Find a Table
-                        </Button>
+                    <CardContent className="p-4">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Search</label><div className="relative"><MapPin className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Location, cuisine, or name" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm" value={searchLocation} onChange={(e) => setSearchLocation(e.target.value)} data-testid="input-search-restaurants" /></div></div>
+                        <div className="space-y-1"><label className="text-xs font-medium text-slate-700">Date & Time</label><div className="relative"><Calendar className="absolute left-2.5 top-2 h-3.5 w-3.5 text-slate-400" /><input type="text" placeholder="Today, 19:00" className="w-full pl-8 pr-3 py-1.5 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-red-500 outline-none text-sm" data-testid="input-restaurant-date" /></div></div>
+                        <Button className="h-8 bg-red-600 hover:bg-red-700 text-white text-sm" data-testid="button-find-table">Find a Table</Button>
                       </div>
                     </CardContent>
                   </Card>
-
                   {restaurantsLoading ? (
-                    <div className="flex items-center justify-center py-20">
-                      <Loader2 className="h-8 w-8 animate-spin text-red-500" />
-                      <span className="ml-3 text-slate-600">Loading restaurants...</span>
-                    </div>
+                    <div className="flex items-center justify-center py-20"><Loader2 className="h-8 w-8 animate-spin text-red-500" /><span className="ml-3 text-slate-600">Loading restaurants...</span></div>
                   ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       {restaurants.map(restaurant => (
                         <Card key={restaurant.id} className="bg-white border-none shadow-sm hover:shadow-md transition-shadow group overflow-hidden" data-testid={`restaurant-card-${restaurant.id}`}>
-                          <div className="h-44 bg-slate-100 flex items-center justify-center text-5xl relative">
+                          <div className="h-36 bg-slate-100 flex items-center justify-center text-4xl relative">
                             {restaurant.image}
-                            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-2 py-1 rounded-md flex items-center gap-1 text-sm font-bold shadow-sm">
-                              <Star className="h-4 w-4 fill-amber-400 text-amber-400" /> {restaurant.rating}
+                            <div className="absolute top-2 right-2 bg-white/90 backdrop-blur px-1.5 py-0.5 rounded flex items-center gap-0.5 text-xs font-bold shadow-sm">
+                              <Star className="h-3 w-3 fill-amber-400 text-amber-400" /> {restaurant.rating}
                             </div>
                           </div>
-                          <CardContent className="p-5">
-                            <div className="flex justify-between items-start mb-2">
-                              <div>
-                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-red-600 transition-colors">{restaurant.name}</h3>
-                                <p className="text-sm text-slate-500">{restaurant.cuisine} • {restaurant.priceRange}</p>
-                              </div>
-                            </div>
-                            {restaurant.description && <p className="text-sm text-slate-600 mb-3">{restaurant.description}</p>}
-                            <div className="flex items-center gap-4 text-sm text-slate-500 mb-3">
-                              <span className="flex items-center"><MapPin className="h-3 w-3 mr-1" /> {restaurant.location}</span>
-                              <span className="flex items-center"><Users className="h-3 w-3 mr-1" /> {restaurant.reviews} reviews</span>
-                            </div>
-                            <div className="flex flex-wrap gap-2 mb-4">
+                          <CardContent className="p-4">
+                            <h3 className="font-bold text-slate-900 group-hover:text-red-600 transition-colors">{restaurant.name}</h3>
+                            <p className="text-xs text-slate-500 mb-2">{restaurant.cuisine} • {restaurant.priceRange}</p>
+                            {restaurant.description && <p className="text-xs text-slate-600 mb-2">{restaurant.description}</p>}
+                            <div className="flex flex-wrap gap-1 mb-3">
                               {(restaurant.features || []).map(f => (
-                                <Badge key={f} variant="secondary" className="bg-red-50 text-red-700 hover:bg-red-100">
-                                  {f === 'Loyalty Rewards' && <Gift className="h-3 w-3 mr-1" />}
-                                  {f}
+                                <Badge key={f} variant="secondary" className="bg-red-50 text-red-700 text-[10px]">
+                                  {f === 'Loyalty Rewards' && <Gift className="h-2.5 w-2.5 mr-0.5" />}{f}
                                 </Badge>
                               ))}
                             </div>
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-3 gap-1.5">
                               {['18:00', '19:00', '20:30'].map(time => (
-                                <Button
-                                  key={time}
-                                  variant="outline"
-                                  className="border-red-200 text-red-600 hover:bg-red-50 w-full text-sm h-9"
-                                  onClick={() => restaurantBookMutation.mutate({ restaurant, time })}
-                                  disabled={restaurantBookMutation.isPending}
-                                  data-testid={`button-book-${restaurant.id}-${time}`}
-                                >
+                                <Button key={time} variant="outline" size="sm" className="border-red-200 text-red-600 hover:bg-red-50 w-full text-xs h-7" onClick={() => restaurantBookMutation.mutate({ restaurant, time })} disabled={restaurantBookMutation.isPending} data-testid={`button-book-${restaurant.id}-${time}`}>
                                   {time}
                                 </Button>
                               ))}
@@ -845,85 +491,61 @@ export default function KnowledgeGraphMap() {
                   )}
                 </div>
               </div>
+            ) : (
+              <div className="w-full h-full overflow-y-auto bg-slate-50 p-6">
+                <div className="max-w-5xl mx-auto">
+                  {viewMode === "events" && <EventsSection />}
+                  {viewMode === "travel" && <TravelSection />}
+                  {viewMode === "cinema" && <CinemaSection />}
+                  {viewMode === "autobot" && <AutobotSection />}
+                  {viewMode === "media" && <MediaSection />}
+                  {viewMode === "finance" && <FinanceSection />}
+                  {viewMode === "fundraising" && <FundraisingSection />}
+                  {viewMode === "association" && <AssociationSection />}
+                </div>
+              </div>
             )}
 
             {isGraphView && selectedNode && nodeConfig && (
               <div className="absolute bottom-4 left-4 right-4 z-10 max-w-2xl mx-auto">
                 <Card className={`${viewMode === "map" ? "bg-slate-800/95 backdrop-blur-xl border-slate-700 text-white" : "bg-white/95 backdrop-blur-xl border-slate-200 text-slate-900"} shadow-2xl`}>
-                  <CardContent className="p-5">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex items-center gap-3">
-                        {(() => {
-                          const Icon = nodeConfig.icon;
-                          return <div className={`p-2 rounded-lg ${nodeConfig.color}`}><Icon className="h-5 w-5 text-white" /></div>;
-                        })()}
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <div className="flex items-center gap-2">
+                        {(() => { const Icon = nodeConfig.icon; return <div className={`p-1.5 rounded-lg ${nodeConfig.color}`}><Icon className="h-4 w-4 text-white" /></div>; })()}
                         <div>
-                          <h3 className="text-base font-bold">{selectedNode.name}</h3>
+                          <h3 className="text-sm font-bold">{selectedNode.name}</h3>
                           <div className="flex items-center gap-2 mt-0.5">
                             <Badge variant="outline" className={`text-[10px] capitalize ${viewMode === "map" ? "border-slate-600 text-slate-300" : "border-slate-300 text-slate-600"}`}>{selectedNode.type}</Badge>
-                            {selectedNode.rating && (
-                              <div className="flex items-center gap-1">
-                                <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
-                                <span className="text-xs text-amber-500 font-medium">{selectedNode.rating}</span>
-                              </div>
-                            )}
-                            {selectedNode.revenue && (
-                              <div className="flex items-center gap-1">
-                                <DollarSign className="h-3 w-3 text-emerald-500" />
-                                <span className="text-xs text-emerald-500 font-medium">{selectedNode.revenue}</span>
-                              </div>
-                            )}
+                            {selectedNode.rating && <span className="flex items-center gap-0.5"><Star className="h-3 w-3 fill-amber-400 text-amber-400" /><span className="text-[10px] text-amber-500 font-medium">{selectedNode.rating}</span></span>}
+                            {selectedNode.revenue && <span className="flex items-center gap-0.5"><DollarSign className="h-3 w-3 text-emerald-500" /><span className="text-[10px] text-emerald-500 font-medium">{selectedNode.revenue}</span></span>}
                           </div>
                         </div>
                       </div>
-                      <button onClick={() => setSelectedNode(null)} className={`${viewMode === "map" ? "text-slate-400 hover:text-white" : "text-slate-400 hover:text-slate-900"}`}>
-                        <X className="h-5 w-5" />
-                      </button>
+                      <button onClick={() => setSelectedNode(null)} className={`${viewMode === "map" ? "text-slate-400 hover:text-white" : "text-slate-400 hover:text-slate-900"}`}><X className="h-4 w-4" /></button>
                     </div>
-
-                    <p className={`text-sm mb-3 ${viewMode === "map" ? "text-slate-300" : "text-slate-600"}`}>{selectedNode.description}</p>
-
+                    <p className={`text-xs mb-2 ${viewMode === "map" ? "text-slate-300" : "text-slate-600"}`}>{selectedNode.description}</p>
                     {selectedNode.aiRecommendation && (
-                      <div className={`p-3 rounded-lg mb-3 ${viewMode === "map" ? "bg-[#0081C9]/10 border border-[#0081C9]/30" : "bg-blue-50 border border-blue-200"}`}>
-                        <div className="flex items-center gap-2 mb-1">
-                          <Bot className="h-3.5 w-3.5 text-[#0081C9]" />
-                          <span className="text-[11px] font-bold text-[#0081C9]">AI Recommendation</span>
-                        </div>
-                        <p className={`text-sm ${viewMode === "map" ? "text-slate-300" : "text-slate-600"}`}>{selectedNode.aiRecommendation}</p>
+                      <div className={`p-2.5 rounded-lg mb-2 ${viewMode === "map" ? "bg-[#0081C9]/10 border border-[#0081C9]/30" : "bg-blue-50 border border-blue-200"}`}>
+                        <div className="flex items-center gap-1.5 mb-0.5"><Bot className="h-3 w-3 text-[#0081C9]" /><span className="text-[10px] font-bold text-[#0081C9]">AI Recommendation</span></div>
+                        <p className={`text-xs ${viewMode === "map" ? "text-slate-300" : "text-slate-600"}`}>{selectedNode.aiRecommendation}</p>
                       </div>
                     )}
-
                     {selectedNode.connections && selectedNode.connections.length > 0 && (
-                      <div className="mb-3">
-                        <span className={`text-[11px] font-bold uppercase ${viewMode === "map" ? "text-slate-400" : "text-slate-500"}`}>Connected To:</span>
-                        <div className="flex flex-wrap gap-1.5 mt-1.5">
+                      <div className="mb-2">
+                        <span className={`text-[10px] font-bold uppercase ${viewMode === "map" ? "text-slate-400" : "text-slate-500"}`}>Connected To:</span>
+                        <div className="flex flex-wrap gap-1 mt-1">
                           {selectedNode.connections.map(connId => {
                             const conn = CAMBODIA_NODES.find(n => n.id === connId);
-                            return conn && (
-                              <Badge
-                                key={connId}
-                                variant="outline"
-                                className={`text-[11px] cursor-pointer ${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300 text-slate-600 hover:bg-slate-100"}`}
-                                onClick={() => setSelectedNode(conn)}
-                              >
-                                {conn.name} <ChevronRight className="h-3 w-3 ml-0.5" />
-                              </Badge>
-                            );
+                            return conn && <Badge key={connId} variant="outline" className={`text-[10px] cursor-pointer ${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300 text-slate-600 hover:bg-slate-100"}`} onClick={() => setSelectedNode(conn)}>{conn.name} <ChevronRight className="h-2.5 w-2.5 ml-0.5" /></Badge>;
                           })}
                         </div>
                       </div>
                     )}
-
                     <div className="flex gap-2">
-                      <Button size="sm" className="bg-[#0081C9] hover:bg-blue-700 text-white" data-testid="button-navigate-node">
-                        <Navigation className="h-3.5 w-3.5 mr-1" /> Navigate
-                      </Button>
-                      <Button size="sm" variant="outline" className={`${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300"}`} data-testid="button-add-itinerary">
-                        <Zap className="h-3.5 w-3.5 mr-1" /> Add to Itinerary
-                      </Button>
-                      <Button size="sm" variant="outline" className={`${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300"}`} data-testid="button-deploy-agent">
-                        <Bot className="h-3.5 w-3.5 mr-1" /> Deploy AI Agent
-                      </Button>
+                      <Button size="sm" className="bg-[#0081C9] hover:bg-blue-700 text-white text-xs h-7" data-testid="button-navigate-node"><Navigation className="h-3 w-3 mr-1" /> Navigate</Button>
+                      <Button size="sm" variant="outline" className={`text-xs h-7 ${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300"}`} data-testid="button-add-itinerary"><Zap className="h-3 w-3 mr-1" /> Itinerary</Button>
+                      <Button size="sm" variant="outline" className={`text-xs h-7 ${viewMode === "map" ? "border-slate-600 text-slate-300 hover:bg-slate-700" : "border-slate-300"}`} data-testid="button-deploy-agent"><Bot className="h-3 w-3 mr-1" /> AI Agent</Button>
                     </div>
                   </CardContent>
                 </Card>

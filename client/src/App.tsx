@@ -46,11 +46,11 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/map" component={KnowledgeGraphMap} />
       <Route path="/product" component={Product} />
-      <Route path="/rdtb" component={RDTBPage} />
+      <Route path="/rdtb" component={KnowledgeGraphMap} />
       <Route path="/roles" component={RoleSelection} />
       <Route path="/pricing" component={Pricing} />
-      <Route path="/fundraising" component={PublicFundraising} />
-      <Route path="/association" component={Association} />
+      <Route path="/fundraising" component={KnowledgeGraphMap} />
+      <Route path="/association" component={KnowledgeGraphMap} />
       <Route path="/global/vision" component={GlobalVision} />
       <Route path="/global/ai-guide" component={AIGuideBook} />
       <Route path="/global/postcards" component={DigitalPostcards} />
@@ -62,9 +62,9 @@ function Router() {
       <Route path="/dashboard/investor" component={InvestorDashboard} />
       <Route path="/dashboard/graph" component={KnowledgeGraphMap} />
       <Route path="/marketplace" component={MarketplaceModule} />
-      <Route path="/finance" component={FinanceModule} />
-      <Route path="/travel" component={TravelOSModule} />
-      <Route path="/media" component={MediaModule} />
+      <Route path="/finance" component={KnowledgeGraphMap} />
+      <Route path="/travel" component={KnowledgeGraphMap} />
+      <Route path="/media" component={KnowledgeGraphMap} />
       <Route path="/hotels" component={KnowledgeGraphMap} />
       <Route path="/restaurants" component={KnowledgeGraphMap} />
       <Route path="/community" component={CommunityHub} />
@@ -74,12 +74,12 @@ function Router() {
       <Route path="/dropshipping" component={DropshippingModule} />
       <Route path="/erp" component={ERPDashboard} />
       <Route path="/hospitality" component={HospitalityPMS} />
-      <Route path="/events" component={IndustryEvents} />
-      <Route path="/cinema" component={CulturalCinema} />
+      <Route path="/events" component={KnowledgeGraphMap} />
+      <Route path="/cinema" component={KnowledgeGraphMap} />
       <Route path="/crypto" component={CryptoModule} />
       <Route path="/connectivity" component={ConnectivityModule} />
       <Route path="/hr" component={HRNetworkingModule} />
-      <Route path="/autobot" component={AutobotDashboard} />
+      <Route path="/autobot" component={KnowledgeGraphMap} />
       <Route path="/login" component={Login} />
       <Route component={NotFound} />
     </Switch>

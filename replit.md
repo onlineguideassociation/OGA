@@ -15,17 +15,19 @@ OnlineGuide.io is a comprehensive AI-powered platform for Cambodia/Southeast Asi
 ## Architecture
 ```
 client/src/           - React frontend
-  pages/              - All module pages (35+ routes)
-    map/              - Knowledge Graph Map (interactive SVG Cambodia map)
-    dashboard/        - Dashboard with analytics, graph explorer, AI tools
-    marketplace/      - E-commerce module
-    hotels/           - Hotel search & booking
-    restaurants/      - Restaurant booking
-    travel/           - AI itineraries
-    community/        - Community hub
-    freelance/        - Freelance marketplace
-    events/           - Industry events
-    ...               - 20+ more module pages
+  pages/
+    map/              - **UNIFIED KNOWLEDGE HUB** (All-in-One page)
+      index.tsx       - Main KnowledgeGraphMap component with 12-tab sidebar
+      events-section.tsx    - Conferences & Events tab
+      travel-section.tsx    - Travel OS / AI Itinerary tab
+      cinema-section.tsx    - Cultural Cinema tab
+      autobot-section.tsx   - AutoBot + RDTB Intelligence tab
+      media-section.tsx     - AI Content Generator tab
+      finance-section.tsx   - National Forecasting Engine tab
+      fundraising-section.tsx - GuideFund crowdfunding tab
+      association-section.tsx - OGA (Online Guide Association) tab
+    dashboard/        - Dashboard with analytics, AI tools
+    ...               - Other standalone module pages
   components/         - Shared components (layout, ui)
   hooks/              - Custom hooks (use-toast, use-mobile)
 server/               - Express backend
@@ -38,6 +40,15 @@ db/
   index.ts            - Database connection (pg pool + drizzle)
   seed.ts             - Database seed script
 ```
+
+## Unified Knowledge Hub (12 Tabs)
+The `/map` route hosts the unified "All in One" page with a dark sidebar navigator:
+- **Intelligence**: Tourism Map, Graph Explorer, AI AutoBot & RDTB, Forecasting Engine
+- **Tourism**: Travel OS, Hotels, Dining & Loyalty, Conferences
+- **Creator**: Content Generator, Cultural Cinema
+- **Community**: GuideFund, OGA
+
+Routes `/hotels`, `/restaurants`, `/travel`, `/events`, `/cinema`, `/autobot`, `/rdtb`, `/media`, `/finance`, `/fundraising`, `/association` all redirect to KnowledgeGraphMap.
 
 ## Database Tables
 - `users` - User accounts
