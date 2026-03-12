@@ -2,16 +2,27 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Map, Ticket, Bot, Globe, Users, Sparkles,
-  MapPin, TrendingUp, Star
+  MapPin, TrendingUp, Star, Search, Calendar, UserPlus, ChevronDown
 } from "lucide-react";
+import { useState } from "react";
 
 interface HeroSectionProps {
   onExploreMap: () => void;
   onBookTours: () => void;
   onStartAI: () => void;
+  onSearch?: (query: string, date: string, travelers: string) => void;
 }
 
-export default function HeroSection({ onExploreMap, onBookTours, onStartAI }: HeroSectionProps) {
+export default function HeroSection({ onExploreMap, onBookTours, onStartAI, onSearch }: HeroSectionProps) {
+  const [destination, setDestination] = useState("");
+  const [date, setDate] = useState("");
+  const [travelers, setTravelers] = useState("2");
+
+  const handleSearch = () => {
+    if (onSearch) onSearch(destination, date, travelers);
+    onBookTours();
+  };
+
   return (
     <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #0b1f3a 0%, #0081C9 40%, #C1121F 100%)" }}>
       <div className="absolute inset-0">
@@ -35,16 +46,66 @@ export default function HeroSection({ onExploreMap, onBookTours, onStartAI }: He
             </Badge>
           </div>
 
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 leading-tight" data-testid="hero-headline">
-            Discover Cambodia Through AI, Maps,{" "}
-            <span className="bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent">and Cultural Truth</span>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight" data-testid="hero-headline">
+            Find Tours, Hotels &{" "}
+            <span className="bg-gradient-to-r from-amber-300 to-amber-100 bg-clip-text text-transparent">Experiences</span>
           </h1>
 
           <p className="text-sm md:text-base text-white/70 max-w-2xl mx-auto mb-6 leading-relaxed" data-testid="hero-subheadline">
-            OnlineGuide.io connects tourism, AI intelligence, creators, and local businesses into one live network powered by interactive maps.
+            Explore Angkor Wat, Siem Reap and Cambodia with AI-powered recommendations
           </p>
 
-          <div className="flex items-center justify-center gap-3 flex-wrap mb-6">
+          <div className="max-w-3xl mx-auto mb-6">
+            <div className="bg-white/95 backdrop-blur-xl rounded-2xl p-2 shadow-2xl shadow-black/20 flex flex-col md:flex-row items-stretch gap-2" data-testid="hero-search-box">
+              <div className="flex-1 flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+                <MapPin className="h-4 w-4 text-[#0081C9] flex-shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Where are you going?"
+                  value={destination}
+                  onChange={e => setDestination(e.target.value)}
+                  className="w-full bg-transparent text-sm text-slate-900 placeholder:text-slate-400 outline-none"
+                  data-testid="input-hero-destination"
+                />
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors min-w-[150px]">
+                <Calendar className="h-4 w-4 text-[#0081C9] flex-shrink-0" />
+                <input
+                  type="date"
+                  value={date}
+                  onChange={e => setDate(e.target.value)}
+                  className="w-full bg-transparent text-sm text-slate-900 outline-none"
+                  data-testid="input-hero-date"
+                />
+              </div>
+              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors min-w-[140px]">
+                <Users className="h-4 w-4 text-[#0081C9] flex-shrink-0" />
+                <select
+                  value={travelers}
+                  onChange={e => setTravelers(e.target.value)}
+                  className="w-full bg-transparent text-sm text-slate-900 outline-none cursor-pointer appearance-none"
+                  data-testid="select-hero-travelers"
+                >
+                  <option value="1">1 Traveler</option>
+                  <option value="2">2 Travelers</option>
+                  <option value="3">3 Travelers</option>
+                  <option value="4">4 Travelers</option>
+                  <option value="5">5 Travelers</option>
+                  <option value="6">6+ Travelers</option>
+                </select>
+                <ChevronDown className="h-3 w-3 text-slate-400 flex-shrink-0" />
+              </div>
+              <Button
+                onClick={handleSearch}
+                className="bg-[#22c55e] hover:bg-[#16a34a] text-white font-semibold px-6 h-11 text-sm rounded-xl shadow-md shadow-emerald-500/20 whitespace-nowrap"
+                data-testid="btn-hero-search"
+              >
+                <Search className="h-4 w-4 mr-2" /> Search
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 flex-wrap mb-5">
             <Button
               onClick={onExploreMap}
               className="bg-white text-slate-900 hover:bg-white/90 font-semibold px-5 h-10 text-sm shadow-lg shadow-white/10"
