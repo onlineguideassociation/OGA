@@ -13,18 +13,16 @@ import {
   Wifi, Bot, DollarSign, Map as MapIcon, Shield,
   GitBranch, Search, Users
 } from "lucide-react";
-import AutobotSection from "./autobot-section";
-import FinanceSection from "./finance-section";
 import DashboardSection from "./dashboard-section";
+import ForecastingRDTBSection from "./forecasting-rdtb-section";
 
-type IntelTab = "dashboard" | "map" | "graph" | "autobot" | "finance";
+type IntelTab = "dashboard" | "map" | "graph" | "forecast-rdtb";
 
 const INTEL_TABS: { key: IntelTab; label: string; icon: React.ElementType; color: string }[] = [
   { key: "dashboard", label: "Dashboard", icon: Globe, color: "text-emerald-600" },
   { key: "map", label: "Tourism Map", icon: MapIcon, color: "text-blue-600" },
   { key: "graph", label: "Graph Explorer", icon: GitBranch, color: "text-violet-600" },
-  { key: "autobot", label: "AutoBot & RDTB", icon: Bot, color: "text-indigo-600" },
-  { key: "finance", label: "Forecasting", icon: DollarSign, color: "text-purple-600" },
+  { key: "forecast-rdtb", label: "Forecasting & RDTB", icon: Bot, color: "text-indigo-600" },
 ];
 
 interface MapNode {
@@ -167,7 +165,7 @@ export default function IntelligenceFlowSection() {
   const nodeConfig = selectedNode ? getNodeConfig(selectedNode.type) : null;
 
   const isVisual = activeTab === "map" || activeTab === "graph";
-  const isScrollable = activeTab === "dashboard" || activeTab === "autobot" || activeTab === "finance";
+  const isScrollable = activeTab === "dashboard" || activeTab === "forecast-rdtb";
 
   return (
     <div className="flex flex-col h-full">
@@ -369,8 +367,7 @@ export default function IntelligenceFlowSection() {
         )}
 
         {activeTab === "dashboard" && <DashboardSection />}
-        {activeTab === "autobot" && <AutobotSection />}
-        {activeTab === "finance" && <FinanceSection />}
+        {activeTab === "forecast-rdtb" && <ForecastingRDTBSection />}
       </div>
     </div>
   );
