@@ -33,7 +33,7 @@ export function Navbar() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer outline-none">
-                Platform <ChevronDown className="h-4 w-4" />
+                Platform & Resources <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-[300px] p-4">
@@ -253,19 +253,55 @@ export function Navbar() {
                   </div>
                 </DropdownMenuItem>
               </Link>
+              <DropdownMenuSeparator className="my-2" />
+              <DropdownMenuLabel className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Resources</DropdownMenuLabel>
+              <Link href="/product">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <BookOpen className="h-5 w-5 text-slate-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Documentation</div>
+                    <div className="text-xs text-muted-foreground">Infrastructure & API reference</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/pricing">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <TrendingUp className="h-5 w-5 text-emerald-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Pricing</div>
+                    <div className="text-xs text-muted-foreground">Plans & subscription options</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/community">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <MessageSquare className="h-5 w-5 text-purple-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Community</div>
+                    <div className="text-xs text-muted-foreground">Forums, posts & discussions</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/events">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <FileText className="h-5 w-5 text-indigo-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Events</div>
+                    <div className="text-xs text-muted-foreground">Industry events & conferences</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
+              <Link href="/cinema">
+                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
+                  <Globe className="h-5 w-5 text-rose-600 mt-0.5" />
+                  <div>
+                    <div className="font-bold">Cultural Cinema</div>
+                    <div className="text-xs text-muted-foreground">Heritage films & documentaries</div>
+                  </div>
+                </DropdownMenuItem>
+              </Link>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          <Link href="/pricing">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/pricing") ? "text-primary" : "text-muted-foreground"}`}>
-              Pricing
-            </span>
-          </Link>
-          <Link href="/product">
-            <span className={`text-sm font-medium transition-colors hover:text-primary cursor-pointer ${isActive("/product") ? "text-primary" : "text-muted-foreground"}`}>
-              Resources
-            </span>
-          </Link>
         </nav>
 
         {/* Actions */}
