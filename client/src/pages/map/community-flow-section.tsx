@@ -13,13 +13,15 @@ import {
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import TruthBrandingSection from "./truth-branding-section";
 
-type FlowTab = "trust" | "guidefund" | "oga" | "vision" | "aiguide" | "postcards";
+type FlowTab = "trust" | "guidefund" | "oga" | "branding" | "vision" | "aiguide" | "postcards";
 
 const FLOW_TABS: { key: FlowTab; label: string; icon: React.ElementType; color: string }[] = [
   { key: "trust", label: "Trust Network & API", icon: Shield, color: "text-blue-600" },
   { key: "guidefund", label: "GuideFund", icon: Heart, color: "text-rose-600" },
   { key: "oga", label: "OGA", icon: Globe, color: "text-indigo-600" },
+  { key: "branding", label: "Truth Branding", icon: Sparkles, color: "text-[#C1121F]" },
   { key: "vision", label: "Global Vision", icon: Network, color: "text-[#C1121F]" },
   { key: "aiguide", label: "AI Guide Book", icon: BookOpen, color: "text-amber-600" },
   { key: "postcards", label: "Postcards", icon: ImageIcon, color: "text-purple-600" },
@@ -988,6 +990,7 @@ export default function CommunityFlowSection() {
       )}
       {activeTab === "guidefund" && <GuideFundContent />}
       {activeTab === "oga" && <OGAContent />}
+      {activeTab === "branding" && <TruthBrandingSection />}
       {activeTab === "vision" && <GlobalVisionContent />}
       {activeTab === "aiguide" && <AIGuideContent />}
       {activeTab === "postcards" && <PostcardsContent />}
