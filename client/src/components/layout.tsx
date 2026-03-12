@@ -167,17 +167,8 @@ export function Navbar() {
                 <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
                   <MapPin className="h-5 w-5 text-blue-600 mt-0.5" />
                   <div>
-                    <div className="font-bold">Global Hotels</div>
-                    <div className="text-xs text-muted-foreground">Accommodation search</div>
-                  </div>
-                </DropdownMenuItem>
-              </Link>
-              <Link href="/restaurants">
-                <DropdownMenuItem className="flex items-start gap-3 p-3 cursor-pointer">
-                  <MapPin className="h-5 w-5 text-red-600 mt-0.5" />
-                  <div>
-                    <div className="font-bold">Dining & Loyalty</div>
-                    <div className="text-xs text-muted-foreground">Restaurant bookings & POS</div>
+                    <div className="font-bold">Hotels & Dining</div>
+                    <div className="text-xs text-muted-foreground">Accommodations, restaurants & loyalty</div>
                   </div>
                 </DropdownMenuItem>
               </Link>

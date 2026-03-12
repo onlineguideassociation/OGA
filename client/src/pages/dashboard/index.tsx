@@ -93,8 +93,7 @@ export default function DashboardOverview() {
           <nav className="space-y-1">
             {[
               { href: "/travel", icon: MapPin, label: "Travel OS", color: "text-green-600" },
-              { href: "/hotels", icon: Hotel, label: "Hotels", color: "text-blue-600" },
-              { href: "/restaurants", icon: Utensils, label: "Dining", color: "text-red-600" },
+              { href: "/hotels", icon: Hotel, label: "Hotels & Dining", color: "text-blue-600" },
               { href: "/marketplace", icon: ShoppingBag, label: "Marketplace", color: "text-amber-600" },
               { href: "/freelance", icon: Briefcase, label: "Freelance", color: "text-orange-600" },
               { href: "/events", icon: Calendar, label: "Events", color: "text-indigo-600" },

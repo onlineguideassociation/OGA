@@ -25,14 +25,13 @@ import MarketplaceModule from "@/pages/marketplace/index";
 import FinanceModule from "@/pages/finance/index";
 import TravelOSModule from "@/pages/travel/index";
 import MediaModule from "@/pages/media/index";
-import HotelsSearch from "@/pages/hotels/index";
+import HotelsAndDining from "@/pages/hotels/index";
 import CommunityHub from "@/pages/community/index";
 import FreelanceMarketplace from "@/pages/freelance/index";
 import SustainabilityMapping from "@/pages/sustainability/index";
 import BrowserIDE from "@/pages/ide/index";
 import DropshippingModule from "@/pages/dropshipping/index";
 import ERPDashboard from "@/pages/erp/index";
-import RestaurantBooking from "@/pages/restaurants/index";
 import HospitalityPMS from "@/pages/hospitality/index";
 import IndustryEvents from "@/pages/events/index";
 import CulturalCinema from "@/pages/cinema/index";
@@ -67,14 +66,14 @@ function Router() {
       <Route path="/finance" component={FinanceModule} />
       <Route path="/travel" component={TravelOSModule} />
       <Route path="/media" component={MediaModule} />
-      <Route path="/hotels" component={HotelsSearch} />
+      <Route path="/hotels" component={HotelsAndDining} />
+      <Route path="/restaurants" component={HotelsAndDining} />
       <Route path="/community" component={CommunityHub} />
       <Route path="/freelance" component={FreelanceMarketplace} />
       <Route path="/sustainability" component={SustainabilityMapping} />
       <Route path="/ide" component={BrowserIDE} />
       <Route path="/dropshipping" component={DropshippingModule} />
       <Route path="/erp" component={ERPDashboard} />
-      <Route path="/restaurants" component={RestaurantBooking} />
       <Route path="/hospitality" component={HospitalityPMS} />
       <Route path="/events" component={IndustryEvents} />
       <Route path="/cinema" component={CulturalCinema} />
