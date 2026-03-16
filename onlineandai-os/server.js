@@ -1,21 +1,20 @@
 import "dotenv/config";
 import express from "express";
 import { apiRouter } from "./api/routes.js";
-import { healthcheckDatabase } from "./database.js";
+import { healthcheckDatabase, initializeSchema } from "./database.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Initialize database schema on startup
+initializeSchema().catch(err => {
+  console.error("Failed to initialize database schema on startup:", err);
+  process.exit(1); // Exit if DB initialization fails
+});
+
+app.use(express.static("public"));
 app.use(express.json({ limit: "1mb" }));
 app.use("/api", apiRouter);
-
-app.get("/", (req, res) => {
-  res.json({
-    product: "OnlineGuide.io",
-    system: "Tourism Intelligence Infrastructure Layer (TIIL)",
-    region: "Cambodia (Siem Reap, Phnom Penh, Angkor Wat)"
-  });
-});
 
 app.get("/health/database", async (req, res) => {
   try {
@@ -27,5 +26,5 @@ app.get("/health/database", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`OnlineGuide OS API running on port ${port}`);
+  console.log(`OnlineAndAi OS API running on port ${port}`);
 });
