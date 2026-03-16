@@ -1,1 +1,234 @@
-<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>OnlineAndAi.com - Unified AI Super-Agent Ecosystem</title>\n    <style>\n        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }\n        h1, h2, h3 { color: #0056b3; }\n        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }\n        #ai-interaction, #tour-finder { margin-top: 20px; }\n        #task-type, #tour-interest { padding: 8px; border-radius: 4px; border: 1px solid #ccc; }\n        .task-inputs { margin-top: 10px; }\n        .task-inputs input, .task-inputs textarea, #tour-interest { padding: 8px; border-radius: 4px; border: 1px solid #ccc; margin-right: 10px; width: calc(100% - 20px); margin-bottom: 10px; }\n        #run-ai, #find-tours { padding: 10px 15px; background-color: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer; }\n        #response-container, #tour-results { margin-top: 20px; background-color: #e9ecef; padding: 10px; border-radius: 4px; white-space: pre-wrap; }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Welcome to OnlineAndAi.com</h1>\n        <p>The Unified AI Super-Agent Ecosystem is under construction. Use the workspace below to test the new capabilities.</p>\n\n        <div id=\"tour-finder\">\n            <h2>Smart Tour Finder</h2>\n            <input type=\"text\" id=\"tour-interest\" placeholder=\"Enter an interest (e.g., food, history)\">\n            <button id=\"find-tours\">Find Tours</button>\n            <h3>Tour Results:</h3>\n            <div id=\"tour-results\">No tours found yet.</div>\n        </div>\n\n        <div id=\"ai-interaction\">\n            <h2>AI Workspace</h2>\n            <select id=\"task-type\">\n                <option value=\"tour_description\">Tour Description</option>\n                <option value=\"social_ad\">Social Media Ad</option>\n                <option value=\"review_reply\">Review Reply</option>\n                <option value=\"smart_itinerary\">Smart Itinerary</option>\n            </select>\n\n            <div id=\"task-inputs\" class=\"task-inputs\"></div>\n\n            <button id=\"run-ai\">Run AI</button>\n\n            <h3>AI Response:</h3>\n            <pre id=\"response-container\"><code>The AI\'s response will appear here.</code></pre>\n        </div>\n    </div>\n\n    <script>\n        // Existing AI Workspace script...\n        const taskInputs = document.getElementById(\'task-inputs\');\n        const taskType = document.getElementById(\'task-type\');\n        const runAiButton = document.getElementById(\'run-ai\');\n        const responseContainer = document.getElementById(\'response-container\');\n\n        const taskFields = {\n            tour_description: [\n                { name: \'name\', placeholder: \'Tour Name (e.g., Angkor Wat Sunrise)\' },\n                { name: \'features\', placeholder: \'Key Features (e.g., guided, breakfast included)\' }\n            ],\n            social_ad: [\n                { name: \'productName\', placeholder: \'Product Name (e.g., Handcrafted souvenirs)\' },\n                { name: \'audience\', placeholder: \'Target Audience (e.g., Eco-tourists)\' },\n                { name: \'platform\', placeholder: \'Platform (e.g., Instagram, Facebook)\' }\n            ],\n            review_reply: [\n                { name: \'review\', placeholder: \'Customer Review\', type: \'textarea\' },\n                { name: \'tone\', placeholder: \'Tone (e.g., empathetic, professional)\' },\n                { name: \'language\', placeholder: \'Language (e.g., English, Khmer)\' }\n            ],\n            smart_itinerary: [\n                { name: \'location\', placeholder: \'Location (e.g., Siem Reap)\' },\n                { name: \'duration\', placeholder: \'Duration (in days)\' },\n                { name: \'interests\', placeholder: \'Interests (e.g., temples, food, history)\' }\n            ]\n        };\n\n        function updateInputs() {\n            taskInputs.innerHTML = \'\';\n            const fields = taskFields[taskType.value];\n            fields.forEach(field => {\n                const input = document.createElement(field.type === \'textarea\' ? \'textarea\' : \'input\');\n                input.name = field.name;\n                input.placeholder = field.placeholder;\n                taskInputs.appendChild(input);\n            });\n        }\n\n        taskType.addEventListener(\'change\, updateInputs);\n\n        runAiButton.addEventListener(\'click\', async () => {\n            // ... existing run AI logic\n        });\n\n        updateInputs();\n\n        // New Tour Finder script\n        const findToursButton = document.getElementById(\'find-tours\');\n        const tourInterestInput = document.getElementById(\'tour-interest\');\n        const tourResultsContainer = document.getElementById(\'tour-results\');\n\n        findToursButton.addEventListener(\'click\', async () => {\n            const interest = tourInterestInput.value;\n            if (!interest) {\n                tourResultsContainer.textContent = \'Please enter an interest to find tours.\';\n                return;\n            }\n\n            tourResultsContainer.textContent = \'Searching for tours...\';\n\n            try {\n                const response = await fetch(`/api/tours/search?interest=${encodeURIComponent(interest)}`);\n                const data = await response.json();\n\n                if (data.error) {\n                    throw new Error(data.error);\n                }\n\n                if (data.tours && data.tours.length > 0) {\n                    tourResultsContainer.innerHTML = data.tours.map(tour => `\n                        <div>\n                            <h4>${tour.name}</h4>\n                            <p><strong>Location:</strong> ${tour.location}</p>\n                            <p><strong>Price:</strong> $${tour.price}</p>\n                            <p>${tour.description}</p>\n                            <p><em>Guide: ${tour.guide_name || \'N/A\'}</em></p>\n                        </div>\n                    `).join(\'\');\n                } else {\n                    tourResultsContainer.textContent = \'No tours found for that interest.\';\n                }\n            } catch (error) {\n                tourResultsContainer.textContent = `Error: ${error.message}`;\n            }\n        });\n    </script>\n</body>\n</html>\n
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineGuide.io - Unified AI Super-Agent Platform</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; margin: 0; display: flex; height: 100vh; }
+        a { text-decoration: none; color: #007bff; }
+        h1, h2, h3, h4 { color: #0056b3; }
+
+        #sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        #sidebar h1 { font-size: 1.5em; margin-bottom: 20px; }
+        #sidebar ul { list-style: none; padding: 0; }
+        #sidebar ul li { margin-bottom: 15px; font-weight: bold; }
+
+        #main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button { background-color: #0056b3; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #004494; }
+
+        #response-container, #tour-results {
+            margin-top: 10px;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .tour-result { border-bottom: 1px solid #ccc; padding-bottom: 15px; margin-bottom: 15px; }
+        .book-now-btn { background-color: #28a745; display: inline-block; width: auto; padding: 10px 15px; color: white; }
+
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h1>OnlineGuide.io</h1>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Travel & Tourism</a></li>
+            <li><a href="#">Commerce & Dropshipping</a></li>
+            <li><a href="#">AI App & Knowledge Hub</a></li>
+            <li><a href="#">Crypto & Fintech</a></li>
+            <li><a href="#">Content & Marketing</a></li>
+            <li><a href="#">Connectivity & Cyber</a></li>
+            <li><a href="#">HR & Professional</a></li>
+            <li><a href="/guides.html">Global Guide Network</a></li>
+        </ul>
+    </div>
+    <div id="main-content">
+        <h2>Unified AI Super-Agent Dashboard</h2>
+        <div class="dashboard-grid">
+            <div class="card" id="tour-finder">
+                <h3>Smart Tour Finder</h3>
+                <input type="text" id="tour-interest" placeholder="Enter an interest (e.g., food, history)">
+                <button id="find-tours">Find Tours</button>
+                <div id="tour-results">No tours found yet.</div>
+            </div>
+
+            <div class="card" id="ai-interaction">
+                <h3>AI Workspace</h3>
+                <select id="task-type">
+                    <option value="smart_itinerary">Smart Itinerary</option>
+                    <option value="tour_description">Tour Description</option>
+                    <option value="social_ad">Social Media Ad</option>
+                    <option value="review_reply">Review Reply</option>
+                </select>
+                <div id="task-inputs"></div>
+                <button id="run-ai">Run AI</button>
+                <div id="response-container"><pre><code>The AI's response will appear here.</code></pre></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const taskInputs = document.getElementById('task-inputs');
+        const taskType = document.getElementById('task-type');
+        const runAiButton = document.getElementById('run-ai');
+        const responseContainer = document.getElementById('response-container');
+
+        const taskFields = {
+            tour_description: [
+                { name: 'name', placeholder: 'Tour Name (e.g., Angkor Wat Sunrise)' },
+                { name: 'features', placeholder: 'Key Features (e.g., guided, breakfast included)' }
+            ],
+            social_ad: [
+                { name: 'productName', placeholder: 'Product Name (e.g., Handcrafted souvenirs)' },
+                { name: 'audience', placeholder: 'Target Audience (e.g., Eco-tourists)' },
+                { name: 'platform', placeholder: 'Platform (e.g., Instagram, Facebook)' }
+            ],
+            review_reply: [
+                { name: 'review', placeholder: 'Customer Review', type: 'textarea' },
+                { name: 'tone', placeholder: 'Tone (e.g., empathetic, professional)' },
+                { name: 'language', placeholder: 'Language (e.g., English, Khmer)' }
+            ],
+            smart_itinerary: [
+                { name: 'location', placeholder: 'Location (e.g., Siem Reap)' },
+                { name: 'duration', placeholder: 'Duration (in days)' },
+                { name: 'interests', placeholder: 'Interests (e.g., temples, food, history)' }
+            ]
+        };
+
+        function updateInputs() {
+            taskInputs.innerHTML = '';
+            const fields = taskFields[taskType.value];
+            fields.forEach(field => {
+                const input = document.createElement(field.type === 'textarea' ? 'textarea' : 'input');
+                input.name = field.name;
+                input.placeholder = field.placeholder;
+                taskInputs.appendChild(input);
+            });
+        }
+
+        taskType.addEventListener('change', updateInputs);
+
+        runAiButton.addEventListener('click', async () => {
+           const payload = {};
+            Array.from(taskInputs.children).forEach(input => {
+                payload[input.name] = input.value;
+            });
+
+            const task = { type: taskType.value, payload };
+            responseContainer.textContent = 'AI is thinking...';
+
+            try {
+                const response = await fetch('/api/ai/run', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ task })
+                });
+                const data = await response.json();
+                if (data.error) throw new Error(data.error);
+
+                let formattedResponse = ``;
+                if (data.taskType === 'smart_itinerary' && data.result.itinerary) {
+                    formattedResponse = `Itinerary for ${data.result.itinerary.location}:\n\n`;
+                    data.result.itinerary.days.forEach(day => {
+                        formattedResponse += `Day ${day.day}: ${day.theme}\n`;
+                        formattedResponse += `  Morning: ${day.morning.activity} (${day.morning.description})\n`;
+                        formattedResponse += `  Afternoon: ${day.afternoon.activity} (${day.afternoon.description})\n`;
+                        formattedResponse += `  Evening: ${day.evening.activity} (${day.evening.description})\n\n`;
+                    });
+                     if (data.result.tours && data.result.tours.length > 0) {
+                        formattedResponse += `Suggested Tours:\n`;
+                        data.result.tours.forEach(tour => {
+                            formattedResponse += `  - ${tour.name} in ${tour.location} ($${tour.price}) - Guide: ${tour.guide_name}\n`;
+                        });
+                    }
+                } else {
+                    formattedResponse = JSON.stringify(data.result, null, 2);
+                }
+
+                responseContainer.querySelector('code').textContent = formattedResponse;
+
+            } catch (error) {
+                responseContainer.textContent = `Error: ${error.message}`;
+            }
+        });
+
+        updateInputs();
+
+        const findToursButton = document.getElementById('find-tours');
+        const tourInterestInput = document.getElementById('tour-interest');
+        const tourResultsContainer = document.getElementById('tour-results');
+
+        findToursButton.addEventListener('click', async () => {
+            const interest = tourInterestInput.value;
+            if (!interest) {
+                tourResultsContainer.textContent = 'Please enter an interest to find tours.';
+                return;
+            }
+
+            tourResultsContainer.textContent = 'Searching for tours...';
+
+            try {
+                const response = await fetch(`/api/tours/search?interest=${encodeURIComponent(interest)}`);
+                const data = await response.json();
+
+                if (data.error) throw new Error(data.error);
+
+                if (data.tours && data.tours.length > 0) {
+                    tourResultsContainer.innerHTML = data.tours.map(tour => `
+                        <div class="tour-result">
+                            <h4>${tour.name}</h4>
+                            <p><strong>Location:</strong> ${tour.location} | <strong>Price:</strong> $${tour.price}</p>
+                            <p>${tour.description}</p>
+                            <p><em>Guide: ${tour.guide_name || 'N/A'}</em></p>
+                            <a href="/booking.html?tourId=${tour.id}&tourName=${encodeURIComponent(tour.name)}&tourPrice=${tour.price}" class="book-now-btn">Book Now</a>
+                        </div>
+                    `).join('');
+                } else {
+                    tourResultsContainer.textContent = 'No tours found for that interest.';
+                }
+            } catch (error) {
+                tourResultsContainer.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>

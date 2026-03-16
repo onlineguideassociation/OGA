@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Profile - OnlineAndAi.com</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
+        h1, h2, h3 { color: #0056b3; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .guide-profile { margin-bottom: 20px; }
+        .tour-list { margin-top: 20px; }
+        .tour-card { border: 1px solid #ccc; border-radius: 8px; padding: 15px; background: #fff; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="guide-profile"></div>
+        <div id="tour-list"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const guideProfileContainer = document.getElementById("guide-profile");
+            const tourListContainer = document.getElementById("tour-list");
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const guideId = urlParams.get("id");
+
+            if (guideId) {
+                try {
+                    const response = await fetch(`/api/guides/${guideId}`);
+                    const data = await response.json();
+
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+
+                    const { guide, tours } = data;
+
+                    guideProfileContainer.innerHTML = `
+                        <h1>${guide.name}</h1>
+                        <p><strong>Location:</strong> ${guide.location}</p>
+                        <p><strong>Specialties:</strong> ${guide.specialties.join(", ")}</p>
+                        <p>${guide.bio}</p>
+                    `;
+
+                    if (tours && tours.length > 0) {
+                        tourListContainer.innerHTML = `
+                            <h2>Tours by ${guide.name}</h2>
+                            ${tours.map(tour => `
+                                <div class="tour-card">
+                                    <h3>${tour.name}</h3>
+                                    <p><strong>Price:</strong> $${tour.price}</p>
+                                    <p>${tour.description}</p>
+                                </div>
+                            `).join("")}
+                        `;
+                    } else {
+                        tourListContainer.innerHTML = "<p>This guide has no tours yet.</p>";
+                    }
+
+                } catch (error) {
+                    guideProfileContainer.innerHTML = `<p>Error loading guide profile: ${error.message}</p>`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import { callOpenAI } from "./providers/openai.js";
 import { callGemini } from "./providers/gemini.js";
+import { findToursByInterest } from "../database.js"; // Import the new database function
 
 // This function is now defined locally to avoid import issues.
 function buildReviewReplyPrompt({ review, tone, language }) {
@@ -53,13 +54,39 @@ export async function aiRouter(task) {
 
   const prompt = promptBuilder(payload);
 
+  let aiResult;
   if (provider === "openai") {
-    return callOpenAI({ prompt: `[priority:${priority}] ${prompt}`});
+    aiResult = await callOpenAI({ prompt: `[priority:${priority}] ${prompt}`});
   }
 
   if (provider === "gemini") {
-    return callGemini({ prompt: `[priority:${priority}] ${prompt}` });
+    aiResult = await callGemini({ prompt: `[priority:${priority}] ${prompt}` });
   }
 
-  throw new Error(`Provider not implemented: ${provider}`);
+  if (!aiResult) {
+      throw new Error(`Provider not implemented: ${provider}`);
+  }
+
+  // Enhance Smart Itinerary with tour suggestions from the database
+  if (type === 'smart_itinerary' && payload.interests) {
+      let suggested_tours = [];
+      for (const interest of payload.interests) {
+          const tours = await findToursByInterest(interest);
+          suggested_tours.push(...tours);
+      }
+      // Remove duplicates
+      suggested_tours = [...new Map(suggested_tours.map(item => [item['id'], item])).values()];
+      
+      try {
+        // Attempt to parse the AI result as JSON and merge
+        const itinerary = JSON.parse(aiResult);
+        itinerary.suggested_tours = suggested_tours;
+        return itinerary;
+      } catch (e) {
+        // If AI result is not JSON, return a combined object
+        return { itinerary_text: aiResult, suggested_tours };
+      }
+  }
+
+  return aiResult;
 }
