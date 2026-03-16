@@ -70,19 +70,19 @@
     <div id="sidebar">
         <h1>OnlineGuide.io</h1>
         <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Travel & Tourism</a></li>
-            <li><a href="#">Commerce & Dropshipping</a></li>
-            <li><a href="#">AI App & Knowledge Hub</a></li>
-            <li><a href="#">Crypto & Fintech</a></li>
-            <li><a href="#">Content & Marketing</a></li>
-            <li><a href="#">Connectivity & Cyber</a></li>
-            <li><a href="#">HR & Professional</a></li>
+            <li><a href="/index.html">Dashboard</a></li>
+            <li><a href="/index.html">Travel & Tourism</a></li>
+            <li><a href="/commerce.html">Commerce & Dropshipping</a></li>
+            <li><a href="/ai-hub.html">AI App & Knowledge Hub</a></li>
+            <li><a href="/crypto.html">Crypto & Fintech</a></li>
+            <li><a href="/content.html">Content & Marketing</a></li>
+            <li><a href="/connectivity.html">Connectivity & Cyber</a></li>
+            <li><a href="/hr.html">HR & Professional</a></li>
             <li><a href="/guides.html">Global Guide Network</a></li>
         </ul>
     </div>
     <div id="main-content">
-        <h2>Unified AI Super-Agent Dashboard</h2>
+        <h2>AI Tourism Dashboard</h2>
         <div class="dashboard-grid">
             <div class="card" id="tour-finder">
                 <h3>Smart Tour Finder</h3>
@@ -92,12 +92,12 @@
             </div>
 
             <div class="card" id="ai-interaction">
-                <h3>AI Workspace</h3>
+                <h3>AI Travel Assistant</h3>
                 <select id="task-type">
-                    <option value="smart_itinerary">Smart Itinerary</option>
-                    <option value="tour_description">Tour Description</option>
-                    <option value="social_ad">Social Media Ad</option>
-                    <option value="review_reply">Review Reply</option>
+                    <option value="smart_itinerary">Smart Itinerary Planner</option>
+                    <option value="tour_promotion">Write Tour Promotion</option>
+                    <option value="family_activities">Suggest Family Activities</option>
+                    <option value="review_reply">Reply to Customer Review</option>
                 </select>
                 <div id="task-inputs"></div>
                 <button id="run-ai">Run AI</button>
@@ -113,24 +113,24 @@
         const responseContainer = document.getElementById('response-container');
 
         const taskFields = {
-            tour_description: [
-                { name: 'name', placeholder: 'Tour Name (e.g., Angkor Wat Sunrise)' },
-                { name: 'features', placeholder: 'Key Features (e.g., guided, breakfast included)' }
-            ],
-            social_ad: [
-                { name: 'productName', placeholder: 'Product Name (e.g., Handcrafted souvenirs)' },
-                { name: 'audience', placeholder: 'Target Audience (e.g., Eco-tourists)' },
-                { name: 'platform', placeholder: 'Platform (e.g., Instagram, Facebook)' }
-            ],
-            review_reply: [
-                { name: 'review', placeholder: 'Customer Review', type: 'textarea' },
-                { name: 'tone', placeholder: 'Tone (e.g., empathetic, professional)' },
-                { name: 'language', placeholder: 'Language (e.g., English, Khmer)' }
-            ],
             smart_itinerary: [
                 { name: 'location', placeholder: 'Location (e.g., Siem Reap)' },
                 { name: 'duration', placeholder: 'Duration (in days)' },
                 { name: 'interests', placeholder: 'Interests (e.g., temples, food, history)' }
+            ],
+            tour_promotion: [
+                { name: 'tourName', placeholder: 'Tour Name (e.g., Angkor Wat Sunrise)' },
+                { name: 'highlights', placeholder: 'Key Highlights (e.g., guided, breakfast)' },
+                { name: 'platform', placeholder: 'Platform (e.g., Instagram, Facebook)' }
+            ],
+             family_activities: [
+                { name: 'location', placeholder: 'Location (e.g., Phnom Penh)' },
+                { name: 'child_ages', placeholder: 'Ages of Children (e.g., 5, 10)' },
+                { name: 'interests', placeholder: 'Family Interests (e.g., animals, swimming)' }
+            ],
+            review_reply: [
+                { name: 'review', placeholder: 'Customer Review', type: 'textarea' },
+                { name: 'tone', placeholder: 'Desired Tone (e.g., empathetic, professional)' }
             ]
         };
 

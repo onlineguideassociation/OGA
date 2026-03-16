@@ -3,79 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book a Tour - OnlineAndAi.com</title>
+    <title>Book Your Tour - OnlineGuide.io</title>
     <style>
-        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; margin: 0; padding: 20px; }
-        h1, h2 { color: #0056b3; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .booking-form input, .booking-form button { padding: 10px; border-radius: 4px; border: 1px solid #ccc; width: 100%; margin-bottom: 10px; }
-        .booking-form button { background-color: #28a745; color: white; cursor: pointer; }
+        body { font-family: sans-serif; background-color: #f0f2f5; color: #333; margin: 0; display: flex; height: 100vh; }
+        a { text-decoration: none; color: #007bff; }
+        h1, h2, h3, h4 { color: #0056b3; }
+
+        #sidebar {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        #sidebar h1 { font-size: 1.5em; margin-bottom: 20px; }
+        #sidebar ul { list-style: none; padding: 0; }
+        #sidebar ul li { margin-bottom: 15px; font-weight: bold; }
+
+        #main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Book a Tour</h1>
-        <div id="tour-details"></div>
-        <form id="booking-form" class="booking-form">
-            <input type="hidden" id="tour-id" name="tour-id">
-            <input type="text" id="customer-name" name="customer-name" placeholder="Your Name" required>
-            <input type="email" id="customer-email" name="customer-email" placeholder="Your Email" required>
-            <input type="date" id="booking-date" name="booking-date" required>
-            <button type="submit">Confirm Booking</button>
-        </form>
-        <div id="booking-confirmation"></div>
+    <div id="sidebar">
+        <h1>OnlineGuide.io</h1>
+        <ul>
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="guide.html">Travel & Tourism</a></li>
+            <li><a href="commerce.html">Commerce & Dropshipping</a></li>
+            <li><a href="ai-hub.html">AI App & Knowledge Hub</a></li>
+            <li><a href="crypto.html">Crypto & Fintech</a></li>
+            <li><a href="content.html">Content & Marketing</a></li>
+            <li><a href="connectivity.html">Connectivity & Cyber</a></li>
+            <li><a href="hr.html">HR & Professional</a></li>
+            <li><a href="guides.html">Global Guide Network</a></li>
+        </ul>
+    </div>
+    <div id="main-content">
+        <div class="card">
+            <h2>Confirm Your Booking</h2>
+            <div id="tour-details">
+                <h3 id="tour-name">Tour Name Will Appear Here</h3>
+                <p><strong>Price:</strong> <span id="tour-price">$0</span></p>
+            </div>
+            <form id="booking-form">
+                <input type="text" name="name" placeholder="Your Full Name" required>
+                <input type="email" name="email" placeholder="Your Email Address" required>
+                <input type="tel" name="phone" placeholder="Your Phone Number">
+                <label for="booking-date">Booking Date:</label>
+                <input type="date" id="booking-date" name="booking-date" required>
+                <button type="submit">Confirm Booking</button>
+            </form>
+            <div id="confirmation-message" style="display: none; margin-top: 15px; color: green;">
+                Booking confirmed! A confirmation has been sent to your email.
+            </div>
+        </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const tourDetailsContainer = document.getElementById("tour-details");
-            const bookingForm = document.getElementById("booking-form");
-            const tourIdInput = document.getElementById("tour-id");
-            const bookingConfirmation = document.getElementById("booking-confirmation");
-
             const urlParams = new URLSearchParams(window.location.search);
-            const tourId = urlParams.get("tourId");
-            const tourName = urlParams.get("tourName");
-            const tourPrice = urlParams.get("tourPrice");
+            const tourName = urlParams.get('tourName');
+            const tourPrice = urlParams.get('tourPrice');
 
-            if (tourId) {
-                tourIdInput.value = tourId;
-                tourDetailsContainer.innerHTML = `
-                    <h2>${tourName}</h2>
-                    <p><strong>Price:</strong> $${tourPrice}</p>
-                `;
+            if (tourName) {
+                document.getElementById('tour-name').textContent = decodeURIComponent(tourName);
+            }
+            if (tourPrice) {
+                document.getElementById('tour-price').textContent = `$${tourPrice}`;
             }
 
-            bookingForm.addEventListener("submit", async (event) => {
-                event.preventDefault();
-
-                const formData = new FormData(bookingForm);
-                const bookingData = {
-                    tour_id: formData.get("tour-id"),
-                    customer_name: formData.get("customer-name"),
-                    customer_email: formData.get("customer-email"),
-                    booking_date: formData.get("booking-date")
-                };
-
-                try {
-                    const response = await fetch("/api/bookings", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(bookingData)
-                    });
-
-                    const result = await response.json();
-
-                    if (result.error) {
-                        throw new Error(result.error);
-                    }
-
-                    bookingConfirmation.innerHTML = `<p>Booking confirmed! A confirmation email has been sent to ${bookingData.customer_email}.</p>`;
-                    bookingForm.style.display = "none";
-
-                } catch (error) {
-                    bookingConfirmation.innerHTML = `<p>Error creating booking: ${error.message}</p>`;
-                }
+            const bookingForm = document.getElementById('booking-form');
+            bookingForm.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+                
+                // In a real application, this would send data to a server.
+                // For now, we'll just show a confirmation message.
+                document.getElementById('confirmation-message').style.display = 'block';
+                bookingForm.style.display = 'none';
             });
         });
     </script>
