@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [OnlineGuide.io, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: onlineandai-os/package-lock.json
+
+      - name: Install dependencies
+        working-directory: onlineandai-os
+        run: npm install
+
+      - name: Syntax check
+        working-directory: onlineandai-os
+        run: npm run check
+
+      - name: Verify integration files
+        run: |
+          files=(
+            "onlineandai-os/integrations/wordpress.js"
+            "onlineandai-os/integrations/aws.js"
+            "onlineandai-os/integrations/gbp.js"
+            "onlineandai-os/integrations/whatsapp.js"
+            "onlineandai-os/integrations/facebook.js"
+            "onlineandai-os/integrations/tiktok.js"
+            "onlineandai-os/integrations/stripe.js"
+            "onlineandai-os/ai-core/providers/anthropic.js"
+            "onlineandai-os/ai-core/intent-classifier.js"
+            "onlineandai-os/api/wordpress-routes.js"
+            "onlineandai-os/api/chat-routes.js"
+            "onlineandai-os/api/social-routes.js"
+            "onlineandai-os/api/payment-routes.js"
+          )
+          for f in "${files[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "MISSING: $f"
+              exit 1
+            fi
+            echo "OK: $f"
+          done
