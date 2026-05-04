@@ -11,17 +11,19 @@ import { wordpressRouter } from "./wordpress-routes.js";
 import { socialRouter } from "./social-routes.js";
 import { paymentRouter } from "./payment-routes.js";
 import { chatRouter } from "./chat-routes.js";
+import { wooRouter } from "./woocommerce-routes.js";
 
 export const apiRouter = Router();
 
 apiRouter.get("/health", (req, res) => {
-  res.json({ ok: true, service: "onlineandai-os", version: "0.2.0" });
+  res.json({ ok: true, service: "onlineandai-os", version: "0.3.0" });
 });
 
 apiRouter.use("/wordpress", wordpressRouter);
 apiRouter.use("/social", socialRouter);
 apiRouter.use("/payment", paymentRouter);
 apiRouter.use("/chat", chatRouter);
+apiRouter.use("/woo", wooRouter);
 
 apiRouter.post("/ai/run", async (req, res) => {
   try {
